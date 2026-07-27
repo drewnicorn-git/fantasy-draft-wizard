@@ -1,57 +1,73 @@
-import type { Player, ScoringFormat, SourceKey } from '../data/types';
+import type { Player, ScoringFormat } from '../data/types';
+import { getActiveSources } from '../state/appState';
 import { SOURCE_LABELS, getAdp, getConsensus, getSourceRank } from '../utils/scoring';
 import { isTierBreak, pickPredictor } from '../utils/analytics';
-import { loadTags, toggleTag, saveTags } from '../utils/storage';
+import {
+  addCustomTag,
+  getTagById,
+  loadPlayerTags,
+  loadTagDefinitions,
+  removeCustomTag,
+  setPlayerTag,
+} from '../utils/storage';
 import { state } from '../state/appState';
 
 export function renderRankingsTable(
   container: HTMLElement,
   players: Player[],
-  sources: SourceKey[],
   scoring: ScoringFormat,
   opts: { showPredictor?: boolean; currentPick?: number; picksUntilNext?: number; draftedIds?: Set<string> } = {},
 ): void {
-  const sorted = [...players].sort(
-    (a, b) => (getConsensus(a, scoring) ?? 9999) - (getConsensus(b, scoring) ?? 9999),
-  );
+  const sources = getActiveSources();
+  const tagDefs = loadTagDefinitions();
+  const playerTags = loadPlayerTags();
 
-  const tags = loadTags();
+  const sorted = [...players].sort((a, b) => (getConsensus(a, scoring) ?? 9999) - (getConsensus(b, scoring) ?? 9999));
+
+  const tagOptions = tagDefs
+    .map((t) => `<option value="${t.id}">${escapeHtml(t.label)}</option>`)
+    .join('');
 
   const thead = `
     <thead><tr>
       <th>#</th><th>Player</th><th>Pos</th><th>Team</th><th>Tier</th>
       ${sources.map((s) => `<th>${SOURCE_LABELS[s] ?? s}</th>`).join('')}
-      <th>Cons</th><th>ADP</th>
+      <th>Consensus</th><th>ADP</th>
       ${opts.showPredictor ? '<th>Avail%</th>' : ''}
-      <th>Tags</th>
+      <th>Tag</th>
     </tr></thead>`;
 
   const rows = sorted
     .map((p, i) => {
       const next = sorted[i + 1];
       const tierBreak = isTierBreak(p, next);
-      const tag = tags[p.id];
-      const injury = p.injuryStatus ? `<span class="badge injury" title="${p.injuryStatus}">INJ</span>` : '';
+      const tagId = playerTags[p.id];
+      const tagDef = getTagById(tagId, tagDefs);
+      const injury = p.injuryStatus ? `<span class="badge injury" title="${escapeHtml(p.injuryStatus)}">INJ</span>` : '';
       const tierCls = p.tier ? `tier-${((p.tier - 1) % 6) + 1}` : '';
+      const teamWarn = p.teamVerified === false ? ' title="Team not verified on ESPN depth chart"' : '';
       const avail =
         opts.showPredictor && opts.currentPick && opts.picksUntilNext
           ? pickPredictor(p, opts.currentPick, opts.picksUntilNext, scoring)
           : null;
+      const tagStyle = tagDef ? ` style="--tag-color:${tagDef.color}"` : '';
 
-      return `<tr class="${tierCls}${tierBreak ? ' tier-break' : ''}${tag ? ` tag-${tag}` : ''}" data-id="${p.id}">
+      return `<tr class="${tierCls}${tierBreak ? ' tier-break' : ''}${tagDef ? ' has-tag' : ''}" data-id="${p.id}"${tagStyle}>
         <td>${getConsensus(p, scoring) ?? '—'}</td>
         <td class="player-name">${escapeHtml(p.name)} ${injury}</td>
         <td>${p.pos}</td>
-        <td>${p.team}</td>
+        <td${teamWarn}>${p.team}${p.teamVerified === false ? ' *' : ''}</td>
         <td>${p.tier ?? '—'}</td>
         ${sources.map((s) => `<td>${getSourceRank(p, s, scoring) ?? '—'}</td>`).join('')}
         <td><strong>${getConsensus(p, scoring) ?? '—'}</strong></td>
         <td>${getAdp(p, scoring)?.toFixed(1) ?? '—'}</td>
         ${opts.showPredictor ? `<td>${avail != null ? `${avail}%` : '—'}</td>` : ''}
-        <td class="tag-btns">
-          <button type="button" data-tag="target" data-id="${p.id}" class="${tag === 'target' ? 'active' : ''}">T</button>
-          <button type="button" data-tag="avoid" data-id="${p.id}" class="${tag === 'avoid' ? 'active' : ''}">A</button>
-          <button type="button" data-tag="sleeper" data-id="${p.id}" class="${tag === 'sleeper' ? 'active' : ''}">S</button>
+        <td class="tag-cell">
+          <select data-player-tag="${p.id}" aria-label="Tag for ${escapeHtml(p.name)}">
+            <option value="">—</option>
+            ${tagOptions}
+          </select>
+          ${tagDef ? `<span class="tag-pill" style="background:${tagDef.color}">${escapeHtml(tagDef.label)}</span>` : ''}
         </td>
       </tr>`;
     })
@@ -59,14 +75,59 @@ export function renderRankingsTable(
 
   container.innerHTML = `<div class="table-wrap"><table>${thead}<tbody>${rows}</tbody></table></div>`;
 
-  container.querySelectorAll('[data-tag]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const id = (btn as HTMLElement).dataset.id!;
-      const tag = (btn as HTMLElement).dataset.tag as 'target' | 'avoid' | 'sleeper';
-      const next = toggleTag(tags, id, tag);
-      saveTags(next);
-      renderRankingsTable(container, players, sources, scoring, opts);
+  container.querySelectorAll<HTMLSelectElement>('[data-player-tag]').forEach((sel) => {
+    const id = sel.dataset.playerTag!;
+    sel.value = playerTags[id] ?? '';
+    sel.addEventListener('change', () => {
+      setPlayerTag(id, sel.value || null);
+      renderRankingsTable(container, players, scoring, opts);
     });
+  });
+}
+
+export function renderTagManager(container: HTMLElement, onChange: () => void): void {
+  const tagDefs = loadTagDefinitions();
+
+  container.innerHTML = `
+    <details class="tag-manager">
+      <summary>Tags — label players for your draft</summary>
+      <p class="hint">Preset tags: <strong>Target</strong> (want to draft), <strong>Avoid</strong> (skip), <strong>Sleeper</strong> (undervalued). Create custom tags below.</p>
+      <ul class="tag-def-list">
+        ${tagDefs
+          .map(
+            (t) => `
+          <li>
+            <span class="tag-pill" style="background:${t.color}">${escapeHtml(t.label)}</span>
+            <span class="muted">${escapeHtml(t.description ?? '')}</span>
+            ${t.preset ? '<span class="badge preset">preset</span>' : `<button type="button" class="btn sm" data-remove-tag="${t.id}">Remove</button>`}
+          </li>`,
+          )
+          .join('')}
+      </ul>
+      <form id="add-tag-form" class="add-tag-form">
+        <input type="text" id="new-tag-label" placeholder="Custom tag name" maxlength="24" required />
+        <input type="color" id="new-tag-color" value="#3d8bfd" title="Tag color" />
+        <button type="submit" class="btn secondary sm">Add tag</button>
+      </form>
+    </details>`;
+
+  container.querySelectorAll('[data-remove-tag]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      removeCustomTag((btn as HTMLElement).dataset.removeTag!);
+      renderTagManager(container, onChange);
+      onChange();
+    });
+  });
+
+  container.querySelector('#add-tag-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const label = (container.querySelector('#new-tag-label') as HTMLInputElement).value.trim();
+    const color = (container.querySelector('#new-tag-color') as HTMLInputElement).value;
+    if (label) {
+      addCustomTag(label, color);
+      renderTagManager(container, onChange);
+      onChange();
+    }
   });
 }
 

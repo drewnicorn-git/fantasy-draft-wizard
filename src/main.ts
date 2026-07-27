@@ -1,6 +1,5 @@
 import './styles.css';
 import { loadRankings, getRankings, setScoring, setState, state, subscribe } from './state/appState';
-import { loadTags } from './utils/storage';
 import { mountRankingsView } from './pages/RankingsView';
 import { mountMockDraftView } from './pages/MockDraftView';
 
@@ -49,7 +48,6 @@ async function init(): Promise<void> {
   app.innerHTML = '<p class="loading">Loading rankings…</p>';
   try {
     await loadRankings();
-    state.tags = loadTags();
     subscribe(render);
     render();
   } catch (err) {

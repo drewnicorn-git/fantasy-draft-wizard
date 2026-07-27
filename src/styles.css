@@ -113,15 +113,60 @@ tr.tier-break td { border-bottom: 2px solid var(--warn); }
 
 .badge.injury { background: var(--danger); color: #fff; font-size: 0.65rem; padding: 0.1rem 0.3rem; border-radius: 3px; margin-left: 0.25rem; }
 
-.tag-btns button { padding: 0.1rem 0.35rem; margin-right: 0.15rem; font-size: 0.7rem; }
-
-.tag-btns button.active { background: var(--accent2); }
-
-tr.tag-target { outline: 1px solid var(--accent2); }
-tr.tag-avoid { opacity: 0.65; }
-tr.tag-sleeper { outline: 1px dashed var(--warn); }
-
 .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
+
+.hint { color: var(--muted); font-size: 0.8rem; margin: 0.25rem 0 0.5rem; }
+
+.source-selector {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.source-checkboxes { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; margin-top: 0.5rem; }
+
+.source-check {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.source-check input { accent-color: var(--accent); width: 1rem; height: 1rem; }
+
+.tag-manager {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.tag-def-list { list-style: none; padding: 0; margin: 0.5rem 0; }
+
+.tag-def-list li { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; flex-wrap: wrap; }
+
+.tag-pill {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.badge.preset { font-size: 0.65rem; background: var(--surface2); color: var(--muted); padding: 0.1rem 0.35rem; border-radius: 4px; }
+
+.add-tag-form { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 0.5rem; }
+
+.btn.sm { padding: 0.2rem 0.5rem; font-size: 0.75rem; }
+
+.tag-cell select { font-size: 0.75rem; max-width: 7rem; padding: 0.2rem; }
+
+tr.has-tag { box-shadow: inset 3px 0 0 var(--tag-color, var(--accent)); }
 
 .mock-draft .setup-grid {
   display: grid;

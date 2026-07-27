@@ -197,7 +197,6 @@ function renderUserTurn(
   renderRankingsTable(
     root.querySelector('#pick-list') as HTMLElement,
     available,
-    getRankings()!.sources,
     cfg.scoring,
     { showPredictor: true, currentPick: overall, picksUntilNext: untilNext, draftedIds: draft.draftedIds },
   );

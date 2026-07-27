@@ -1,5 +1,4 @@
 export type ScoringFormat = 'std' | 'ppr';
-export type PlayerTag = 'target' | 'avoid' | 'sleeper';
 export type Position = 'QB' | 'RB' | 'WR' | 'TE' | 'K' | 'DST' | 'FLEX';
 
 export type SourceKey = 'fantasypros' | 'espn' | 'sleeper' | 'yahoo' | 'nfl';
@@ -12,11 +11,20 @@ export interface SourceRanks {
   nfl?: number;
 }
 
+export interface TagDefinition {
+  id: string;
+  label: string;
+  color: string;
+  description?: string;
+  preset?: boolean;
+}
+
 export interface Player {
   id: string;
   name: string;
   team: string;
   pos: Position | string;
+  teamVerified?: boolean;
   bye: number | null;
   tier: number | null;
   injuryStatus: string | null;
@@ -72,7 +80,7 @@ export interface AppState {
   scoring: ScoringFormat;
   tab: 'rankings' | 'mock';
   filters: FilterState;
-  tags: Record<string, PlayerTag>;
+  selectedSources: Set<SourceKey>;
   draftConfig: DraftConfig;
   botPersonality: BotPersonality;
 }

@@ -7,6 +7,7 @@ import { fetchEspn } from './sources/espn.js';
 import { fetchSleeperAdp, fetchSleeperPlayers } from './sources/sleeper.js';
 import { fetchYahoo } from './sources/yahoo.js';
 import { fetchNfl } from './sources/nfl.js';
+import { fetchEspnDepthCharts } from './sources/espn-depth.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const rawDir = join(root, 'data', 'raw');
@@ -46,6 +47,7 @@ async function run(): Promise<void> {
   ]);
 
   const optional = await Promise.allSettled([
+    fetchEspnDepthCharts(SEASON).then((p) => writeRaw(`espn-depth-${SEASON}.json`, { players: p })),
     fetchYahoo(SEASON, 'STD').then((p) => writeRaw(`yahoo-STD-${SEASON}.json`, { scoring: 'STD', players: p })),
     fetchYahoo(SEASON, 'PPR').then((p) => writeRaw(`yahoo-PPR-${SEASON}.json`, { scoring: 'PPR', players: p })),
     fetchNfl(SEASON).then((p) => writeRaw(`nfl-STD-${SEASON}.json`, { scoring: 'STD', players: p })),

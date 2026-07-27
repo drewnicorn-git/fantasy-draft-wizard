@@ -2,7 +2,15 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { currentDraftSeason } from './season.js';
-import { normalizeName, normalizePos, playerKey, type RawPlayerRow } from './utils.js';
+import { normalizePos, type RawPlayerRow } from './utils.js';
+import {
+  buildDepthChartIndex,
+  canonicalKey,
+  isValidPlayerName,
+  resolveTeamFromDepthChart,
+  type DepthChartEntry,
+  type DepthChartIndex,
+} from './sources/espn-depth.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const rawDir = join(root, 'data', 'raw');
@@ -26,6 +34,7 @@ export interface PoolPlayer {
   name: string;
   team: string;
   pos: string;
+  teamVerified: boolean;
   bye: number | null;
   tier: number | null;
   injuryStatus: string | null;
@@ -39,20 +48,21 @@ export interface PoolPlayer {
 interface Snapshot {
   season?: number;
   fetchedAt?: string;
-  data: { scoring?: string; players: RawPlayerRow[] };
+  data: { scoring?: string; players: RawPlayerRow[] | DepthChartEntry[] };
 }
 
 function loadSnapshot(filename: string): Snapshot | null {
+  if (!filename.endsWith('.json')) return null;
   const path = join(rawDir, filename);
   if (!existsSync(path)) return null;
-  return JSON.parse(readFileSync(path, 'utf8')) as Snapshot;
-}
-
-function median(nums: number[]): number | null {
-  if (!nums.length) return null;
-  const s = [...nums].sort((a, b) => a - b);
-  const mid = Math.floor(s.length / 2);
-  return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
+  try {
+    const raw = readFileSync(path, 'utf8').trim();
+    if (!raw) return null;
+    return JSON.parse(raw) as Snapshot;
+  } catch {
+    console.warn(`  Skipping invalid snapshot: ${filename}`);
+    return null;
+  }
 }
 
 function avg(nums: number[]): number | null {
@@ -60,91 +70,196 @@ function avg(nums: number[]): number | null {
   return nums.reduce((a, b) => a + b, 0) / nums.length;
 }
 
-function merge(): void {
-  const pool = new Map<string, PoolPlayer>();
+interface SourceImport {
+  source: SourceKey;
+  scoring: 'std' | 'ppr';
+  file: string;
+  apply: (player: PoolPlayer, row: RawPlayerRow) => void;
+}
 
-  const ensure = (row: RawPlayerRow): PoolPlayer => {
-    const pos = normalizePos(row.pos);
-    const team = row.team.toUpperCase();
-    const key = playerKey(row.name, team, pos);
-    let p = pool.get(key);
-    if (!p) {
-      p = {
-        id: key,
-        name: row.name,
-        team,
-        pos,
-        bye: row.bye ?? null,
-        tier: row.tier ?? null,
-        injuryStatus: null,
-        ranks: { std: {}, ppr: {} },
-        consensus: { std: null, ppr: null },
-        adp: { std: null, ppr: null },
-        posRank: { std: null, ppr: null },
-        rankStdDev: null,
-      };
-      pool.set(key, p);
+function loadDepthIndex(): DepthChartIndex {
+  const snap = loadSnapshot(`espn-depth-${SEASON}.json`);
+  const entries = (snap?.data.players ?? []) as DepthChartEntry[];
+  if (entries.length) {
+    console.log(`  ESPN depth/roster index: ${entries.length} entries`);
+    return buildDepthChartIndex(entries);
+  }
+
+  const sleeper = loadSnapshot('sleeper-players.json');
+  const sleeperEntries = (sleeper?.data.players ?? []) as Array<{ name: string; team: string; pos: string }>;
+  if (sleeperEntries.length) {
+    console.warn('  ESPN depth chart missing — falling back to Sleeper roster for team validation');
+    return buildDepthChartIndex(
+      sleeperEntries.map((p) => ({ name: p.name, team: p.team, pos: normalizePos(p.pos) })),
+    );
+  }
+
+  console.warn('  No team validation index available');
+  return new Map();
+}
+
+function getOrCreatePlayer(
+  pool: Map<string, PoolPlayer>,
+  name: string,
+  pos: string,
+  sourceTeam: string,
+  depthIndex: DepthChartIndex,
+): PoolPlayer | null {
+  if (!isValidPlayerName(name)) return null;
+
+  const posNorm = normalizePos(pos);
+  if (!['QB', 'RB', 'WR', 'TE', 'K', 'DST'].includes(posNorm)) return null;
+
+  const resolved = resolveTeamFromDepthChart(name, posNorm, sourceTeam, depthIndex);
+  if (!resolved) return null;
+
+  const id = canonicalKey(name, posNorm);
+  let p = pool.get(id);
+  if (!p) {
+    p = {
+      id,
+      name: name.trim(),
+      team: resolved.team,
+      pos: posNorm,
+      teamVerified: resolved.verified,
+      bye: null,
+      tier: null,
+      injuryStatus: null,
+      ranks: { std: {}, ppr: {} },
+      consensus: { std: null, ppr: null },
+      adp: { std: null, ppr: null },
+      posRank: { std: null, ppr: null },
+      rankStdDev: null,
+    };
+    pool.set(id, p);
+  } else {
+    if (resolved.verified) {
+      p.team = resolved.team;
+      p.teamVerified = true;
+    } else if (!p.teamVerified && resolved.team) {
+      p.team = resolved.team;
     }
+    if (p.name.length < name.trim().length) p.name = name.trim();
+  }
+  return p;
+}
+
+function importSourceFile(
+  pool: Map<string, PoolPlayer>,
+  depthIndex: DepthChartIndex,
+  file: string,
+  source: SourceKey,
+  scoring: 'std' | 'ppr',
+  apply: (player: PoolPlayer, row: RawPlayerRow) => void,
+): number {
+  const snap = loadSnapshot(file);
+  if (!snap) return 0;
+  let count = 0;
+  for (const row of (snap.data.players ?? []) as RawPlayerRow[]) {
+    const p = getOrCreatePlayer(pool, row.name, row.pos, row.team, depthIndex);
+    if (!p) continue;
+    apply(p, row);
     if (row.bye != null) p.bye = row.bye;
     if (row.tier != null) p.tier = row.tier;
     if (row.rankStd != null) p.rankStdDev = row.rankStd;
-    return p;
-  };
+    count++;
+  }
+  return count;
+}
 
-  const fpStd = loadSnapshot(`fp-STD-${SEASON}.json`);
-  const fpPpr = loadSnapshot(`fp-PPR-${SEASON}.json`);
-  const espn = loadSnapshot(`espn-${SEASON}.json`);
-  const sleeper = loadSnapshot(`sleeper-adp-${SEASON}.json`);
-  const yahooStd = loadSnapshot(`yahoo-STD-${SEASON}.json`);
-  const yahooPpr = loadSnapshot(`yahoo-PPR-${SEASON}.json`);
-  const nflStd = loadSnapshot(`nfl-STD-${SEASON}.json`);
+function merge(): void {
+  const pool = new Map<string, PoolPlayer>();
+  const depthIndex = loadDepthIndex();
+
+  const imports: SourceImport[] = [
+    {
+      source: 'fantasypros',
+      scoring: 'std',
+      file: `fp-STD-${SEASON}.json`,
+      apply: (p, r) => {
+        if (r.rank != null) p.ranks.std.fantasypros = r.rank;
+        if (r.posRank != null) p.posRank.std = r.posRank;
+      },
+    },
+    {
+      source: 'fantasypros',
+      scoring: 'ppr',
+      file: `fp-PPR-${SEASON}.json`,
+      apply: (p, r) => {
+        if (r.rank != null) p.ranks.ppr.fantasypros = r.rank;
+        if (r.posRank != null) p.posRank.ppr = r.posRank;
+      },
+    },
+    {
+      source: 'espn',
+      scoring: 'ppr',
+      file: `espn-${SEASON}.json`,
+      apply: (p, r) => {
+        if (r.adp != null) p.adp.ppr = r.adp;
+        if (r.rank != null) p.ranks.ppr.espn = r.rank;
+      },
+    },
+    {
+      source: 'sleeper',
+      scoring: 'ppr',
+      file: `sleeper-adp-${SEASON}.json`,
+      apply: (p, r) => {
+        const ext = r as RawPlayerRow & { adpStd?: number; adpPpr?: number };
+        if (ext.adpStd != null) p.adp.std = ext.adpStd;
+        if (ext.adpPpr != null) p.adp.ppr = ext.adpPpr;
+        if (r.adp != null && p.adp.ppr == null) p.adp.ppr = r.adp;
+        if (r.rank != null) p.ranks.ppr.sleeper = r.rank;
+      },
+    },
+    {
+      source: 'yahoo',
+      scoring: 'std',
+      file: `yahoo-STD-${SEASON}.json`,
+      apply: (p, r) => {
+        if (r.rank != null) p.ranks.std.yahoo = r.rank;
+      },
+    },
+    {
+      source: 'yahoo',
+      scoring: 'ppr',
+      file: `yahoo-PPR-${SEASON}.json`,
+      apply: (p, r) => {
+        if (r.rank != null) p.ranks.ppr.yahoo = r.rank;
+      },
+    },
+    {
+      source: 'nfl',
+      scoring: 'std',
+      file: `nfl-STD-${SEASON}.json`,
+      apply: (p, r) => {
+        if (r.rank != null) p.ranks.std.nfl = r.rank;
+      },
+    },
+  ];
+
+  const sourceCounts: Record<string, number> = {};
+  for (const imp of imports) {
+    const n = importSourceFile(pool, depthIndex, imp.file, imp.source, imp.scoring, imp.apply);
+    if (n > 0) sourceCounts[imp.source] = (sourceCounts[imp.source] ?? 0) + n;
+    console.log(`  ${imp.source} (${imp.scoring.toUpperCase()}): ${n} rows from ${imp.file}`);
+  }
+
+  // Injury data from Sleeper — match by name+pos across teams
   const sleeperPlayers = loadSnapshot('sleeper-players.json');
-
-  for (const row of fpStd?.data.players ?? []) {
-    const p = ensure(row);
-    if (row.rank != null) p.ranks.std.fantasypros = row.rank;
-    if (row.posRank != null) p.posRank.std = row.posRank;
-  }
-  for (const row of fpPpr?.data.players ?? []) {
-    const p = ensure(row);
-    if (row.rank != null) p.ranks.ppr.fantasypros = row.rank;
-    if (row.posRank != null) p.posRank.ppr = row.posRank;
-  }
-  for (const row of espn?.data.players ?? []) {
-    const p = ensure(row);
-    if (row.adp != null) p.adp.ppr = row.adp;
-    if (row.rank != null) p.ranks.ppr.espn = row.rank;
-  }
-  for (const row of sleeper?.data.players ?? []) {
-    const p = ensure(row);
-    const ext = row as RawPlayerRow & { adpStd?: number; adpPpr?: number };
-    if (ext.adpStd != null) p.adp.std = ext.adpStd;
-    if (ext.adpPpr != null) p.adp.ppr = ext.adpPpr;
-    if (row.adp != null && p.adp.ppr == null) p.adp.ppr = row.adp;
-    if (row.rank != null) p.ranks.ppr.sleeper = row.rank;
-  }
-  for (const row of yahooStd?.data.players ?? []) {
-    const p = ensure(row);
-    if (row.rank != null) p.ranks.std.yahoo = row.rank;
-  }
-  for (const row of yahooPpr?.data.players ?? []) {
-    const p = ensure(row);
-    if (row.rank != null) p.ranks.ppr.yahoo = row.rank;
-  }
-  for (const row of nflStd?.data.players ?? []) {
-    const p = ensure(row);
-    if (row.rank != null) p.ranks.std.nfl = row.rank;
-  }
-
   if (sleeperPlayers?.data.players) {
-    for (const sp of sleeperPlayers.data.players) {
-      const key = playerKey(sp.name, sp.team, normalizePos(sp.pos));
-      const p = pool.get(key);
+    for (const sp of sleeperPlayers.data.players as Array<{ name: string; team: string; pos: string; injuryStatus: string | null }>) {
+      const id = canonicalKey(sp.name, normalizePos(sp.pos));
+      const p = pool.get(id);
       if (p && sp.injuryStatus) p.injuryStatus = sp.injuryStatus;
     }
   }
 
-  const players = [...pool.values()].filter((p) => ['QB', 'RB', 'WR', 'TE', 'K', 'DST'].includes(p.pos));
+  const players = [...pool.values()].filter((p) => {
+    if (!isValidPlayerName(p.name)) return false;
+    const rankCount =
+      Object.keys(p.ranks.std).length + Object.keys(p.ranks.ppr).length + (p.adp.std != null ? 1 : 0) + (p.adp.ppr != null ? 1 : 0);
+    return rankCount > 0;
+  });
 
   for (const p of players) {
     const stdRanks = Object.values(p.ranks.std).filter((n): n is number => n != null);
@@ -157,6 +272,8 @@ function merge(): void {
 
   players.sort((a, b) => (a.consensus.ppr ?? 9999) - (b.consensus.ppr ?? 9999));
 
+  const availableSources: SourceKey[] = ['fantasypros', 'espn', 'sleeper', 'yahoo', 'nfl'].filter((s) => sourceCounts[s]);
+
   const fetchedAt = readdirSync(rawDir)
     .map((f) => loadSnapshot(f)?.fetchedAt)
     .filter(Boolean)
@@ -167,11 +284,7 @@ function merge(): void {
     season: SEASON,
     builtAt: new Date().toISOString(),
     fetchedAt: fetchedAt ?? null,
-    sources: ['fantasypros', 'espn', 'sleeper', 'yahoo', 'nfl'].filter((s) => {
-      if (s === 'yahoo') return yahooStd || yahooPpr;
-      if (s === 'nfl') return !!nflStd;
-      return true;
-    }),
+    sources: availableSources,
     players,
   };
 
@@ -179,7 +292,7 @@ function merge(): void {
   writeFileSync(outPath, json);
   mkdirSync(join(root, 'public'), { recursive: true });
   writeFileSync(publicPath, json);
-  console.log(`Built ${players.length} players -> ${outPath}`);
+  console.log(`Built ${players.length} players (${players.filter((p) => p.teamVerified).length} team-verified) -> ${outPath}`);
 }
 
 merge();

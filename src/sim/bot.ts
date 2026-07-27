@@ -1,4 +1,5 @@
 import type { BotPersonality, DraftConfig, Player, ScoringFormat } from '../data/types';
+import { getConsensus } from '../utils/scoring';
 import { roundFromOverall } from './snake';
 
 export interface RosterCounts {
@@ -67,7 +68,7 @@ export function botPick(
   const scored = available
     .filter((p) => ['QB', 'RB', 'WR', 'TE', 'K', 'DST'].includes(p.pos))
     .map((p) => {
-      const adp = p.adp[scoring] ?? p.consensus[scoring] ?? 999;
+      const adp = p.adp[scoring] ?? getConsensus(p, scoring) ?? 999;
       const adpScore = 1 / Math.max(adp, 1);
       const need = rosterNeedScore(p.pos, counts, round, personality);
       const noise = 0.85 + Math.random() * 0.3;
@@ -92,7 +93,11 @@ export function suggestedPicks(
   limit = 3,
 ): Player[] {
   return [...available]
-    .filter((p) => p.adp[scoring] != null || p.consensus[scoring] != null)
-    .sort((a, b) => (a.adp[scoring] ?? a.consensus[scoring] ?? 999) - (b.adp[scoring] ?? b.consensus[scoring] ?? 999))
+    .filter((p) => getAdpOrConsensus(p, scoring) != null)
+    .sort((a, b) => getAdpOrConsensus(a, scoring)! - getAdpOrConsensus(b, scoring)!)
     .slice(0, limit);
+}
+
+function getAdpOrConsensus(p: Player, scoring: ScoringFormat): number | null {
+  return p.adp[scoring] ?? getConsensus(p, scoring);
 }
