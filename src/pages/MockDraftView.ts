@@ -1,4 +1,4 @@
-import type { DraftPick, Player } from '../data/types';
+import type { DraftPick, Player, ScoringFormat } from '../data/types';
 import { filterPlayers, getRankings, setState, state } from '../state/appState';
 import { renderDraftBoard, renderRosterSummary } from '../components/DraftBoard';
 import { renderRankingsTable } from '../components/PlayerTable';
@@ -116,7 +116,6 @@ function advanceDraft(root: HTMLElement, allPlayers: Player[]): void {
   if (!draft) return;
   const cfg = state.draftConfig;
   const order = snakePickOrder(cfg);
-  const data = getRankings()!;
 
   while (draft.currentIndex < order.length) {
     const teamIndex = order[draft.currentIndex];
@@ -240,11 +239,12 @@ function userPick(
 
 function renderUserRoster(root: HTMLElement, allPlayers: Player[]): void {
   const cfg = state.draftConfig;
+  const scoring: ScoringFormat = cfg.scoring;
   const roster = getTeamRoster(cfg.slot - 1, allPlayers).map((p) => ({
     name: p.name,
     pos: p.pos,
     team: p.team,
-    adp: p.adp[cfg.scoring],
+    adp: p.adp[scoring],
   }));
   renderRosterSummary(root.querySelector('#user-roster') as HTMLElement, roster);
 }
@@ -257,9 +257,10 @@ function finishDraft(root: HTMLElement, allPlayers: Player[]): void {
   summary.classList.remove('hidden');
 
   const cfg = state.draftConfig;
+  const scoring: ScoringFormat = cfg.scoring;
   const roster = getTeamRoster(cfg.slot - 1, allPlayers);
   const grades = roster.map((p) => {
-    const adp = p.adp[cfg.scoring];
+    const adp = p.adp[scoring];
     const pick = draft!.picks.find((x) => x.playerId === p.id && x.teamIndex === cfg.slot - 1);
     const value = adp != null && pick ? adp - pick.overall : 0;
     return { ...p, pick: pick?.overall, adp, value };

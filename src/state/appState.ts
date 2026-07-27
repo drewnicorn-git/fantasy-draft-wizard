@@ -1,4 +1,4 @@
-import type { AppState, Player, RankingsData, ScoringFormat } from './data/types';
+import type { AppState, Player, RankingsData, ScoringFormat } from '../data/types';
 
 let rankingsData: RankingsData | null = null;
 let listeners: Array<() => void> = [];
@@ -55,7 +55,7 @@ export function getRankings(): RankingsData | null {
 }
 
 export function filterPlayers(players: Player[], draftedIds: Set<string> = new Set()): Player[] {
-  const { filters, scoring, tags } = state;
+  const { filters, scoring } = state;
   const q = filters.search.trim().toLowerCase();
 
   return players.filter((p) => {

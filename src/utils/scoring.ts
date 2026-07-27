@@ -1,4 +1,4 @@
-import type { Player, ScoringFormat } from './types';
+import type { Player, ScoringFormat } from '../data/types';
 
 export function normalizeName(name: string): string {
   return name

@@ -40,7 +40,7 @@ function render(): void {
     });
   });
 
-  const main = app.querySelector('#main')!;
+  const main = app.querySelector('#main') as HTMLElement;
   if (state.tab === 'rankings') mountRankingsView(main);
   else mountMockDraftView(main);
 }

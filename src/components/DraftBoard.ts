@@ -32,7 +32,3 @@ export function renderRosterSummary(container: HTMLElement, roster: { name: stri
       ${roster.map((p) => `<li><span class="pos">${p.pos}</span> ${escapeHtml(p.name)} <span class="muted">${p.team}${p.adp != null ? ` · ADP ${p.adp.toFixed(1)}` : ''}</span></li>`).join('')}
     </ul>`;
 }
-
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
