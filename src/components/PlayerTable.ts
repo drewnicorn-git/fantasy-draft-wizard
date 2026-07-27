@@ -1,7 +1,8 @@
 import type { Player, ScoringFormat } from '../data/types';
-import { getActiveSources } from '../state/appState';
+import { getActiveSources, state } from '../state/appState';
 import { SOURCE_LABELS, getAdp, getConsensus, getSourceRank } from '../utils/scoring';
 import { isTierBreak, pickPredictor } from '../utils/analytics';
+import { formatPickLabel, getUserPickNumbers } from '../sim/snake';
 import {
   addCustomTag,
   getTagById,
@@ -10,7 +11,6 @@ import {
   removeCustomTag,
   setPlayerTag,
 } from '../utils/storage';
-import { state } from '../state/appState';
 
 export function renderRankingsTable(
   container: HTMLElement,
@@ -23,6 +23,10 @@ export function renderRankingsTable(
   const playerTags = loadPlayerTags();
 
   const sorted = [...players].sort((a, b) => (getConsensus(a, scoring) ?? 9999) - (getConsensus(b, scoring) ?? 9999));
+
+  const showPickSpots = !opts.showPredictor;
+  const { teams, slot, rounds } = state.draftConfig;
+  const userPicks = showPickSpots ? new Set(getUserPickNumbers(teams, slot, rounds)) : new Set<number>();
 
   const tagOptions = tagDefs
     .map((t) => `<option value="${t.id}">${escapeHtml(t.label)}</option>`)
@@ -40,7 +44,12 @@ export function renderRankingsTable(
   const rows = sorted
     .map((p, i) => {
       const next = sorted[i + 1];
-      const tierBreak = isTierBreak(p, next);
+      const overallRank = i + 1;
+      const isUserPick = userPicks.has(overallRank);
+      const pickLabel = isUserPick ? formatPickLabel(overallRank, teams) : '';
+      const tierBreak =
+        isTierBreak(p, next) &&
+        (userPicks.has(overallRank) || userPicks.has(overallRank + 1) || userPicks.has(overallRank + 2));
       const tagId = playerTags[p.id];
       const tagDef = getTagById(tagId, tagDefs);
       const injury = p.injuryStatus ? `<span class="badge injury" title="${escapeHtml(p.injuryStatus)}">INJ</span>` : '';
@@ -52,8 +61,8 @@ export function renderRankingsTable(
           : null;
       const tagStyle = tagDef ? ` style="--tag-color:${tagDef.color}"` : '';
 
-      return `<tr class="${tierCls}${tierBreak ? ' tier-break' : ''}${tagDef ? ' has-tag' : ''}" data-id="${p.id}"${tagStyle}>
-        <td>${getConsensus(p, scoring) ?? '—'}</td>
+      return `<tr class="${tierCls}${tierBreak ? ' tier-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}" data-id="${p.id}"${tagStyle}>
+        <td>${getConsensus(p, scoring) ?? '—'}${isUserPick ? `<span class="pick-badge">${pickLabel}</span>` : ''}</td>
         <td class="player-name">${escapeHtml(p.name)} ${injury}</td>
         <td>${p.pos}</td>
         <td${teamWarn}>${p.team}${p.teamVerified === false ? ' *' : ''}</td>

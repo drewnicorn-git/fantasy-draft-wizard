@@ -60,7 +60,7 @@ export function botPick(
   overallPick: number,
   config: DraftConfig,
   personality: BotPersonality,
-): Player {
+): Player | null {
   const { round } = roundFromOverall(overallPick, config.teams);
   const counts = countRoster(roster);
   const scoring: ScoringFormat = config.scoring;
@@ -76,7 +76,9 @@ export function botPick(
     })
     .sort((a, b) => b.score - a.score);
 
-  if (!scored.length) return available[0];
+  if (!scored.length || !available.length) {
+    return available[0] ?? null;
+  }
   const top = scored.slice(0, Math.min(8, scored.length));
   const total = top.reduce((s, x) => s + x.score, 0);
   let r = Math.random() * total;
@@ -84,7 +86,7 @@ export function botPick(
     r -= t.score;
     if (r <= 0) return t.p;
   }
-  return top[0]?.p ?? available[0]!;
+  return top[0]?.p ?? available[0] ?? null;
 }
 
 export function suggestedPicks(

@@ -1,6 +1,6 @@
 import type { AppState, Player, RankingsData, ScoringFormat, SourceKey } from '../data/types';
 import { isBlankPlayer } from '../utils/scoring';
-import { loadSelectedSources, saveSelectedSources } from '../utils/storage';
+import { loadSelectedSources, saveSelectedSources, loadDraftConfig, saveDraftConfig } from '../utils/storage';
 
 let rankingsData: RankingsData | null = null;
 let listeners: Array<() => void> = [];
@@ -77,7 +77,32 @@ export async function loadRankings(): Promise<RankingsData> {
     state.selectedSources = new Set(rankingsData.sources);
   }
 
+  const savedDraft = loadDraftConfig();
+  if (savedDraft) {
+    state.draftConfig = {
+      ...state.draftConfig,
+      teams: savedDraft.teams,
+      slot: Math.min(savedDraft.slot, savedDraft.teams),
+      rounds: savedDraft.rounds,
+    };
+  }
+
   return rankingsData;
+}
+
+export function updateDraftConfig(teams: number, slot: number, rounds: number): void {
+  const clampedSlot = Math.max(1, Math.min(slot, teams));
+  state.draftConfig = { ...state.draftConfig, teams, slot: clampedSlot, rounds, scoring: state.scoring };
+  saveDraftConfig({ teams, slot: clampedSlot, rounds });
+  notify();
+}
+
+/** Update draft config without re-rendering the whole app (mock draft start). */
+export function applyDraftConfig(teams: number, slot: number, rounds: number, botPersonality?: typeof state.botPersonality): void {
+  const clampedSlot = Math.max(1, Math.min(slot, teams));
+  state.draftConfig = { ...state.draftConfig, teams, slot: clampedSlot, rounds, scoring: state.scoring };
+  if (botPersonality) state.botPersonality = botPersonality;
+  saveDraftConfig({ teams, slot: clampedSlot, rounds });
 }
 
 export function getRankings(): RankingsData | null {

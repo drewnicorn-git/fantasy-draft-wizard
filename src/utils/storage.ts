@@ -3,6 +3,7 @@ import type { TagDefinition } from '../data/types';
 const TAG_DEFS_KEY = 'fdw-tag-definitions';
 const PLAYER_TAGS_KEY = 'fdw-player-tags';
 const SELECTED_SOURCES_KEY = 'fdw-selected-sources';
+const DRAFT_CONFIG_KEY = 'fdw-draft-config';
 
 export const PRESET_TAGS: TagDefinition[] = [
   { id: 'target', label: 'Target', color: '#2ecc71', description: 'Players you want to draft', preset: true },
@@ -76,6 +77,19 @@ export function loadSelectedSources(): string[] | null {
 
 export function saveSelectedSources(sources: string[]): void {
   localStorage.setItem(SELECTED_SOURCES_KEY, JSON.stringify(sources));
+}
+
+export function loadDraftConfig(): { teams: number; slot: number; rounds: number } | null {
+  try {
+    const raw = localStorage.getItem(DRAFT_CONFIG_KEY);
+    return raw ? (JSON.parse(raw) as { teams: number; slot: number; rounds: number }) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function saveDraftConfig(config: { teams: number; slot: number; rounds: number }): void {
+  localStorage.setItem(DRAFT_CONFIG_KEY, JSON.stringify(config));
 }
 
 export function getTagById(tagId: string | undefined, defs: TagDefinition[]): TagDefinition | undefined {

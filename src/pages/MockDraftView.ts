@@ -1,5 +1,5 @@
 import type { DraftPick, Player, ScoringFormat } from '../data/types';
-import { filterPlayers, getRankings, setState, state } from '../state/appState';
+import { filterPlayers, getRankings, applyDraftConfig, state } from '../state/appState';
 import { renderDraftBoard, renderRosterSummary } from '../components/DraftBoard';
 import { renderRankingsTable } from '../components/PlayerTable';
 import { botPick, suggestedPicks } from '../sim/bot';
@@ -50,6 +50,8 @@ export function mountMockDraftView(root: HTMLElement): void {
     </section>`;
 
   renderSetup(root, data.players);
+  listenersAttached = false;
+  draft = null;
 }
 
 function renderSetup(root: HTMLElement, allPlayers: Player[]): void {
@@ -79,7 +81,7 @@ function renderSetup(root: HTMLElement, allPlayers: Player[]): void {
     const teams = Number(teamsInput.value);
     slotInput.max = String(teams);
     if (Number(slotInput.value) > teams) slotInput.value = String(teams);
-    setState({ draftConfig: { ...state.draftConfig, teams, slot: Number(slotInput.value) } });
+    applyDraftConfig(teams, Number(slotInput.value), Number((setup.querySelector('#cfg-rounds') as HTMLInputElement).value));
   });
 
   setup.querySelector('#start-draft')!.addEventListener('click', () => {
@@ -87,10 +89,7 @@ function renderSetup(root: HTMLElement, allPlayers: Player[]): void {
     const slot = Number(slotInput.value);
     const rounds = Number((setup.querySelector('#cfg-rounds') as HTMLInputElement).value);
     const botPersonality = (setup.querySelector('#cfg-bot') as HTMLSelectElement).value as typeof state.botPersonality;
-    setState({
-      draftConfig: { teams, slot, rounds, scoring: state.scoring },
-      botPersonality,
-    });
+    applyDraftConfig(teams, slot, rounds, botPersonality);
     startDraft(root, allPlayers);
   });
 }
@@ -129,8 +128,16 @@ function advanceDraft(root: HTMLElement, allPlayers: Player[]): void {
     }
 
     const available = allPlayers.filter((p) => !draft!.draftedIds.has(p.id));
+    if (!available.length) {
+      finishDraft(root, allPlayers);
+      return;
+    }
     const roster = getTeamRoster(teamIndex, allPlayers);
     const pick = botPick(available, roster, overall, cfg, state.botPersonality);
+    if (!pick) {
+      finishDraft(root, allPlayers);
+      return;
+    }
     makePick(pick, teamIndex, round, pickInRound, overall);
   }
 

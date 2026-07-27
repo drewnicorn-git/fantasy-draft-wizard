@@ -29,3 +29,19 @@ export function picksUntilNextUserPick(currentOverall: number, userTeamIndex: nu
   }
   return 0;
 }
+
+/** Overall pick numbers (1-based) for the user's slot in a snake draft. */
+export function getUserPickNumbers(teams: number, slot: number, rounds: number): number[] {
+  const picks: number[] = [];
+  for (let r = 0; r < rounds; r++) {
+    const forward = r % 2 === 0;
+    const pickInRound = forward ? slot : teams - slot + 1;
+    picks.push(r * teams + pickInRound);
+  }
+  return picks;
+}
+
+export function formatPickLabel(overall: number, teams: number): string {
+  const { round, pickInRound } = roundFromOverall(overall, teams);
+  return `R${round}.${String(pickInRound).padStart(2, '0')}`;
+}

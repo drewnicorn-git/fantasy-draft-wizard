@@ -111,6 +111,53 @@ tr[data-id] { cursor: pointer; }
 
 tr.tier-break td { border-bottom: 2px solid var(--warn); }
 
+tr.your-pick td { background: rgba(240, 173, 78, 0.12); }
+tr.your-pick td:first-child { font-weight: 700; }
+
+.pick-badge {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.05rem 0.35rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--warn);
+  border: 1px solid var(--warn);
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.league-settings {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.league-settings .label { font-weight: 600; display: block; margin-bottom: 0.5rem; }
+
+.league-settings-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+}
+
+.league-settings-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.league-settings-grid input {
+  width: 4.5rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface2);
+  color: inherit;
+}
+
 .badge.injury { background: var(--danger); color: #fff; font-size: 0.65rem; padding: 0.1rem 0.3rem; border-radius: 3px; margin-left: 0.25rem; }
 
 .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
