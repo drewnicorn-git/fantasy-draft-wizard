@@ -7,7 +7,7 @@ import { botPick, suggestedPicks } from '../sim/bot';
 import { byeWeekConflicts, detectPositionalRun } from '../utils/analytics';
 import { picksUntilNextUserPick, roundFromOverall, snakePickOrder } from '../sim/snake';
 
-const BOT_PICK_DELAY_MS = 30_000;
+const BOT_PICK_DELAY_MS = 5_000;
 
 interface DraftState {
   picks: DraftPick[];
@@ -75,7 +75,7 @@ function renderSetup(root: HTMLElement, allPlayers: Player[]): void {
 
   setup.innerHTML = `
     <h2>Mock draft setup</h2>
-    <p class="hint">Snake order: round 1 goes 1→${cfg.teams}, round 2 goes ${cfg.teams}→1, and alternates. Bot picks wait 30 seconds between selections.</p>
+    <p class="hint">Snake order: round 1 goes 1→${cfg.teams}, round 2 goes ${cfg.teams}→1, and alternates. Bot picks wait 5 seconds between selections.</p>
     <div class="setup-grid">
       <label>Teams <input type="number" id="cfg-teams" min="8" max="14" value="${cfg.teams}" /></label>
       <label>Your slot <input type="number" id="cfg-slot" min="1" max="${cfg.teams}" value="${cfg.slot}" /></label>
@@ -165,7 +165,12 @@ function scheduleBotPick(
 
   onClock.innerHTML = `<strong>Round ${round}, pick ${pickInRound}</strong> · Overall ${overall} · <span class="bot-picking">${teamName} on the clock</span> · <span id="pick-countdown">${remaining}s</span>`;
   (root.querySelector('#suggestions') as HTMLElement).innerHTML = '';
-  (root.querySelector('#draft-alerts') as HTMLElement).innerHTML = `<div class="alert muted">Waiting for ${teamName} to pick…</div>`;
+  (root.querySelector('#draft-alerts') as HTMLElement).innerHTML = `<div class="alert muted">Waiting for ${teamName} to pick… Browse available players below.</div>`;
+
+  const available = filterPlayers(allPlayers, draft!.draftedIds);
+  renderRankingsTable(root.querySelector('#pick-list') as HTMLElement, available, cfg.scoring, {
+    mode: 'mock-draft',
+  });
 
   renderDraftBoard(root.querySelector('#draft-board') as HTMLElement, draft!.picks, cfg, cfg.slot);
   renderUserRoster(root, allPlayers);

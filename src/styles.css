@@ -241,6 +241,10 @@ tr.has-tag { box-shadow: inset 3px 0 0 var(--tag-color, var(--accent)); }
 
 .draft-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
+.draft-left { max-height: 75vh; overflow-y: auto; }
+
+#pick-list .table-wrap { max-height: 65vh; overflow: auto; }
+
 @media (max-width: 900px) { .draft-layout { grid-template-columns: 1fr; } }
 
 .draft-board { overflow-x: auto; font-size: 0.72rem; max-height: 420px; overflow-y: auto; }

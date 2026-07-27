@@ -1,5 +1,6 @@
 import type { AppState, Player, RankingsData, ScoringFormat, SourceKey } from '../data/types';
 import { isBlankPlayer } from '../utils/scoring';
+import { buildRankingsFromLiveSources, type RefreshProgress } from '../services/buildRankings';
 import {
   loadSelectedSources,
   saveSelectedSources,
@@ -73,9 +74,9 @@ export async function loadRankings(): Promise<RankingsData> {
   return fetchRankings();
 }
 
-export async function reloadRankings(): Promise<RankingsData> {
-  rankingsData = null;
-  const data = await fetchRankings();
+export async function reloadRankings(onProgress?: RefreshProgress): Promise<RankingsData> {
+  const data = await buildRankingsFromLiveSources(rankingsData, onProgress);
+  rankingsData = data;
   notify();
   return data;
 }
@@ -115,18 +116,6 @@ export function getSheetLocked(): boolean {
   return loadSheetState().locked;
 }
 
-export function getTierOverride(playerId: string): number | null {
-  const { tierOverrides } = loadSheetState();
-  return tierOverrides[playerId] ?? null;
-}
-
-export function setTierOverride(playerId: string, tier: number | null): void {
-  const sheet = loadSheetState();
-  if (tier == null) delete sheet.tierOverrides[playerId];
-  else sheet.tierOverrides[playerId] = tier;
-  saveSheetState(sheet);
-}
-
 export function lockSheet(): void {
   const sheet = loadSheetState();
   sheet.locked = true;
@@ -141,11 +130,7 @@ export function unlockSheet(): void {
 }
 
 export function applyPlayerOverrides(players: Player[]): Player[] {
-  const { tierOverrides } = loadSheetState();
-  return players.map((p) => {
-    const tier = tierOverrides[p.id];
-    return tier != null ? { ...p, tier } : p;
-  });
+  return players;
 }
 
 export function updateDraftConfig(teams: number, slot: number, rounds: number): void {

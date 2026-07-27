@@ -6,27 +6,31 @@ export function renderSheetToolbar(container: HTMLElement, onChange: () => void)
   container.innerHTML = `
     <div class="sheet-toolbar">
       <button type="button" id="refresh-rankings" class="btn secondary">Refresh rankings</button>
+      <span id="refresh-status" class="sheet-status muted"></span>
       ${
         locked
           ? `<button type="button" id="unlock-sheet" class="btn secondary">Edit sheet</button>
-             <span class="sheet-status locked">Sheet locked — edits saved</span>`
+             <span class="sheet-status locked">Sheet locked — tag edits saved</span>`
           : `<button type="button" id="save-sheet" class="btn primary">Save changes</button>
-             <span class="sheet-status">Unsaved edits — tags and tiers can be changed</span>`
+             <span class="sheet-status">Unsaved tag edits</span>`
       }
     </div>`;
 
   container.querySelector('#refresh-rankings')!.addEventListener('click', async () => {
     const btn = container.querySelector('#refresh-rankings') as HTMLButtonElement;
+    const status = container.querySelector('#refresh-status') as HTMLElement;
     btn.disabled = true;
-    btn.textContent = 'Refreshing…';
+    status.textContent = 'Starting refresh…';
     try {
-      await reloadRankings();
+      await reloadRankings((msg) => {
+        status.textContent = msg;
+      });
       onChange();
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Refresh failed');
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Refresh rankings';
+      status.textContent = '';
       renderSheetToolbar(container, onChange);
     }
   });

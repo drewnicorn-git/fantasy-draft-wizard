@@ -1,5 +1,5 @@
 import type { Player, ScoringFormat } from '../data/types';
-import { getActiveSources, getSheetLocked, setTierOverride, state } from '../state/appState';
+import { getActiveSources, getSheetLocked, state } from '../state/appState';
 import { SOURCE_LABELS, getAdp, getConsensus, getSourceRank } from '../utils/scoring';
 import { pickPredictor } from '../utils/analytics';
 import { formatPickLabel, getUserPickNumbers } from '../sim/snake';
@@ -73,11 +73,7 @@ export function renderRankingsTable(
         <td class="player-name">${escapeHtml(p.name)} ${injury}</td>
         <td>${p.pos}</td>
         <td${teamWarn}>${p.team}${p.teamVerified === false ? ' *' : ''}</td>
-        <td>${
-          editable
-            ? `<input type="number" class="tier-input" data-tier-player="${p.id}" min="1" max="20" value="${p.tier ?? ''}" placeholder="—" />`
-            : (p.tier ?? '—')
-        }</td>
+        <td>${p.tier ?? '—'}</td>
         ${sources.map((s) => `<td>${getSourceRank(p, s, scoring) ?? '—'}</td>`).join('')}
         <td><strong>${getConsensus(p, scoring) ?? '—'}</strong></td>
         <td>${getAdp(p, scoring)?.toFixed(1) ?? '—'}</td>
@@ -104,15 +100,6 @@ export function renderRankingsTable(
         renderRankingsTable(container, players, scoring, opts);
       });
     }
-  });
-
-  container.querySelectorAll<HTMLInputElement>('[data-tier-player]').forEach((input) => {
-    input.addEventListener('change', () => {
-      const id = input.dataset.tierPlayer!;
-      const val = input.value.trim();
-      setTierOverride(id, val ? Number(val) : null);
-      renderRankingsTable(container, players, scoring, opts);
-    });
   });
 
   if (opts.mode === 'live-draft' && opts.onPlayerPick) {
