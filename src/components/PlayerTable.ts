@@ -1,7 +1,7 @@
 import type { Player, ScoringFormat } from '../data/types';
-import { getActiveSources, state } from '../state/appState';
+import { getActiveSources, getSheetLocked, setTierOverride, state } from '../state/appState';
 import { SOURCE_LABELS, getAdp, getConsensus, getSourceRank } from '../utils/scoring';
-import { isTierBreak, pickPredictor } from '../utils/analytics';
+import { pickPredictor } from '../utils/analytics';
 import { formatPickLabel, getUserPickNumbers } from '../sim/snake';
 import {
   addCustomTag,
@@ -16,15 +16,24 @@ export function renderRankingsTable(
   container: HTMLElement,
   players: Player[],
   scoring: ScoringFormat,
-  opts: { showPredictor?: boolean; currentPick?: number; picksUntilNext?: number; draftedIds?: Set<string> } = {},
+  opts: {
+    showPredictor?: boolean;
+    currentPick?: number;
+    picksUntilNext?: number;
+    draftedIds?: Set<string>;
+    mode?: 'rankings' | 'live-draft' | 'mock-draft';
+    onPlayerPick?: (playerId: string) => void;
+  } = {},
 ): void {
   const sources = getActiveSources();
   const tagDefs = loadTagDefinitions();
   const playerTags = loadPlayerTags();
+  const locked = getSheetLocked();
+  const editable = !locked && opts.mode !== 'mock-draft';
 
   const sorted = [...players].sort((a, b) => (getConsensus(a, scoring) ?? 9999) - (getConsensus(b, scoring) ?? 9999));
 
-  const showPickSpots = !opts.showPredictor;
+  const showPickSpots = !opts.showPredictor && opts.mode !== 'mock-draft';
   const { teams, slot, rounds } = state.draftConfig;
   const userPicks = showPickSpots ? new Set(getUserPickNumbers(teams, slot, rounds)) : new Set<number>();
 
@@ -43,13 +52,11 @@ export function renderRankingsTable(
 
   const rows = sorted
     .map((p, i) => {
-      const next = sorted[i + 1];
       const overallRank = i + 1;
       const isUserPick = userPicks.has(overallRank);
       const pickLabel = isUserPick ? formatPickLabel(overallRank, teams) : '';
-      const tierBreak =
-        isTierBreak(p, next) &&
-        (userPicks.has(overallRank) || userPicks.has(overallRank + 1) || userPicks.has(overallRank + 2));
+      const roundBreak = showPickSpots && overallRank % teams === 0;
+      const roundLabel = roundBreak ? `R${overallRank / teams}` : '';
       const tagId = playerTags[p.id];
       const tagDef = getTagById(tagId, tagDefs);
       const injury = p.injuryStatus ? `<span class="badge injury" title="${escapeHtml(p.injuryStatus)}">INJ</span>` : '';
@@ -61,18 +68,22 @@ export function renderRankingsTable(
           : null;
       const tagStyle = tagDef ? ` style="--tag-color:${tagDef.color}"` : '';
 
-      return `<tr class="${tierCls}${tierBreak ? ' tier-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}" data-id="${p.id}"${tagStyle}>
-        <td>${getConsensus(p, scoring) ?? '—'}${isUserPick ? `<span class="pick-badge">${pickLabel}</span>` : ''}</td>
+      return `<tr class="${tierCls}${roundBreak ? ' round-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}${opts.mode === 'live-draft' ? ' pickable' : ''}" data-id="${p.id}"${tagStyle}>
+        <td>${overallRank}${isUserPick ? `<span class="pick-badge">${pickLabel}</span>` : ''}${roundBreak ? `<span class="round-badge">${roundLabel}</span>` : ''}</td>
         <td class="player-name">${escapeHtml(p.name)} ${injury}</td>
         <td>${p.pos}</td>
         <td${teamWarn}>${p.team}${p.teamVerified === false ? ' *' : ''}</td>
-        <td>${p.tier ?? '—'}</td>
+        <td>${
+          editable
+            ? `<input type="number" class="tier-input" data-tier-player="${p.id}" min="1" max="20" value="${p.tier ?? ''}" placeholder="—" />`
+            : (p.tier ?? '—')
+        }</td>
         ${sources.map((s) => `<td>${getSourceRank(p, s, scoring) ?? '—'}</td>`).join('')}
         <td><strong>${getConsensus(p, scoring) ?? '—'}</strong></td>
         <td>${getAdp(p, scoring)?.toFixed(1) ?? '—'}</td>
         ${opts.showPredictor ? `<td>${avail != null ? `${avail}%` : '—'}</td>` : ''}
         <td class="tag-cell">
-          <select data-player-tag="${p.id}" aria-label="Tag for ${escapeHtml(p.name)}">
+          <select data-player-tag="${p.id}" aria-label="Tag for ${escapeHtml(p.name)}" ${editable ? '' : 'disabled'}>
             <option value="">—</option>
             ${tagOptions}
           </select>
@@ -87,15 +98,36 @@ export function renderRankingsTable(
   container.querySelectorAll<HTMLSelectElement>('[data-player-tag]').forEach((sel) => {
     const id = sel.dataset.playerTag!;
     sel.value = playerTags[id] ?? '';
-    sel.addEventListener('change', () => {
-      setPlayerTag(id, sel.value || null);
+    if (editable) {
+      sel.addEventListener('change', () => {
+        setPlayerTag(id, sel.value || null);
+        renderRankingsTable(container, players, scoring, opts);
+      });
+    }
+  });
+
+  container.querySelectorAll<HTMLInputElement>('[data-tier-player]').forEach((input) => {
+    input.addEventListener('change', () => {
+      const id = input.dataset.tierPlayer!;
+      const val = input.value.trim();
+      setTierOverride(id, val ? Number(val) : null);
       renderRankingsTable(container, players, scoring, opts);
     });
   });
+
+  if (opts.mode === 'live-draft' && opts.onPlayerPick) {
+    container.querySelectorAll('tr.pickable[data-id]').forEach((row) => {
+      row.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).closest('select, input')) return;
+        opts.onPlayerPick!((row as HTMLElement).dataset.id!);
+      });
+    });
+  }
 }
 
 export function renderTagManager(container: HTMLElement, onChange: () => void): void {
   const tagDefs = loadTagDefinitions();
+  const locked = getSheetLocked();
 
   container.innerHTML = `
     <details class="tag-manager">
@@ -108,16 +140,17 @@ export function renderTagManager(container: HTMLElement, onChange: () => void): 
           <li>
             <span class="tag-pill" style="background:${t.color}">${escapeHtml(t.label)}</span>
             <span class="muted">${escapeHtml(t.description ?? '')}</span>
-            ${t.preset ? '<span class="badge preset">preset</span>' : `<button type="button" class="btn sm" data-remove-tag="${t.id}">Remove</button>`}
+            ${t.preset ? '<span class="badge preset">preset</span>' : locked ? '' : `<button type="button" class="btn sm" data-remove-tag="${t.id}">Remove</button>`}
           </li>`,
           )
           .join('')}
       </ul>
-      <form id="add-tag-form" class="add-tag-form">
+      ${locked ? '' : `<form id="add-tag-form" class="add-tag-form">
         <input type="text" id="new-tag-label" placeholder="Custom tag name" maxlength="24" required />
         <input type="color" id="new-tag-color" value="#3d8bfd" title="Tag color" />
         <button type="submit" class="btn secondary sm">Add tag</button>
-      </form>
+      </form>`}
+      ${locked ? '<p class="hint muted">Sheet is locked — click Edit sheet in the toolbar to change tags.</p>' : ''}
     </details>`;
 
   container.querySelectorAll('[data-remove-tag]').forEach((btn) => {

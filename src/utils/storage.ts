@@ -1,9 +1,12 @@
-import type { TagDefinition } from '../data/types';
+import type { DraftPick, TagDefinition } from '../data/types';
 
 const TAG_DEFS_KEY = 'fdw-tag-definitions';
 const PLAYER_TAGS_KEY = 'fdw-player-tags';
 const SELECTED_SOURCES_KEY = 'fdw-selected-sources';
 const DRAFT_CONFIG_KEY = 'fdw-draft-config';
+const SHEET_STATE_KEY = 'fdw-sheet-state';
+const TEAM_NAMES_KEY = 'fdw-team-names';
+const LIVE_DRAFT_KEY = 'fdw-live-draft';
 
 export const PRESET_TAGS: TagDefinition[] = [
   { id: 'target', label: 'Target', color: '#2ecc71', description: 'Players you want to draft', preset: true },
@@ -90,6 +93,48 @@ export function loadDraftConfig(): { teams: number; slot: number; rounds: number
 
 export function saveDraftConfig(config: { teams: number; slot: number; rounds: number }): void {
   localStorage.setItem(DRAFT_CONFIG_KEY, JSON.stringify(config));
+}
+
+export function loadSheetState(): { locked: boolean; tierOverrides: Record<string, number>; savedAt: string | null } {
+  try {
+    const raw = localStorage.getItem(SHEET_STATE_KEY);
+    if (!raw) return { locked: false, tierOverrides: {}, savedAt: null };
+    return JSON.parse(raw) as { locked: boolean; tierOverrides: Record<string, number>; savedAt: string | null };
+  } catch {
+    return { locked: false, tierOverrides: {}, savedAt: null };
+  }
+}
+
+export function saveSheetState(state: { locked: boolean; tierOverrides: Record<string, number>; savedAt: string | null }): void {
+  localStorage.setItem(SHEET_STATE_KEY, JSON.stringify(state));
+}
+
+export function loadTeamNames(teams: number): string[] {
+  try {
+    const raw = localStorage.getItem(TEAM_NAMES_KEY);
+    const saved = raw ? (JSON.parse(raw) as string[]) : [];
+    return Array.from({ length: teams }, (_, i) => saved[i]?.trim() || `Team ${i + 1}`);
+  } catch {
+    return Array.from({ length: teams }, (_, i) => `Team ${i + 1}`);
+  }
+}
+
+export function saveTeamNames(names: string[]): void {
+  localStorage.setItem(TEAM_NAMES_KEY, JSON.stringify(names));
+}
+
+export function loadLiveDraft(): { active: boolean; picks: DraftPick[]; currentIndex: number } | null {
+  try {
+    const raw = localStorage.getItem(LIVE_DRAFT_KEY);
+    return raw ? (JSON.parse(raw) as { active: boolean; picks: DraftPick[]; currentIndex: number }) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function saveLiveDraft(draft: { active: boolean; picks: DraftPick[]; currentIndex: number } | null): void {
+  if (draft == null) localStorage.removeItem(LIVE_DRAFT_KEY);
+  else localStorage.setItem(LIVE_DRAFT_KEY, JSON.stringify(draft));
 }
 
 export function getTagById(tagId: string | undefined, defs: TagDefinition[]): TagDefinition | undefined {

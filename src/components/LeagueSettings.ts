@@ -17,7 +17,7 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
           <input type="number" id="lg-rounds" min="15" max="20" value="${cfg.rounds}" />
         </label>
       </div>
-      <p class="hint">Tier breaks (yellow lines) mark cliffs at each of your pick spots. Rows labeled with your pick number show the expected player at that slot.</p>
+      <p class="hint">Yellow lines mark the end of each draft round (every ${cfg.teams} players). Pick badges show expected players at your snake-draft slots.</p>
     </div>`;
 
   const teamsInput = container.querySelector('#lg-teams') as HTMLInputElement;

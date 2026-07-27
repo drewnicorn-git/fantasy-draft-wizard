@@ -78,9 +78,21 @@ export type BotPersonality = 'balanced' | 'zero-rb' | 'hero-rb';
 
 export interface AppState {
   scoring: ScoringFormat;
-  tab: 'rankings' | 'mock';
+  tab: 'rankings' | 'mock' | 'live';
   filters: FilterState;
   selectedSources: Set<SourceKey>;
   draftConfig: DraftConfig;
   botPersonality: BotPersonality;
+}
+
+export interface SheetState {
+  locked: boolean;
+  tierOverrides: Record<string, number>;
+  savedAt: string | null;
+}
+
+export interface LiveDraftState {
+  active: boolean;
+  picks: DraftPick[];
+  currentIndex: number;
 }

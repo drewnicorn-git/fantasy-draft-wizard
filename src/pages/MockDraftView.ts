@@ -2,9 +2,12 @@ import type { DraftPick, Player, ScoringFormat } from '../data/types';
 import { filterPlayers, getRankings, applyDraftConfig, state } from '../state/appState';
 import { renderDraftBoard, renderRosterSummary } from '../components/DraftBoard';
 import { renderRankingsTable } from '../components/PlayerTable';
+import { getTeamDisplayName } from '../components/TeamNamesEditor';
 import { botPick, suggestedPicks } from '../sim/bot';
 import { byeWeekConflicts, detectPositionalRun } from '../utils/analytics';
 import { picksUntilNextUserPick, roundFromOverall, snakePickOrder } from '../sim/snake';
+
+const BOT_PICK_DELAY_MS = 30_000;
 
 interface DraftState {
   picks: DraftPick[];
@@ -15,8 +18,13 @@ interface DraftState {
 }
 
 let draft: DraftState | null = null;
+let listenersAttached = false;
+let botTimer: ReturnType<typeof setTimeout> | null = null;
+let countdownTimer: ReturnType<typeof setInterval> | null = null;
+let pickListClickHandler: ((e: Event) => void) | null = null;
 
 export function mountMockDraftView(root: HTMLElement): void {
+  clearTimers();
   const data = getRankings();
   if (!data) {
     root.innerHTML = '<p class="error">No rankings loaded.</p>';
@@ -54,12 +62,20 @@ export function mountMockDraftView(root: HTMLElement): void {
   draft = null;
 }
 
+function clearTimers(): void {
+  if (botTimer) clearTimeout(botTimer);
+  if (countdownTimer) clearInterval(countdownTimer);
+  botTimer = null;
+  countdownTimer = null;
+}
+
 function renderSetup(root: HTMLElement, allPlayers: Player[]): void {
   const setup = root.querySelector('#draft-setup') as HTMLElement;
   const cfg = state.draftConfig;
 
   setup.innerHTML = `
     <h2>Mock draft setup</h2>
+    <p class="hint">Snake order: round 1 goes 1→${cfg.teams}, round 2 goes ${cfg.teams}→1, and alternates. Bot picks wait 30 seconds between selections.</p>
     <div class="setup-grid">
       <label>Teams <input type="number" id="cfg-teams" min="8" max="14" value="${cfg.teams}" /></label>
       <label>Your slot <input type="number" id="cfg-slot" min="1" max="${cfg.teams}" value="${cfg.slot}" /></label>
@@ -94,9 +110,8 @@ function renderSetup(root: HTMLElement, allPlayers: Player[]): void {
   });
 }
 
-let listenersAttached = false;
-
 function startDraft(root: HTMLElement, allPlayers: Player[]): void {
+  clearTimers();
   draft = { picks: [], draftedIds: new Set(), currentIndex: 0, finished: false, history: [] };
   (root.querySelector('#draft-setup') as HTMLElement).classList.add('hidden');
   (root.querySelector('#draft-active') as HTMLElement).classList.remove('hidden');
@@ -113,20 +128,56 @@ function startDraft(root: HTMLElement, allPlayers: Player[]): void {
 
 function advanceDraft(root: HTMLElement, allPlayers: Player[]): void {
   if (!draft) return;
+  clearTimers();
   const cfg = state.draftConfig;
   const order = snakePickOrder(cfg);
 
-  while (draft.currentIndex < order.length) {
-    const teamIndex = order[draft.currentIndex];
-    const overall = draft.currentIndex + 1;
-    const { round, pickInRound } = roundFromOverall(overall, cfg.teams);
-    const isUser = teamIndex === cfg.slot - 1;
+  if (draft.currentIndex >= order.length) {
+    finishDraft(root, allPlayers);
+    return;
+  }
 
-    if (isUser) {
-      renderUserTurn(root, allPlayers, overall, round, pickInRound);
-      return;
-    }
+  const teamIndex = order[draft.currentIndex];
+  const overall = draft.currentIndex + 1;
+  const { round, pickInRound } = roundFromOverall(overall, cfg.teams);
+  const isUser = teamIndex === cfg.slot - 1;
 
+  if (isUser) {
+    renderUserTurn(root, allPlayers, overall, round, pickInRound);
+    return;
+  }
+
+  scheduleBotPick(root, allPlayers, teamIndex, overall, round, pickInRound);
+}
+
+function scheduleBotPick(
+  root: HTMLElement,
+  allPlayers: Player[],
+  teamIndex: number,
+  overall: number,
+  round: number,
+  pickInRound: number,
+): void {
+  const cfg = state.draftConfig;
+  const teamName = getTeamDisplayName(teamIndex);
+  const onClock = root.querySelector('#on-clock') as HTMLElement;
+  let remaining = BOT_PICK_DELAY_MS / 1000;
+
+  onClock.innerHTML = `<strong>Round ${round}, pick ${pickInRound}</strong> · Overall ${overall} · <span class="bot-picking">${teamName} on the clock</span> · <span id="pick-countdown">${remaining}s</span>`;
+  (root.querySelector('#suggestions') as HTMLElement).innerHTML = '';
+  (root.querySelector('#draft-alerts') as HTMLElement).innerHTML = `<div class="alert muted">Waiting for ${teamName} to pick…</div>`;
+
+  renderDraftBoard(root.querySelector('#draft-board') as HTMLElement, draft!.picks, cfg, cfg.slot);
+  renderUserRoster(root, allPlayers);
+
+  countdownTimer = setInterval(() => {
+    remaining -= 1;
+    const el = root.querySelector('#pick-countdown');
+    if (el) el.textContent = `${Math.max(0, remaining)}s`;
+  }, 1000);
+
+  botTimer = setTimeout(() => {
+    clearTimers();
     const available = allPlayers.filter((p) => !draft!.draftedIds.has(p.id));
     if (!available.length) {
       finishDraft(root, allPlayers);
@@ -139,9 +190,8 @@ function advanceDraft(root: HTMLElement, allPlayers: Player[]): void {
       return;
     }
     makePick(pick, teamIndex, round, pickInRound, overall);
-  }
-
-  finishDraft(root, allPlayers);
+    advanceDraft(root, allPlayers);
+  }, BOT_PICK_DELAY_MS);
 }
 
 function makePick(player: Player, teamIndex: number, round: number, pickInRound: number, overall: number): void {
@@ -201,19 +251,21 @@ function renderUserTurn(
     .map((a) => `<div class="alert">${a}</div>`)
     .join('');
 
-  renderRankingsTable(
-    root.querySelector('#pick-list') as HTMLElement,
-    available,
-    cfg.scoring,
-    { showPredictor: true, currentPick: overall, picksUntilNext: untilNext, draftedIds: draft.draftedIds },
-  );
+  const pickList = root.querySelector('#pick-list') as HTMLElement;
+  renderRankingsTable(pickList, available, cfg.scoring, {
+    showPredictor: true,
+    currentPick: overall,
+    picksUntilNext: untilNext,
+    draftedIds: draft.draftedIds,
+    mode: 'mock-draft',
+  });
 
   renderDraftBoard(root.querySelector('#draft-board') as HTMLElement, draft.picks, cfg, cfg.slot);
   renderUserRoster(root, allPlayers);
 
-  root.querySelectorAll('.pick-btn, tr[data-id]').forEach((el) => {
+  root.querySelectorAll('.pick-btn').forEach((el) => {
     el.addEventListener('click', (e) => {
-      const id = (el as HTMLElement).dataset.id ?? (el as HTMLElement).closest('tr')?.getAttribute('data-id');
+      const id = (el as HTMLElement).dataset.id;
       if (!id) return;
       const player = allPlayers.find((p) => p.id === id);
       if (!player) return;
@@ -222,13 +274,18 @@ function renderUserTurn(
     });
   });
 
-  root.querySelector('#pick-list tbody')?.addEventListener('click', (e) => {
-    const tr = (e.target as HTMLElement).closest('tr[data-id]');
-    if (!tr || (e.target as HTMLElement).closest('[data-tag]')) return;
-    const id = tr.getAttribute('data-id')!;
-    const player = allPlayers.find((p) => p.id === id);
-    if (player) userPick(root, allPlayers, player, round, pickInRound, overall);
-  });
+  const tbody = pickList.querySelector('tbody');
+  if (tbody) {
+    if (pickListClickHandler) tbody.removeEventListener('click', pickListClickHandler);
+    pickListClickHandler = (e) => {
+      const tr = (e.target as HTMLElement).closest('tr[data-id]');
+      if (!tr || (e.target as HTMLElement).closest('select, input')) return;
+      const id = tr.getAttribute('data-id')!;
+      const player = allPlayers.find((p) => p.id === id);
+      if (player) userPick(root, allPlayers, player, round, pickInRound, overall);
+    };
+    tbody.addEventListener('click', pickListClickHandler);
+  }
 }
 
 function userPick(
@@ -257,6 +314,7 @@ function renderUserRoster(root: HTMLElement, allPlayers: Player[]): void {
 
 function finishDraft(root: HTMLElement, allPlayers: Player[]): void {
   if (!draft) return;
+  clearTimers();
   draft.finished = true;
   (root.querySelector('#draft-active') as HTMLElement).classList.add('hidden');
   const summary = root.querySelector('#draft-summary') as HTMLElement;
@@ -294,6 +352,7 @@ function finishDraft(root: HTMLElement, allPlayers: Player[]): void {
 
 function redoPick(root: HTMLElement, allPlayers: Player[]): void {
   if (!draft || draft.picks.length === 0) return;
+  clearTimers();
   const last = draft.picks.pop()!;
   draft.draftedIds.delete(last.playerId);
   draft.currentIndex = Math.max(0, draft.currentIndex - 1);

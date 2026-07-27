@@ -1,6 +1,13 @@
 import type { AppState, Player, RankingsData, ScoringFormat, SourceKey } from '../data/types';
 import { isBlankPlayer } from '../utils/scoring';
-import { loadSelectedSources, saveSelectedSources, loadDraftConfig, saveDraftConfig } from '../utils/storage';
+import {
+  loadSelectedSources,
+  saveSelectedSources,
+  loadDraftConfig,
+  saveDraftConfig,
+  loadSheetState,
+  saveSheetState,
+} from '../utils/storage';
 
 let rankingsData: RankingsData | null = null;
 let listeners: Array<() => void> = [];
@@ -63,11 +70,27 @@ export function toggleSource(source: SourceKey): void {
 
 export async function loadRankings(): Promise<RankingsData> {
   if (rankingsData) return rankingsData;
+  return fetchRankings();
+}
+
+export async function reloadRankings(): Promise<RankingsData> {
+  rankingsData = null;
+  const data = await fetchRankings();
+  notify();
+  return data;
+}
+
+async function fetchRankings(): Promise<RankingsData> {
   const base = import.meta.env.BASE_URL;
-  const res = await fetch(`${base}rankings.json`);
+  const res = await fetch(`${base}rankings.json?t=${Date.now()}`);
   if (!res.ok) throw new Error(`Failed to load rankings (${res.status})`);
   rankingsData = (await res.json()) as RankingsData;
+  applyPersistedSettings();
+  return rankingsData;
+}
 
+function applyPersistedSettings(): void {
+  if (!rankingsData) return;
   const saved = loadSelectedSources();
   const available = new Set(rankingsData.sources);
   if (saved?.length) {
@@ -86,8 +109,43 @@ export async function loadRankings(): Promise<RankingsData> {
       rounds: savedDraft.rounds,
     };
   }
+}
 
-  return rankingsData;
+export function getSheetLocked(): boolean {
+  return loadSheetState().locked;
+}
+
+export function getTierOverride(playerId: string): number | null {
+  const { tierOverrides } = loadSheetState();
+  return tierOverrides[playerId] ?? null;
+}
+
+export function setTierOverride(playerId: string, tier: number | null): void {
+  const sheet = loadSheetState();
+  if (tier == null) delete sheet.tierOverrides[playerId];
+  else sheet.tierOverrides[playerId] = tier;
+  saveSheetState(sheet);
+}
+
+export function lockSheet(): void {
+  const sheet = loadSheetState();
+  sheet.locked = true;
+  sheet.savedAt = new Date().toISOString();
+  saveSheetState(sheet);
+}
+
+export function unlockSheet(): void {
+  const sheet = loadSheetState();
+  sheet.locked = false;
+  saveSheetState(sheet);
+}
+
+export function applyPlayerOverrides(players: Player[]): Player[] {
+  const { tierOverrides } = loadSheetState();
+  return players.map((p) => {
+    const tier = tierOverrides[p.id];
+    return tier != null ? { ...p, tier } : p;
+  });
 }
 
 export function updateDraftConfig(teams: number, slot: number, rounds: number): void {
@@ -106,7 +164,11 @@ export function applyDraftConfig(teams: number, slot: number, rounds: number, bo
 }
 
 export function getRankings(): RankingsData | null {
-  return rankingsData;
+  if (!rankingsData) return null;
+  return {
+    ...rankingsData,
+    players: applyPlayerOverrides(rankingsData.players),
+  };
 }
 
 export function getActiveSources(): SourceKey[] {
