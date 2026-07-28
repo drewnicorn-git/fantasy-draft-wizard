@@ -1,12 +1,17 @@
 import type { RawPlayerRow, ScoringKey } from './utils.js';
 
-const FP_API_KEY = process.env.FANTASYPROS_API_KEY ?? 'zjxN52G3lP4fORpHRftGI2mTU8cTwxVNvkjByM3j';
+function fantasyProsApiKey(): string {
+  const fromEnv = process.env.FANTASYPROS_API_KEY?.trim();
+  if (fromEnv) return fromEnv;
+  // Fallback for local dev; CI should set FANTASYPROS_API_KEY repo secret when available.
+  return 'zjxN52G3lP4fORpHRftGI2mTU8cTwxVNvkjByM3j';
+}
 
 export async function fetchFantasyPros(season: number, scoring: ScoringKey): Promise<RawPlayerRow[]> {
   const url = `https://api.fantasypros.com/v2/json/nfl/${season}/consensus-rankings?type=draft&scoring=${scoring}&position=ALL&week=0`;
   const res = await fetch(url, {
     headers: {
-      'x-api-key': FP_API_KEY,
+      'x-api-key': fantasyProsApiKey(),
       'User-Agent': 'fantasy-draft-wizard (github.com)',
     },
     signal: AbortSignal.timeout(25_000),

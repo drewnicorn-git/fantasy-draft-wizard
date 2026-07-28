@@ -28,13 +28,7 @@ async function run(): Promise<void> {
   mkdirSync(rawDir, { recursive: true });
   console.log(`Fetching rankings for season ${SEASON}`);
 
-  const required = await Promise.allSettled([
-    fetchFantasyPros(SEASON, 'STD').then((p) => {
-      writeRaw(`fp-STD-${SEASON}.json`, { scoring: 'STD', players: p });
-    }),
-    fetchFantasyPros(SEASON, 'PPR').then((p) => {
-      writeRaw(`fp-PPR-${SEASON}.json`, { scoring: 'PPR', players: p });
-    }),
+  const core = await Promise.allSettled([
     fetchEspn(SEASON).then((p) => {
       writeRaw(`espn-${SEASON}.json`, { players: p });
     }),
@@ -46,6 +40,15 @@ async function run(): Promise<void> {
     }),
   ]);
 
+  const fantasyPros = await Promise.allSettled([
+    fetchFantasyPros(SEASON, 'STD').then((p) => {
+      writeRaw(`fp-STD-${SEASON}.json`, { scoring: 'STD', players: p });
+    }),
+    fetchFantasyPros(SEASON, 'PPR').then((p) => {
+      writeRaw(`fp-PPR-${SEASON}.json`, { scoring: 'PPR', players: p });
+    }),
+  ]);
+
   const optional = await Promise.allSettled([
     fetchEspnDepthCharts(SEASON).then((p) => writeRaw(`espn-depth-${SEASON}.json`, { players: p })),
     fetchYahoo(SEASON, 'STD').then((p) => writeRaw(`yahoo-STD-${SEASON}.json`, { scoring: 'STD', players: p })),
@@ -54,10 +57,15 @@ async function run(): Promise<void> {
   ]);
 
   let failed = false;
-  for (const r of required) {
+  for (const r of core) {
     if (r.status === 'rejected') {
       failed = true;
       console.error('FAILED (required):', r.reason);
+    }
+  }
+  for (const r of fantasyPros) {
+    if (r.status === 'rejected') {
+      console.warn('FantasyPros unavailable:', r.reason);
     }
   }
   for (const r of optional) {

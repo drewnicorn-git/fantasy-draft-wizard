@@ -5,9 +5,11 @@ on:
     - cron: '0 */6 * * *'
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: write
-  pages: write
 
 jobs:
   update:
@@ -18,7 +20,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version-file: '.nvmrc'
           cache: npm
 
       - run: npm ci
@@ -45,17 +47,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data public/rankings.json
+          git add data/rankings.json public/rankings.json
           git commit -m "chore: refresh fantasy rankings"
           git push
-
-      - name: Build site
-        if: steps.diff.outputs.changed == 'true'
-        run: npm run build
-
-      - name: Deploy to GitHub Pages
-        if: steps.diff.outputs.changed == 'true'
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
