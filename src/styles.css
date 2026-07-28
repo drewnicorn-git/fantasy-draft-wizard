@@ -241,7 +241,28 @@ tr.has-tag { box-shadow: inset 3px 0 0 var(--tag-color, var(--accent)); }
 
 .draft-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
+.mock-draft .draft-layout-stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  grid-template-columns: unset;
+}
+
+.mock-draft .draft-board-wrap,
+.mock-draft .draft-pick-list {
+  width: 100%;
+}
+
+.mock-draft .draft-roster {
+  width: 100%;
+}
+
 .draft-left { max-height: 75vh; overflow-y: auto; }
+
+.mock-draft .draft-pick-list .table-wrap {
+  max-height: 55vh;
+  overflow: auto;
+}
 
 #pick-list .table-wrap { max-height: 65vh; overflow: auto; }
 

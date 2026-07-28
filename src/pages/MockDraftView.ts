@@ -43,15 +43,11 @@ export function mountMockDraftView(root: HTMLElement): void {
             <button type="button" id="export-draft" class="btn secondary">Export JSON</button>
           </div>
         </div>
-        <div class="draft-layout">
-          <div class="draft-left">
-            <div id="suggestions"></div>
-            <div id="pick-list"></div>
-          </div>
-          <div class="draft-right">
-            <div id="user-roster"></div>
-            <div id="draft-board"></div>
-          </div>
+        <div class="draft-layout draft-layout-stacked">
+          <div id="user-roster" class="draft-roster"></div>
+          <div id="draft-board" class="draft-board-wrap"></div>
+          <div id="suggestions"></div>
+          <div id="pick-list" class="draft-pick-list"></div>
         </div>
       </div>
       <div id="draft-summary" class="hidden"></div>
