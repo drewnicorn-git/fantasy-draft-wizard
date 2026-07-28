@@ -7,18 +7,21 @@ export function renderDraftBoard(
   config: DraftConfig,
   userSlot: number,
   teamNames?: string[],
+  opts: { maxRound?: number; title?: string } = {},
 ): void {
   const { teams, rounds } = config;
   const names = teamNames ?? Array.from({ length: teams }, (_, i) => getTeamDisplayName(i));
+  const roundsToShow = Math.min(opts.maxRound ?? rounds, rounds);
+  const title = opts.title ?? 'Draft Board';
 
-  let html = '<div class="draft-board"><table><thead><tr><th>Round</th>';
+  let html = `<div class="draft-board-shell"><h3 class="draft-board-title">${escapeHtml(title)}</h3><div class="draft-board"><table><thead><tr><th>Round</th>`;
   for (let t = 1; t <= teams; t++) {
     const label = t === userSlot ? `You (${names[t - 1]})` : names[t - 1];
     html += `<th class="${t === userSlot ? 'user-col' : ''}">${escapeHtml(label)}</th>`;
   }
   html += '</tr></thead><tbody>';
 
-  for (let r = 1; r <= rounds; r++) {
+  for (let r = 1; r <= roundsToShow; r++) {
     html += `<tr><td class="round-num">R${r}</td>`;
     for (let t = 1; t <= teams; t++) {
       const pick = picks.find((p) => p.round === r && p.teamIndex === t - 1);
@@ -27,7 +30,7 @@ export function renderDraftBoard(
     }
     html += '</tr>';
   }
-  html += '</tbody></table></div>';
+  html += '</tbody></table></div></div>';
   container.innerHTML = html;
 }
 

@@ -35,7 +35,7 @@ export function mountMockDraftView(root: HTMLElement): void {
     <section class="panel mock-draft">
       <div id="draft-setup" class="draft-setup"></div>
       <div id="draft-alerts" class="alerts"></div>
-      <div id="draft-active" class="hidden">
+      <div id="draft-active" class="mock-draft-active hidden">
         <div class="draft-header">
           <div id="on-clock"></div>
           <div class="draft-actions">
@@ -43,15 +43,10 @@ export function mountMockDraftView(root: HTMLElement): void {
             <button type="button" id="export-draft" class="btn secondary">Export JSON</button>
           </div>
         </div>
-        <div class="draft-layout draft-layout-stacked">
-          <section class="draft-board-section">
-            <h3>Draft board</h3>
-            <div id="draft-board" class="draft-board-wrap"></div>
-          </section>
-          <section class="draft-picks-panel">
-            <div id="suggestions"></div>
-            <div id="pick-list" class="draft-pick-list"></div>
-          </section>
+        <div id="draft-board" class="mock-draft-board-panel"></div>
+        <div class="mock-draft-bottom">
+          <div id="suggestions" class="mock-draft-suggestions"></div>
+          <div id="pick-list" class="mock-draft-players-panel"></div>
         </div>
       </div>
       <div id="draft-summary" class="hidden"></div>
@@ -67,6 +62,51 @@ function clearTimers(): void {
   if (countdownTimer) clearInterval(countdownTimer);
   botTimer = null;
   countdownTimer = null;
+}
+
+function currentRoundFromDraft(): number {
+  if (!draft || draft.picks.length === 0) return 1;
+  return draft.picks[draft.picks.length - 1].round;
+}
+
+function renderDraftBoardPanel(root: HTMLElement): void {
+  if (!draft) return;
+  const cfg = state.draftConfig;
+  const round = currentRoundFromDraft();
+  renderDraftBoard(root.querySelector('#draft-board') as HTMLElement, draft.picks, cfg, cfg.slot, undefined, {
+    maxRound: Math.min(round + 1, cfg.rounds),
+    title: 'Draft Board',
+  });
+}
+
+function renderPlayerPanel(
+  root: HTMLElement,
+  allPlayers: Player[],
+  opts: { showPredictor?: boolean; currentPick?: number; picksUntilNext?: number },
+): void {
+  if (!draft) return;
+  const cfg = state.draftConfig;
+  const available = filterPlayers(allPlayers, draft.draftedIds);
+  renderRankingsTable(root.querySelector('#pick-list') as HTMLElement, available, cfg.scoring, {
+    mode: 'mock-draft',
+    showPredictor: opts.showPredictor,
+    currentPick: opts.currentPick,
+    picksUntilNext: opts.picksUntilNext,
+    draftedIds: draft.draftedIds,
+  });
+}
+
+function renderSuggestionsPanel(root: HTMLElement, suggestions: Player[] = [], placeholder = ''): void {
+  const el = root.querySelector('#suggestions') as HTMLElement;
+  if (suggestions.length) {
+    el.innerHTML = `
+      <h3>Suggested picks</h3>
+      <div class="suggestion-chips">
+        ${suggestions.map((p) => `<button type="button" class="chip pick-btn" data-id="${p.id}">${p.name} (${p.pos})</button>`).join('')}
+      </div>`;
+  } else {
+    el.innerHTML = placeholder ? `<p class="suggestions-placeholder muted">${placeholder}</p>` : '<p class="suggestions-placeholder muted">&nbsp;</p>';
+  }
 }
 
 function renderSetup(root: HTMLElement, allPlayers: Player[]): void {
@@ -158,21 +198,16 @@ function scheduleBotPick(
   round: number,
   pickInRound: number,
 ): void {
-  const cfg = state.draftConfig;
   const teamName = getTeamDisplayName(teamIndex);
   const onClock = root.querySelector('#on-clock') as HTMLElement;
   let remaining = BOT_PICK_DELAY_MS / 1000;
 
   onClock.innerHTML = `<strong>Round ${round}, pick ${pickInRound}</strong> · Overall ${overall} · <span class="bot-picking">${teamName} on the clock</span> · <span id="pick-countdown">${remaining}s</span>`;
-  (root.querySelector('#suggestions') as HTMLElement).innerHTML = '';
   (root.querySelector('#draft-alerts') as HTMLElement).innerHTML = `<div class="alert muted">Waiting for ${teamName} to pick… Browse available players below.</div>`;
 
-  const available = filterPlayers(allPlayers, draft!.draftedIds);
-  renderRankingsTable(root.querySelector('#pick-list') as HTMLElement, available, cfg.scoring, {
-    mode: 'mock-draft',
-  });
-
-  renderDraftBoard(root.querySelector('#draft-board') as HTMLElement, draft!.picks, cfg, cfg.slot);
+  renderDraftBoardPanel(root);
+  renderSuggestionsPanel(root, [], 'Suggested picks appear when you are on the clock.');
+  renderPlayerPanel(root, allPlayers, {});
 
   countdownTimer = setInterval(() => {
     remaining -= 1;
@@ -188,7 +223,7 @@ function scheduleBotPick(
       return;
     }
     const roster = getTeamRoster(teamIndex, allPlayers);
-    const pick = botPick(available, roster, overall, cfg, state.botPersonality);
+    const pick = botPick(available, roster, overall, state.draftConfig, state.botPersonality);
     if (!pick) {
       finishDraft(root, allPlayers);
       return;
@@ -237,12 +272,6 @@ function renderUserTurn(
     <strong>Round ${round}, pick ${pickInRound}</strong> · Overall ${overall} · You're on the clock
     ${untilNext > 0 ? `<span class="muted">· ${untilNext} picks until your next turn</span>` : ''}`;
 
-  (root.querySelector('#suggestions') as HTMLElement).innerHTML = `
-    <h3>Suggested picks</h3>
-    <div class="suggestion-chips">
-      ${suggestions.map((p) => `<button type="button" class="chip pick-btn" data-id="${p.id}">${p.name} (${p.pos})</button>`).join('')}
-    </div>`;
-
   const alerts: string[] = [];
   const recent = draft.picks.slice(-4);
   for (const pos of ['RB', 'WR', 'TE']) {
@@ -255,16 +284,13 @@ function renderUserTurn(
     .map((a) => `<div class="alert">${a}</div>`)
     .join('');
 
-  const pickList = root.querySelector('#pick-list') as HTMLElement;
-  renderRankingsTable(pickList, available, cfg.scoring, {
+  renderDraftBoardPanel(root);
+  renderSuggestionsPanel(root, suggestions);
+  renderPlayerPanel(root, allPlayers, {
     showPredictor: true,
     currentPick: overall,
     picksUntilNext: untilNext,
-    draftedIds: draft.draftedIds,
-    mode: 'mock-draft',
   });
-
-  renderDraftBoard(root.querySelector('#draft-board') as HTMLElement, draft.picks, cfg, cfg.slot);
 
   root.querySelectorAll('.pick-btn').forEach((el) => {
     el.addEventListener('click', (e) => {
@@ -277,12 +303,13 @@ function renderUserTurn(
     });
   });
 
+  const pickList = root.querySelector('#pick-list') as HTMLElement;
   const tbody = pickList.querySelector('tbody');
   if (tbody) {
     if (pickListClickHandler) tbody.removeEventListener('click', pickListClickHandler);
     pickListClickHandler = (e) => {
       const tr = (e.target as HTMLElement).closest('tr[data-id]');
-      if (!tr || (e.target as HTMLElement).closest('select, input')) return;
+      if (!tr) return;
       const id = tr.getAttribute('data-id')!;
       const player = allPlayers.find((p) => p.id === id);
       if (player) userPick(root, allPlayers, player, round, pickInRound, overall);

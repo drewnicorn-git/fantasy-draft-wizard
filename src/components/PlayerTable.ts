@@ -33,7 +33,11 @@ export function renderRankingsTable(
 
   const sorted = [...players].sort((a, b) => (getConsensus(a, scoring) ?? 9999) - (getConsensus(b, scoring) ?? 9999));
 
-  const showPickSpots = !opts.showPredictor && opts.mode !== 'mock-draft';
+  const isMockDraft = opts.mode === 'mock-draft';
+  const showPredictorCol = opts.showPredictor || isMockDraft;
+  const showSources = !isMockDraft;
+  const showTags = !isMockDraft;
+  const showPickSpots = !showPredictorCol && !isMockDraft;
   const { teams, slot, rounds } = state.draftConfig;
   const userPicks = showPickSpots ? new Set(getUserPickNumbers(teams, slot, rounds)) : new Set<number>();
 
@@ -44,10 +48,10 @@ export function renderRankingsTable(
   const thead = `
     <thead><tr>
       <th>#</th><th>Player</th><th>Pos</th><th>Team</th><th>Tier</th>
-      ${sources.map((s) => `<th>${SOURCE_LABELS[s] ?? s}</th>`).join('')}
+      ${showSources ? sources.map((s) => `<th>${SOURCE_LABELS[s] ?? s}</th>`).join('') : ''}
       <th>Consensus</th><th>ADP</th>
-      ${opts.showPredictor ? '<th>Avail%</th>' : ''}
-      <th>Tag</th>
+      ${showPredictorCol ? '<th>Avail%</th>' : ''}
+      ${showTags ? '<th>Tag</th>' : ''}
     </tr></thead>`;
 
   const rows = sorted
@@ -74,17 +78,17 @@ export function renderRankingsTable(
         <td>${p.pos}</td>
         <td${teamWarn}>${p.team}${p.teamVerified === false ? ' *' : ''}</td>
         <td>${p.tier ?? '—'}</td>
-        ${sources.map((s) => `<td>${getSourceRank(p, s, scoring) ?? '—'}</td>`).join('')}
+        ${showSources ? sources.map((s) => `<td>${getSourceRank(p, s, scoring) ?? '—'}</td>`).join('') : ''}
         <td><strong>${getConsensus(p, scoring) ?? '—'}</strong></td>
         <td>${getAdp(p, scoring)?.toFixed(1) ?? '—'}</td>
-        ${opts.showPredictor ? `<td>${avail != null ? `${avail}%` : '—'}</td>` : ''}
-        <td class="tag-cell">
+        ${showPredictorCol ? `<td>${avail != null ? `${avail}%` : '—'}</td>` : ''}
+        ${showTags ? `<td class="tag-cell">
           <select data-player-tag="${p.id}" aria-label="Tag for ${escapeHtml(p.name)}" ${editable ? '' : 'disabled'}>
             <option value="">—</option>
             ${tagOptions}
           </select>
           ${tagDef ? `<span class="tag-pill" style="background:${tagDef.color}">${escapeHtml(tagDef.label)}</span>` : ''}
-        </td>
+        </td>` : ''}
       </tr>`;
     })
     .join('');
@@ -92,6 +96,7 @@ export function renderRankingsTable(
   container.innerHTML = `<div class="table-wrap"><table>${thead}<tbody>${rows}</tbody></table></div>`;
 
   container.querySelectorAll<HTMLSelectElement>('[data-player-tag]').forEach((sel) => {
+    if (!showTags) return;
     const id = sel.dataset.playerTag!;
     sel.value = playerTags[id] ?? '';
     if (editable) {

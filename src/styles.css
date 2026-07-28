@@ -241,40 +241,109 @@ tr.has-tag { box-shadow: inset 3px 0 0 var(--tag-color, var(--accent)); }
 
 .draft-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
-.mock-draft .draft-layout-stacked {
+/* Mock draft: single full-width column, fixed panel sizes */
+.mock-draft-active {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  grid-template-columns: unset;
   width: 100%;
 }
 
-.mock-draft .draft-board-section,
-.mock-draft .draft-picks-panel {
+.mock-draft-board-panel {
+  width: 100%;
+  flex: 0 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.mock-draft-board-panel .draft-board-shell {
   width: 100%;
 }
 
-.mock-draft .draft-board-section h3 {
-  margin: 0 0 0.5rem;
+.mock-draft-board-panel .draft-board-title {
+  margin: 0;
+  padding: 0.65rem 0.85rem;
   font-size: 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
 }
 
-.mock-draft .draft-board-wrap,
-.mock-draft .draft-pick-list {
+.mock-draft-board-panel .draft-board {
   width: 100%;
+  max-height: 220px;
+  overflow: auto;
+  font-size: 0.72rem;
 }
 
-.mock-draft .draft-board {
+.mock-draft-board-panel .draft-board table {
   width: 100%;
+  table-layout: fixed;
+}
+
+.mock-draft-board-panel .draft-board td,
+.mock-draft-board-panel .draft-board th {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mock-draft-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.mock-draft-suggestions {
+  width: 100%;
+  height: 96px;
+  min-height: 96px;
+  max-height: 96px;
+  flex: 0 0 96px;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: auto;
+}
+
+.mock-draft-suggestions h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.mock-draft-suggestions .suggestions-placeholder {
+  margin: 0;
+  line-height: 2rem;
+}
+
+.mock-draft-players-panel {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 360px;
   max-height: 360px;
+  overflow: hidden;
+}
+
+.mock-draft-players-panel .table-wrap {
+  width: 100%;
+  height: 360px;
+  max-height: 360px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.mock-draft-players-panel table {
+  width: 100%;
+  table-layout: fixed;
 }
 
 .draft-left { max-height: 75vh; overflow-y: auto; }
-
-.mock-draft .draft-pick-list .table-wrap {
-  max-height: 55vh;
-  overflow: auto;
-}
 
 #pick-list .table-wrap { max-height: 65vh; overflow: auto; }
 
