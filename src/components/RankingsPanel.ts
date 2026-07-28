@@ -5,11 +5,13 @@ import { renderLeagueSettings } from './LeagueSettings';
 import { renderSheetToolbar } from './SheetToolbar';
 import { SOURCE_LABELS } from '../utils/scoring';
 import { formatPickLabel, getUserPickNumbers } from '../sim/snake';
+import { loadKeepers } from '../utils/storage';
 
 export interface RankingsPanelOptions {
   tableMode?: 'rankings' | 'live-draft';
   onPlayerPick?: (playerId: string) => void;
   draftedIds?: Set<string>;
+  includeKeepers?: boolean;
 }
 
 export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOptions = {}): () => void {
@@ -38,7 +40,8 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
 
   const refresh = (): void => {
     const draftedIds = options.draftedIds ?? new Set<string>();
-    const filtered = filterPlayers(data.players, draftedIds);
+    const includeKeepers = options.includeKeepers ?? options.tableMode === 'rankings';
+    const filtered = filterPlayers(data.players, draftedIds, { includeKeepers });
     const active = getActiveSources();
     const sourceLabels = active.map((s) => SOURCE_LABELS[s]).join(', ');
     const picks = getUserPickNumbers(state.draftConfig.teams, state.draftConfig.slot, state.draftConfig.rounds);
@@ -46,7 +49,9 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
       .slice(0, 4)
       .map((p) => formatPickLabel(p, state.draftConfig.teams))
       .join(', ');
-    metaEl.textContent = `${filtered.length} available · Consensus: ${sourceLabels || 'none'} · ${state.draftConfig.teams}-team, slot ${state.draftConfig.slot} · Picks: ${pickPreview}… · Season ${data.season}`;
+    const keeperCount = loadKeepers().size;
+    const keeperNote = keeperCount > 0 ? ` · ${keeperCount} keeper${keeperCount === 1 ? '' : 's'}` : '';
+    metaEl.textContent = `${filtered.length} available · Consensus: ${sourceLabels || 'none'} · ${state.draftConfig.teams}-team, slot ${state.draftConfig.slot} · Picks: ${pickPreview}…${keeperNote} · Season ${data.season}`;
     renderRankingsTable(tableEl, filtered, state.scoring, {
       mode: options.tableMode ?? 'rankings',
       onPlayerPick: options.onPlayerPick,

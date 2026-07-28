@@ -217,7 +217,7 @@ function scheduleBotPick(
 
   botTimer = setTimeout(() => {
     clearTimers();
-    const available = allPlayers.filter((p) => !draft!.draftedIds.has(p.id));
+    const available = filterPlayers(allPlayers, draft!.draftedIds);
     if (!available.length) {
       finishDraft(root, allPlayers);
       return;

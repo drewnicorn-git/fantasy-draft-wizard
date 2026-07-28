@@ -7,6 +7,7 @@ const DRAFT_CONFIG_KEY = 'fdw-draft-config';
 const SHEET_STATE_KEY = 'fdw-sheet-state';
 const TEAM_NAMES_KEY = 'fdw-team-names';
 const LIVE_DRAFT_KEY = 'fdw-live-draft';
+const KEEPERS_KEY = 'fdw-keepers';
 
 export const PRESET_TAGS: TagDefinition[] = [
   { id: 'target', label: 'Target', color: '#2ecc71', description: 'Players you want to draft', preset: true },
@@ -140,4 +141,29 @@ export function saveLiveDraft(draft: { active: boolean; picks: DraftPick[]; curr
 export function getTagById(tagId: string | undefined, defs: TagDefinition[]): TagDefinition | undefined {
   if (!tagId) return undefined;
   return defs.find((t) => t.id === tagId);
+}
+
+export function loadKeepers(): Set<string> {
+  try {
+    const raw = JSON.parse(localStorage.getItem(KEEPERS_KEY) ?? '[]') as string[];
+    return new Set(Array.isArray(raw) ? raw : []);
+  } catch {
+    return new Set();
+  }
+}
+
+export function saveKeepers(keepers: Set<string>): void {
+  localStorage.setItem(KEEPERS_KEY, JSON.stringify([...keepers]));
+}
+
+export function toggleKeeper(playerId: string): Set<string> {
+  const next = loadKeepers();
+  if (next.has(playerId)) next.delete(playerId);
+  else next.add(playerId);
+  saveKeepers(next);
+  return next;
+}
+
+export function isKeeper(playerId: string): boolean {
+  return loadKeepers().has(playerId);
 }

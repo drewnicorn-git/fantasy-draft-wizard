@@ -49,7 +49,7 @@ export function mountLiveDraftView(root: HTMLElement): void {
       <div id="live-draft-bar" class="live-draft-bar"></div>
       <div id="live-draft-active" class="live-draft-active ${active ? '' : 'hidden'}">
         <div id="live-draft-board" class="live-draft-board-panel"></div>
-        <div id="live-rankings-panel" class="live-draft-players-panel"></div>
+        <div id="live-rankings-panel" class="live-draft-panel-body"></div>
       </div>
       <div id="live-rankings-setup" class="live-rankings-setup ${active ? 'hidden' : ''}">
         <div id="live-rankings-panel-setup"></div>
@@ -85,6 +85,7 @@ export function mountLiveDraftView(root: HTMLElement): void {
   panelRefresh = mountRankingsPanel(panelEl, {
     tableMode: liveDraft?.active ? 'live-draft' : 'rankings',
     draftedIds: liveDraft?.draftedIds,
+    includeKeepers: !liveDraft?.active,
     onPlayerPick: liveDraft?.active
       ? (playerId) => {
           recordLivePick(root, data.players, playerId);

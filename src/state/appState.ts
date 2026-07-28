@@ -2,6 +2,7 @@ import type { AppState, Player, RankingsData, ScoringFormat, SourceKey } from '.
 import { isBlankPlayer } from '../utils/scoring';
 import { buildRankingsFromLiveSources, type RefreshProgress } from '../services/buildRankings';
 import {
+  loadKeepers,
   loadSelectedSources,
   saveSelectedSources,
   loadDraftConfig,
@@ -162,13 +163,19 @@ export function getActiveSources(): SourceKey[] {
   return available.filter((s) => state.selectedSources.has(s));
 }
 
-export function filterPlayers(players: Player[], draftedIds: Set<string> = new Set()): Player[] {
+export function filterPlayers(
+  players: Player[],
+  draftedIds: Set<string> = new Set(),
+  options: { includeKeepers?: boolean } = {},
+): Player[] {
   const { filters, scoring } = state;
   const q = filters.search.trim().toLowerCase();
+  const includeKeepers = options.includeKeepers ?? false;
 
   return players.filter((p) => {
     if (isBlankPlayer(p)) return false;
     if (draftedIds.has(p.id)) return false;
+    if (!includeKeepers && loadKeepers().has(p.id)) return false;
     if (q && !p.name.toLowerCase().includes(q)) return false;
     if (filters.teams.size && !filters.teams.has(p.team)) return false;
     if (filters.tierMax != null && p.tier != null && p.tier > filters.tierMax) return false;
