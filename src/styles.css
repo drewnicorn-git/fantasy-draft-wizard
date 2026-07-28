@@ -516,6 +516,44 @@ tr.is-keeper td:first-child { box-shadow: inset 3px 0 0 var(--accent2); }
 .sheet-status { color: var(--muted); font-size: 0.85rem; }
 .sheet-status.locked { color: var(--accent2); }
 
+.sheet-status.manual-dirty { color: var(--warn); }
+
+.manual-table-wrap { overflow-x: auto; }
+
+.manual-rank-col {
+  min-width: 4.5rem;
+  white-space: nowrap;
+}
+
+.drag-handle {
+  display: inline-block;
+  margin-right: 0.25rem;
+  color: var(--muted);
+  cursor: grab;
+  letter-spacing: -0.15em;
+  user-select: none;
+}
+
+tr.manual-row.dragging { opacity: 0.45; }
+
+tr.manual-row { cursor: grab; }
+
+.delta-col {
+  font-size: 0.78rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.delta-pos { color: var(--accent2); font-weight: 600; }
+
+.delta-neg { color: var(--danger); font-weight: 600; }
+
+.delta-zero { color: var(--muted); }
+
+.manual-toolbar {
+  flex-wrap: wrap;
+}
+
 .tier-input {
   width: 3rem;
   padding: 0.2rem 0.35rem;
