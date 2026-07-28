@@ -246,6 +246,17 @@ tr.has-tag { box-shadow: inset 3px 0 0 var(--tag-color, var(--accent)); }
   flex-direction: column;
   gap: 1rem;
   grid-template-columns: unset;
+  width: 100%;
+}
+
+.mock-draft .draft-board-section,
+.mock-draft .draft-picks-panel {
+  width: 100%;
+}
+
+.mock-draft .draft-board-section h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
 }
 
 .mock-draft .draft-board-wrap,
@@ -253,8 +264,9 @@ tr.has-tag { box-shadow: inset 3px 0 0 var(--tag-color, var(--accent)); }
   width: 100%;
 }
 
-.mock-draft .draft-roster {
+.mock-draft .draft-board {
   width: 100%;
+  max-height: 360px;
 }
 
 .draft-left { max-height: 75vh; overflow-y: auto; }

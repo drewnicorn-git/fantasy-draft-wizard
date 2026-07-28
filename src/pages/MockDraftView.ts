@@ -1,6 +1,6 @@
 import type { DraftPick, Player, ScoringFormat } from '../data/types';
 import { filterPlayers, getRankings, applyDraftConfig, state } from '../state/appState';
-import { renderDraftBoard, renderRosterSummary } from '../components/DraftBoard';
+import { renderDraftBoard } from '../components/DraftBoard';
 import { renderRankingsTable } from '../components/PlayerTable';
 import { getTeamDisplayName } from '../components/TeamNamesEditor';
 import { botPick, suggestedPicks } from '../sim/bot';
@@ -44,10 +44,14 @@ export function mountMockDraftView(root: HTMLElement): void {
           </div>
         </div>
         <div class="draft-layout draft-layout-stacked">
-          <div id="user-roster" class="draft-roster"></div>
-          <div id="draft-board" class="draft-board-wrap"></div>
-          <div id="suggestions"></div>
-          <div id="pick-list" class="draft-pick-list"></div>
+          <section class="draft-board-section">
+            <h3>Draft board</h3>
+            <div id="draft-board" class="draft-board-wrap"></div>
+          </section>
+          <section class="draft-picks-panel">
+            <div id="suggestions"></div>
+            <div id="pick-list" class="draft-pick-list"></div>
+          </section>
         </div>
       </div>
       <div id="draft-summary" class="hidden"></div>
@@ -169,7 +173,6 @@ function scheduleBotPick(
   });
 
   renderDraftBoard(root.querySelector('#draft-board') as HTMLElement, draft!.picks, cfg, cfg.slot);
-  renderUserRoster(root, allPlayers);
 
   countdownTimer = setInterval(() => {
     remaining -= 1;
@@ -262,7 +265,6 @@ function renderUserTurn(
   });
 
   renderDraftBoard(root.querySelector('#draft-board') as HTMLElement, draft.picks, cfg, cfg.slot);
-  renderUserRoster(root, allPlayers);
 
   root.querySelectorAll('.pick-btn').forEach((el) => {
     el.addEventListener('click', (e) => {
@@ -299,18 +301,6 @@ function userPick(
 ): void {
   makePick(player, state.draftConfig.slot - 1, round, pickInRound, overall);
   advanceDraft(root, allPlayers);
-}
-
-function renderUserRoster(root: HTMLElement, allPlayers: Player[]): void {
-  const cfg = state.draftConfig;
-  const scoring: ScoringFormat = cfg.scoring;
-  const roster = getTeamRoster(cfg.slot - 1, allPlayers).map((p) => ({
-    name: p.name,
-    pos: p.pos,
-    team: p.team,
-    adp: p.adp[scoring],
-  }));
-  renderRosterSummary(root.querySelector('#user-roster') as HTMLElement, roster);
 }
 
 function finishDraft(root: HTMLElement, allPlayers: Player[]): void {
