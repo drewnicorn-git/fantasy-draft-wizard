@@ -1,8 +1,12 @@
 import type { Player, RankingsData, SourceKey } from '../data/types';
 import { fetchEspnRankings, fetchSleeperAdp, fetchSleeperPlayers } from './fetchSources';
-import { buildDepthChartIndex, fetchEspnDepthCharts, resolveTeamFromDepthChart, type DepthChartIndex } from '../utils/depthChart';
-import { canonicalKey, isValidPlayerName, normalizePos, type RawPlayerRow } from '../utils/playerKeys';
-import { currentDraftSeason } from '../utils/season';
+import {
+  buildDepthChartIndex,
+  fetchEspnDepthCharts,
+  resolvePlayerIdentity,
+  type DepthIndexes,
+} from '../utils/depthChart';
+import { isValidPlayerName, normalizePos, type RawPlayerRow } from '../utils/playerKeys';
 
 type PoolPlayer = Player;
 
@@ -16,24 +20,19 @@ function getOrCreatePlayer(
   name: string,
   pos: string,
   sourceTeam: string,
-  depthIndex: DepthChartIndex,
+  depthIndexes: DepthIndexes,
 ): PoolPlayer | null {
-  if (!isValidPlayerName(name)) return null;
-  const posNorm = normalizePos(pos);
-  if (!['QB', 'RB', 'WR', 'TE', 'K', 'DST'].includes(posNorm)) return null;
+  const identity = resolvePlayerIdentity(name, pos, sourceTeam, depthIndexes);
+  if (!identity) return null;
 
-  const resolved = resolveTeamFromDepthChart(name, posNorm, sourceTeam, depthIndex);
-  if (!resolved) return null;
-
-  const id = canonicalKey(name, posNorm);
-  let p = pool.get(id);
+  let p = pool.get(identity.id);
   if (!p) {
     p = {
-      id,
-      name: name.trim(),
-      team: resolved.team,
-      pos: posNorm,
-      teamVerified: resolved.verified,
+      id: identity.id,
+      name: identity.displayName,
+      team: identity.team,
+      pos: normalizePos(pos),
+      teamVerified: identity.verified,
       bye: null,
       tier: null,
       injuryStatus: null,
@@ -43,28 +42,28 @@ function getOrCreatePlayer(
       posRank: { std: null, ppr: null },
       rankStdDev: null,
     };
-    pool.set(id, p);
+    pool.set(identity.id, p);
   } else {
-    if (resolved.verified) {
-      p.team = resolved.team;
+    if (identity.verified) {
+      p.team = identity.team;
       p.teamVerified = true;
-    } else if (!p.teamVerified && resolved.team) {
-      p.team = resolved.team;
+    } else if (!p.teamVerified && identity.team) {
+      p.team = identity.team;
     }
-    if (p.name.length < name.trim().length) p.name = name.trim();
+    if (identity.displayName.length > p.name.length) p.name = identity.displayName;
   }
   return p;
 }
 
 function importRows(
   pool: Map<string, PoolPlayer>,
-  depthIndex: DepthChartIndex,
+  depthIndexes: DepthIndexes,
   rows: RawPlayerRow[],
   apply: (player: PoolPlayer, row: RawPlayerRow) => void,
 ): number {
   let count = 0;
   for (const row of rows) {
-    const p = getOrCreatePlayer(pool, row.name, row.pos, row.team, depthIndex);
+    const p = getOrCreatePlayer(pool, row.name, row.pos, row.team, depthIndexes);
     if (!p) continue;
     apply(p, row);
     if (row.bye != null) p.bye = row.bye;
@@ -114,7 +113,7 @@ export async function buildRankingsFromLiveSources(
     depthEntries = sleeperPlayers.map((p) => ({ name: p.name, team: p.team, pos: normalizePos(p.pos) }));
   }
 
-  const depthIndex = buildDepthChartIndex(depthEntries);
+  const depthIndexes = buildDepthChartIndex(depthEntries);
   const pool = new Map<string, PoolPlayer>();
   const sourceCounts: Partial<Record<SourceKey, number>> = {};
 
@@ -124,7 +123,7 @@ export async function buildRankingsFromLiveSources(
     return [] as RawPlayerRow[];
   });
   if (espnRows.length) {
-    sourceCounts.espn = importRows(pool, depthIndex, espnRows, (p, r) => {
+    sourceCounts.espn = importRows(pool, depthIndexes, espnRows, (p, r) => {
       if (r.adp != null) p.adp.ppr = r.adp;
       if (r.rank != null) p.ranks.ppr.espn = r.rank;
     });
@@ -136,7 +135,7 @@ export async function buildRankingsFromLiveSources(
     return [] as RawPlayerRow[];
   });
   if (sleeperRows.length) {
-    sourceCounts.sleeper = importRows(pool, depthIndex, sleeperRows, (p, r) => {
+    sourceCounts.sleeper = importRows(pool, depthIndexes, sleeperRows, (p, r) => {
       if (r.adpStd != null) p.adp.std = r.adpStd;
       if (r.adpPpr != null) p.adp.ppr = r.adpPpr;
       if (r.adp != null && p.adp.ppr == null) p.adp.ppr = r.adp;
@@ -147,8 +146,9 @@ export async function buildRankingsFromLiveSources(
   mergeExistingRanks(pool, existing);
 
   for (const sp of sleeperPlayers) {
-    const id = canonicalKey(sp.name, normalizePos(sp.pos));
-    const p = pool.get(id);
+    const identity = resolvePlayerIdentity(sp.name, sp.pos, sp.team, depthIndexes);
+    if (!identity) continue;
+    const p = pool.get(identity.id);
     if (p && sp.injuryStatus) p.injuryStatus = sp.injuryStatus;
   }
 
@@ -187,4 +187,10 @@ export async function buildRankingsFromLiveSources(
     sources,
     players,
   };
+}
+
+function currentDraftSeason(now = new Date()): number {
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  return month >= 2 ? year : year - 1;
 }

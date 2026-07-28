@@ -9,6 +9,8 @@ export function normalizeName(name: string): string {
     .normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/\s+(jr\.?|sr\.?|ii|iii|iv|v)$/i, '')
+    .replace(/[''`.]/g, '')
+    .replace(/\b([a-zA-Z])\.\s*/g, '$1')
     .replace(/[^a-z0-9\s]/gi, ' ')
     .replace(/\s+/g, ' ')
     .trim()
@@ -19,6 +21,11 @@ export function normalizePos(pos: string): string {
   const p = pos.toUpperCase();
   if (p === 'DEF' || p === 'D/ST' || p === 'DST') return 'DST';
   return p;
+}
+
+export function lastNameToken(name: string): string {
+  const parts = normalizeName(name).split(' ').filter(Boolean);
+  return parts[parts.length - 1] ?? '';
 }
 
 export function canonicalKey(name: string, pos: string): string {

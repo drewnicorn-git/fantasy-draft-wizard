@@ -1,16 +1,6 @@
 import type { Player, ScoringFormat, SourceKey } from '../data/types';
 import { state } from '../state/appState';
-
-export function normalizeName(name: string): string {
-  return name
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/\s+(jr\.?|sr\.?|ii|iii|iv|v)$/i, '')
-    .replace(/[^a-z0-9\s]/gi, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .toLowerCase();
-}
+export { normalizeName } from './playerKeys';
 
 export function computeConsensus(
   player: Player,
