@@ -17,6 +17,11 @@ interface LiveDraftRuntime {
 let liveDraft: LiveDraftRuntime | null = null;
 let panelRefresh: (() => void) | null = null;
 
+function currentRoundFromLiveDraft(): number {
+  if (!liveDraft || liveDraft.picks.length === 0) return 1;
+  return liveDraft.picks[liveDraft.picks.length - 1].round;
+}
+
 export function mountLiveDraftView(root: HTMLElement): void {
   const data = getRankings();
   if (!data) {
@@ -36,27 +41,43 @@ export function mountLiveDraftView(root: HTMLElement): void {
     liveDraft = null;
   }
 
+  const active = liveDraft?.active ?? false;
+
   root.innerHTML = `
     <section class="panel live-draft">
       <div id="live-team-names"></div>
       <div id="live-draft-bar" class="live-draft-bar"></div>
-      <div id="live-rankings-panel"></div>
-      <div id="live-draft-board-wrap" class="${liveDraft?.active ? '' : 'hidden'}"></div>
+      <div id="live-draft-active" class="live-draft-active ${active ? '' : 'hidden'}">
+        <div id="live-draft-board" class="live-draft-board-panel"></div>
+        <div id="live-rankings-panel" class="live-draft-players-panel"></div>
+      </div>
+      <div id="live-rankings-setup" class="live-rankings-setup ${active ? 'hidden' : ''}">
+        <div id="live-rankings-panel-setup"></div>
+      </div>
     </section>`;
 
   const teamNamesEl = root.querySelector('#live-team-names') as HTMLElement;
   const barEl = root.querySelector('#live-draft-bar') as HTMLElement;
-  const panelEl = root.querySelector('#live-rankings-panel') as HTMLElement;
-  const boardWrap = root.querySelector('#live-draft-board-wrap') as HTMLElement;
+  const panelEl = active
+    ? (root.querySelector('#live-rankings-panel') as HTMLElement)
+    : (root.querySelector('#live-rankings-panel-setup') as HTMLElement);
+  const boardEl = root.querySelector('#live-draft-board') as HTMLElement;
+
+  const refreshBoard = (): void => {
+    if (!liveDraft?.active) return;
+    const cfg = state.draftConfig;
+    const round = currentRoundFromLiveDraft();
+    renderDraftBoard(boardEl, liveDraft.picks, cfg, cfg.slot, undefined, {
+      maxRound: Math.min(round + 1, cfg.rounds),
+      title: 'Draft Board',
+    });
+  };
 
   const refreshAll = (): void => {
-    renderDraftBar(barEl, root, data.players, boardWrap);
+    renderDraftBar(barEl, root, data.players);
     panelRefresh?.();
     if (liveDraft?.active) {
-      boardWrap.classList.remove('hidden');
-      renderDraftBoard(boardWrap, liveDraft.picks, state.draftConfig, state.draftConfig.slot);
-    } else {
-      boardWrap.classList.add('hidden');
+      refreshBoard();
     }
   };
 
@@ -66,24 +87,18 @@ export function mountLiveDraftView(root: HTMLElement): void {
     draftedIds: liveDraft?.draftedIds,
     onPlayerPick: liveDraft?.active
       ? (playerId) => {
-          recordLivePick(root, data.players, playerId, boardWrap);
+          recordLivePick(root, data.players, playerId);
         }
       : undefined,
   });
 
-  renderDraftBar(barEl, root, data.players, boardWrap);
+  renderDraftBar(barEl, root, data.players);
   if (liveDraft?.active) {
-    boardWrap.classList.remove('hidden');
-    renderDraftBoard(boardWrap, liveDraft.picks, state.draftConfig, state.draftConfig.slot);
+    refreshBoard();
   }
 }
 
-function renderDraftBar(
-  barEl: HTMLElement,
-  root: HTMLElement,
-  allPlayers: Player[],
-  boardWrap: HTMLElement,
-): void {
+function renderDraftBar(barEl: HTMLElement, root: HTMLElement, allPlayers: Player[]): void {
   const cfg = state.draftConfig;
   const order = snakePickOrder(cfg);
   const active = liveDraft?.active ?? false;
@@ -141,7 +156,7 @@ function renderDraftBar(
     </div>`;
 
   barEl.querySelector('#undo-live-pick')!.addEventListener('click', () => {
-    undoLivePick(root, allPlayers, boardWrap);
+    undoLivePick(root, allPlayers);
   });
 
   barEl.querySelector('#reset-live-draft')!.addEventListener('click', () => {
@@ -153,7 +168,7 @@ function renderDraftBar(
   });
 }
 
-function recordLivePick(root: HTMLElement, allPlayers: Player[], playerId: string, _boardWrap: HTMLElement): void {
+function recordLivePick(root: HTMLElement, allPlayers: Player[], playerId: string): void {
   if (!liveDraft?.active) return;
   const cfg = state.draftConfig;
   const order = snakePickOrder(cfg);
@@ -182,7 +197,7 @@ function recordLivePick(root: HTMLElement, allPlayers: Player[], playerId: strin
   mountLiveDraftView(root);
 }
 
-function undoLivePick(root: HTMLElement, _allPlayers: Player[], _boardWrap: HTMLElement): void {
+function undoLivePick(root: HTMLElement, _allPlayers: Player[]): void {
   if (!liveDraft || liveDraft.picks.length === 0) return;
   const last = liveDraft.picks.pop()!;
   liveDraft.draftedIds.delete(last.playerId);
