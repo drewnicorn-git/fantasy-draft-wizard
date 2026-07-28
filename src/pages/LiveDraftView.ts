@@ -86,6 +86,7 @@ export function mountLiveDraftView(root: HTMLElement): void {
     tableMode: liveDraft?.active ? 'live-draft' : 'rankings',
     draftedIds: liveDraft?.draftedIds,
     includeKeepers: !liveDraft?.active,
+    draftOverall: liveDraft?.active ? liveDraft.currentIndex + 1 : 1,
     onPlayerPick: liveDraft?.active
       ? (playerId) => {
           recordLivePick(root, data.players, playerId);

@@ -6,7 +6,7 @@ import { SOURCE_LABELS, getAdp, getConsensus, getSourceRank } from '../utils/sco
 
 import { pickPredictor } from '../utils/analytics';
 
-import { formatPickLabel, getUserPickNumbers } from '../sim/snake';
+import { formatPickLabel, isProjectedRoundBreak, isUserProjectedPick, projectedPickOverall, roundFromOverall } from '../sim/snake';
 
 import { formatPosRankLabel, getPosRankValue, posCssClass, posSortOrder } from '../utils/position';
 
@@ -278,6 +278,8 @@ export function renderRankingsTable(
 
     onPlayerPick?: (playerId: string) => void;
 
+    draftOverall?: number;
+
   } = {},
 
 ): void {
@@ -314,7 +316,7 @@ export function renderRankingsTable(
 
   const { teams, slot, rounds } = state.draftConfig;
 
-  const userPicks = showPickSpots ? new Set(getUserPickNumbers(teams, slot, rounds)) : new Set<number>();
+  const draftOverall = opts.draftOverall ?? 1;
 
 
 
@@ -364,13 +366,15 @@ export function renderRankingsTable(
 
       const overallRank = i + 1;
 
-      const isUserPick = userPicks.has(overallRank);
+      const projectedOverall = projectedPickOverall(overallRank, draftOverall);
 
-      const pickLabel = isUserPick ? formatPickLabel(overallRank, teams) : '';
+      const isUserPick = showPickSpots && isUserProjectedPick(overallRank, draftOverall, teams, slot, rounds);
 
-      const roundBreak = showPickSpots && overallRank % teams === 0;
+      const pickLabel = isUserPick ? formatPickLabel(projectedOverall, teams) : '';
 
-      const roundLabel = roundBreak ? `R${overallRank / teams}` : '';
+      const roundBreak = showPickSpots && isProjectedRoundBreak(overallRank, draftOverall, teams);
+
+      const roundLabel = roundBreak ? `R${roundFromOverall(projectedOverall, teams).round}` : '';
 
       const tagId = playerTags[p.id];
 

@@ -41,6 +41,35 @@ export function getUserPickNumbers(teams: number, slot: number, rounds: number):
   return picks;
 }
 
+export function getRemainingUserPickNumbers(
+  currentOverall: number,
+  teams: number,
+  slot: number,
+  rounds: number,
+): number[] {
+  return getUserPickNumbers(teams, slot, rounds).filter((p) => p >= currentOverall);
+}
+
+/** Map an available-board row to the draft pick that row represents. */
+export function projectedPickOverall(availableRank: number, currentOverall: number): number {
+  return currentOverall + availableRank - 1;
+}
+
+export function isUserProjectedPick(
+  availableRank: number,
+  currentOverall: number,
+  teams: number,
+  slot: number,
+  rounds: number,
+): boolean {
+  const projected = projectedPickOverall(availableRank, currentOverall);
+  return getUserPickNumbers(teams, slot, rounds).includes(projected);
+}
+
+export function isProjectedRoundBreak(availableRank: number, currentOverall: number, teams: number): boolean {
+  return projectedPickOverall(availableRank, currentOverall) % teams === 0;
+}
+
 export function formatPickLabel(overall: number, teams: number): string {
   const { round, pickInRound } = roundFromOverall(overall, teams);
   return `R${round}.${String(pickInRound).padStart(2, '0')}`;

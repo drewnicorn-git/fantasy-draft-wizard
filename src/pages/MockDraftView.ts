@@ -7,7 +7,7 @@ import { botPick, suggestedPicks } from '../sim/bot';
 import { byeWeekConflicts, detectPositionalRun } from '../utils/analytics';
 import { picksUntilNextUserPick, roundFromOverall, snakePickOrder } from '../sim/snake';
 
-const BOT_PICK_DELAY_MS = 5_000;
+const BOT_PICK_DELAY_MS = 2_000;
 
 interface DraftState {
   picks: DraftPick[];
@@ -115,7 +115,7 @@ function renderSetup(root: HTMLElement, allPlayers: Player[]): void {
 
   setup.innerHTML = `
     <h2>Mock draft setup</h2>
-    <p class="hint">Snake order: round 1 goes 1→${cfg.teams}, round 2 goes ${cfg.teams}→1, and alternates. Bot picks wait 5 seconds between selections.</p>
+    <p class="hint">Snake order: round 1 goes 1→${cfg.teams}, round 2 goes ${cfg.teams}→1, and alternates. Bot picks wait 2 seconds between selections.</p>
     <div class="setup-grid">
       <label>Teams <input type="number" id="cfg-teams" min="8" max="14" value="${cfg.teams}" /></label>
       <label>Your slot <input type="number" id="cfg-slot" min="1" max="${cfg.teams}" value="${cfg.slot}" /></label>
