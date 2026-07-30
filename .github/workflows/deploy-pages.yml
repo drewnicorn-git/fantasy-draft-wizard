@@ -9,7 +9,7 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -39,6 +39,9 @@ jobs:
         env:
           VITE_BASE: /${{ github.event.repository.name }}/
 
+      - name: Ensure Jekyll is disabled for GitHub Pages
+        run: touch dist/.nojekyll
+
       - name: Verify build output
         run: |
           grep -q "assets/index" dist/index.html
@@ -49,13 +52,6 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
-
-      - name: Publish built site to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          force_orphan: true
 
   deploy:
     needs: build
