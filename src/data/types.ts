@@ -78,7 +78,7 @@ export type BotPersonality = 'balanced' | 'zero-rb' | 'hero-rb';
 
 export interface AppState {
   scoring: ScoringFormat;
-  tab: 'rankings' | 'manual' | 'mock' | 'live';
+  tab: 'rankings' | 'mock' | 'live';
   filters: FilterState;
   selectedSources: Set<SourceKey>;
   draftConfig: DraftConfig;

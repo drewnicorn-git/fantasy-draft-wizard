@@ -2,6 +2,7 @@ import type { Player, ScoringFormat } from '../data/types';
 import { getSheetLocked, state } from '../state/appState';
 import { getAdp, getConsensus } from '../utils/scoring';
 import { formatPosRankLabel, posCssClass } from '../utils/position';
+import { sortPlayersByManualRank } from '../utils/manualOrder';
 import { getTeamDisplayName } from './TeamNamesEditor';
 import {
   getKeeperTeam,
@@ -11,10 +12,9 @@ import {
 } from '../utils/storage';
 
 export interface KeepersTableOptions {
-  mode: 'rankings' | 'manual' | 'live-setup' | 'live-active';
+  mode: 'rankings' | 'live-setup' | 'live-active';
   scoring: ScoringFormat;
   players: Player[];
-  manualOrder?: string[];
   onChange: () => void;
 }
 
@@ -28,18 +28,8 @@ function keeperPlayers(allPlayers: Player[]): Player[] {
   return [...ids].map((id) => byId.get(id)).filter((p): p is Player => !!p);
 }
 
-function sortKeepers(players: Player[], manualOrder?: string[]): Player[] {
-  if (!manualOrder?.length) {
-    return [...players].sort(
-      (a, b) => (getConsensus(a, state.scoring) ?? 9999) - (getConsensus(b, state.scoring) ?? 9999),
-    );
-  }
-  const index = new Map(manualOrder.map((id, i) => [id, i]));
-  return [...players].sort((a, b) => (index.get(a.id) ?? 9999) - (index.get(b.id) ?? 9999));
-}
-
 export function renderKeepersTable(container: HTMLElement, opts: KeepersTableOptions): void {
-  const keepers = sortKeepers(keeperPlayers(opts.players), opts.manualOrder);
+  const keepers = sortPlayersByManualRank(keeperPlayers(opts.players), opts.scoring);
   const locked = getSheetLocked();
   const editable = !locked && opts.mode !== 'live-active';
   const showTeamAssign = opts.mode === 'live-setup' || opts.mode === 'live-active';

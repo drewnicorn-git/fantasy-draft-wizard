@@ -30,6 +30,8 @@ import {
 
 } from '../utils/storage';
 
+import { getManualRank, setManualRank } from '../utils/manualOrder';
+
 
 
 type SortKey =
@@ -49,6 +51,8 @@ type SortKey =
   | 'adp'
 
   | 'avail'
+
+  | 'manual'
 
   | `source:${SourceKey}`;
 
@@ -85,6 +89,8 @@ const DEFAULT_SORT_DIR: Record<SortKey, 'asc' | 'desc'> = {
   adp: 'asc',
 
   avail: 'desc',
+
+  manual: 'asc',
 
   'source:fantasypros': 'asc',
 
@@ -224,6 +230,12 @@ function sortPlayers(
 
       }
 
+      case 'manual':
+
+        cmp = compareNullable(getManualRank(scoring, a.id), getManualRank(scoring, b.id), dir);
+
+        break;
+
       default:
 
         if (sort.key.startsWith('source:')) {
@@ -282,6 +294,8 @@ export function renderRankingsTable(
 
     onKeeperChange?: () => void;
 
+    onManualRankChange?: () => void;
+
   } = {},
 
 ): void {
@@ -314,6 +328,8 @@ export function renderRankingsTable(
 
   const showKeepers = !isMockDraft;
 
+  const showManualCol = !isMockDraft;
+
   const showPickSpots = !showPredictorCol && !isMockDraft;
 
   const { teams, slot, rounds } = state.draftConfig;
@@ -335,6 +351,8 @@ export function renderRankingsTable(
     <thead><tr>
 
       <th>#</th>
+
+      ${showManualCol ? sortHeader('Manual', 'manual', tableSort) : ''}
 
       ${sortHeader('Player', 'name', tableSort)}
 
@@ -368,13 +386,17 @@ export function renderRankingsTable(
 
       const overallRank = i + 1;
 
-      const projectedOverall = projectedPickOverall(overallRank, draftOverall);
+      const manualRank = getManualRank(scoring, p.id);
 
-      const isUserPick = showPickSpots && isUserProjectedPick(overallRank, draftOverall, teams, slot, rounds);
+      const rankForPicks = manualRank ?? overallRank;
+
+      const projectedOverall = projectedPickOverall(rankForPicks, draftOverall);
+
+      const isUserPick = showPickSpots && isUserProjectedPick(rankForPicks, draftOverall, teams, slot, rounds);
 
       const pickLabel = isUserPick ? formatPickLabel(projectedOverall, teams) : '';
 
-      const roundBreak = showPickSpots && isProjectedRoundBreak(overallRank, draftOverall, teams);
+      const roundBreak = showPickSpots && isProjectedRoundBreak(rankForPicks, draftOverall, teams);
 
       const roundLabel = roundBreak ? `R${roundFromOverall(projectedOverall, teams).round}` : '';
 
@@ -409,6 +431,8 @@ export function renderRankingsTable(
       return `<tr class="${posCls} ${tierCls}${roundBreak ? ' round-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}${opts.mode === 'live-draft' ? ' pickable' : ''}" data-id="${p.id}"${tagStyle}>
 
         <td>${overallRank}${isUserPick ? `<span class="pick-badge">${pickLabel}</span>` : ''}${roundBreak ? `<span class="round-badge">${roundLabel}</span>` : ''}</td>
+
+        ${showManualCol ? `<td class="manual-rank-cell"><input type="number" class="manual-rank-input" data-manual-rank="${p.id}" aria-label="Manual rank for ${escapeHtml(p.name)}" value="${manualRank ?? ''}" placeholder="—" min="1" max="999" ${editable ? '' : 'disabled'} /></td>` : ''}
 
         <td class="player-name">${escapeHtml(p.name)} ${injury}</td>
 
@@ -513,6 +537,44 @@ export function renderRankingsTable(
       });
 
     }
+
+  });
+
+
+
+  container.querySelectorAll<HTMLInputElement>('[data-manual-rank]').forEach((input) => {
+
+    if (!showManualCol || !editable) return;
+
+    input.addEventListener('click', (e) => e.stopPropagation());
+
+    const save = (): void => {
+
+      const raw = input.value.trim();
+
+      const rank = raw === '' ? null : Number(raw);
+
+      setManualRank(scoring, input.dataset.manualRank!, rank != null && Number.isFinite(rank) ? rank : null);
+
+      if (opts.onManualRankChange) opts.onManualRankChange();
+
+      else renderRankingsTable(container, players, scoring, opts);
+
+    };
+
+    input.addEventListener('change', save);
+
+    input.addEventListener('keydown', (e) => {
+
+      if (e.key === 'Enter') {
+
+        e.preventDefault();
+
+        input.blur();
+
+      }
+
+    });
 
   });
 

@@ -1,73 +1,87 @@
 import type { Player, ScoringFormat } from '../data/types';
 import { getConsensus } from './scoring';
 
-const MANUAL_ORDER_KEY = 'fdw-manual-order';
+const MANUAL_RANKS_KEY = 'fdw-manual-ranks';
+const LEGACY_MANUAL_ORDER_KEY = 'fdw-manual-order';
 
-export interface ManualOrderStore {
-  order: string[];
-  savedAt: string | null;
-}
+type ManualRanksStore = Record<string, number>;
+type ManualRanksFile = Partial<Record<ScoringFormat, ManualRanksStore>>;
 
-type ManualOrderFile = Partial<Record<ScoringFormat, ManualOrderStore>>;
-
-function readStore(): ManualOrderFile {
+function readRanksFile(): ManualRanksFile {
   try {
-    return JSON.parse(localStorage.getItem(MANUAL_ORDER_KEY) ?? '{}') as ManualOrderFile;
+    return JSON.parse(localStorage.getItem(MANUAL_RANKS_KEY) ?? '{}') as ManualRanksFile;
   } catch {
     return {};
   }
 }
 
-function writeStore(store: ManualOrderFile): void {
-  localStorage.setItem(MANUAL_ORDER_KEY, JSON.stringify(store));
+function writeRanksFile(store: ManualRanksFile): void {
+  localStorage.setItem(MANUAL_RANKS_KEY, JSON.stringify(store));
 }
 
-export function loadManualOrderStore(scoring: ScoringFormat): ManualOrderStore {
-  const entry = readStore()[scoring];
-  if (!entry?.order?.length) return { order: [], savedAt: null };
-  return { order: [...entry.order], savedAt: entry.savedAt ?? null };
-}
-
-export function saveManualOrderStore(scoring: ScoringFormat, order: string[]): ManualOrderStore {
-  const saved: ManualOrderStore = { order: [...order], savedAt: new Date().toISOString() };
-  const store = readStore();
-  store[scoring] = saved;
-  writeStore(store);
-  return saved;
-}
-
-export function buildConsensusOrder(players: Player[], scoring: ScoringFormat): string[] {
-  return [...players]
-    .sort((a, b) => (getConsensus(a, scoring) ?? 9999) - (getConsensus(b, scoring) ?? 9999))
-    .map((p) => p.id);
-}
-
-export function mergeManualOrder(saved: string[], players: Player[], scoring: ScoringFormat): string[] {
-  const ids = new Set(players.map((p) => p.id));
-  const order = saved.filter((id) => ids.has(id));
-  const seen = new Set(order);
-  for (const id of buildConsensusOrder(players, scoring)) {
-    if (!seen.has(id)) order.push(id);
+function migrateLegacyOrder(scoring: ScoringFormat): ManualRanksStore {
+  try {
+    const legacy = JSON.parse(localStorage.getItem(LEGACY_MANUAL_ORDER_KEY) ?? '{}') as Partial<
+      Record<ScoringFormat, { order?: string[] }>
+    >;
+    const order = legacy[scoring]?.order;
+    if (!order?.length) return {};
+    const ranks: ManualRanksStore = {};
+    order.forEach((id, i) => {
+      ranks[id] = i + 1;
+    });
+    return ranks;
+  } catch {
+    return {};
   }
-  return order;
 }
 
-export function orderPlayersByManualList(players: Player[], fullOrder: string[]): Player[] {
-  const rank = new Map(fullOrder.map((id, i) => [id, i]));
-  return [...players].sort((a, b) => (rank.get(a.id) ?? 99999) - (rank.get(b.id) ?? 99999));
+export function loadManualRanks(scoring: ScoringFormat): ManualRanksStore {
+  const file = readRanksFile();
+  const existing = file[scoring];
+  if (existing && Object.keys(existing).length) return { ...existing };
+
+  const migrated = migrateLegacyOrder(scoring);
+  if (Object.keys(migrated).length) {
+    file[scoring] = migrated;
+    writeRanksFile(file);
+  }
+  return migrated;
 }
 
-export function buildSheetRanks(players: Player[], scoring: ScoringFormat): Map<string, number> {
-  const ranks = new Map<string, number>();
-  buildConsensusOrder(players, scoring).forEach((id, i) => ranks.set(id, i + 1));
-  return ranks;
+export function getManualRank(scoring: ScoringFormat, playerId: string): number | null {
+  const rank = loadManualRanks(scoring)[playerId];
+  return rank != null && rank > 0 ? rank : null;
 }
 
-export function reorderManualIds(order: string[], dragId: string, targetId: string): string[] {
-  if (dragId === targetId) return order;
-  const next = order.filter((id) => id !== dragId);
-  const targetIdx = next.indexOf(targetId);
-  if (targetIdx < 0) return order;
-  next.splice(targetIdx, 0, dragId);
-  return next;
+export function setManualRank(scoring: ScoringFormat, playerId: string, rank: number | null): void {
+  const file = readRanksFile();
+  const ranks = { ...loadManualRanks(scoring) };
+  if (rank == null || rank <= 0 || !Number.isFinite(rank)) {
+    delete ranks[playerId];
+  } else {
+    ranks[playerId] = Math.round(rank);
+  }
+  file[scoring] = ranks;
+  writeRanksFile(file);
+}
+
+export function clearManualRanks(scoring: ScoringFormat): void {
+  const file = readRanksFile();
+  delete file[scoring];
+  writeRanksFile(file);
+}
+
+export function sortPlayersByManualRank(players: Player[], scoring: ScoringFormat): Player[] {
+  return [...players].sort((a, b) => {
+    const ra = getManualRank(scoring, a.id);
+    const rb = getManualRank(scoring, b.id);
+    if (ra == null && rb == null) {
+      return (getConsensus(a, scoring) ?? 9999) - (getConsensus(b, scoring) ?? 9999);
+    }
+    if (ra == null) return 1;
+    if (rb == null) return -1;
+    if (ra !== rb) return ra - rb;
+    return (getConsensus(a, scoring) ?? 9999) - (getConsensus(b, scoring) ?? 9999);
+  });
 }
