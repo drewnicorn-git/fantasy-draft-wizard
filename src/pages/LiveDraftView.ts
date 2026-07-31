@@ -2,9 +2,10 @@ import type { DraftPick, Player } from '../data/types';
 import { getRankings, state } from '../state/appState';
 import { mountRankingsPanel } from '../components/RankingsPanel';
 import { renderDraftBoard } from '../components/DraftBoard';
+import { getKeepersByTeam } from '../components/KeepersTable';
 import { getTeamDisplayName } from '../components/TeamNamesEditor';
 import { renderTeamNamesEditor } from '../components/TeamNamesEditor';
-import { loadLiveDraft, saveLiveDraft, loadTeamNames } from '../utils/storage';
+import { loadLiveDraft, saveLiveDraft, loadTeamNames, loadKeepers } from '../utils/storage';
 import { roundFromOverall, snakePickOrder } from '../sim/snake';
 
 interface LiveDraftRuntime {
@@ -70,6 +71,7 @@ export function mountLiveDraftView(root: HTMLElement): void {
     renderDraftBoard(boardEl, liveDraft.picks, cfg, cfg.slot, undefined, {
       maxRound: Math.min(round + 1, cfg.rounds),
       title: 'Draft Board',
+      keepersByTeam: getKeepersByTeam(data.players),
     });
   };
 
@@ -84,8 +86,8 @@ export function mountLiveDraftView(root: HTMLElement): void {
   renderTeamNamesEditor(teamNamesEl, refreshAll);
   panelRefresh = mountRankingsPanel(panelEl, {
     tableMode: liveDraft?.active ? 'live-draft' : 'rankings',
+    keepersMode: liveDraft?.active ? 'live-active' : 'live-setup',
     draftedIds: liveDraft?.draftedIds,
-    includeKeepers: !liveDraft?.active,
     draftOverall: liveDraft?.active ? liveDraft.currentIndex + 1 : 1,
     onPlayerPick: liveDraft?.active
       ? (playerId) => {
@@ -109,7 +111,7 @@ function renderDraftBar(barEl: HTMLElement, root: HTMLElement, allPlayers: Playe
   if (!active) {
     barEl.innerHTML = `
       <div class="live-draft-controls">
-        <p class="hint">Set team names above, then start your league draft. Click a player in the table to draft them when it is their turn.</p>
+        <p class="hint">Set team names above, assign keepers to teams below, then start your league draft.</p>
         <button type="button" id="start-live-draft" class="btn primary">Start live draft</button>
       </div>`;
     barEl.querySelector('#start-live-draft')!.addEventListener('click', () => {
@@ -178,6 +180,7 @@ function recordLivePick(root: HTMLElement, allPlayers: Player[], playerId: strin
 
   const player = allPlayers.find((p) => p.id === playerId);
   if (!player || liveDraft.draftedIds.has(playerId)) return;
+  if (loadKeepers().has(playerId)) return;
 
   const teamIndex = order[liveDraft.currentIndex];
   const overall = liveDraft.currentIndex + 1;

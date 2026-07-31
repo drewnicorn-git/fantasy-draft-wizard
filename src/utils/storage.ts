@@ -8,6 +8,7 @@ const SHEET_STATE_KEY = 'fdw-sheet-state';
 const TEAM_NAMES_KEY = 'fdw-team-names';
 const LIVE_DRAFT_KEY = 'fdw-live-draft';
 const KEEPERS_KEY = 'fdw-keepers';
+const KEEPER_TEAMS_KEY = 'fdw-keeper-teams';
 
 export const PRESET_TAGS: TagDefinition[] = [
   { id: 'target', label: 'Target', color: '#2ecc71', description: 'Players you want to draft', preset: true },
@@ -156,11 +157,43 @@ export function saveKeepers(keepers: Set<string>): void {
   localStorage.setItem(KEEPERS_KEY, JSON.stringify([...keepers]));
 }
 
-export function toggleKeeper(playerId: string): Set<string> {
+export function loadKeeperTeams(): Record<string, number> {
+  try {
+    const raw = JSON.parse(localStorage.getItem(KEEPER_TEAMS_KEY) ?? '{}') as Record<string, number>;
+    return raw && typeof raw === 'object' ? raw : {};
+  } catch {
+    return {};
+  }
+}
+
+export function saveKeeperTeams(teams: Record<string, number>): void {
+  localStorage.setItem(KEEPER_TEAMS_KEY, JSON.stringify(teams));
+}
+
+export function getKeeperTeam(playerId: string, defaultTeamIndex = 0): number {
+  const teams = loadKeeperTeams();
+  const value = teams[playerId];
+  return typeof value === 'number' && value >= 0 ? value : defaultTeamIndex;
+}
+
+export function setKeeperTeam(playerId: string, teamIndex: number): void {
+  const teams = loadKeeperTeams();
+  teams[playerId] = teamIndex;
+  saveKeeperTeams(teams);
+}
+
+export function toggleKeeper(playerId: string, defaultTeamIndex = 0): Set<string> {
   const next = loadKeepers();
-  if (next.has(playerId)) next.delete(playerId);
-  else next.add(playerId);
+  const teams = loadKeeperTeams();
+  if (next.has(playerId)) {
+    next.delete(playerId);
+    delete teams[playerId];
+  } else {
+    next.add(playerId);
+    teams[playerId] = defaultTeamIndex;
+  }
   saveKeepers(next);
+  saveKeeperTeams(teams);
   return next;
 }
 

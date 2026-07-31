@@ -6,6 +6,7 @@ import { renderLeagueSettings } from './LeagueSettings';
 import { renderSheetToolbar } from './SheetToolbar';
 import { renderManualToolbar } from './ManualToolbar';
 import { renderRankingsTable } from './PlayerTable';
+import { renderKeepersTable } from './KeepersTable';
 import { SOURCE_LABELS } from '../utils/scoring';
 import { formatPickLabel, getRemainingUserPickNumbers, getUserPickNumbers } from '../sim/snake';
 import { loadKeepers } from '../utils/storage';
@@ -19,6 +20,7 @@ import {
 
 export interface RankingsPanelOptions {
   tableMode?: 'rankings' | 'live-draft' | 'manual';
+  keepersMode?: 'rankings' | 'manual' | 'live-setup' | 'live-active';
   onPlayerPick?: (playerId: string) => void;
   draftedIds?: Set<string>;
   includeKeepers?: boolean;
@@ -48,7 +50,8 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
     <div id="rankings-tags"></div>
     <div id="rankings-filters"></div>
     <div id="rankings-meta" class="meta"></div>
-    <div id="rankings-table"></div>`;
+    <div id="rankings-table"></div>
+    <div id="rankings-keepers"></div>`;
 
   const sourcesEl = root.querySelector('#rankings-sources') as HTMLElement;
   const toolbarEl = root.querySelector('#rankings-toolbar') as HTMLElement;
@@ -56,6 +59,7 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
   const tagsEl = root.querySelector('#rankings-tags') as HTMLElement;
   const filtersEl = root.querySelector('#rankings-filters') as HTMLElement;
   const tableEl = root.querySelector('#rankings-table') as HTMLElement;
+  const keepersEl = root.querySelector('#rankings-keepers') as HTMLElement;
   const metaEl = root.querySelector('#rankings-meta') as HTMLElement;
 
   const renderToolbar = (): void => {
@@ -82,12 +86,27 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
 
   const refresh = (): void => {
     const draftedIds = options.draftedIds ?? new Set<string>();
-    const includeKeepers = options.includeKeepers ?? (options.tableMode === 'rankings' || isManual);
-    const filtered = filterPlayers(data.players, draftedIds, { includeKeepers });
+    const filtered = filterPlayers(data.players, draftedIds, { includeKeepers: false });
     const active = getActiveSources();
     const sourceLabels = active.map((s) => SOURCE_LABELS[s]).join(', ');
     const keeperCount = loadKeepers().size;
     const keeperNote = keeperCount > 0 ? ` · ${keeperCount} keeper${keeperCount === 1 ? '' : 's'}` : '';
+
+    const keeperMode =
+      options.keepersMode ??
+      (options.tableMode === 'live-draft'
+        ? 'live-active'
+        : isManual
+          ? 'manual'
+          : 'rankings');
+
+    renderKeepersTable(keepersEl, {
+      mode: keeperMode,
+      scoring: state.scoring,
+      players: data.players,
+      manualOrder: isManual ? manualOrder : undefined,
+      onChange: refresh,
+    });
 
     if (isManual) {
       const dirtyNote = manualDirty ? ' · unsaved changes' : '';
@@ -102,6 +121,7 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
           renderToolbar();
           refresh();
         },
+        onKeeperChange: refresh,
       });
       return;
     }
@@ -125,6 +145,7 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
       mode: options.tableMode === 'live-draft' ? 'live-draft' : 'rankings',
       onPlayerPick: options.onPlayerPick,
       draftOverall: options.draftOverall ?? 1,
+      onKeeperChange: refresh,
     });
   };
 

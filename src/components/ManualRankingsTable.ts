@@ -18,6 +18,7 @@ export interface ManualTableOptions {
   manualOrder: string[];
   sheetRanks: Map<string, number>;
   onManualOrderChange: (order: string[]) => void;
+  onKeeperChange?: () => void;
 }
 
 function escapeHtml(s: string): string {
@@ -120,7 +121,7 @@ export function renderManualRankingsTable(
       const isKeeper = keepers.has(p.id);
       const manualVsSheet = formatRankDeltaCell(manualRank, sheetRank);
 
-      return `<tr class="${posCls} ${tierCls}${roundBreak ? ' round-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}${isKeeper ? ' is-keeper' : ''} manual-row" data-id="${p.id}" draggable="true"${tagStyle}>
+      return `<tr class="${posCls} ${tierCls}${roundBreak ? ' round-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''} manual-row" data-id="${p.id}" draggable="true"${tagStyle}>
         <td class="manual-rank-col"><span class="drag-handle" aria-hidden="true">⋮⋮</span> ${manualRank}${isUserPick ? `<span class="pick-badge">${pickLabel}</span>` : ''}${roundBreak ? `<span class="round-badge">${roundLabel}</span>` : ''}</td>
         <td>${sheetRank}</td>
         <td class="player-name">${escapeHtml(p.name)} ${injury}</td>
@@ -170,8 +171,9 @@ export function renderManualRankingsTable(
     if (!editable) return;
     box.addEventListener('click', (e) => e.stopPropagation());
     box.addEventListener('change', () => {
-      toggleKeeper(box.dataset.keeper!);
-      renderManualRankingsTable(container, players, scoring, opts);
+      toggleKeeper(box.dataset.keeper!, state.draftConfig.slot - 1);
+      if (opts.onKeeperChange) opts.onKeeperChange();
+      else renderManualRankingsTable(container, players, scoring, opts);
     });
   });
 }

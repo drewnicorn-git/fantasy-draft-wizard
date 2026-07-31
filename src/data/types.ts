@@ -96,3 +96,8 @@ export interface LiveDraftState {
   picks: DraftPick[];
   currentIndex: number;
 }
+
+export interface KeeperRecord {
+  playerId: string;
+  teamIndex: number;
+}

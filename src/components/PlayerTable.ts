@@ -280,6 +280,8 @@ export function renderRankingsTable(
 
     draftOverall?: number;
 
+    onKeeperChange?: () => void;
+
   } = {},
 
 ): void {
@@ -404,7 +406,7 @@ export function renderRankingsTable(
 
 
 
-      return `<tr class="${posCls} ${tierCls}${roundBreak ? ' round-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}${isKeeper ? ' is-keeper' : ''}${opts.mode === 'live-draft' ? ' pickable' : ''}" data-id="${p.id}"${tagStyle}>
+      return `<tr class="${posCls} ${tierCls}${roundBreak ? ' round-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}${opts.mode === 'live-draft' ? ' pickable' : ''}" data-id="${p.id}"${tagStyle}>
 
         <td>${overallRank}${isUserPick ? `<span class="pick-badge">${pickLabel}</span>` : ''}${roundBreak ? `<span class="round-badge">${roundLabel}</span>` : ''}</td>
 
@@ -524,9 +526,11 @@ export function renderRankingsTable(
 
     box.addEventListener('change', () => {
 
-      toggleKeeper(box.dataset.keeper!);
+      toggleKeeper(box.dataset.keeper!, state.draftConfig.slot - 1);
 
-      renderRankingsTable(container, players, scoring, opts);
+      if (opts.onKeeperChange) opts.onKeeperChange();
+
+      else renderRankingsTable(container, players, scoring, opts);
 
     });
 

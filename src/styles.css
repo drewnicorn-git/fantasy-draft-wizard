@@ -310,6 +310,70 @@ tr.is-keeper td:first-child { box-shadow: inset 3px 0 0 var(--accent2); }
   cursor: pointer;
 }
 
+.keepers-section {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.keepers-title {
+  margin: 0 0 0.65rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.keepers-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: rgba(46, 204, 113, 0.18);
+  color: var(--accent2);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.keepers-table-wrap {
+  max-height: 280px;
+}
+
+.keepers-empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 1rem;
+}
+
+.keeper-team-cell select {
+  font-size: 0.8rem;
+  max-width: 9rem;
+}
+
+tr.keeper-board-row td {
+  background: rgba(46, 204, 113, 0.08);
+  vertical-align: top;
+}
+
+.keeper-board-row .keeper-label {
+  font-weight: 700;
+  color: var(--accent2);
+}
+
+.keeper-board-pick {
+  display: inline-block;
+  margin: 0.1rem 0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.live-draft-panel-body #rankings-keepers .keepers-table-wrap {
+  max-height: 220px;
+}
+
 .mock-draft .setup-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
