@@ -83,6 +83,30 @@ interface PositionTarget {
   starterMissing: boolean;
 }
 
+function getCriticalTarget(
+  roster: Player[],
+  available: Player[],
+  overall: number,
+  config: DraftConfig,
+  allPicks: DraftPick[],
+): PositionTarget | null {
+  const untilNext = picksUntilNextUserPick(overall, config.slot, config);
+  const targets = analyzePositionTargets(roster, available, overall, untilNext, config, allPicks);
+  return targets[0] ?? null;
+}
+
+function shouldTakeBpaOverTarget(
+  bpaValue: number,
+  target: PositionTarget,
+  overall: number,
+  config: DraftConfig,
+): boolean {
+  const { round } = roundFromOverall(overall, config.teams);
+  if (target.starterMissing && round >= 8) return bpaValue > target.score * 1.25;
+  if (target.starterMissing) return bpaValue > target.score * 1.15;
+  return bpaValue > target.score * 1.12;
+}
+
 function analyzePositionTargets(
   roster: Player[],
   available: Player[],
@@ -118,11 +142,10 @@ function analyzePositionTargets(
 }
 
 function recommendPosition(
-  roster: Player[],
   available: Player[],
   overall: number,
   config: DraftConfig,
-  allPicks: DraftPick[],
+  criticalTarget: PositionTarget | null,
 ): string {
   const untilNext = picksUntilNextUserPick(overall, config.slot, config);
   const scoring = config.scoring;
@@ -134,43 +157,32 @@ function recommendPosition(
   )[0];
   const bpaValue = pureValueScore(bpa, overall, scoring);
 
-  const targets = analyzePositionTargets(roster, available, overall, untilNext, config, allPicks);
-  if (!targets.length) {
-    return `Best value: ${bpa.pos} — ${bpa.name} is the strongest player on the board.`;
+  if (!criticalTarget) {
+    return `Best value: ${bpa.pos} — ${bpa.name} is the strongest player available.`;
   }
 
-  const { round } = roundFromOverall(overall, config.teams);
-  const top = targets[0];
-  const critical = targets.find((t) => t.starterMissing && ['QB', 'RB', 'WR', 'TE'].includes(t.pos));
-  const mustFill = critical && round >= 8 ? critical : null;
-
-  if (mustFill && mustFill.pos !== bpa.pos && mustFill.score >= bpaValue * 0.75) {
-    return `Priority: ${mustFill.pos} — starter spot still open and only ${mustFill.pool.length} ${mustFill.pos}s project to last before your next pick (${untilNext} picks away).`;
+  if (shouldTakeBpaOverTarget(bpaValue, criticalTarget, overall, config)) {
+    return `Best value: ${bpa.pos} — ${bpa.name} is the strongest player available.`;
   }
 
-  if (bpaValue > top.score * 1.12 && !top.starterMissing) {
-    const waitPos = top.pos;
-    const waitPool = top.pool.length;
-    return `Best value: ${bpa.pos} — ${bpa.name} is worth taking now. You can wait on ${waitPos} (${waitPool} ${waitPos}s still project before pick ${overall + untilNext}).`;
+  const { pos, best, pool, starterMissing } = criticalTarget;
+  if (starterMissing) {
+    return `Target ${pos} — fill the open starter (${best.name}; ${pool.length} quality ${pos}${pool.length === 1 ? '' : 's'} before your next pick).`;
   }
 
-  if (top.starterMissing) {
-    return `Priority: ${top.pos} — fill the open starter (${top.best.name} is the best ${top.pos} left; ${top.pool.length} project before your next turn).`;
+  if (pool.length <= 1 && untilNext > 2) {
+    return `Target ${pos} — thin board (${pool.length} quality ${pos} left before pick ${overall + untilNext}).`;
   }
 
-  if (top.pool.length <= 1 && untilNext > 2) {
-    return `Priority: ${top.pos} — thin board (${top.pool.length} quality ${top.pos} left before pick ${overall + untilNext}).`;
-  }
-
-  return `Lean ${top.pos} — ${top.best.name} balances roster need with value before your next pick.`;
+  return `Target ${pos} — ${best.name} is the priority before your next pick.`;
 }
 
 export function buildDraftAlerts(
   allPicks: DraftPick[],
   userRoster: Player[],
-  available: Player[],
   overall: number,
   config: DraftConfig,
+  criticalTarget: PositionTarget | null,
 ): string[] {
   const alerts: string[] = [];
   const recent = allPicks.slice(-4);
@@ -178,12 +190,17 @@ export function buildDraftAlerts(
     if (detectPositionalRun(recent, pos)) alerts.push(`${pos} run — ${pos}s going fast`);
   }
 
-  const untilNext = picksUntilNextUserPick(overall, config.slot, config);
-  const scoring = config.scoring;
-  for (const pos of RUN_POSITIONS) {
-    const pool = qualityBeforeNextPick(available, pos, overall, untilNext, scoring);
-    if (pool.length <= 1 && untilNext >= 3) {
-      alerts.push(`Thin ${pos} board — only ${pool.length} quality ${pos}${pool.length === 1 ? '' : 's'} likely last until your next pick`);
+  if (criticalTarget) {
+    const untilNext = picksUntilNextUserPick(overall, config.slot, config);
+    const { pos, pool } = criticalTarget;
+    if (
+      RUN_POSITIONS.includes(pos as (typeof RUN_POSITIONS)[number]) &&
+      pool.length <= 1 &&
+      untilNext >= 3
+    ) {
+      alerts.push(
+        `Thin ${pos} board — only ${pool.length} quality ${pos}${pool.length === 1 ? '' : 's'} likely last until your next pick`,
+      );
     }
   }
 
@@ -197,40 +214,37 @@ export function userSuggestedPicks(
   roster: Player[],
   overallPick: number,
   config: DraftConfig,
-  allPicks: DraftPick[],
+  criticalTarget: PositionTarget | null,
   limit = 3,
 ): Player[] {
   const { round } = roundFromOverall(overallPick, config.teams);
   const counts = countRoster(roster);
-  const untilNext = picksUntilNextUserPick(overallPick, config.slot, config);
-  const targets = analyzePositionTargets(roster, available, overallPick, untilNext, config, allPicks);
-  const topTargetPos = new Set<string>(targets.slice(0, 2).map((t) => t.pos));
+  const scoring = config.scoring;
+  const skillAvailable = available.filter((p) => ['QB', 'RB', 'WR', 'TE', 'K', 'DST'].includes(p.pos));
 
-  const scored = [...available]
-    .filter((p) => ['QB', 'RB', 'WR', 'TE', 'K', 'DST'].includes(p.pos))
-    .map((p) => {
-      const base = scorePlayerForUser(p, overallPick, round, counts, config);
-      const boost = topTargetPos.has(p.pos) ? 1.15 : 1;
-      return { p, score: base * boost };
-    })
-    .sort((a, b) => b.score - a.score);
+  const bpa = [...skillAvailable].sort(
+    (a, b) => pureValueScore(b, overallPick, scoring) - pureValueScore(a, overallPick, scoring),
+  )[0];
+  const bpaValue = bpa ? pureValueScore(bpa, overallPick, scoring) : 0;
+  const useBpa =
+    !criticalTarget ||
+    !bpa ||
+    shouldTakeBpaOverTarget(bpaValue, criticalTarget, overallPick, config);
 
-  const picks: Player[] = [];
-  const usedPos = new Set<string>();
-  for (const entry of scored) {
-    if (picks.length >= limit) break;
-    if (picks.length < limit - 1 && usedPos.has(entry.p.pos) && scored.length > limit) continue;
-    picks.push(entry.p);
-    usedPos.add(entry.p.pos);
+  if (useBpa) {
+    return [...skillAvailable]
+      .map((p) => ({ p, score: scorePlayerForUser(p, overallPick, round, counts, config) }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit)
+      .map((x) => x.p);
   }
 
-  while (picks.length < limit && picks.length < scored.length) {
-    const next = scored.find((s) => !picks.includes(s.p));
-    if (!next) break;
-    picks.push(next.p);
-  }
-
-  return picks;
+  return available
+    .filter((p) => p.pos === criticalTarget!.pos)
+    .map((p) => ({ p, score: scorePlayerForUser(p, overallPick, round, counts, config) }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((x) => x.p);
 }
 
 export function getDraftAdvice(
@@ -240,10 +254,12 @@ export function getDraftAdvice(
   overall: number,
   config: DraftConfig,
 ): DraftAdvice {
+  const criticalTarget = getCriticalTarget(userRoster, available, overall, config, allPicks);
+
   return {
-    alerts: buildDraftAlerts(allPicks, userRoster, available, overall, config),
-    recommendation: recommendPosition(userRoster, available, overall, config, allPicks),
-    suggestedPicks: userSuggestedPicks(available, userRoster, overall, config, allPicks),
+    alerts: buildDraftAlerts(allPicks, userRoster, overall, config, criticalTarget),
+    recommendation: recommendPosition(available, overall, config, criticalTarget),
+    suggestedPicks: userSuggestedPicks(available, userRoster, overall, config, criticalTarget),
   };
 }
 
