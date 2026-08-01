@@ -321,9 +321,14 @@ tr.your-pick td:first-child { font-weight: 700; }
   color: inherit;
 }
 
-.injury-report-table-wrap { margin-top: 0.5rem; }
+.injury-report-table-wrap { margin-top: 0.5rem; overflow-x: visible; }
 
-.injury-report-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.injury-report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  table-layout: fixed;
+}
 
 .injury-report-table th,
 .injury-report-table td {
@@ -331,11 +336,40 @@ tr.your-pick td:first-child { font-weight: 700; }
   border-bottom: 1px solid var(--border);
   text-align: left;
   vertical-align: top;
+  white-space: normal;
 }
+
+.injury-report-table th:nth-child(1),
+.injury-report-table td:nth-child(1),
+.injury-report-table th:nth-child(2),
+.injury-report-table td:nth-child(2),
+.injury-report-table th:nth-child(3),
+.injury-report-table td:nth-child(3),
+.injury-report-table th:nth-child(4),
+.injury-report-table td:nth-child(4) {
+  white-space: nowrap;
+}
+
+.injury-report-table th:nth-child(1),
+.injury-report-table td:nth-child(1) { width: 14%; }
+
+.injury-report-table th:nth-child(2),
+.injury-report-table td:nth-child(2) { width: 5%; }
+
+.injury-report-table th:nth-child(3),
+.injury-report-table td:nth-child(3) { width: 6%; }
+
+.injury-report-table th:nth-child(4),
+.injury-report-table td:nth-child(4) { width: 12%; }
 
 .injury-report-table th { color: var(--muted); font-weight: 600; font-size: 0.8rem; }
 
-.injury-summary { color: var(--muted); font-size: 0.85rem; max-width: 28rem; }
+.injury-summary {
+  color: var(--muted);
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 
 .injury-status-badge {
   display: inline-block;
