@@ -1,5 +1,5 @@
 import type { InSeasonState, Player } from '../data/types';
-import { getInjuries, getInSeason, getRankings, state } from '../state/appState';
+import { getInjuries, getInSeason, getRankings, setState, state } from '../state/appState';
 import { getTeamDisplayName } from '../components/TeamNamesEditor';
 import {
   addPlayerToTeam,
@@ -8,7 +8,7 @@ import {
   resolveRosterPlayers,
 } from '../utils/rosterBuilder';
 import { buildInSeasonAlerts, getInSeasonTargets, renderInSeasonAdvicePanel } from '../utils/inSeasonAdvice';
-import { loadInSeasonState, saveInSeasonState } from '../utils/storage';
+import { clearInSeasonState, loadInSeasonState, saveInSeasonState } from '../utils/storage';
 import { posCssClass } from '../utils/position';
 
 function escapeHtml(s: string): string {
@@ -142,7 +142,7 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
               return `<option value="${i}" ${i === myTeamIndex ? 'selected' : ''}>${escapeHtml(label)}</option>`;
             }).join('')}
           </select>
-          <button type="button" id="inseason-clear" class="btn secondary">Clear imported rosters</button>
+          <button type="button" id="inseason-undo" class="btn secondary">Undo move to in season</button>
         </div>
       </div>
 
@@ -178,10 +178,14 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
     persistAndRefresh({ ...inSeasonState, myTeamIndex: value });
   });
 
-  root.querySelector('#inseason-clear')?.addEventListener('click', () => {
-    if (confirm('Clear imported in-season rosters?')) {
-      saveInSeasonState(null);
-      onRefresh();
+  root.querySelector('#inseason-undo')?.addEventListener('click', () => {
+    if (
+      confirm(
+        'Reset in-season management and return to your completed live draft? All roster edits made here will be lost.',
+      )
+    ) {
+      clearInSeasonState();
+      setState({ tab: 'live' });
     }
   });
 
