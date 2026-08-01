@@ -1,5 +1,6 @@
 import type { AppState, Player, RankingsData, ScoringFormat, SourceKey } from '../data/types';
 import { isBlankPlayer } from '../utils/scoring';
+import { normalizeName } from '../utils/playerKeys';
 import { buildRankingsFromLiveSources, type RefreshProgress } from '../services/buildRankings';
 import {
   loadKeepers,
@@ -176,7 +177,12 @@ export function filterPlayers(
     if (isBlankPlayer(p)) return false;
     if (draftedIds.has(p.id)) return false;
     if (!includeKeepers && loadKeepers().has(p.id)) return false;
-    if (q && !p.name.toLowerCase().includes(q)) return false;
+    if (q) {
+      const normalizedQuery = normalizeName(q);
+      const nameMatch =
+        normalizeName(p.name).includes(normalizedQuery) || p.name.toLowerCase().includes(q);
+      if (!nameMatch) return false;
+    }
     if (filters.teams.size && !filters.teams.has(p.team)) return false;
     if (filters.tierMax != null && p.tier != null && p.tier > filters.tierMax) return false;
     const adp = p.adp[scoring];

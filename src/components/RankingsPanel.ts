@@ -1,5 +1,6 @@
 import { filterPlayers, getActiveSources, getRankings, state } from '../state/appState';
 import { renderFilters, renderTagManager } from './PlayerTable';
+import { renderPlayerSearch } from './PlayerSearch';
 import { renderSourceSelector } from './SourceSelector';
 import { renderLeagueSettings } from './LeagueSettings';
 import { renderSheetToolbar } from './SheetToolbar';
@@ -31,6 +32,7 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
     <div id="rankings-tags"></div>
     <div id="rankings-filters"></div>
     <div id="rankings-meta" class="meta"></div>
+    <div id="rankings-search"></div>
     <div id="rankings-table"></div>
     <div id="rankings-keepers"></div>`;
 
@@ -39,6 +41,7 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
   const leagueEl = root.querySelector('#rankings-league') as HTMLElement;
   const tagsEl = root.querySelector('#rankings-tags') as HTMLElement;
   const filtersEl = root.querySelector('#rankings-filters') as HTMLElement;
+  const searchEl = root.querySelector('#rankings-search') as HTMLElement;
   const tableEl = root.querySelector('#rankings-table') as HTMLElement;
   const keepersEl = root.querySelector('#rankings-keepers') as HTMLElement;
   const metaEl = root.querySelector('#rankings-meta') as HTMLElement;
@@ -92,6 +95,7 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
   renderLeagueSettings(leagueEl, refresh);
   renderTagManager(tagsEl, refresh);
   renderFilters(filtersEl, refresh);
+  renderPlayerSearch(searchEl, refresh);
   refresh();
 
   return refresh;

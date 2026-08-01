@@ -32,6 +32,26 @@ import {
 
 import { getManualRank, setManualRank } from '../utils/manualOrder';
 
+import {
+
+  availableRankMetrics,
+
+  getPlayerRankDelta,
+
+  getPlayerRankMetric,
+
+  loadRankDeltaCompare,
+
+  rankMetricLabel,
+
+  saveRankDeltaCompare,
+
+  type RankMetric,
+
+} from '../utils/rankCompare';
+
+import { formatRankDeltaCell } from '../utils/rankDelta';
+
 
 
 type SortKey =
@@ -53,6 +73,8 @@ type SortKey =
   | 'avail'
 
   | 'manual'
+
+  | 'delta'
 
   | `source:${SourceKey}`;
 
@@ -92,6 +114,8 @@ const DEFAULT_SORT_DIR: Record<SortKey, 'asc' | 'desc'> = {
 
   manual: 'asc',
 
+  delta: 'asc',
+
   'source:fantasypros': 'asc',
 
   'source:espn': 'asc',
@@ -120,6 +144,48 @@ function sortHeader(label: string, key: SortKey, sort: SortState): string {
 
 
 
+function renderDeltaCompareHeader(
+
+  metrics: RankMetric[],
+
+  compare: { from: RankMetric; to: RankMetric },
+
+  sort: SortState,
+
+): string {
+
+  const active = sort.key === 'delta';
+
+  const arrow = active ? (sort.dir === 'asc' ? ' ↑' : ' ↓') : '';
+
+  const aria = active ? sort.dir : 'none';
+
+  const option = (selected: RankMetric): string =>
+
+    metrics.map((m) => `<option value="${m}" ${m === selected ? 'selected' : ''}>${rankMetricLabel(m)}</option>`).join('');
+
+
+
+  return `<th class="sortable delta-compare-col${active ? ' sorted' : ''}" data-sort="delta" role="columnheader" aria-sort="${aria}" tabindex="0">
+
+    <div class="delta-compare-header">
+
+      <select class="delta-metric-select" data-delta-from aria-label="Compare rank from">${option(compare.from)}</select>
+
+      <span class="delta-arrow">−</span>
+
+      <select class="delta-metric-select" data-delta-to aria-label="Compare rank to">${option(compare.to)}</select>
+
+      <span class="delta-sort-label">Δ${arrow}</span>
+
+    </div>
+
+  </th>`;
+
+}
+
+
+
 function compareNullable(a: number | null, b: number | null, dir: 'asc' | 'desc'): number {
 
   const av = a ?? (dir === 'asc' ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY);
@@ -141,6 +207,8 @@ function sortPlayers(
   sort: SortState,
 
   opts: { showPredictor?: boolean; currentPick?: number; picksUntilNext?: number },
+
+  rankDeltaCompare: { from: RankMetric; to: RankMetric },
 
 ): Player[] {
 
@@ -236,6 +304,20 @@ function sortPlayers(
 
         break;
 
+      case 'delta':
+
+        cmp = compareNullable(
+
+          getPlayerRankDelta(a, rankDeltaCompare.from, rankDeltaCompare.to, scoring),
+
+          getPlayerRankDelta(b, rankDeltaCompare.from, rankDeltaCompare.to, scoring),
+
+          dir,
+
+        );
+
+        break;
+
       default:
 
         if (sort.key.startsWith('source:')) {
@@ -312,9 +394,13 @@ export function renderRankingsTable(
 
   const editable = !locked && opts.mode !== 'mock-draft';
 
+  const rankMetrics = availableRankMetrics(sources);
+
+  const rankDeltaCompare = loadRankDeltaCompare(sources);
 
 
-  const sorted = sortPlayers(players, scoring, tableSort, opts);
+
+  const sorted = sortPlayers(players, scoring, tableSort, opts, rankDeltaCompare);
 
 
 
@@ -329,6 +415,8 @@ export function renderRankingsTable(
   const showKeepers = !isMockDraft;
 
   const showManualCol = !isMockDraft;
+
+  const showDeltaCol = rankMetrics.length >= 2;
 
   const showPickSpots = !showPredictorCol && !isMockDraft;
 
@@ -365,6 +453,8 @@ export function renderRankingsTable(
       ${sortHeader('Tier', 'tier', tableSort)}
 
       ${showSources ? sources.map((s) => sortHeader(SOURCE_LABELS[s] ?? s, `source:${s}`, tableSort)).join('') : ''}
+
+      ${showDeltaCol ? renderDeltaCompareHeader(rankMetrics, rankDeltaCompare, tableSort) : ''}
 
       ${sortHeader('Consensus', 'consensus', tableSort)}
 
@@ -426,6 +516,14 @@ export function renderRankingsTable(
 
       const isKeeper = keepers.has(p.id);
 
+      const fromRank = getPlayerRankMetric(p, rankDeltaCompare.from, scoring);
+
+      const toRank = getPlayerRankMetric(p, rankDeltaCompare.to, scoring);
+
+      const deltaCell =
+
+        fromRank != null && toRank != null ? formatRankDeltaCell(fromRank, toRank) : '—';
+
 
 
       return `<tr class="${posCls} ${tierCls}${roundBreak ? ' round-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}${opts.mode === 'live-draft' ? ' pickable' : ''}" data-id="${p.id}"${tagStyle}>
@@ -445,6 +543,8 @@ export function renderRankingsTable(
         <td>${p.tier ?? '—'}</td>
 
         ${showSources ? sources.map((s) => `<td>${getSourceRank(p, s, scoring) ?? '—'}</td>`).join('') : ''}
+
+        ${showDeltaCol ? `<td class="delta-col">${deltaCell}</td>` : ''}
 
         <td><strong>${getConsensus(p, scoring) ?? '—'}</strong></td>
 
@@ -500,7 +600,13 @@ export function renderRankingsTable(
 
     };
 
-    th.addEventListener('click', activate);
+    th.addEventListener('click', (e) => {
+
+      if ((e.target as HTMLElement).closest('.delta-metric-select')) return;
+
+      activate();
+
+    });
 
     th.addEventListener('keydown', (e) => {
 
@@ -511,6 +617,44 @@ export function renderRankingsTable(
         activate();
 
       }
+
+    });
+
+  });
+
+
+
+  container.querySelectorAll<HTMLSelectElement>('[data-delta-from], [data-delta-to]').forEach((sel) => {
+
+    if (!showDeltaCol) return;
+
+    sel.addEventListener('click', (e) => e.stopPropagation());
+
+    sel.addEventListener('change', () => {
+
+      const fromSel = container.querySelector('[data-delta-from]') as HTMLSelectElement;
+
+      const toSel = container.querySelector('[data-delta-to]') as HTMLSelectElement;
+
+      let from = fromSel.value as RankMetric;
+
+      let to = toSel.value as RankMetric;
+
+      if (from === to) {
+
+        const alt = rankMetrics.find((m) => m !== from);
+
+        if (alt) to = alt;
+
+        toSel.value = to;
+
+      }
+
+      saveRankDeltaCompare({ from, to });
+
+      tableSort = { key: 'delta', dir: 'asc' };
+
+      renderRankingsTable(container, players, scoring, opts);
 
     });
 
@@ -732,8 +876,6 @@ export function renderFilters(container: HTMLElement, onChange: () => void): voi
 
     <div class="filters">
 
-      <input type="search" id="search" placeholder="Search players…" value="${escapeHtml(filters.search)}" />
-
       <div class="filter-group">
 
         <span class="label">Position</span>
@@ -785,18 +927,6 @@ export function renderFilters(container: HTMLElement, onChange: () => void): voi
       </details>
 
     </div>`;
-
-
-
-  const search = container.querySelector('#search') as HTMLInputElement;
-
-  search.addEventListener('input', () => {
-
-    state.filters.search = search.value;
-
-    onChange();
-
-  });
 
 
 

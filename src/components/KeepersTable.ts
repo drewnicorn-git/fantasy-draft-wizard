@@ -1,6 +1,7 @@
 import type { Player, ScoringFormat } from '../data/types';
 import { getSheetLocked, state } from '../state/appState';
 import { getAdp, getConsensus } from '../utils/scoring';
+import { normalizeName } from '../utils/playerKeys';
 import { formatPosRankLabel, posCssClass } from '../utils/position';
 import { sortPlayersByManualRank } from '../utils/manualOrder';
 import { getTeamDisplayName } from './TeamNamesEditor';
@@ -25,7 +26,16 @@ function escapeHtml(s: string): string {
 function keeperPlayers(allPlayers: Player[]): Player[] {
   const ids = loadKeepers();
   const byId = new Map(allPlayers.map((p) => [p.id, p]));
-  return [...ids].map((id) => byId.get(id)).filter((p): p is Player => !!p);
+  let list = [...ids].map((id) => byId.get(id)).filter((p): p is Player => !!p);
+  const q = state.filters.search.trim();
+  if (q) {
+    const normalizedQuery = normalizeName(q);
+    list = list.filter(
+      (p) =>
+        normalizeName(p.name).includes(normalizedQuery) || p.name.toLowerCase().includes(q.toLowerCase()),
+    );
+  }
+  return list;
 }
 
 export function renderKeepersTable(container: HTMLElement, opts: KeepersTableOptions): void {

@@ -2,6 +2,7 @@ import type { DraftPick, Player, ScoringFormat } from '../data/types';
 import { filterPlayers, getRankings, applyDraftConfig, state } from '../state/appState';
 import { renderDraftBoard } from '../components/DraftBoard';
 import { renderRankingsTable } from '../components/PlayerTable';
+import { renderPlayerSearch } from '../components/PlayerSearch';
 import { getTeamDisplayName } from '../components/TeamNamesEditor';
 import { botPick, suggestedPicks } from '../sim/bot';
 import { byeWeekConflicts, detectPositionalRun } from '../utils/analytics';
@@ -46,7 +47,10 @@ export function mountMockDraftView(root: HTMLElement): void {
         <div id="draft-board" class="mock-draft-board-panel"></div>
         <div class="mock-draft-bottom">
           <div id="suggestions" class="mock-draft-suggestions"></div>
-          <div id="pick-list" class="mock-draft-players-panel"></div>
+          <div id="pick-list-panel" class="mock-draft-players-panel">
+            <div id="pick-list-search"></div>
+            <div id="pick-list"></div>
+          </div>
         </div>
       </div>
       <div id="draft-summary" class="hidden"></div>
@@ -87,6 +91,9 @@ function renderPlayerPanel(
   if (!draft) return;
   const cfg = state.draftConfig;
   const available = filterPlayers(allPlayers, draft.draftedIds);
+  renderPlayerSearch(root.querySelector('#pick-list-search') as HTMLElement, () => {
+    renderPlayerPanel(root, allPlayers, opts);
+  });
   renderRankingsTable(root.querySelector('#pick-list') as HTMLElement, available, cfg.scoring, {
     mode: 'mock-draft',
     showPredictor: opts.showPredictor,
