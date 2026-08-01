@@ -9,13 +9,14 @@ import { renderKeepersTable } from './KeepersTable';
 import { SOURCE_LABELS } from '../utils/scoring';
 import { formatPickLabel, getRemainingUserPickNumbers, getUserPickNumbers } from '../sim/snake';
 import { loadKeepers } from '../utils/storage';
+import { preserveScroll } from '../utils/scrollPreserve';
 
 export interface RankingsPanelOptions {
   tableMode?: 'rankings' | 'live-draft';
   keepersMode?: 'rankings' | 'live-setup' | 'live-active';
   onPlayerPick?: (playerId: string) => void;
-  draftedIds?: Set<string>;
-  draftOverall?: number;
+  draftedIds?: Set<string> | (() => Set<string>);
+  draftOverall?: number | (() => number);
 }
 
 export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOptions = {}): () => void {
@@ -47,7 +48,10 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
   const metaEl = root.querySelector('#rankings-meta') as HTMLElement;
 
   const refresh = (): void => {
-    const draftedIds = options.draftedIds ?? new Set<string>();
+    const draftedIds =
+      typeof options.draftedIds === 'function' ? options.draftedIds() : (options.draftedIds ?? new Set<string>());
+    const draftOverall =
+      typeof options.draftOverall === 'function' ? options.draftOverall() : (options.draftOverall ?? 1);
     const filtered = filterPlayers(data.players, draftedIds, { includeKeepers: false });
     const active = getActiveSources();
     const sourceLabels = active.map((s) => SOURCE_LABELS[s]).join(', ');
@@ -66,9 +70,9 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
     });
 
     const picks =
-      options.tableMode === 'live-draft' && options.draftOverall
+      options.tableMode === 'live-draft' && draftOverall
         ? getRemainingUserPickNumbers(
-            options.draftOverall,
+            draftOverall,
             state.draftConfig.teams,
             state.draftConfig.slot,
             state.draftConfig.rounds,
@@ -78,15 +82,17 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
       .slice(0, 4)
       .map((p) => formatPickLabel(p, state.draftConfig.teams))
       .join(', ');
-    const pickLabel = options.tableMode === 'live-draft' && options.draftOverall ? 'Next picks' : 'Picks';
+    const pickLabel = options.tableMode === 'live-draft' && draftOverall ? 'Next picks' : 'Picks';
     metaEl.textContent = `${filtered.length} available · Consensus: ${sourceLabels || 'none'} · ${state.draftConfig.teams}-team, slot ${state.draftConfig.slot} · ${pickLabel}: ${pickPreview}${picks.length > 4 ? '…' : ''}${keeperNote} · Season ${data.season}`;
 
-    renderRankingsTable(tableEl, filtered, state.scoring, {
-      mode: options.tableMode === 'live-draft' ? 'live-draft' : 'rankings',
-      onPlayerPick: options.onPlayerPick,
-      draftOverall: options.draftOverall ?? 1,
-      onKeeperChange: refresh,
-      onManualRankChange: refresh,
+    preserveScroll(tableEl, () => {
+      renderRankingsTable(tableEl, filtered, state.scoring, {
+        mode: options.tableMode === 'live-draft' ? 'live-draft' : 'rankings',
+        onPlayerPick: options.onPlayerPick,
+        draftOverall,
+        onKeeperChange: refresh,
+        onManualRankChange: refresh,
+      });
     });
   };
 

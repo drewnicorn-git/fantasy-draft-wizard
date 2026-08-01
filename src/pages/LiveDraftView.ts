@@ -16,13 +16,19 @@ interface LiveDraftRuntime {
   active: boolean;
 }
 
+interface LiveDraftUi {
+  root: HTMLElement;
+  barEl: HTMLElement;
+  adviceEl: HTMLElement;
+  boardEl: HTMLElement;
+  panelEl: HTMLElement;
+  allPlayers: Player[];
+  refreshAll: () => void;
+}
+
 let liveDraft: LiveDraftRuntime | null = null;
 let panelRefresh: (() => void) | null = null;
-
-function currentRoundFromLiveDraft(): number {
-  if (!liveDraft || liveDraft.picks.length === 0) return 1;
-  return liveDraft.picks[liveDraft.picks.length - 1].round;
-}
+let liveUi: LiveDraftUi | null = null;
 
 export function mountLiveDraftView(root: HTMLElement): void {
   const data = getRankings();
@@ -70,9 +76,7 @@ export function mountLiveDraftView(root: HTMLElement): void {
   const refreshBoard = (): void => {
     if (!liveDraft?.active) return;
     const cfg = state.draftConfig;
-    const round = currentRoundFromLiveDraft();
     renderDraftBoard(boardEl, liveDraft.picks, cfg, cfg.slot, undefined, {
-      maxRound: Math.min(round + 1, cfg.rounds),
       title: 'Draft Board',
       keepersByTeam: getKeepersByTeam(data.players),
     });
@@ -91,14 +95,24 @@ export function mountLiveDraftView(root: HTMLElement): void {
   panelRefresh = mountRankingsPanel(panelEl, {
     tableMode: liveDraft?.active ? 'live-draft' : 'rankings',
     keepersMode: liveDraft?.active ? 'live-active' : 'live-setup',
-    draftedIds: liveDraft?.draftedIds,
-    draftOverall: liveDraft?.active ? liveDraft.currentIndex + 1 : 1,
+    draftedIds: () => liveDraft?.draftedIds ?? new Set<string>(),
+    draftOverall: () => (liveDraft?.currentIndex ?? 0) + 1,
     onPlayerPick: liveDraft?.active
       ? (playerId) => {
           recordLivePick(root, data.players, playerId);
         }
       : undefined,
   });
+
+  liveUi = {
+    root,
+    barEl,
+    adviceEl,
+    boardEl,
+    panelEl,
+    allPlayers: data.players,
+    refreshAll,
+  };
 
   renderDraftBar(barEl, root, data.players);
   if (liveDraft?.active) {
@@ -219,7 +233,7 @@ function renderDraftBar(barEl: HTMLElement, root: HTMLElement, allPlayers: Playe
   });
 }
 
-function recordLivePick(root: HTMLElement, allPlayers: Player[], playerId: string): void {
+function recordLivePick(_root: HTMLElement, allPlayers: Player[], playerId: string): void {
   if (!liveDraft?.active) return;
   const cfg = state.draftConfig;
   const order = snakePickOrder(cfg);
@@ -246,16 +260,16 @@ function recordLivePick(root: HTMLElement, allPlayers: Player[], playerId: strin
   liveDraft.currentIndex++;
   persistLiveDraft();
 
-  mountLiveDraftView(root);
+  liveUi?.refreshAll();
 }
 
-function undoLivePick(root: HTMLElement, _allPlayers: Player[]): void {
+function undoLivePick(_root: HTMLElement, _allPlayers: Player[]): void {
   if (!liveDraft || liveDraft.picks.length === 0) return;
   const last = liveDraft.picks.pop()!;
   liveDraft.draftedIds.delete(last.playerId);
   liveDraft.currentIndex = Math.max(0, liveDraft.currentIndex - 1);
   persistLiveDraft();
-  mountLiveDraftView(root);
+  liveUi?.refreshAll();
 }
 
 function persistLiveDraft(): void {

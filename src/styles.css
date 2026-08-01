@@ -495,18 +495,17 @@ tr.keeper-board-row td {
   background: var(--surface2);
 }
 
-.mock-draft-board-panel .draft-board,
-.live-draft-board-panel .draft-board {
-  width: 100%;
-  max-height: 220px;
-  overflow: auto;
-  font-size: 0.72rem;
-}
-
 .mock-draft-board-panel .draft-board table,
 .live-draft-board-panel .draft-board table {
   width: 100%;
   table-layout: fixed;
+}
+
+.mock-draft-board-panel .draft-board,
+.live-draft-board-panel .draft-board {
+  width: 100%;
+  font-size: 0.65rem;
+  line-height: 1.25;
 }
 
 .mock-draft-board-panel .draft-board td,
@@ -516,6 +515,7 @@ tr.keeper-board-row td {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 0.2rem 0.35rem;
 }
 
 .mock-draft-bottom {

@@ -6,6 +6,7 @@ import { renderPlayerSearch } from '../components/PlayerSearch';
 import { getTeamDisplayName } from '../components/TeamNamesEditor';
 import { botPick } from '../sim/bot';
 import { getDraftAdvice, renderDraftAdvicePanel } from '../utils/draftAdvice';
+import { preserveScroll } from '../utils/scrollPreserve';
 import { picksUntilNextUserPick, roundFromOverall, snakePickOrder } from '../sim/snake';
 
 const BOT_PICK_DELAY_MS = 2_000;
@@ -68,17 +69,10 @@ function clearTimers(): void {
   countdownTimer = null;
 }
 
-function currentRoundFromDraft(): number {
-  if (!draft || draft.picks.length === 0) return 1;
-  return draft.picks[draft.picks.length - 1].round;
-}
-
 function renderDraftBoardPanel(root: HTMLElement): void {
   if (!draft) return;
   const cfg = state.draftConfig;
-  const round = currentRoundFromDraft();
   renderDraftBoard(root.querySelector('#draft-board') as HTMLElement, draft.picks, cfg, cfg.slot, undefined, {
-    maxRound: Math.min(round + 1, cfg.rounds),
     title: 'Draft Board',
   });
 }
@@ -91,15 +85,19 @@ function renderPlayerPanel(
   if (!draft) return;
   const cfg = state.draftConfig;
   const available = filterPlayers(allPlayers, draft.draftedIds);
+  const panel = root.querySelector('#pick-list-panel') as HTMLElement;
   renderPlayerSearch(root.querySelector('#pick-list-search') as HTMLElement, () => {
     renderPlayerPanel(root, allPlayers, opts);
   });
-  renderRankingsTable(root.querySelector('#pick-list') as HTMLElement, available, cfg.scoring, {
-    mode: 'mock-draft',
-    showPredictor: opts.showPredictor,
-    currentPick: opts.currentPick,
-    picksUntilNext: opts.picksUntilNext,
-    draftedIds: draft.draftedIds,
+  preserveScroll(panel, () => {
+    if (!draft) return;
+    renderRankingsTable(root.querySelector('#pick-list') as HTMLElement, available, cfg.scoring, {
+      mode: 'mock-draft',
+      showPredictor: opts.showPredictor,
+      currentPick: opts.currentPick,
+      picksUntilNext: opts.picksUntilNext,
+      draftedIds: draft.draftedIds,
+    });
   });
 }
 
