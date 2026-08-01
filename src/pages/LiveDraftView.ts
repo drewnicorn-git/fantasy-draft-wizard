@@ -148,7 +148,7 @@ function renderLiveDraftAdvice(adviceEl: HTMLElement, root: HTMLElement, allPlay
   const overall = liveDraft.currentIndex + 1;
   const isYou = teamIndex === cfg.slot - 1;
   const userRoster = getLiveTeamRoster(cfg.slot - 1, allPlayers);
-  const available = filterPlayers(allPlayers, liveDraft.draftedIds);
+  const available = filterPlayers(allPlayers, liveDraft.draftedIds, { uiFilters: false });
   const advice = getDraftAdvice(liveDraft.picks, userRoster, available, overall, cfg);
 
   if (!isYou) {

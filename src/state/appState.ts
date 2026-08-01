@@ -167,9 +167,10 @@ export function getActiveSources(): SourceKey[] {
 export function filterPlayers(
   players: Player[],
   draftedIds: Set<string> = new Set(),
-  options: { includeKeepers?: boolean } = {},
+  options: { includeKeepers?: boolean; uiFilters?: boolean } = {},
 ): Player[] {
   const { filters, scoring } = state;
+  const uiFilters = options.uiFilters ?? true;
   const q = filters.search.trim().toLowerCase();
   const includeKeepers = options.includeKeepers ?? false;
 
@@ -177,19 +178,19 @@ export function filterPlayers(
     if (isBlankPlayer(p)) return false;
     if (draftedIds.has(p.id)) return false;
     if (!includeKeepers && loadKeepers().has(p.id)) return false;
-    if (q) {
+    if (uiFilters && q) {
       const normalizedQuery = normalizeName(q);
       const nameMatch =
         normalizeName(p.name).includes(normalizedQuery) || p.name.toLowerCase().includes(q);
       if (!nameMatch) return false;
     }
-    if (filters.teams.size && !filters.teams.has(p.team)) return false;
-    if (filters.tierMax != null && p.tier != null && p.tier > filters.tierMax) return false;
+    if (uiFilters && filters.teams.size && !filters.teams.has(p.team)) return false;
+    if (uiFilters && filters.tierMax != null && p.tier != null && p.tier > filters.tierMax) return false;
     const adp = p.adp[scoring];
-    if (adp != null && adp > filters.adpMax) return false;
+    if (uiFilters && adp != null && adp > filters.adpMax) return false;
 
     const posFilters = [...filters.positions];
-    if (!posFilters.includes('ALL')) {
+    if (uiFilters && !posFilters.includes('ALL')) {
       const match = posFilters.some((f) => {
         if (f === 'FLEX') return ['RB', 'WR', 'TE'].includes(p.pos);
         return p.pos === f;

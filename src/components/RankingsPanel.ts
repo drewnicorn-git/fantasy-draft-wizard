@@ -1,6 +1,6 @@
 import { filterPlayers, getActiveSources, getRankings, state } from '../state/appState';
 import { renderFilters, renderTagManager } from './PlayerTable';
-import { renderPlayerSearch } from './PlayerSearch';
+import { mountPlayerSearch } from './PlayerSearch';
 import { renderSourceSelector } from './SourceSelector';
 import { renderLeagueSettings } from './LeagueSettings';
 import { renderSheetToolbar } from './SheetToolbar';
@@ -101,7 +101,7 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
   renderLeagueSettings(leagueEl, refresh);
   renderTagManager(tagsEl, refresh);
   renderFilters(filtersEl, refresh);
-  renderPlayerSearch(searchEl, refresh);
+  mountPlayerSearch(searchEl, refresh);
   refresh();
 
   return refresh;

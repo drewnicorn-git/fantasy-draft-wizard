@@ -2,7 +2,7 @@ import type { DraftPick, Player, ScoringFormat } from '../data/types';
 import { filterPlayers, getRankings, applyDraftConfig, state } from '../state/appState';
 import { renderDraftBoard } from '../components/DraftBoard';
 import { renderRankingsTable } from '../components/PlayerTable';
-import { renderPlayerSearch } from '../components/PlayerSearch';
+import { mountPlayerSearch } from '../components/PlayerSearch';
 import { getTeamDisplayName } from '../components/TeamNamesEditor';
 import { botPick } from '../sim/bot';
 import { getDraftAdvice, renderDraftAdvicePanel } from '../utils/draftAdvice';
@@ -77,7 +77,9 @@ function renderDraftBoardPanel(root: HTMLElement): void {
   });
 }
 
-function renderPlayerPanel(
+let panelRefreshOpts: { showPredictor?: boolean; currentPick?: number; picksUntilNext?: number } = {};
+
+function renderPlayerTable(
   root: HTMLElement,
   allPlayers: Player[],
   opts: { showPredictor?: boolean; currentPick?: number; picksUntilNext?: number },
@@ -86,9 +88,6 @@ function renderPlayerPanel(
   const cfg = state.draftConfig;
   const available = filterPlayers(allPlayers, draft.draftedIds);
   const panel = root.querySelector('#pick-list-panel') as HTMLElement;
-  renderPlayerSearch(root.querySelector('#pick-list-search') as HTMLElement, () => {
-    renderPlayerPanel(root, allPlayers, opts);
-  });
   preserveScroll(panel, () => {
     if (!draft) return;
     renderRankingsTable(root.querySelector('#pick-list') as HTMLElement, available, cfg.scoring, {
@@ -99,6 +98,18 @@ function renderPlayerPanel(
       draftedIds: draft.draftedIds,
     });
   });
+}
+
+function renderPlayerPanel(
+  root: HTMLElement,
+  allPlayers: Player[],
+  opts: { showPredictor?: boolean; currentPick?: number; picksUntilNext?: number },
+): void {
+  panelRefreshOpts = opts;
+  mountPlayerSearch(root.querySelector('#pick-list-search') as HTMLElement, () => {
+    renderPlayerTable(root, allPlayers, panelRefreshOpts);
+  });
+  renderPlayerTable(root, allPlayers, opts);
 }
 
 function renderSuggestionsPanel(root: HTMLElement, suggestions: Player[] = [], placeholder = ''): void {
@@ -222,7 +233,7 @@ function scheduleBotPick(
 
   botTimer = setTimeout(() => {
     clearTimers();
-    const available = filterPlayers(allPlayers, draft!.draftedIds);
+    const available = filterPlayers(allPlayers, draft!.draftedIds, { uiFilters: false });
     if (!available.length) {
       finishDraft(root, allPlayers);
       return;
@@ -269,7 +280,6 @@ function renderUserTurn(
 ): void {
   if (!draft) return;
   const cfg = state.draftConfig;
-  const available = filterPlayers(allPlayers, draft.draftedIds);
   const untilNext = picksUntilNextUserPick(overall, cfg.slot, cfg);
 
   (root.querySelector('#on-clock') as HTMLElement).innerHTML = `
@@ -277,7 +287,8 @@ function renderUserTurn(
     ${untilNext > 0 ? `<span class="muted">· ${untilNext} picks until your next turn</span>` : ''}`;
 
   const userRoster = getTeamRoster(cfg.slot - 1, allPlayers);
-  const advice = getDraftAdvice(draft.picks, userRoster, available, overall, cfg);
+  const availableForAdvice = filterPlayers(allPlayers, draft.draftedIds, { uiFilters: false });
+  const advice = getDraftAdvice(draft.picks, userRoster, availableForAdvice, overall, cfg);
   renderDraftAdvicePanel(root.querySelector('#draft-alerts') as HTMLElement, advice, {
     onPick: (playerId) => {
       const player = allPlayers.find((p) => p.id === playerId);
