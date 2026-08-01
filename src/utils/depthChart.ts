@@ -4,6 +4,7 @@ export interface DepthChartEntry {
   name: string;
   team: string;
   pos: string;
+  depth?: number;
 }
 
 const ESPN_TEAM_ABBR: Record<string, string> = {
@@ -71,6 +72,12 @@ export function buildDepthChartIndex(entries: DepthChartEntry[]): DepthIndexes {
     byTeamPos.get(teamPosKey)!.push(entry);
   }
 
+  for (const list of byTeamPos.values()) {
+    list.forEach((entry, index) => {
+      entry.depth = index + 1;
+    });
+  }
+
   return { byKey, byTeamPos };
 }
 
@@ -79,6 +86,15 @@ export interface PlayerIdentity {
   team: string;
   verified: boolean;
   displayName: string;
+  depth: number | null;
+}
+
+function rosterDepth(entry: DepthChartEntry, posNorm: string, indexes: DepthIndexes): number | null {
+  if (posNorm === 'DST') return 1;
+  if (entry.depth != null) return entry.depth;
+  const list = indexes.byTeamPos.get(`${entry.team}|${posNorm}`) ?? [];
+  const idx = list.indexOf(entry);
+  return idx >= 0 ? idx + 1 : null;
 }
 
 export function resolvePlayerIdentity(
@@ -100,6 +116,7 @@ export function resolvePlayerIdentity(
       team,
       verified: !!entry,
       displayName: entry?.name ?? name.trim(),
+      depth: entry ? 1 : null,
     };
   }
 
@@ -116,6 +133,7 @@ export function resolvePlayerIdentity(
       team: entry.team,
       verified: true,
       displayName: entry.name,
+      depth: rosterDepth(entry, posNorm, indexes),
     };
   }
 
@@ -125,6 +143,7 @@ export function resolvePlayerIdentity(
       team,
       verified: false,
       displayName: name.trim(),
+      depth: null,
     };
   }
 

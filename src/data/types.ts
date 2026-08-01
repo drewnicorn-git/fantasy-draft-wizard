@@ -25,6 +25,7 @@ export interface Player {
   team: string;
   pos: Position | string;
   teamVerified?: boolean;
+  depth?: number | null;
   bye: number | null;
   tier: number | null;
   injuryStatus: string | null;

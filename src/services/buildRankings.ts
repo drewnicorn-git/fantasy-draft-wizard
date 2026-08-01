@@ -33,6 +33,7 @@ function getOrCreatePlayer(
       team: identity.team,
       pos: normalizePos(pos),
       teamVerified: identity.verified,
+      depth: identity.depth,
       bye: null,
       tier: null,
       injuryStatus: null,
@@ -47,6 +48,7 @@ function getOrCreatePlayer(
     if (identity.verified) {
       p.team = identity.team;
       p.teamVerified = true;
+      if (identity.depth != null) p.depth = identity.depth;
     } else if (!p.teamVerified && identity.team) {
       p.team = identity.team;
     }

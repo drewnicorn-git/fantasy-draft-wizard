@@ -35,6 +35,7 @@ export interface PoolPlayer {
   team: string;
   pos: string;
   teamVerified: boolean;
+  depth: number | null;
   bye: number | null;
   tier: number | null;
   injuryStatus: string | null;
@@ -116,6 +117,7 @@ function mergePoolPlayers(target: PoolPlayer, source: PoolPlayer): void {
     target.team = source.team;
     target.teamVerified = true;
   }
+  if (source.depth != null && source.teamVerified) target.depth = source.depth;
   if (source.name.length > target.name.length) target.name = source.name;
 }
 
@@ -137,6 +139,7 @@ function getOrCreatePlayer(
       team: identity.team,
       pos: normalizePos(pos),
       teamVerified: identity.verified,
+      depth: identity.depth,
       bye: null,
       tier: null,
       injuryStatus: null,
@@ -151,6 +154,7 @@ function getOrCreatePlayer(
     if (identity.verified) {
       p.team = identity.team;
       p.teamVerified = true;
+      if (identity.depth != null) p.depth = identity.depth;
     } else if (!p.teamVerified && identity.team) {
       p.team = identity.team;
     }

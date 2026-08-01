@@ -21,6 +21,16 @@ export function posCssClass(pos: string): string {
   return 'pos-other';
 }
 
+export function getTeamDepthValue(player: Player): number | null {
+  return player.depth ?? null;
+}
+
+export function formatTeamDepthLabel(player: Player): string {
+  const depth = getTeamDepthValue(player);
+  if (depth == null) return '—';
+  return `${player.pos}${depth}`;
+}
+
 export function formatPosRankLabel(player: Player, scoring: ScoringFormat): string {
   const rank = player.posRank[scoring];
   if (rank == null) return '—';

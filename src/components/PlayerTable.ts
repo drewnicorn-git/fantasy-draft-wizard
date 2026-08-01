@@ -8,7 +8,7 @@ import { pickPredictor } from '../utils/analytics';
 
 import { formatPickLabel, isProjectedRoundBreak, isUserProjectedPick, projectedPickOverall, roundFromOverall } from '../sim/snake';
 
-import { formatPosRankLabel, getPosRankValue, posCssClass, posSortOrder } from '../utils/position';
+import { formatPosRankLabel, formatTeamDepthLabel, getPosRankValue, getTeamDepthValue, posCssClass, posSortOrder } from '../utils/position';
 
 import {
 
@@ -68,6 +68,8 @@ type SortKey =
 
   | 'posRank'
 
+  | 'depth'
+
   | 'adp'
 
   | 'avail'
@@ -107,6 +109,8 @@ const DEFAULT_SORT_DIR: Record<SortKey, 'asc' | 'desc'> = {
   tier: 'asc',
 
   posRank: 'asc',
+
+  depth: 'asc',
 
   adp: 'asc',
 
@@ -265,6 +269,14 @@ function sortPlayers(
       case 'posRank':
 
         cmp = compareNullable(getPosRankValue(a, scoring), getPosRankValue(b, scoring), dir);
+
+        break;
+
+      case 'depth':
+
+        cmp = compareNullable(getTeamDepthValue(a), getTeamDepthValue(b), dir);
+
+        if (cmp === 0) cmp = posSortOrder(String(a.pos)) - posSortOrder(String(b.pos));
 
         break;
 
@@ -450,6 +462,8 @@ export function renderRankingsTable(
 
       ${sortHeader('Team', 'team', tableSort)}
 
+      ${sortHeader('Depth', 'depth', tableSort)}
+
       ${sortHeader('Tier', 'tier', tableSort)}
 
       ${showSources ? sources.map((s) => sortHeader(SOURCE_LABELS[s] ?? s, `source:${s}`, tableSort)).join('') : ''}
@@ -511,6 +525,7 @@ export function renderRankingsTable(
       const tagStyle = tagDef ? ` style="--tag-color:${tagDef.color}"` : '';
 
       const posRankLabel = formatPosRankLabel(p, scoring);
+      const teamDepthLabel = formatTeamDepthLabel(p);
 
       const isKeeper = keepers.has(p.id);
 
@@ -537,6 +552,8 @@ export function renderRankingsTable(
         <td><strong>${posRankLabel}</strong></td>
 
         <td${teamWarn}>${p.team}${p.teamVerified === false ? ' *' : ''}</td>
+
+        <td title="Team roster depth (ESPN order)">${teamDepthLabel}</td>
 
         <td>${p.tier ?? '—'}</td>
 
