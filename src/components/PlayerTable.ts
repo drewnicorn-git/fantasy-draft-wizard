@@ -553,7 +553,7 @@ export function renderRankingsTable(
 
         <td${teamWarn}>${p.team}${p.teamVerified === false ? ' *' : ''}</td>
 
-        <td title="Team roster depth (ESPN order)">${teamDepthLabel}</td>
+        <td title="Team depth from ESPN depth chart">${teamDepthLabel}</td>
 
         <td>${p.tier ?? '—'}</td>
 

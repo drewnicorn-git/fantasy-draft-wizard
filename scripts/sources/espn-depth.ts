@@ -85,9 +85,9 @@ export function buildDepthChartIndex(entries: DepthChartEntry[]): DepthIndexes {
   }
 
   for (const list of byTeamPos.values()) {
-    list.forEach((entry, index) => {
-      entry.depth = index + 1;
-    });
+    for (const entry of list) {
+      if (entry.pos === 'DST' && entry.depth == null) entry.depth = 1;
+    }
   }
 
   return { byKey, byTeamPos };
@@ -174,6 +174,104 @@ export function resolveTeamFromDepthChart(
   return { team: identity.team, verified: identity.verified };
 }
 
+function depthEntryKey(entry: Pick<DepthChartEntry, 'name' | 'team' | 'pos'>): string {
+  return `${normalizeTeam(entry.team)}|${normalizePos(entry.pos)}|${canonicalKey(entry.name, entry.pos)}`;
+}
+
+type EspnDepthAthlete = { displayName?: string; fullName?: string };
+
+function athleteName(a: EspnDepthAthlete): string {
+  return (a.displayName ?? a.fullName ?? '').trim();
+}
+
+function parseOffensiveDepthChart(
+  positions: Record<string, { athletes?: EspnDepthAthlete[] }>,
+  teamAbbr: string,
+): DepthChartEntry[] {
+  const entries: DepthChartEntry[] = [];
+
+  const pushAthletes = (posKey: string, pos: string): void => {
+    for (const [idx, athlete] of (positions[posKey]?.athletes ?? []).entries()) {
+      const name = athleteName(athlete);
+      if (!isValidPlayerName(name)) continue;
+      entries.push({ name, team: teamAbbr, pos, depth: idx + 1 });
+    }
+  };
+
+  pushAthletes('qb', 'QB');
+  pushAthletes('rb', 'RB');
+  pushAthletes('te', 'TE');
+  pushAthletes('pk', 'K');
+  pushAthletes('k', 'K');
+
+  const wrSlots = ['wr1', 'wr2', 'wr3'] as const;
+  const seenWr = new Set<string>();
+  let wrDepth = 1;
+
+  for (const slot of wrSlots) {
+    const starter = positions[slot]?.athletes?.[0];
+    if (!starter) continue;
+    const name = athleteName(starter);
+    if (!isValidPlayerName(name) || seenWr.has(name)) continue;
+    seenWr.add(name);
+    entries.push({ name, team: teamAbbr, pos: 'WR', depth: wrDepth++ });
+  }
+
+  for (const slot of wrSlots) {
+    for (const athlete of (positions[slot]?.athletes ?? []).slice(1)) {
+      const name = athleteName(athlete);
+      if (!isValidPlayerName(name) || seenWr.has(name)) continue;
+      seenWr.add(name);
+      entries.push({ name, team: teamAbbr, pos: 'WR', depth: wrDepth++ });
+    }
+  }
+
+  return entries;
+}
+
+function parseRosterEntries(
+  rosterJson: {
+    athletes?: Array<{
+      position?: string;
+      items?: Array<{
+        fullName?: string;
+        displayName?: string;
+        position?: { abbreviation?: string };
+      }>;
+    }>;
+  },
+  teamAbbr: string,
+  teamDisplayName?: string,
+): DepthChartEntry[] {
+  const entries: DepthChartEntry[] = [];
+
+  for (const group of rosterJson.athletes ?? []) {
+    const groupName = (group.position ?? '').toLowerCase();
+    if (groupName.includes('injured') || groupName.includes('practice') || groupName.includes('suspended')) {
+      continue;
+    }
+
+    for (const athlete of group.items ?? []) {
+      const name = (athlete.displayName ?? athlete.fullName ?? '').trim();
+      if (!isValidPlayerName(name)) continue;
+
+      const mappedPos = mapFantasyPos(athlete.position?.abbreviation, groupName);
+      if (!mappedPos || !FANTASY_POS.has(mappedPos)) continue;
+
+      entries.push({ name, team: teamAbbr, pos: normalizePos(mappedPos) });
+    }
+  }
+
+  entries.push({
+    name: teamDisplayName ?? `${teamAbbr} D/ST`,
+    team: teamAbbr,
+    pos: 'DST',
+    depth: 1,
+  });
+
+  return entries;
+}
+
 export async function fetchEspnDepthCharts(season: number): Promise<DepthChartEntry[]> {
   const res = await fetch('https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams?limit=50', {
     headers: { 'User-Agent': 'fantasy-draft-wizard (github.com)' },
@@ -186,55 +284,58 @@ export async function fetchEspnDepthCharts(season: number): Promise<DepthChartEn
 
   const teamList = json.sports?.[0]?.leagues?.[0]?.teams ?? [];
   const entries: DepthChartEntry[] = [];
+  const depthByKey = new Map<string, number>();
 
   for (const { team } of teamList) {
     const teamAbbr = normalizeTeam(team.abbreviation);
     if (!VALID_TEAMS.has(teamAbbr)) continue;
 
-    const rosterRes = await fetch(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${team.id}/roster`, {
-      headers: { 'User-Agent': 'fantasy-draft-wizard (github.com)' },
-      signal: AbortSignal.timeout(20_000),
-    });
-    if (!rosterRes.ok) continue;
+    const headers = { 'User-Agent': 'fantasy-draft-wizard (github.com)' };
 
-    const rosterJson = (await rosterRes.json()) as {
-      athletes?: Array<{
-        position?: string;
-        items?: Array<{
-          fullName?: string;
-          displayName?: string;
-          position?: { abbreviation?: string };
-        }>;
-      }>;
-    };
+    const [rosterRes, depthRes] = await Promise.all([
+      fetch(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${team.id}/roster`, {
+        headers,
+        signal: AbortSignal.timeout(20_000),
+      }),
+      fetch(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${team.id}/depthcharts`, {
+        headers,
+        signal: AbortSignal.timeout(20_000),
+      }),
+    ]);
 
-    for (const group of rosterJson.athletes ?? []) {
-      const groupName = (group.position ?? '').toLowerCase();
-      if (groupName.includes('injured') || groupName.includes('practice') || groupName.includes('suspended')) {
-        continue;
-      }
-
-      for (const athlete of group.items ?? []) {
-        const athleteName = (athlete.displayName ?? athlete.fullName ?? '').trim();
-        if (!isValidPlayerName(athleteName)) continue;
-
-        const mappedPos = mapFantasyPos(athlete.position?.abbreviation, groupName);
-        if (!mappedPos || !FANTASY_POS.has(mappedPos)) continue;
-
-        entries.push({ name: athleteName, team: teamAbbr, pos: normalizePos(mappedPos) });
-      }
+    if (rosterRes.ok) {
+      const rosterJson = (await rosterRes.json()) as Parameters<typeof parseRosterEntries>[0];
+      entries.push(...parseRosterEntries(rosterJson, teamAbbr, team.displayName));
     }
 
-    entries.push({
-      name: team.displayName ?? `${teamAbbr} D/ST`,
-      team: teamAbbr,
-      pos: 'DST',
-    });
+    if (!depthRes.ok) continue;
+
+    const depthJson = (await depthRes.json()) as {
+      depthchart?: Array<{ name?: string; positions?: Record<string, { athletes?: EspnDepthAthlete[] }> }>;
+    };
+
+    for (const chart of depthJson.depthchart ?? []) {
+      const chartName = (chart.name ?? '').toLowerCase();
+      if (chartName.includes('special')) continue;
+      if (chartName.includes('def')) continue;
+
+      for (const depthEntry of parseOffensiveDepthChart(chart.positions ?? {}, teamAbbr)) {
+        if (depthEntry.depth != null) depthByKey.set(depthEntryKey(depthEntry), depthEntry.depth);
+      }
+    }
+  }
+
+  for (const entry of entries) {
+    const depth = depthByKey.get(depthEntryKey(entry));
+    if (depth != null) entry.depth = depth;
   }
 
   if (entries.length < 400) {
     throw new Error(`ESPN rosters: too few entries (${entries.length}) for season ${season}`);
   }
+
+  const withDepth = entries.filter((e) => e.depth != null).length;
+  console.log(`  ESPN depth charts applied to ${withDepth}/${entries.length} roster entries`);
 
   return entries;
 }
