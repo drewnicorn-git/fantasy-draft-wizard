@@ -287,6 +287,73 @@ tr.your-pick td:first-child { font-weight: 700; }
 
 .badge.injury { background: var(--danger); color: #fff; font-size: 0.65rem; padding: 0.1rem 0.3rem; border-radius: 3px; margin-left: 0.25rem; }
 
+.injury-report-panel { margin-top: 0.5rem; }
+
+.injury-report-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.injury-report-header h2 { margin: 0 0 0.25rem; }
+
+.injury-report-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.injury-search-label,
+.injury-status-filter-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.injury-status-filter {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface2);
+  color: inherit;
+}
+
+.injury-report-table-wrap { margin-top: 0.5rem; }
+
+.injury-report-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+
+.injury-report-table th,
+.injury-report-table td {
+  padding: 0.45rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.injury-report-table th { color: var(--muted); font-weight: 600; font-size: 0.8rem; }
+
+.injury-summary { color: var(--muted); font-size: 0.85rem; max-width: 28rem; }
+
+.injury-status-badge {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.injury-status-out { background: rgba(220, 53, 69, 0.2); color: #ff8a95; }
+
+.injury-status-questionable { background: rgba(255, 193, 7, 0.15); color: #ffd54f; }
+
+.injury-status-suspension { background: rgba(156, 39, 176, 0.2); color: #ce93d8; }
+
+.injury-status-other { background: rgba(108, 117, 125, 0.2); color: var(--muted); }
+
 .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
 
 .hint { color: var(--muted); font-size: 0.8rem; margin: 0.25rem 0 0.5rem; }

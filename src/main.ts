@@ -1,8 +1,9 @@
 import './styles.css';
-import { loadRankings, getRankings, setScoring, setState, state, subscribe } from './state/appState';
+import { loadRankings, loadInjuries, getRankings, setScoring, setState, state, subscribe } from './state/appState';
 import { mountRankingsView } from './pages/RankingsView';
 import { mountMockDraftView } from './pages/MockDraftView';
 import { mountLiveDraftView } from './pages/LiveDraftView';
+import { mountInjuryReportView } from './pages/InjuryReportView';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
@@ -24,6 +25,7 @@ function render(): void {
         <button type="button" class="${state.tab === 'rankings' ? 'active' : ''}" data-tab="rankings">Rankings</button>
         <button type="button" class="${state.tab === 'mock' ? 'active' : ''}" data-tab="mock">Mock Draft</button>
         <button type="button" class="${state.tab === 'live' ? 'active' : ''}" data-tab="live">Live Draft</button>
+        <button type="button" class="${state.tab === 'injuries' ? 'active' : ''}" data-tab="injuries">Injuries</button>
       </nav>
     </header>
     <main id="main"></main>
@@ -37,20 +39,22 @@ function render(): void {
 
   app.querySelectorAll('[data-tab]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      setState({ tab: (btn as HTMLElement).dataset.tab as 'rankings' | 'mock' | 'live' });
+      setState({ tab: (btn as HTMLElement).dataset.tab as 'rankings' | 'mock' | 'live' | 'injuries' });
     });
   });
 
   const main = app.querySelector('#main') as HTMLElement;
   if (state.tab === 'rankings') mountRankingsView(main);
   else if (state.tab === 'mock') mountMockDraftView(main);
-  else mountLiveDraftView(main);
+  else if (state.tab === 'live') mountLiveDraftView(main);
+  else mountInjuryReportView(main);
 }
 
 async function init(): Promise<void> {
   app.innerHTML = '<p class="loading">Loading rankings…</p>';
   try {
     await loadRankings();
+    await loadInjuries();
     subscribe(render);
     render();
   } catch (err) {

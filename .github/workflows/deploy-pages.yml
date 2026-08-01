@@ -47,6 +47,7 @@ jobs:
           grep -q "assets/index" dist/index.html
           test ! -f dist/src/main.ts
           test -f dist/rankings.json
+          test -f dist/injuries.json
           test -f dist/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3

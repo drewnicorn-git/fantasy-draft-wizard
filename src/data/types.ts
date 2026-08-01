@@ -44,6 +44,23 @@ export interface RankingsData {
   players: Player[];
 }
 
+export interface InjuryReportEntry {
+  playerId: string;
+  name: string;
+  team: string;
+  pos: string;
+  status: string;
+  summary: string;
+  updatedAt: string;
+}
+
+export interface InjuriesData {
+  season: number;
+  builtAt: string;
+  fetchedAt: string | null;
+  entries: InjuryReportEntry[];
+}
+
 export interface FilterState {
   positions: Set<string>;
   teams: Set<string>;
@@ -79,7 +96,7 @@ export type BotPersonality = 'balanced' | 'zero-rb' | 'hero-rb';
 
 export interface AppState {
   scoring: ScoringFormat;
-  tab: 'rankings' | 'mock' | 'live';
+  tab: 'rankings' | 'mock' | 'live' | 'injuries';
   filters: FilterState;
   selectedSources: Set<SourceKey>;
   draftConfig: DraftConfig;

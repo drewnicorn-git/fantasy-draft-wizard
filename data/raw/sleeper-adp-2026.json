@@ -1,25 +1,25 @@
 {
  "season": 2026,
- "fetchedAt": "2026-07-28T22:50:55.599Z",
+ "fetchedAt": "2026-08-01T22:37:53.148Z",
  "data": {
   "players": [
-   {
-    "name": "Bijan Robinson",
-    "pos": "RB",
-    "team": "ATL",
-    "adp": 1.4,
-    "rank": 1,
-    "adpStd": 1.2,
-    "adpPpr": 1.4
-   },
    {
     "name": "Jahmyr Gibbs",
     "pos": "RB",
     "team": "DET",
-    "adp": 2.9,
-    "rank": 2,
+    "adp": 1.6,
+    "rank": 1,
     "adpStd": 2.7,
-    "adpPpr": 2.9
+    "adpPpr": 1.6
+   },
+   {
+    "name": "Bijan Robinson",
+    "pos": "RB",
+    "team": "ATL",
+    "adp": 1.8,
+    "rank": 2,
+    "adpStd": 1.2,
+    "adpPpr": 1.8
    },
    {
     "name": "Ja'Marr Chase",
@@ -40,22 +40,22 @@
     "adpPpr": 4.9
    },
    {
+    "name": "Christian McCaffrey",
+    "pos": "RB",
+    "team": "SF",
+    "adp": 5,
+    "rank": 5,
+    "adpStd": 4.9,
+    "adpPpr": 5
+   },
+   {
     "name": "Jaxon Smith-Njigba",
     "pos": "WR",
     "team": "SEA",
     "adp": 5.4,
-    "rank": 5,
+    "rank": 6,
     "adpStd": 9.2,
     "adpPpr": 5.4
-   },
-   {
-    "name": "Christian McCaffrey",
-    "pos": "RB",
-    "team": "SF",
-    "adp": 6.7,
-    "rank": 6,
-    "adpStd": 4.9,
-    "adpPpr": 6.7
    },
    {
     "name": "Jonathan Taylor",
@@ -67,13 +67,13 @@
     "adpPpr": 7.7
    },
    {
-    "name": "James Cook",
-    "pos": "RB",
-    "team": "BUF",
-    "adp": 9.7,
+    "name": "Amon-Ra St. Brown",
+    "pos": "WR",
+    "team": "DET",
+    "adp": 8.1,
     "rank": 8,
-    "adpStd": 5.1,
-    "adpPpr": 9.7
+    "adpStd": 16.8,
+    "adpPpr": 8.1
    },
    {
     "name": "CeeDee Lamb",
@@ -85,40 +85,40 @@
     "adpPpr": 10.6
    },
    {
-    "name": "Amon-Ra St. Brown",
-    "pos": "WR",
-    "team": "DET",
-    "adp": 11.2,
-    "rank": 10,
-    "adpStd": 16.8,
-    "adpPpr": 11.2
-   },
-   {
     "name": "Justin Jefferson",
     "pos": "WR",
     "team": "MIN",
     "adp": 12.4,
-    "rank": 11,
+    "rank": 10,
     "adpStd": 18.5,
     "adpPpr": 12.4
+   },
+   {
+    "name": "De'Von Achane",
+    "pos": "RB",
+    "team": "MIA",
+    "adp": 12.5,
+    "rank": 11,
+    "adpStd": 8,
+    "adpPpr": 12.5
+   },
+   {
+    "name": "James Cook",
+    "pos": "RB",
+    "team": "BUF",
+    "adp": 12.7,
+    "rank": 12,
+    "adpStd": 5.1,
+    "adpPpr": 12.7
    },
    {
     "name": "Drake London",
     "pos": "WR",
     "team": "ATL",
     "adp": 14.1,
-    "rank": 12,
+    "rank": 13,
     "adpStd": 19.1,
     "adpPpr": 14.1
-   },
-   {
-    "name": "Kenneth Walker",
-    "pos": "RB",
-    "team": "KC",
-    "adp": 14.6,
-    "rank": 13,
-    "adpStd": 7.2,
-    "adpPpr": 14.6
    },
    {
     "name": "Ashton Jeanty",
@@ -130,13 +130,13 @@
     "adpPpr": 15.4
    },
    {
-    "name": "De'Von Achane",
+    "name": "Saquon Barkley",
     "pos": "RB",
-    "team": "MIA",
-    "adp": 16.2,
+    "team": "PHI",
+    "adp": 16.6,
     "rank": 15,
-    "adpStd": 10.1,
-    "adpPpr": 16.2
+    "adpStd": 13.4,
+    "adpPpr": 16.6
    },
    {
     "name": "Trey McBride",
@@ -157,22 +157,22 @@
     "adpPpr": 18.8
    },
    {
-    "name": "Malik Nabers",
-    "pos": "WR",
-    "team": "NYG",
-    "adp": 19.2,
+    "name": "Chase Brown",
+    "pos": "RB",
+    "team": "CIN",
+    "adp": 19,
     "rank": 18,
-    "adpStd": 23.9,
-    "adpPpr": 19.2
+    "adpStd": 17.8,
+    "adpPpr": 19
    },
    {
-    "name": "Saquon Barkley",
-    "pos": "RB",
-    "team": "PHI",
-    "adp": 19.5,
+    "name": "A.J. Brown",
+    "pos": "WR",
+    "team": "NE",
+    "adp": 19.4,
     "rank": 19,
-    "adpStd": 13.4,
-    "adpPpr": 19.5
+    "adpStd": 33.2,
+    "adpPpr": 19.4
    },
    {
     "name": "Jeremiyah Love",
@@ -193,22 +193,22 @@
     "adpPpr": 20.2
    },
    {
-    "name": "Nico Collins",
+    "name": "Rashee Rice",
     "pos": "WR",
-    "team": "HOU",
-    "adp": 21.1,
+    "team": "KC",
+    "adp": 22.7,
     "rank": 22,
-    "adpStd": 26.7,
-    "adpPpr": 21.1
+    "adpStd": 34.2,
+    "adpPpr": 22.7
    },
    {
-    "name": "Chase Brown",
+    "name": "Kenneth Walker",
     "pos": "RB",
-    "team": "CIN",
-    "adp": 22.2,
+    "team": "KC",
+    "adp": 22.9,
     "rank": 23,
-    "adpStd": 17.8,
-    "adpPpr": 22.2
+    "adpStd": 22.7,
+    "adpPpr": 22.9
    },
    {
     "name": "George Pickens",
@@ -225,24 +225,42 @@
     "team": "BAL",
     "adp": 24.6,
     "rank": 25,
-    "adpStd": 24.3,
+    "adpStd": 7.4,
     "adpPpr": 24.6
+   },
+   {
+    "name": "Nico Collins",
+    "pos": "WR",
+    "team": "HOU",
+    "adp": 25.2,
+    "rank": 26,
+    "adpStd": 26.7,
+    "adpPpr": 25.2
    },
    {
     "name": "Chris Olave",
     "pos": "WR",
     "team": "NO",
     "adp": 26.4,
-    "rank": 26,
+    "rank": 27,
     "adpStd": 31.2,
     "adpPpr": 26.4
+   },
+   {
+    "name": "Malik Nabers",
+    "pos": "WR",
+    "team": "NYG",
+    "adp": 27.3,
+    "rank": 28,
+    "adpStd": 34.3,
+    "adpPpr": 27.3
    },
    {
     "name": "Josh Jacobs",
     "pos": "RB",
     "team": "GB",
     "adp": 27.6,
-    "rank": 27,
+    "rank": 29,
     "adpStd": 20.2,
     "adpPpr": 27.6
    },
@@ -251,27 +269,9 @@
     "pos": "QB",
     "team": "BUF",
     "adp": 28.2,
-    "rank": 28,
-    "adpStd": 30.6,
-    "adpPpr": 28.2
-   },
-   {
-    "name": "A.J. Brown",
-    "pos": "WR",
-    "team": "NE",
-    "adp": 30.8,
-    "rank": 29,
-    "adpStd": 33.2,
-    "adpPpr": 30.8
-   },
-   {
-    "name": "Bucky Irving",
-    "pos": "RB",
-    "team": "TB",
-    "adp": 31.6,
     "rank": 30,
-    "adpStd": 22.2,
-    "adpPpr": 31.6
+    "adpStd": 15,
+    "adpPpr": 28.2
    },
    {
     "name": "Kyren Williams",
@@ -279,7 +279,7 @@
     "team": "LAR",
     "adp": 32.2,
     "rank": 31,
-    "adpStd": 25.8,
+    "adpStd": 12.8,
     "adpPpr": 32.2
    },
    {
@@ -292,13 +292,13 @@
     "adpPpr": 32.3
    },
    {
-    "name": "Rashee Rice",
-    "pos": "WR",
-    "team": "KC",
-    "adp": 32.7,
+    "name": "Bucky Irving",
+    "pos": "RB",
+    "team": "TB",
+    "adp": 34.4,
     "rank": 33,
-    "adpStd": 34.2,
-    "adpPpr": 32.7
+    "adpStd": 32.3,
+    "adpPpr": 34.4
    },
    {
     "name": "Tee Higgins",
@@ -333,7 +333,7 @@
     "team": "BAL",
     "adp": 37.9,
     "rank": 37,
-    "adpStd": 40.6,
+    "adpStd": 23.4,
     "adpPpr": 37.9
    },
    {
@@ -1039,11 +1039,20 @@
     "adpPpr": 115.3
    },
    {
+    "name": "Los Angeles Rams",
+    "pos": "DST",
+    "team": "LAR",
+    "adp": 115.5,
+    "rank": 116,
+    "adpStd": 110.1,
+    "adpPpr": 115.5
+   },
+   {
     "name": "Jayden Reed",
     "pos": "WR",
     "team": "GB",
     "adp": 116,
-    "rank": 116,
+    "rank": 117,
     "adpStd": 118.6,
     "adpPpr": 116
    },
@@ -1052,7 +1061,7 @@
     "pos": "TE",
     "team": "NYG",
     "adp": 117.3,
-    "rank": 117,
+    "rank": 118,
     "adpStd": 113.2,
     "adpPpr": 117.3
    },
@@ -1061,7 +1070,7 @@
     "pos": "TE",
     "team": "NYJ",
     "adp": 118.2,
-    "rank": 118,
+    "rank": 119,
     "adpStd": 108.5,
     "adpPpr": 118.2
    },
@@ -1070,16 +1079,25 @@
     "pos": "QB",
     "team": "DEN",
     "adp": 118.7,
-    "rank": 119,
+    "rank": 120,
     "adpStd": 121.1,
     "adpPpr": 118.7
+   },
+   {
+    "name": "Houston Texans",
+    "pos": "DST",
+    "team": "HOU",
+    "adp": 119,
+    "rank": 121,
+    "adpStd": 114.4,
+    "adpPpr": 119
    },
    {
     "name": "Jared Goff",
     "pos": "QB",
     "team": "DET",
     "adp": 122,
-    "rank": 120,
+    "rank": 122,
     "adpStd": 132.9,
     "adpPpr": 122
    },
@@ -1088,16 +1106,25 @@
     "pos": "RB",
     "team": "ATL",
     "adp": 123.8,
-    "rank": 121,
+    "rank": 123,
     "adpStd": 80.1,
     "adpPpr": 123.8
+   },
+   {
+    "name": "Seattle Seahawks",
+    "pos": "DST",
+    "team": "SEA",
+    "adp": 124.2,
+    "rank": 124,
+    "adpStd": 118,
+    "adpPpr": 124.2
    },
    {
     "name": "Jordan Love",
     "pos": "QB",
     "team": "GB",
     "adp": 124.8,
-    "rank": 122,
+    "rank": 125,
     "adpStd": 126.8,
     "adpPpr": 124.8
    },
@@ -1106,7 +1133,7 @@
     "pos": "WR",
     "team": "IND",
     "adp": 125.1,
-    "rank": 123,
+    "rank": 126,
     "adpStd": 133.4,
     "adpPpr": 125.1
    },
@@ -1115,7 +1142,7 @@
     "pos": "RB",
     "team": "SEA",
     "adp": 125.8,
-    "rank": 124,
+    "rank": 127,
     "adpStd": 100.9,
     "adpPpr": 125.8
    },
@@ -1124,7 +1151,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": 125.9,
-    "rank": 125,
+    "rank": 128,
     "adpStd": 115.5,
     "adpPpr": 125.9
    },
@@ -1133,7 +1160,7 @@
     "pos": "RB",
     "team": "WAS",
     "adp": 127.2,
-    "rank": 126,
+    "rank": 129,
     "adpStd": 124.8,
     "adpPpr": 127.2
    },
@@ -1142,16 +1169,25 @@
     "pos": "TE",
     "team": "JAX",
     "adp": 128.8,
-    "rank": 127,
+    "rank": 130,
     "adpStd": 103.7,
     "adpPpr": 128.8
+   },
+   {
+    "name": "Philadelphia Eagles",
+    "pos": "DST",
+    "team": "PHI",
+    "adp": 129,
+    "rank": 131,
+    "adpStd": 125,
+    "adpPpr": 129
    },
    {
     "name": "Jordan Mason",
     "pos": "RB",
     "team": "MIN",
     "adp": 130.5,
-    "rank": 128,
+    "rank": 132,
     "adpStd": 111.7,
     "adpPpr": 130.5
    },
@@ -1160,7 +1196,7 @@
     "pos": "WR",
     "team": "HOU",
     "adp": 131.1,
-    "rank": 129,
+    "rank": 133,
     "adpStd": 126.3,
     "adpPpr": 131.1
    },
@@ -1169,16 +1205,25 @@
     "pos": "RB",
     "team": "ARI",
     "adp": 132.5,
-    "rank": 130,
+    "rank": 134,
     "adpStd": 89.4,
     "adpPpr": 132.5
+   },
+   {
+    "name": "Denver Broncos",
+    "pos": "DST",
+    "team": "DEN",
+    "adp": 132.8,
+    "rank": 135,
+    "adpStd": 128.2,
+    "adpPpr": 132.8
    },
    {
     "name": "Khalil Shakir",
     "pos": "WR",
     "team": "BUF",
     "adp": 133.8,
-    "rank": 131,
+    "rank": 136,
     "adpStd": 120.2,
     "adpPpr": 133.8
    },
@@ -1187,7 +1232,7 @@
     "pos": "WR",
     "team": "GB",
     "adp": 134.1,
-    "rank": 132,
+    "rank": 137,
     "adpStd": 158.4,
     "adpPpr": 134.1
    },
@@ -1196,7 +1241,7 @@
     "pos": "WR",
     "team": "KC",
     "adp": 134.9,
-    "rank": 133,
+    "rank": 138,
     "adpStd": 121.5,
     "adpPpr": 134.9
    },
@@ -1205,7 +1250,7 @@
     "pos": "TE",
     "team": "NO",
     "adp": 135.3,
-    "rank": 134,
+    "rank": 139,
     "adpStd": 102.6,
     "adpPpr": 135.3
    },
@@ -1214,7 +1259,7 @@
     "pos": "WR",
     "team": "CAR",
     "adp": 136.3,
-    "rank": 135,
+    "rank": 140,
     "adpStd": 131.8,
     "adpPpr": 136.3
    },
@@ -1223,7 +1268,7 @@
     "pos": "TE",
     "team": "HOU",
     "adp": 137,
-    "rank": 136,
+    "rank": 141,
     "adpStd": 97.6,
     "adpPpr": 137
    },
@@ -1232,7 +1277,7 @@
     "pos": "QB",
     "team": "MIA",
     "adp": 137.8,
-    "rank": 137,
+    "rank": 142,
     "adpStd": 139.9,
     "adpPpr": 137.8
    },
@@ -1241,7 +1286,7 @@
     "pos": "RB",
     "team": "CAR",
     "adp": 138,
-    "rank": 138,
+    "rank": 143,
     "adpStd": 143.7,
     "adpPpr": 138
    },
@@ -1250,7 +1295,7 @@
     "pos": "QB",
     "team": "TB",
     "adp": 140.9,
-    "rank": 139,
+    "rank": 144,
     "adpStd": 143.6,
     "adpPpr": 140.9
    },
@@ -1259,7 +1304,7 @@
     "pos": "TE",
     "team": "MIN",
     "adp": 141.2,
-    "rank": 140,
+    "rank": 145,
     "adpStd": 127.7,
     "adpPpr": 141.2
    },
@@ -1268,7 +1313,7 @@
     "pos": "RB",
     "team": "HOU",
     "adp": 141.2,
-    "rank": 141,
+    "rank": 146,
     "adpStd": 104.9,
     "adpPpr": 141.2
    },
@@ -1277,16 +1322,25 @@
     "pos": "RB",
     "team": "JAX",
     "adp": 141.6,
-    "rank": 142,
+    "rank": 147,
     "adpStd": 142.5,
     "adpPpr": 141.6
+   },
+   {
+    "name": "Baltimore Ravens",
+    "pos": "DST",
+    "team": "BAL",
+    "adp": 142.2,
+    "rank": 148,
+    "adpStd": 138.8,
+    "adpPpr": 142.2
    },
    {
     "name": "Kyler Murray",
     "pos": "QB",
     "team": "MIN",
     "adp": 142.2,
-    "rank": 143,
+    "rank": 149,
     "adpStd": 154.5,
     "adpPpr": 142.2
    },
@@ -1295,7 +1349,7 @@
     "pos": "WR",
     "team": "CLE",
     "adp": 143.2,
-    "rank": 144,
+    "rank": 150,
     "adpStd": 129.3,
     "adpPpr": 143.2
    },
@@ -1304,7 +1358,7 @@
     "pos": "QB",
     "team": "NO",
     "adp": 144.4,
-    "rank": 145,
+    "rank": 151,
     "adpStd": 147.5,
     "adpPpr": 144.4
    },
@@ -1313,7 +1367,7 @@
     "pos": "RB",
     "team": "DEN",
     "adp": 145,
-    "rank": 146,
+    "rank": 152,
     "adpStd": 117.5,
     "adpPpr": 145
    },
@@ -1322,7 +1376,7 @@
     "pos": "RB",
     "team": "NYG",
     "adp": 145.3,
-    "rank": 147,
+    "rank": 153,
     "adpStd": 109.5,
     "adpPpr": 145.3
    },
@@ -1331,7 +1385,7 @@
     "pos": "TE",
     "team": "WAS",
     "adp": 146.2,
-    "rank": 148,
+    "rank": 154,
     "adpStd": 136.9,
     "adpPpr": 146.2
    },
@@ -1340,7 +1394,7 @@
     "pos": "WR",
     "team": "MIN",
     "adp": 146.3,
-    "rank": 149,
+    "rank": 155,
     "adpStd": 123.2,
     "adpPpr": 146.3
    },
@@ -1349,7 +1403,7 @@
     "pos": "WR",
     "team": "CLE",
     "adp": 147.5,
-    "rank": 150,
+    "rank": 156,
     "adpStd": 153.3,
     "adpPpr": 147.5
    },
@@ -1358,16 +1412,25 @@
     "pos": "WR",
     "team": "NYJ",
     "adp": 149.3,
-    "rank": 151,
+    "rank": 157,
     "adpStd": 150.9,
     "adpPpr": 149.3
+   },
+   {
+    "name": "New England Patriots",
+    "pos": "DST",
+    "team": "NE",
+    "adp": 149.4,
+    "rank": 158,
+    "adpStd": 145.5,
+    "adpPpr": 149.4
    },
    {
     "name": "Emmett Johnson",
     "pos": "RB",
     "team": "KC",
     "adp": 149.7,
-    "rank": 152,
+    "rank": 159,
     "adpStd": 112.5,
     "adpPpr": 149.7
    },
@@ -1376,7 +1439,7 @@
     "pos": "TE",
     "team": "SEA",
     "adp": 150.1,
-    "rank": 153,
+    "rank": 160,
     "adpStd": 125.9,
     "adpPpr": 150.1
    },
@@ -1385,7 +1448,7 @@
     "pos": "RB",
     "team": "TEN",
     "adp": 151.9,
-    "rank": 154,
+    "rank": 161,
     "adpStd": 122.1,
     "adpPpr": 151.9
    },
@@ -1394,7 +1457,7 @@
     "pos": "WR",
     "team": "SEA",
     "adp": 152.2,
-    "rank": 155,
+    "rank": 162,
     "adpStd": 161.9,
     "adpPpr": 152.2
    },
@@ -1403,7 +1466,7 @@
     "pos": "RB",
     "team": "ARI",
     "adp": 152.2,
-    "rank": 156,
+    "rank": 163,
     "adpStd": 92.4,
     "adpPpr": 152.2
    },
@@ -1412,7 +1475,7 @@
     "pos": "RB",
     "team": "NO",
     "adp": 157.7,
-    "rank": 157,
+    "rank": 164,
     "adpStd": 119.3,
     "adpPpr": 157.7
    },
@@ -1421,25 +1484,43 @@
     "pos": "TE",
     "team": "LAR",
     "adp": 158.7,
-    "rank": 158,
+    "rank": 165,
     "adpStd": 141.1,
     "adpPpr": 158.7
+   },
+   {
+    "name": "Minnesota Vikings",
+    "pos": "DST",
+    "team": "MIN",
+    "adp": 160,
+    "rank": 166,
+    "adpStd": 154.4,
+    "adpPpr": 160
    },
    {
     "name": "Travis Hunter",
     "pos": "WR",
     "team": "JAX",
     "adp": 160.2,
-    "rank": 159,
+    "rank": 167,
     "adpStd": 157.4,
     "adpPpr": 160.2
+   },
+   {
+    "name": "Detroit Lions",
+    "pos": "DST",
+    "team": "DET",
+    "adp": 162.2,
+    "rank": 168,
+    "adpStd": 157.9,
+    "adpPpr": 162.2
    },
    {
     "name": "Cade Otton",
     "pos": "TE",
     "team": "TB",
     "adp": 162.7,
-    "rank": 160,
+    "rank": 169,
     "adpStd": 147.5,
     "adpPpr": 162.7
    },
@@ -1448,7 +1529,7 @@
     "pos": "QB",
     "team": "HOU",
     "adp": 163.4,
-    "rank": 161,
+    "rank": 170,
     "adpStd": 166.3,
     "adpPpr": 163.4
    },
@@ -1457,16 +1538,16 @@
     "pos": "WR",
     "team": "TB",
     "adp": 163.7,
-    "rank": 162,
+    "rank": 171,
     "adpStd": 165.4,
     "adpPpr": 163.7
    },
    {
     "name": "Deebo Samuel",
     "pos": "WR",
-    "team": "FA",
+    "team": "SF",
     "adp": 164.3,
-    "rank": 163,
+    "rank": 172,
     "adpStd": 149.6,
     "adpPpr": 164.3
    },
@@ -1475,7 +1556,7 @@
     "pos": "RB",
     "team": "LAC",
     "adp": 164.9,
-    "rank": 164,
+    "rank": 173,
     "adpStd": 148.2,
     "adpPpr": 164.9
    },
@@ -1484,7 +1565,7 @@
     "pos": "QB",
     "team": "SEA",
     "adp": 165.3,
-    "rank": 165,
+    "rank": 174,
     "adpStd": 168.4,
     "adpPpr": 165.3
    },
@@ -1493,7 +1574,7 @@
     "pos": "QB",
     "team": "TEN",
     "adp": 165.9,
-    "rank": 166,
+    "rank": 175,
     "adpStd": 191.2,
     "adpPpr": 165.9
    },
@@ -1502,7 +1583,7 @@
     "pos": "RB",
     "team": "CLE",
     "adp": 166.4,
-    "rank": 167,
+    "rank": 176,
     "adpStd": 128.5,
     "adpPpr": 166.4
    },
@@ -1511,7 +1592,7 @@
     "pos": "WR",
     "team": "LV",
     "adp": 166.5,
-    "rank": 168,
+    "rank": 177,
     "adpStd": 197.3,
     "adpPpr": 166.5
    },
@@ -1520,7 +1601,7 @@
     "pos": "RB",
     "team": "DET",
     "adp": 167.2,
-    "rank": 169,
+    "rank": 178,
     "adpStd": 151.4,
     "adpPpr": 167.2
    },
@@ -1529,7 +1610,7 @@
     "pos": "WR",
     "team": "WAS",
     "adp": 168.1,
-    "rank": 170,
+    "rank": 179,
     "adpStd": 155.5,
     "adpPpr": 168.1
    },
@@ -1538,16 +1619,34 @@
     "pos": "QB",
     "team": "LV",
     "adp": 169.5,
-    "rank": 171,
+    "rank": 180,
     "adpStd": 188.5,
     "adpPpr": 169.5
+   },
+   {
+    "name": "Brandon Aubrey",
+    "pos": "K",
+    "team": "DAL",
+    "adp": 171.1,
+    "rank": 181,
+    "adpStd": 109.5,
+    "adpPpr": 171.1
+   },
+   {
+    "name": "Cameron Dicker",
+    "pos": "K",
+    "team": "LAC",
+    "adp": 172.2,
+    "rank": 182,
+    "adpStd": 129.2,
+    "adpPpr": 172.2
    },
    {
     "name": "David Njoku",
     "pos": "TE",
     "team": "LAC",
     "adp": 172.4,
-    "rank": 172,
+    "rank": 183,
     "adpStd": 130.6,
     "adpPpr": 172.4
    },
@@ -1556,7 +1655,7 @@
     "pos": "WR",
     "team": "CLE",
     "adp": 173.5,
-    "rank": 173,
+    "rank": 184,
     "adpStd": 159.5,
     "adpPpr": 173.5
    },
@@ -1565,7 +1664,7 @@
     "pos": "TE",
     "team": "PHI",
     "adp": 173.9,
-    "rank": 174,
+    "rank": 185,
     "adpStd": 139.8,
     "adpPpr": 173.9
    },
@@ -1574,7 +1673,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": 174,
-    "rank": 175,
+    "rank": 186,
     "adpStd": 145.9,
     "adpPpr": 174
    },
@@ -1583,25 +1682,43 @@
     "pos": "RB",
     "team": "NYJ",
     "adp": 174.1,
-    "rank": 176,
+    "rank": 187,
     "adpStd": 134.7,
     "adpPpr": 174.1
+   },
+   {
+    "name": "Jason Myers",
+    "pos": "K",
+    "team": "SEA",
+    "adp": 175.5,
+    "rank": 188,
+    "adpStd": 131.9,
+    "adpPpr": 175.5
    },
    {
     "name": "Nicholas Singleton",
     "pos": "RB",
     "team": "TEN",
     "adp": 176.4,
-    "rank": 177,
+    "rank": 189,
     "adpStd": 166.7,
     "adpPpr": 176.4
+   },
+   {
+    "name": "Jacksonville Jaguars",
+    "pos": "DST",
+    "team": "JAX",
+    "adp": 177.2,
+    "rank": 190,
+    "adpStd": 170.1,
+    "adpPpr": 177.2
    },
    {
     "name": "Adonai Mitchell",
     "pos": "WR",
     "team": "NYJ",
     "adp": 177.9,
-    "rank": 178,
+    "rank": 191,
     "adpStd": 162.2,
     "adpPpr": 177.9
    },
@@ -1610,7 +1727,7 @@
     "pos": "WR",
     "team": "NE",
     "adp": 178.7,
-    "rank": 179,
+    "rank": 192,
     "adpStd": 164.2,
     "adpPpr": 178.7
    },
@@ -1619,7 +1736,7 @@
     "pos": "RB",
     "team": "LV",
     "adp": 179.1,
-    "rank": 180,
+    "rank": 193,
     "adpStd": 138.5,
     "adpPpr": 179.1
    },
@@ -1628,25 +1745,43 @@
     "pos": "WR",
     "team": "ATL",
     "adp": 180.4,
-    "rank": 181,
+    "rank": 194,
     "adpStd": 185.1,
     "adpPpr": 180.4
+   },
+   {
+    "name": "Harrison Mevis",
+    "pos": "K",
+    "team": "LAR",
+    "adp": 181,
+    "rank": 195,
+    "adpStd": 154.2,
+    "adpPpr": 181
    },
    {
     "name": "Kimani Vidal",
     "pos": "RB",
     "team": "LAC",
     "adp": 181.1,
-    "rank": 182,
+    "rank": 196,
     "adpStd": 140.7,
     "adpPpr": 181.1
+   },
+   {
+    "name": "Pittsburgh Steelers",
+    "pos": "DST",
+    "team": "PIT",
+    "adp": 181.2,
+    "rank": 197,
+    "adpStd": 178.4,
+    "adpPpr": 181.2
    },
    {
     "name": "Kaytron Allen",
     "pos": "RB",
     "team": "WAS",
     "adp": 181.2,
-    "rank": 183,
+    "rank": 198,
     "adpStd": 156.6,
     "adpPpr": 181.2
    },
@@ -1655,16 +1790,25 @@
     "pos": "RB",
     "team": "ARI",
     "adp": 182.2,
-    "rank": 184,
+    "rank": 199,
     "adpStd": 114.3,
     "adpPpr": 182.2
+   },
+   {
+    "name": "Andy Borregales",
+    "pos": "K",
+    "team": "NE",
+    "adp": 184,
+    "rank": 200,
+    "adpStd": 157.2,
+    "adpPpr": 184
    },
    {
     "name": "Troy Franklin",
     "pos": "WR",
     "team": "DEN",
     "adp": 184.7,
-    "rank": 185,
+    "rank": 201,
     "adpStd": 170.5,
     "adpPpr": 184.7
    },
@@ -1673,16 +1817,25 @@
     "pos": "RB",
     "team": "PHI",
     "adp": 187.7,
-    "rank": 186,
+    "rank": 202,
     "adpStd": 146.5,
     "adpPpr": 187.7
+   },
+   {
+    "name": "Kansas City Chiefs",
+    "pos": "DST",
+    "team": "KC",
+    "adp": 189.2,
+    "rank": 203,
+    "adpStd": 183.2,
+    "adpPpr": 189.2
    },
    {
     "name": "Brandon Aiyuk",
     "pos": "WR",
     "team": "SF",
     "adp": 190.2,
-    "rank": 187,
+    "rank": 204,
     "adpStd": 176.7,
     "adpPpr": 190.2
    },
@@ -1691,16 +1844,34 @@
     "pos": "TE",
     "team": "SF",
     "adp": 191.4,
-    "rank": 188,
+    "rank": 205,
     "adpStd": 177.5,
     "adpPpr": 191.4
+   },
+   {
+    "name": "Ka'imi Fairbairn",
+    "pos": "K",
+    "team": "HOU",
+    "adp": 192,
+    "rank": 206,
+    "adpStd": 156.5,
+    "adpPpr": 192
+   },
+   {
+    "name": "New York Giants",
+    "pos": "DST",
+    "team": "NYG",
+    "adp": 192.5,
+    "rank": 207,
+    "adpStd": 188.9,
+    "adpPpr": 192.5
    },
    {
     "name": "Sean Tucker",
     "pos": "RB",
     "team": "TB",
     "adp": 192.8,
-    "rank": 189,
+    "rank": 208,
     "adpStd": 154.5,
     "adpPpr": 192.8
    },
@@ -1709,7 +1880,7 @@
     "pos": "QB",
     "team": "CAR",
     "adp": 194.2,
-    "rank": 190,
+    "rank": 209,
     "adpStd": 197.9,
     "adpPpr": 194.2
    },
@@ -1718,7 +1889,7 @@
     "pos": "WR",
     "team": "LAC",
     "adp": 194.5,
-    "rank": 191,
+    "rank": 210,
     "adpStd": 178.7,
     "adpPpr": 194.5
    },
@@ -1727,16 +1898,25 @@
     "pos": "QB",
     "team": "IND",
     "adp": 195.1,
-    "rank": 192,
+    "rank": 211,
     "adpStd": 197.1,
     "adpPpr": 195.1
+   },
+   {
+    "name": "Los Angeles Chargers",
+    "pos": "DST",
+    "team": "LAC",
+    "adp": 197.6,
+    "rank": 212,
+    "adpStd": 192.5,
+    "adpPpr": 197.6
    },
    {
     "name": "Ja'Kobi Lane",
     "pos": "WR",
     "team": "BAL",
     "adp": 197.8,
-    "rank": 193,
+    "rank": 213,
     "adpStd": 181.9,
     "adpPpr": 197.8
    },
@@ -1745,7 +1925,7 @@
     "pos": "WR",
     "team": "DET",
     "adp": 198.6,
-    "rank": 194,
+    "rank": 214,
     "adpStd": 183.7,
     "adpPpr": 198.6
    },
@@ -1754,7 +1934,7 @@
     "pos": "WR",
     "team": "TEN",
     "adp": 199.8,
-    "rank": 195,
+    "rank": 215,
     "adpStd": 184.8,
     "adpPpr": 199.8
    },
@@ -1763,7 +1943,7 @@
     "pos": "TE",
     "team": "LAR",
     "adp": 200.2,
-    "rank": 196,
+    "rank": 216,
     "adpStd": 135.7,
     "adpPpr": 200.2
    },
@@ -1772,7 +1952,7 @@
     "pos": "TE",
     "team": "TEN",
     "adp": 200.8,
-    "rank": 197,
+    "rank": 217,
     "adpStd": 152.6,
     "adpPpr": 200.8
    },
@@ -1781,16 +1961,25 @@
     "pos": "QB",
     "team": "ARI",
     "adp": 200.9,
-    "rank": 198,
+    "rank": 218,
     "adpStd": 203.4,
     "adpPpr": 200.9
+   },
+   {
+    "name": "Cam Little",
+    "pos": "K",
+    "team": "JAX",
+    "adp": 201,
+    "rank": 219,
+    "adpStd": 153.4,
+    "adpPpr": 201
    },
    {
     "name": "De'Zhaun Stribling",
     "pos": "WR",
     "team": "SF",
     "adp": 202.4,
-    "rank": 199,
+    "rank": 220,
     "adpStd": 213.9,
     "adpPpr": 202.4
    },
@@ -1799,25 +1988,61 @@
     "pos": "RB",
     "team": "SEA",
     "adp": 203.3,
-    "rank": 200,
+    "rank": 221,
     "adpStd": 160.6,
     "adpPpr": 203.3
+   },
+   {
+    "name": "Green Bay Packers",
+    "pos": "DST",
+    "team": "GB",
+    "adp": 203.4,
+    "rank": 222,
+    "adpStd": 199.5,
+    "adpPpr": 203.4
+   },
+   {
+    "name": "Eddy Pineiro",
+    "pos": "K",
+    "team": "SF",
+    "adp": 204,
+    "rank": 223,
+    "adpStd": 178.7,
+    "adpPpr": 204
+   },
+   {
+    "name": "Will Reichard",
+    "pos": "K",
+    "team": "MIN",
+    "adp": 204.4,
+    "rank": 224,
+    "adpStd": 174,
+    "adpPpr": 204.4
    },
    {
     "name": "Joe Mixon",
     "pos": "RB",
     "team": "FA",
     "adp": 204.6,
-    "rank": 201,
+    "rank": 225,
     "adpStd": 163.9,
     "adpPpr": 204.6
+   },
+   {
+    "name": "Dallas Cowboys",
+    "pos": "DST",
+    "team": "DAL",
+    "adp": 205.5,
+    "rank": 226,
+    "adpStd": 200.5,
+    "adpPpr": 205.5
    },
    {
     "name": "Tank Dell",
     "pos": "WR",
     "team": "HOU",
     "adp": 206.7,
-    "rank": 202,
+    "rank": 227,
     "adpStd": 186.8,
     "adpPpr": 206.7
    },
@@ -1826,7 +2051,7 @@
     "pos": "WR",
     "team": "LV",
     "adp": 207.2,
-    "rank": 203,
+    "rank": 228,
     "adpStd": 187.5,
     "adpPpr": 207.2
    },
@@ -1835,16 +2060,25 @@
     "pos": "RB",
     "team": "BUF",
     "adp": 208.6,
-    "rank": 204,
+    "rank": 229,
     "adpStd": 167.3,
     "adpPpr": 208.6
+   },
+   {
+    "name": "Chicago Bears",
+    "pos": "DST",
+    "team": "CHI",
+    "adp": 209.2,
+    "rank": 230,
+    "adpStd": 204.4,
+    "adpPpr": 209.2
    },
    {
     "name": "Devin Neal",
     "pos": "RB",
     "team": "NO",
     "adp": 211.9,
-    "rank": 205,
+    "rank": 231,
     "adpStd": 168.5,
     "adpPpr": 211.9
    },
@@ -1853,7 +2087,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": 212.3,
-    "rank": 206,
+    "rank": 232,
     "adpStd": 169.8,
     "adpPpr": 212.3
    },
@@ -1862,16 +2096,25 @@
     "pos": "WR",
     "team": "HOU",
     "adp": 213.7,
-    "rank": 207,
+    "rank": 233,
     "adpStd": 190.1,
     "adpPpr": 213.7
+   },
+   {
+    "name": "San Francisco 49ers",
+    "pos": "DST",
+    "team": "SF",
+    "adp": 214,
+    "rank": 234,
+    "adpStd": 208.4,
+    "adpPpr": 214
    },
    {
     "name": "Jaylen Wright",
     "pos": "RB",
     "team": "MIA",
     "adp": 215.1,
-    "rank": 208,
+    "rank": 235,
     "adpStd": 173.8,
     "adpPpr": 215.1
    },
@@ -1880,7 +2123,7 @@
     "pos": "RB",
     "team": "PIT",
     "adp": 217.5,
-    "rank": 209,
+    "rank": 236,
     "adpStd": 172.7,
     "adpPpr": 217.5
    },
@@ -1889,16 +2132,25 @@
     "pos": "RB",
     "team": "MIN",
     "adp": 218.3,
-    "rank": 210,
+    "rank": 237,
     "adpStd": 175.7,
     "adpPpr": 218.3
+   },
+   {
+    "name": "Indianapolis Colts",
+    "pos": "DST",
+    "team": "IND",
+    "adp": 219,
+    "rank": 238,
+    "adpStd": 215,
+    "adpPpr": 219
    },
    {
     "name": "Marvin Mims",
     "pos": "WR",
     "team": "DEN",
     "adp": 219.5,
-    "rank": 211,
+    "rank": 239,
     "adpStd": 192.2,
     "adpPpr": 219.5
    },
@@ -1907,7 +2159,7 @@
     "pos": "WR",
     "team": "PIT",
     "adp": 220.8,
-    "rank": 212,
+    "rank": 240,
     "adpStd": 193.6,
     "adpPpr": 220.8
    },
@@ -1916,7 +2168,7 @@
     "pos": "WR",
     "team": "NYG",
     "adp": 221.1,
-    "rank": 213,
+    "rank": 241,
     "adpStd": 194.4,
     "adpPpr": 221.1
    },
@@ -1925,16 +2177,25 @@
     "pos": "WR",
     "team": "NE",
     "adp": 222.1,
-    "rank": 214,
+    "rank": 242,
     "adpStd": 195.2,
     "adpPpr": 222.1
+   },
+   {
+    "name": "Cairo Santos",
+    "pos": "K",
+    "team": "CHI",
+    "adp": 222.2,
+    "rank": 243,
+    "adpStd": 190.3,
+    "adpPpr": 222.2
    },
    {
     "name": "Pat Bryant",
     "pos": "WR",
     "team": "DEN",
     "adp": 222.5,
-    "rank": 215,
+    "rank": 244,
     "adpStd": 171.6,
     "adpPpr": 222.5
    },
@@ -1943,16 +2204,34 @@
     "pos": "WR",
     "team": "TB",
     "adp": 223.5,
-    "rank": 216,
+    "rank": 245,
     "adpStd": 196.2,
     "adpPpr": 223.5
+   },
+   {
+    "name": "Harrison Butker",
+    "pos": "K",
+    "team": "KC",
+    "adp": 224,
+    "rank": 246,
+    "adpStd": 155.2,
+    "adpPpr": 224
+   },
+   {
+    "name": "Evan McPherson",
+    "pos": "K",
+    "team": "CIN",
+    "adp": 224.2,
+    "rank": 247,
+    "adpStd": 207.4,
+    "adpPpr": 224.2
    },
    {
     "name": "J.J. McCarthy",
     "pos": "QB",
     "team": "MIN",
     "adp": 224.2,
-    "rank": 217,
+    "rank": 248,
     "adpStd": 227.1,
     "adpPpr": 224.2
    },
@@ -1961,7 +2240,7 @@
     "pos": "TE",
     "team": "NYJ",
     "adp": 224.3,
-    "rank": 218,
+    "rank": 249,
     "adpStd": 137.5,
     "adpPpr": 224.3
    },
@@ -1970,16 +2249,25 @@
     "pos": "RB",
     "team": "NO",
     "adp": 224.8,
-    "rank": 219,
+    "rank": 250,
     "adpStd": 179.6,
     "adpPpr": 224.8
+   },
+   {
+    "name": "Buffalo Bills",
+    "pos": "DST",
+    "team": "BUF",
+    "adp": 225.2,
+    "rank": 251,
+    "adpStd": 220,
+    "adpPpr": 225.2
    },
    {
     "name": "Shedeur Sanders",
     "pos": "QB",
     "team": "CLE",
     "adp": 225.8,
-    "rank": 220,
+    "rank": 252,
     "adpStd": 227.4,
     "adpPpr": 225.8
    },
@@ -1988,7 +2276,7 @@
     "pos": "RB",
     "team": "KC",
     "adp": 226.3,
-    "rank": 221,
+    "rank": 253,
     "adpStd": 182.4,
     "adpPpr": 226.3
    },
@@ -1997,7 +2285,7 @@
     "pos": "WR",
     "team": "DAL",
     "adp": 227.6,
-    "rank": 222,
+    "rank": 254,
     "adpStd": 198.5,
     "adpPpr": 227.6
    },
@@ -2006,7 +2294,7 @@
     "pos": "WR",
     "team": "TEN",
     "adp": 227.7,
-    "rank": 223,
+    "rank": 255,
     "adpStd": 180.2,
     "adpPpr": 227.7
    },
@@ -2015,16 +2303,25 @@
     "pos": "QB",
     "team": "ATL",
     "adp": 227.9,
-    "rank": 224,
+    "rank": 256,
     "adpStd": 230.6,
     "adpPpr": 227.9
+   },
+   {
+    "name": "Atlanta Falcons",
+    "pos": "DST",
+    "team": "ATL",
+    "adp": 228.4,
+    "rank": 257,
+    "adpStd": 224.2,
+    "adpPpr": 228.4
    },
    {
     "name": "Tory Horton",
     "pos": "WR",
     "team": "SEA",
     "adp": 228.7,
-    "rank": 225,
+    "rank": 258,
     "adpStd": 199.4,
     "adpPpr": 228.7
    },
@@ -2033,7 +2330,7 @@
     "pos": "WR",
     "team": "BAL",
     "adp": 229.2,
-    "rank": 226,
+    "rank": 259,
     "adpStd": 200.6,
     "adpPpr": 229.2
    },
@@ -2042,7 +2339,7 @@
     "pos": "WR",
     "team": "TEN",
     "adp": 229.4,
-    "rank": 227,
+    "rank": 260,
     "adpStd": 174.6,
     "adpPpr": 229.4
    },
@@ -2051,7 +2348,7 @@
     "pos": "WR",
     "team": "CAR",
     "adp": 230.8,
-    "rank": 228,
+    "rank": 261,
     "adpStd": 201.9,
     "adpPpr": 230.8
    },
@@ -2060,7 +2357,7 @@
     "pos": "WR",
     "team": "MIA",
     "adp": 231.4,
-    "rank": 229,
+    "rank": 262,
     "adpStd": 202.9,
     "adpPpr": 231.4
    },
@@ -2069,25 +2366,43 @@
     "pos": "TE",
     "team": "NYG",
     "adp": 232.2,
-    "rank": 230,
+    "rank": 263,
     "adpStd": 144.2,
     "adpPpr": 232.2
+   },
+   {
+    "name": "Tampa Bay Buccaneers",
+    "pos": "DST",
+    "team": "TB",
+    "adp": 232.4,
+    "rank": 264,
+    "adpStd": 228.5,
+    "adpPpr": 232.4
    },
    {
     "name": "Rashod Bateman",
     "pos": "WR",
     "team": "BAL",
     "adp": 232.7,
-    "rank": 231,
+    "rank": 265,
     "adpStd": 203.3,
     "adpPpr": 232.7
+   },
+   {
+    "name": "Jake Bates",
+    "pos": "K",
+    "team": "DET",
+    "adp": 233,
+    "rank": 266,
+    "adpStd": 175.9,
+    "adpPpr": 233
    },
    {
     "name": "Keenan Allen",
     "pos": "WR",
     "team": "FA",
     "adp": 233.2,
-    "rank": 232,
+    "rank": 267,
     "adpStd": 204.9,
     "adpPpr": 233.2
    },
@@ -2096,7 +2411,7 @@
     "pos": "WR",
     "team": "BUF",
     "adp": 234.8,
-    "rank": 233,
+    "rank": 268,
     "adpStd": 205.5,
     "adpPpr": 234.8
    },
@@ -2105,7 +2420,7 @@
     "pos": "WR",
     "team": "SEA",
     "adp": 235.2,
-    "rank": 234,
+    "rank": 269,
     "adpStd": 206.4,
     "adpPpr": 235.2
    },
@@ -2114,7 +2429,7 @@
     "pos": "QB",
     "team": "ATL",
     "adp": 236.5,
-    "rank": 235,
+    "rank": 270,
     "adpStd": 238.8,
     "adpPpr": 236.5
    },
@@ -2123,7 +2438,7 @@
     "pos": "RB",
     "team": "DAL",
     "adp": 236.6,
-    "rank": 236,
+    "rank": 271,
     "adpStd": 188.8,
     "adpPpr": 236.6
    },
@@ -2132,7 +2447,7 @@
     "pos": "RB",
     "team": "NO",
     "adp": 237.4,
-    "rank": 237,
+    "rank": 272,
     "adpStd": 189.8,
     "adpPpr": 237.4
    },
@@ -2141,34 +2456,88 @@
     "pos": "WR",
     "team": "LV",
     "adp": 238.2,
-    "rank": 238,
+    "rank": 273,
     "adpStd": 207.7,
     "adpPpr": 238.2
+   },
+   {
+    "name": "Carolina Panthers",
+    "pos": "DST",
+    "team": "CAR",
+    "adp": 238.4,
+    "rank": 274,
+    "adpStd": 233.2,
+    "adpPpr": 238.4
+   },
+   {
+    "name": "Tyler Loop",
+    "pos": "K",
+    "team": "BAL",
+    "adp": 238.4,
+    "rank": 275,
+    "adpStd": 150.4,
+    "adpPpr": 238.4
+   },
+   {
+    "name": "Chris Boswell",
+    "pos": "K",
+    "team": "PIT",
+    "adp": 239.4,
+    "rank": 276,
+    "adpStd": 151.4,
+    "adpPpr": 239.4
    },
    {
     "name": "Devaughn Vele",
     "pos": "WR",
     "team": "NO",
     "adp": 239.8,
-    "rank": 239,
+    "rank": 277,
     "adpStd": 208.6,
     "adpPpr": 239.8
+   },
+   {
+    "name": "Chase McLaughlin",
+    "pos": "K",
+    "team": "TB",
+    "adp": 240.2,
+    "rank": 278,
+    "adpStd": 199.2,
+    "adpPpr": 240.2
    },
    {
     "name": "Jarquez Hunter",
     "pos": "RB",
     "team": "LAR",
     "adp": 240.6,
-    "rank": 240,
+    "rank": 279,
     "adpStd": 191.4,
     "adpPpr": 240.6
+   },
+   {
+    "name": "Jake Elliott",
+    "pos": "K",
+    "team": "PHI",
+    "adp": 240.9,
+    "rank": 280,
+    "adpStd": 231.9,
+    "adpPpr": 240.9
+   },
+   {
+    "name": "Cincinnati Bengals",
+    "pos": "DST",
+    "team": "CIN",
+    "adp": 241.2,
+    "rank": 281,
+    "adpStd": 236.6,
+    "adpPpr": 241.2
    },
    {
     "name": "Christian Kirk",
     "pos": "WR",
     "team": "SF",
     "adp": 241.7,
-    "rank": 241,
+    "rank": 282,
     "adpStd": 209.5,
     "adpPpr": 241.7
    },
@@ -2177,7 +2546,7 @@
     "pos": "QB",
     "team": "LAR",
     "adp": 241.8,
-    "rank": 242,
+    "rank": 283,
     "adpStd": 243.2,
     "adpPpr": 241.8
    },
@@ -2186,16 +2555,25 @@
     "pos": "WR",
     "team": "NYG",
     "adp": 242.4,
-    "rank": 243,
+    "rank": 284,
     "adpStd": 210.2,
     "adpPpr": 242.4
+   },
+   {
+    "name": "New Orleans Saints",
+    "pos": "DST",
+    "team": "NO",
+    "adp": 244.6,
+    "rank": 285,
+    "adpStd": 240.2,
+    "adpPpr": 244.6
    },
    {
     "name": "Max Klare",
     "pos": "TE",
     "team": "LAR",
     "adp": 248.8,
-    "rank": 244,
+    "rank": 286,
     "adpStd": 211.5,
     "adpPpr": 248.8
    },
@@ -2204,295 +2582,232 @@
     "pos": "TE",
     "team": "DAL",
     "adp": 249.7,
-    "rank": 245,
+    "rank": 287,
     "adpStd": 212.3,
     "adpPpr": 249.7
+   },
+   {
+    "name": "Wil Lutz",
+    "pos": "K",
+    "team": "DEN",
+    "adp": 253.3,
+    "rank": 288,
+    "adpStd": 177.2,
+    "adpPpr": 253.3
+   },
+   {
+    "name": "Matt Gay",
+    "pos": "K",
+    "team": "LV",
+    "adp": 263.3,
+    "rank": 289,
+    "adpStd": 239,
+    "adpPpr": 263.3
+   },
+   {
+    "name": "Cleveland Browns",
+    "pos": "DST",
+    "team": "CLE",
+    "adp": 266.6,
+    "rank": 290,
+    "adpStd": 260,
+    "adpPpr": 266.6
+   },
+   {
+    "name": "Riley Patterson",
+    "pos": "K",
+    "team": "MIA",
+    "adp": 267,
+    "rank": 291,
+    "adpStd": 241,
+    "adpPpr": 267
+   },
+   {
+    "name": "Charlie Smyth",
+    "pos": "K",
+    "team": "NO",
+    "adp": 269,
+    "rank": 292,
+    "adpStd": 242,
+    "adpPpr": 269
+   },
+   {
+    "name": "Tennessee Titans",
+    "pos": "DST",
+    "team": "TEN",
+    "adp": 270.2,
+    "rank": 293,
+    "adpStd": 266,
+    "adpPpr": 270.2
+   },
+   {
+    "name": "Arizona Cardinals",
+    "pos": "DST",
+    "team": "ARI",
+    "adp": 273,
+    "rank": 294,
+    "adpStd": 269,
+    "adpPpr": 273
+   },
+   {
+    "name": "Las Vegas Raiders",
+    "pos": "DST",
+    "team": "LV",
+    "adp": 279.3,
+    "rank": 295,
+    "adpStd": 275,
+    "adpPpr": 279.3
+   },
+   {
+    "name": "New York Jets",
+    "pos": "DST",
+    "team": "NYJ",
+    "adp": 282.2,
+    "rank": 296,
+    "adpStd": 278,
+    "adpPpr": 282.2
+   },
+   {
+    "name": "Nick Folk",
+    "pos": "K",
+    "team": "ATL",
+    "adp": 285.5,
+    "rank": 297,
+    "adpStd": 249,
+    "adpPpr": 285.5
+   },
+   {
+    "name": "Miami Dolphins",
+    "pos": "DST",
+    "team": "MIA",
+    "adp": 299,
+    "rank": 298,
+    "adpStd": 299,
+    "adpPpr": 299
+   },
+   {
+    "name": "Tyler Bass",
+    "pos": "K",
+    "team": "BUF",
+    "adp": 299,
+    "rank": 299,
+    "adpStd": 288,
+    "adpPpr": 299
+   },
+   {
+    "name": "Jake Moody",
+    "pos": "K",
+    "team": "WAS",
+    "adp": 333,
+    "rank": 300,
+    "adpStd": 309,
+    "adpPpr": 333
+   },
+   {
+    "name": "Younghoe Koo",
+    "pos": "K",
+    "team": "FA",
+    "adp": 339,
+    "rank": 301,
+    "adpStd": 314,
+    "adpPpr": 339
+   },
+   {
+    "name": "Andre Szmyt",
+    "pos": "K",
+    "team": "CLE",
+    "adp": 342,
+    "rank": 302,
+    "adpStd": 319,
+    "adpPpr": 342
+   },
+   {
+    "name": "Alex Kessman",
+    "pos": "K",
+    "team": "CAR",
+    "adp": 346,
+    "rank": 303,
+    "adpStd": 322,
+    "adpPpr": 346
+   },
+   {
+    "name": "Ryan Fitzgerald",
+    "pos": "K",
+    "team": "CAR",
+    "adp": 347,
+    "rank": 304,
+    "adpStd": 327,
+    "adpPpr": 347
+   },
+   {
+    "name": "Cade York",
+    "pos": "K",
+    "team": "NYJ",
+    "adp": 350,
+    "rank": 305,
+    "adpStd": 350,
+    "adpPpr": 350
+   },
+   {
+    "name": "Chad Ryland",
+    "pos": "K",
+    "team": "ARI",
+    "adp": 350,
+    "rank": 306,
+    "adpStd": 324,
+    "adpPpr": 350
+   },
+   {
+    "name": "Joey Slye",
+    "pos": "K",
+    "team": "TEN",
+    "adp": 351,
+    "rank": 307,
+    "adpStd": 325,
+    "adpPpr": 351
+   },
+   {
+    "name": "Trey Smack",
+    "pos": "K",
+    "team": "GB",
+    "adp": 353.2,
+    "rank": 308,
+    "adpStd": 330,
+    "adpPpr": 353.2
+   },
+   {
+    "name": "Dominic Zvada",
+    "pos": "K",
+    "team": "NYG",
+    "adp": 355.3,
+    "rank": 309,
+    "adpStd": 330.4,
+    "adpPpr": 355.3
+   },
+   {
+    "name": "Ben Sauls",
+    "pos": "K",
+    "team": "NYG",
+    "adp": 369,
+    "rank": 310,
+    "adpStd": 326.2,
+    "adpPpr": 369
+   },
+   {
+    "name": "Spencer Shrader",
+    "pos": "K",
+    "team": "IND",
+    "adp": 378,
+    "rank": 311,
+    "adpStd": 355,
+    "adpPpr": 378
    },
    {
     "name": "Washington Commanders",
     "pos": "DST",
     "team": "WAS",
     "adp": null,
-    "rank": 246,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Tennessee Titans",
-    "pos": "DST",
-    "team": "TEN",
-    "adp": null,
-    "rank": 247,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Tampa Bay Buccaneers",
-    "pos": "DST",
-    "team": "TB",
-    "adp": null,
-    "rank": 248,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "San Francisco 49ers",
-    "pos": "DST",
-    "team": "SF",
-    "adp": null,
-    "rank": 249,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Seattle Seahawks",
-    "pos": "DST",
-    "team": "SEA",
-    "adp": null,
-    "rank": 250,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Pittsburgh Steelers",
-    "pos": "DST",
-    "team": "PIT",
-    "adp": null,
-    "rank": 251,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Philadelphia Eagles",
-    "pos": "DST",
-    "team": "PHI",
-    "adp": null,
-    "rank": 252,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "New York Jets",
-    "pos": "DST",
-    "team": "NYJ",
-    "adp": null,
-    "rank": 253,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "New York Giants",
-    "pos": "DST",
-    "team": "NYG",
-    "adp": null,
-    "rank": 254,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "New Orleans Saints",
-    "pos": "DST",
-    "team": "NO",
-    "adp": null,
-    "rank": 255,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "New England Patriots",
-    "pos": "DST",
-    "team": "NE",
-    "adp": null,
-    "rank": 256,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Minnesota Vikings",
-    "pos": "DST",
-    "team": "MIN",
-    "adp": null,
-    "rank": 257,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Miami Dolphins",
-    "pos": "DST",
-    "team": "MIA",
-    "adp": null,
-    "rank": 258,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Las Vegas Raiders",
-    "pos": "DST",
-    "team": "LV",
-    "adp": null,
-    "rank": 259,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Los Angeles Rams",
-    "pos": "DST",
-    "team": "LAR",
-    "adp": null,
-    "rank": 260,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Los Angeles Chargers",
-    "pos": "DST",
-    "team": "LAC",
-    "adp": null,
-    "rank": 261,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Kansas City Chiefs",
-    "pos": "DST",
-    "team": "KC",
-    "adp": null,
-    "rank": 262,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Jacksonville Jaguars",
-    "pos": "DST",
-    "team": "JAX",
-    "adp": null,
-    "rank": 263,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Indianapolis Colts",
-    "pos": "DST",
-    "team": "IND",
-    "adp": null,
-    "rank": 264,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Houston Texans",
-    "pos": "DST",
-    "team": "HOU",
-    "adp": null,
-    "rank": 265,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Green Bay Packers",
-    "pos": "DST",
-    "team": "GB",
-    "adp": null,
-    "rank": 266,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Detroit Lions",
-    "pos": "DST",
-    "team": "DET",
-    "adp": null,
-    "rank": 267,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Denver Broncos",
-    "pos": "DST",
-    "team": "DEN",
-    "adp": null,
-    "rank": 268,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Dallas Cowboys",
-    "pos": "DST",
-    "team": "DAL",
-    "adp": null,
-    "rank": 269,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Cleveland Browns",
-    "pos": "DST",
-    "team": "CLE",
-    "adp": null,
-    "rank": 270,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Cincinnati Bengals",
-    "pos": "DST",
-    "team": "CIN",
-    "adp": null,
-    "rank": 271,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Chicago Bears",
-    "pos": "DST",
-    "team": "CHI",
-    "adp": null,
-    "rank": 272,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Carolina Panthers",
-    "pos": "DST",
-    "team": "CAR",
-    "adp": null,
-    "rank": 273,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Buffalo Bills",
-    "pos": "DST",
-    "team": "BUF",
-    "adp": null,
-    "rank": 274,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Baltimore Ravens",
-    "pos": "DST",
-    "team": "BAL",
-    "adp": null,
-    "rank": 275,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Atlanta Falcons",
-    "pos": "DST",
-    "team": "ATL",
-    "adp": null,
-    "rank": 276,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Arizona Cardinals",
-    "pos": "DST",
-    "team": "ARI",
-    "adp": null,
-    "rank": 277,
+    "rank": 312,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2501,7 +2816,7 @@
     "pos": "QB",
     "team": "TEN",
     "adp": null,
-    "rank": 278,
+    "rank": 313,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2510,7 +2825,7 @@
     "pos": "QB",
     "team": "PIT",
     "adp": null,
-    "rank": 279,
+    "rank": 314,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2519,7 +2834,7 @@
     "pos": "WR",
     "team": "NE",
     "adp": null,
-    "rank": 280,
+    "rank": 315,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2528,7 +2843,7 @@
     "pos": "WR",
     "team": "PHI",
     "adp": null,
-    "rank": 281,
+    "rank": 316,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2537,7 +2852,7 @@
     "pos": "TE",
     "team": "LV",
     "adp": null,
-    "rank": 282,
+    "rank": 317,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2546,7 +2861,7 @@
     "pos": "TE",
     "team": "GB",
     "adp": null,
-    "rank": 283,
+    "rank": 318,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2555,7 +2870,7 @@
     "pos": "TE",
     "team": "PIT",
     "adp": null,
-    "rank": 284,
+    "rank": 319,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2564,7 +2879,7 @@
     "pos": "QB",
     "team": "PHI",
     "adp": null,
-    "rank": 285,
+    "rank": 320,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2573,7 +2888,7 @@
     "pos": "QB",
     "team": "IND",
     "adp": null,
-    "rank": 286,
+    "rank": 321,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2582,7 +2897,7 @@
     "pos": "WR",
     "team": "DAL",
     "adp": null,
-    "rank": 287,
+    "rank": 322,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2591,7 +2906,7 @@
     "pos": "TE",
     "team": "FA",
     "adp": null,
-    "rank": 288,
+    "rank": 323,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2600,7 +2915,7 @@
     "pos": "RB",
     "team": "DAL",
     "adp": null,
-    "rank": 289,
+    "rank": 324,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2609,7 +2924,7 @@
     "pos": "TE",
     "team": "PHI",
     "adp": null,
-    "rank": 290,
+    "rank": 325,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2618,7 +2933,7 @@
     "pos": "WR",
     "team": "LV",
     "adp": null,
-    "rank": 291,
+    "rank": 326,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2627,7 +2942,7 @@
     "pos": "TE",
     "team": "IND",
     "adp": null,
-    "rank": 292,
+    "rank": 327,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2636,7 +2951,7 @@
     "pos": "TE",
     "team": "TB",
     "adp": null,
-    "rank": 293,
+    "rank": 328,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2645,7 +2960,7 @@
     "pos": "QB",
     "team": "PHI",
     "adp": null,
-    "rank": 294,
+    "rank": 329,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2654,25 +2969,7 @@
     "pos": "QB",
     "team": "GB",
     "adp": null,
-    "rank": 295,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Cameron Dicker",
-    "pos": "K",
-    "team": "LAC",
-    "adp": null,
-    "rank": 296,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Cade York",
-    "pos": "K",
-    "team": "NYJ",
-    "adp": null,
-    "rank": 297,
+    "rank": 330,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2681,7 +2978,7 @@
     "pos": "RB",
     "team": "TEN",
     "adp": null,
-    "rank": 298,
+    "rank": 331,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2690,7 +2987,7 @@
     "pos": "TE",
     "team": "DEN",
     "adp": null,
-    "rank": 299,
+    "rank": 332,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2699,7 +2996,7 @@
     "pos": "RB",
     "team": "NO",
     "adp": null,
-    "rank": 300,
+    "rank": 333,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2708,7 +3005,7 @@
     "pos": "TE",
     "team": "TEN",
     "adp": null,
-    "rank": 301,
+    "rank": 334,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2717,7 +3014,7 @@
     "pos": "RB",
     "team": "DEN",
     "adp": null,
-    "rank": 302,
+    "rank": 335,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2726,7 +3023,7 @@
     "pos": "RB",
     "team": "ATL",
     "adp": null,
-    "rank": 303,
+    "rank": 336,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2735,7 +3032,7 @@
     "pos": "WR",
     "team": "GB",
     "adp": null,
-    "rank": 304,
+    "rank": 337,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2744,7 +3041,7 @@
     "pos": "WR",
     "team": "NO",
     "adp": null,
-    "rank": 305,
+    "rank": 338,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2753,7 +3050,7 @@
     "pos": "RB",
     "team": "LAR",
     "adp": null,
-    "rank": 306,
+    "rank": 339,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2762,7 +3059,7 @@
     "pos": "WR",
     "team": "KC",
     "adp": null,
-    "rank": 307,
+    "rank": 340,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2771,7 +3068,7 @@
     "pos": "TE",
     "team": "LV",
     "adp": null,
-    "rank": 308,
+    "rank": 341,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2780,7 +3077,7 @@
     "pos": "TE",
     "team": "PHI",
     "adp": null,
-    "rank": 309,
+    "rank": 342,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2789,7 +3086,7 @@
     "pos": "TE",
     "team": "MIA",
     "adp": null,
-    "rank": 310,
+    "rank": 343,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2798,7 +3095,7 @@
     "pos": "WR",
     "team": "GB",
     "adp": null,
-    "rank": 311,
+    "rank": 344,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2807,7 +3104,7 @@
     "pos": "WR",
     "team": "CAR",
     "adp": null,
-    "rank": 312,
+    "rank": 345,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2816,7 +3113,7 @@
     "pos": "TE",
     "team": "NYJ",
     "adp": null,
-    "rank": 313,
+    "rank": 346,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2825,7 +3122,7 @@
     "pos": "RB",
     "team": "WAS",
     "adp": null,
-    "rank": 314,
+    "rank": 347,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2834,7 +3131,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": null,
-    "rank": 315,
+    "rank": 348,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2843,7 +3140,7 @@
     "pos": "WR",
     "team": "WAS",
     "adp": null,
-    "rank": 316,
+    "rank": 349,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2852,7 +3149,7 @@
     "pos": "RB",
     "team": "PHI",
     "adp": null,
-    "rank": 317,
+    "rank": 350,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2861,7 +3158,7 @@
     "pos": "TE",
     "team": "LAC",
     "adp": null,
-    "rank": 318,
+    "rank": 351,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2870,7 +3167,7 @@
     "pos": "WR",
     "team": "NYG",
     "adp": null,
-    "rank": 319,
+    "rank": 352,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2879,7 +3176,7 @@
     "pos": "WR",
     "team": "ATL",
     "adp": null,
-    "rank": 320,
+    "rank": 353,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2888,7 +3185,7 @@
     "pos": "WR",
     "team": "MIA",
     "adp": null,
-    "rank": 321,
+    "rank": 354,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2897,7 +3194,7 @@
     "pos": "RB",
     "team": "GB",
     "adp": null,
-    "rank": 322,
+    "rank": 355,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2906,7 +3203,7 @@
     "pos": "TE",
     "team": "BUF",
     "adp": null,
-    "rank": 323,
+    "rank": 356,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2915,16 +3212,7 @@
     "pos": "TE",
     "team": "CLE",
     "adp": null,
-    "rank": 324,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Riley Patterson",
-    "pos": "K",
-    "team": "MIA",
-    "adp": null,
-    "rank": 325,
+    "rank": 357,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2933,7 +3221,7 @@
     "pos": "TE",
     "team": "DET",
     "adp": null,
-    "rank": 326,
+    "rank": 358,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2942,16 +3230,7 @@
     "pos": "TE",
     "team": "SF",
     "adp": null,
-    "rank": 327,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Evan McPherson",
-    "pos": "K",
-    "team": "CIN",
-    "adp": null,
-    "rank": 328,
+    "rank": 359,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2960,7 +3239,7 @@
     "pos": "TE",
     "team": "KC",
     "adp": null,
-    "rank": 329,
+    "rank": 360,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2969,7 +3248,7 @@
     "pos": "WR",
     "team": "PIT",
     "adp": null,
-    "rank": 330,
+    "rank": 361,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2978,7 +3257,7 @@
     "pos": "TE",
     "team": "WAS",
     "adp": null,
-    "rank": 331,
+    "rank": 362,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2987,7 +3266,7 @@
     "pos": "TE",
     "team": "CAR",
     "adp": null,
-    "rank": 332,
+    "rank": 363,
     "adpStd": null,
     "adpPpr": null
    },
@@ -2996,7 +3275,7 @@
     "pos": "WR",
     "team": "BUF",
     "adp": null,
-    "rank": 333,
+    "rank": 364,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3005,7 +3284,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 334,
+    "rank": 365,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3014,7 +3293,7 @@
     "pos": "QB",
     "team": "LAC",
     "adp": null,
-    "rank": 335,
+    "rank": 366,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3023,7 +3302,7 @@
     "pos": "RB",
     "team": "TEN",
     "adp": null,
-    "rank": 336,
+    "rank": 367,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3032,7 +3311,7 @@
     "pos": "TE",
     "team": "TEN",
     "adp": null,
-    "rank": 337,
+    "rank": 368,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3041,7 +3320,7 @@
     "pos": "TE",
     "team": "PIT",
     "adp": null,
-    "rank": 338,
+    "rank": 369,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3050,7 +3329,7 @@
     "pos": "WR",
     "team": "CLE",
     "adp": null,
-    "rank": 339,
+    "rank": 370,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3059,7 +3338,7 @@
     "pos": "QB",
     "team": "KC",
     "adp": null,
-    "rank": 340,
+    "rank": 371,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3068,7 +3347,7 @@
     "pos": "WR",
     "team": "WAS",
     "adp": null,
-    "rank": 341,
+    "rank": 372,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3077,7 +3356,7 @@
     "pos": "QB",
     "team": "HOU",
     "adp": null,
-    "rank": 342,
+    "rank": 373,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3086,7 +3365,7 @@
     "pos": "TE",
     "team": "HOU",
     "adp": null,
-    "rank": 343,
+    "rank": 374,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3095,7 +3374,7 @@
     "pos": "WR",
     "team": "MIA",
     "adp": null,
-    "rank": 344,
+    "rank": 375,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3104,7 +3383,7 @@
     "pos": "RB",
     "team": "PHI",
     "adp": null,
-    "rank": 345,
+    "rank": 376,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3113,7 +3392,7 @@
     "pos": "TE",
     "team": "JAX",
     "adp": null,
-    "rank": 346,
+    "rank": 377,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3122,7 +3401,7 @@
     "pos": "TE",
     "team": "CAR",
     "adp": null,
-    "rank": 347,
+    "rank": 378,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3131,7 +3410,7 @@
     "pos": "QB",
     "team": "SF",
     "adp": null,
-    "rank": 348,
+    "rank": 379,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3140,7 +3419,7 @@
     "pos": "WR",
     "team": "IND",
     "adp": null,
-    "rank": 349,
+    "rank": 380,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3149,7 +3428,7 @@
     "pos": "QB",
     "team": "BAL",
     "adp": null,
-    "rank": 350,
+    "rank": 381,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3158,16 +3437,7 @@
     "pos": "TE",
     "team": "ATL",
     "adp": null,
-    "rank": 351,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Tyler Bass",
-    "pos": "K",
-    "team": "BUF",
-    "adp": null,
-    "rank": 352,
+    "rank": 382,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3176,7 +3446,7 @@
     "pos": "WR",
     "team": "SEA",
     "adp": null,
-    "rank": 353,
+    "rank": 383,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3185,7 +3455,7 @@
     "pos": "WR",
     "team": "DAL",
     "adp": null,
-    "rank": 354,
+    "rank": 384,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3194,7 +3464,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 355,
+    "rank": 385,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3203,7 +3473,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": null,
-    "rank": 356,
+    "rank": 386,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3212,7 +3482,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": null,
-    "rank": 357,
+    "rank": 387,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3221,7 +3491,7 @@
     "pos": "WR",
     "team": "NYG",
     "adp": null,
-    "rank": 358,
+    "rank": 388,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3230,7 +3500,7 @@
     "pos": "TE",
     "team": "DEN",
     "adp": null,
-    "rank": 359,
+    "rank": 389,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3239,7 +3509,7 @@
     "pos": "WR",
     "team": "WAS",
     "adp": null,
-    "rank": 360,
+    "rank": 390,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3248,7 +3518,7 @@
     "pos": "TE",
     "team": "FA",
     "adp": null,
-    "rank": 361,
+    "rank": 391,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3257,7 +3527,7 @@
     "pos": "TE",
     "team": "CHI",
     "adp": null,
-    "rank": 362,
+    "rank": 392,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3266,7 +3536,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": null,
-    "rank": 363,
+    "rank": 393,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3275,34 +3545,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": null,
-    "rank": 364,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Chase McLaughlin",
-    "pos": "K",
-    "team": "TB",
-    "adp": null,
-    "rank": 365,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Joey Slye",
-    "pos": "K",
-    "team": "TEN",
-    "adp": null,
-    "rank": 366,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Nick Folk",
-    "pos": "K",
-    "team": "ATL",
-    "adp": null,
-    "rank": 367,
+    "rank": 394,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3311,7 +3554,7 @@
     "pos": "WR",
     "team": "IND",
     "adp": null,
-    "rank": 368,
+    "rank": 395,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3320,7 +3563,7 @@
     "pos": "WR",
     "team": "ATL",
     "adp": null,
-    "rank": 369,
+    "rank": 396,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3329,7 +3572,7 @@
     "pos": "WR",
     "team": "TB",
     "adp": null,
-    "rank": 370,
+    "rank": 397,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3338,7 +3581,7 @@
     "pos": "WR",
     "team": "NYG",
     "adp": null,
-    "rank": 371,
+    "rank": 398,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3347,7 +3590,7 @@
     "pos": "QB",
     "team": "DEN",
     "adp": null,
-    "rank": 372,
+    "rank": 399,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3356,16 +3599,7 @@
     "pos": "RB",
     "team": "NYG",
     "adp": null,
-    "rank": 373,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Matt Gay",
-    "pos": "K",
-    "team": "LV",
-    "adp": null,
-    "rank": 374,
+    "rank": 400,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3374,7 +3608,7 @@
     "pos": "RB",
     "team": "BUF",
     "adp": null,
-    "rank": 375,
+    "rank": 401,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3383,7 +3617,7 @@
     "pos": "QB",
     "team": "ARI",
     "adp": null,
-    "rank": 376,
+    "rank": 402,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3392,7 +3626,7 @@
     "pos": "TE",
     "team": "CIN",
     "adp": null,
-    "rank": 377,
+    "rank": 403,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3401,7 +3635,7 @@
     "pos": "RB",
     "team": "BAL",
     "adp": null,
-    "rank": 378,
+    "rank": 404,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3410,7 +3644,7 @@
     "pos": "TE",
     "team": "HOU",
     "adp": null,
-    "rank": 379,
+    "rank": 405,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3419,7 +3653,7 @@
     "pos": "TE",
     "team": "MIN",
     "adp": null,
-    "rank": 380,
+    "rank": 406,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3428,7 +3662,7 @@
     "pos": "WR",
     "team": "DET",
     "adp": null,
-    "rank": 381,
+    "rank": 407,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3437,7 +3671,7 @@
     "pos": "WR",
     "team": "DEN",
     "adp": null,
-    "rank": 382,
+    "rank": 408,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3446,7 +3680,7 @@
     "pos": "TE",
     "team": "BUF",
     "adp": null,
-    "rank": 383,
+    "rank": 409,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3455,7 +3689,7 @@
     "pos": "TE",
     "team": "NO",
     "adp": null,
-    "rank": 384,
+    "rank": 410,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3464,7 +3698,7 @@
     "pos": "WR",
     "team": "PHI",
     "adp": null,
-    "rank": 385,
+    "rank": 411,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3473,7 +3707,7 @@
     "pos": "TE",
     "team": "CIN",
     "adp": null,
-    "rank": 386,
+    "rank": 412,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3482,16 +3716,7 @@
     "pos": "K",
     "team": "FA",
     "adp": null,
-    "rank": 387,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Eddy Pineiro",
-    "pos": "K",
-    "team": "SF",
-    "adp": null,
-    "rank": 388,
+    "rank": 413,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3500,7 +3725,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 389,
+    "rank": 414,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3509,7 +3734,7 @@
     "pos": "WR",
     "team": "BUF",
     "adp": null,
-    "rank": 390,
+    "rank": 415,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3518,7 +3743,7 @@
     "pos": "TE",
     "team": "DET",
     "adp": null,
-    "rank": 391,
+    "rank": 416,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3527,7 +3752,7 @@
     "pos": "QB",
     "team": "BUF",
     "adp": null,
-    "rank": 392,
+    "rank": 417,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3536,7 +3761,7 @@
     "pos": "K",
     "team": "NYJ",
     "adp": null,
-    "rank": 393,
+    "rank": 418,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3545,7 +3770,7 @@
     "pos": "K",
     "team": "FA",
     "adp": null,
-    "rank": 394,
+    "rank": 419,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3554,7 +3779,7 @@
     "pos": "WR",
     "team": "DAL",
     "adp": null,
-    "rank": 395,
+    "rank": 420,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3563,7 +3788,7 @@
     "pos": "K",
     "team": "FA",
     "adp": null,
-    "rank": 396,
+    "rank": 421,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3572,7 +3797,7 @@
     "pos": "TE",
     "team": "FA",
     "adp": null,
-    "rank": 397,
+    "rank": 422,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3581,7 +3806,7 @@
     "pos": "TE",
     "team": "BAL",
     "adp": null,
-    "rank": 398,
+    "rank": 423,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3590,7 +3815,7 @@
     "pos": "TE",
     "team": "LV",
     "adp": null,
-    "rank": 399,
+    "rank": 424,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3599,16 +3824,16 @@
     "pos": "TE",
     "team": "CIN",
     "adp": null,
-    "rank": 400,
+    "rank": 425,
     "adpStd": null,
     "adpPpr": null
    },
    {
     "name": "Dante Pettis",
     "pos": "WR",
-    "team": "FA",
+    "team": "BUF",
     "adp": null,
-    "rank": 401,
+    "rank": 426,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3617,7 +3842,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": null,
-    "rank": 402,
+    "rank": 427,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3626,7 +3851,7 @@
     "pos": "QB",
     "team": "PIT",
     "adp": null,
-    "rank": 403,
+    "rank": 428,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3635,16 +3860,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": null,
-    "rank": 404,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Younghoe Koo",
-    "pos": "K",
-    "team": "FA",
-    "adp": null,
-    "rank": 405,
+    "rank": 429,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3653,7 +3869,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": null,
-    "rank": 406,
+    "rank": 430,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3662,7 +3878,7 @@
     "pos": "TE",
     "team": "PIT",
     "adp": null,
-    "rank": 407,
+    "rank": 431,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3671,7 +3887,7 @@
     "pos": "QB",
     "team": "JAX",
     "adp": null,
-    "rank": 408,
+    "rank": 432,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3680,7 +3896,7 @@
     "pos": "WR",
     "team": "ARI",
     "adp": null,
-    "rank": 409,
+    "rank": 433,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3689,7 +3905,7 @@
     "pos": "TE",
     "team": "FA",
     "adp": null,
-    "rank": 410,
+    "rank": 434,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3698,7 +3914,7 @@
     "pos": "WR",
     "team": "NYJ",
     "adp": null,
-    "rank": 411,
+    "rank": 435,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3707,7 +3923,7 @@
     "pos": "WR",
     "team": "CAR",
     "adp": null,
-    "rank": 412,
+    "rank": 436,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3716,7 +3932,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 413,
+    "rank": 437,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3725,16 +3941,7 @@
     "pos": "K",
     "team": "MIA",
     "adp": null,
-    "rank": 414,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Harrison Butker",
-    "pos": "K",
-    "team": "KC",
-    "adp": null,
-    "rank": 415,
+    "rank": 438,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3743,16 +3950,7 @@
     "pos": "RB",
     "team": "WAS",
     "adp": null,
-    "rank": 416,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Jake Elliott",
-    "pos": "K",
-    "team": "PHI",
-    "adp": null,
-    "rank": 417,
+    "rank": 439,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3761,7 +3959,7 @@
     "pos": "TE",
     "team": "SEA",
     "adp": null,
-    "rank": 418,
+    "rank": 440,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3770,7 +3968,7 @@
     "pos": "QB",
     "team": "FA",
     "adp": null,
-    "rank": 419,
+    "rank": 441,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3779,7 +3977,7 @@
     "pos": "WR",
     "team": "NE",
     "adp": null,
-    "rank": 420,
+    "rank": 442,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3788,7 +3986,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 421,
+    "rank": 443,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3797,7 +3995,7 @@
     "pos": "RB",
     "team": "CIN",
     "adp": null,
-    "rank": 422,
+    "rank": 444,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3806,7 +4004,7 @@
     "pos": "TE",
     "team": "FA",
     "adp": null,
-    "rank": 423,
+    "rank": 445,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3815,7 +4013,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": null,
-    "rank": 424,
+    "rank": 446,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3824,7 +4022,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 425,
+    "rank": 447,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3833,7 +4031,7 @@
     "pos": "TE",
     "team": "DEN",
     "adp": null,
-    "rank": 426,
+    "rank": 448,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3842,7 +4040,7 @@
     "pos": "TE",
     "team": "IND",
     "adp": null,
-    "rank": 427,
+    "rank": 449,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3851,7 +4049,7 @@
     "pos": "WR",
     "team": "NYG",
     "adp": null,
-    "rank": 428,
+    "rank": 450,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3860,7 +4058,7 @@
     "pos": "QB",
     "team": "CLE",
     "adp": null,
-    "rank": 429,
+    "rank": 451,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3869,16 +4067,7 @@
     "pos": "QB",
     "team": "TEN",
     "adp": null,
-    "rank": 430,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Wil Lutz",
-    "pos": "K",
-    "team": "DEN",
-    "adp": null,
-    "rank": 431,
+    "rank": 452,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3887,16 +4076,7 @@
     "pos": "WR",
     "team": "CHI",
     "adp": null,
-    "rank": 432,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Ka'imi Fairbairn",
-    "pos": "K",
-    "team": "HOU",
-    "adp": null,
-    "rank": 433,
+    "rank": 453,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3905,7 +4085,7 @@
     "pos": "WR",
     "team": "SF",
     "adp": null,
-    "rank": 434,
+    "rank": 454,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3914,7 +4094,7 @@
     "pos": "TE",
     "team": "LAR",
     "adp": null,
-    "rank": 435,
+    "rank": 455,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3923,7 +4103,7 @@
     "pos": "WR",
     "team": "BAL",
     "adp": null,
-    "rank": 436,
+    "rank": 456,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3932,7 +4112,7 @@
     "pos": "TE",
     "team": "ATL",
     "adp": null,
-    "rank": 437,
+    "rank": 457,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3941,7 +4121,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 438,
+    "rank": 458,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3950,7 +4130,7 @@
     "pos": "QB",
     "team": "MIN",
     "adp": null,
-    "rank": 439,
+    "rank": 459,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3959,7 +4139,7 @@
     "pos": "TE",
     "team": "NYG",
     "adp": null,
-    "rank": 440,
+    "rank": 460,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3968,7 +4148,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 441,
+    "rank": 461,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3977,16 +4157,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": null,
-    "rank": 442,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Jason Myers",
-    "pos": "K",
-    "team": "SEA",
-    "adp": null,
-    "rank": 443,
+    "rank": 462,
     "adpStd": null,
     "adpPpr": null
    },
@@ -3995,7 +4166,7 @@
     "pos": "QB",
     "team": "CIN",
     "adp": null,
-    "rank": 444,
+    "rank": 463,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4004,7 +4175,7 @@
     "pos": "TE",
     "team": "FA",
     "adp": null,
-    "rank": 445,
+    "rank": 464,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4013,7 +4184,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 446,
+    "rank": 465,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4022,7 +4193,7 @@
     "pos": "RB",
     "team": "JAX",
     "adp": null,
-    "rank": 447,
+    "rank": 466,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4031,7 +4202,7 @@
     "pos": "QB",
     "team": "WAS",
     "adp": null,
-    "rank": 448,
+    "rank": 467,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4040,7 +4211,7 @@
     "pos": "QB",
     "team": "NYG",
     "adp": null,
-    "rank": 449,
+    "rank": 468,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4049,7 +4220,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 450,
+    "rank": 469,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4058,7 +4229,7 @@
     "pos": "QB",
     "team": "DET",
     "adp": null,
-    "rank": 451,
+    "rank": 470,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4067,7 +4238,7 @@
     "pos": "WR",
     "team": "NYG",
     "adp": null,
-    "rank": 452,
+    "rank": 471,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4076,25 +4247,7 @@
     "pos": "QB",
     "team": "FA",
     "adp": null,
-    "rank": 453,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Cairo Santos",
-    "pos": "K",
-    "team": "CHI",
-    "adp": null,
-    "rank": 454,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Chris Boswell",
-    "pos": "K",
-    "team": "PIT",
-    "adp": null,
-    "rank": 455,
+    "rank": 472,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4103,7 +4256,7 @@
     "pos": "QB",
     "team": "CIN",
     "adp": null,
-    "rank": 456,
+    "rank": 473,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4112,7 +4265,7 @@
     "pos": "QB",
     "team": "FA",
     "adp": null,
-    "rank": 457,
+    "rank": 474,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4121,7 +4274,7 @@
     "pos": "K",
     "team": "FA",
     "adp": null,
-    "rank": 458,
+    "rank": 475,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4130,7 +4283,7 @@
     "pos": "K",
     "team": "FA",
     "adp": null,
-    "rank": 459,
+    "rank": 476,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4139,7 +4292,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 460,
+    "rank": 477,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4148,7 +4301,7 @@
     "pos": "K",
     "team": "WAS",
     "adp": null,
-    "rank": 461,
+    "rank": 478,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4157,7 +4310,7 @@
     "pos": "RB",
     "team": "CIN",
     "adp": null,
-    "rank": 462,
+    "rank": 479,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4166,7 +4319,7 @@
     "pos": "TE",
     "team": "ATL",
     "adp": null,
-    "rank": 463,
+    "rank": 480,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4175,16 +4328,7 @@
     "pos": "K",
     "team": "FA",
     "adp": null,
-    "rank": 464,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Dominic Zvada",
-    "pos": "K",
-    "team": "NYG",
-    "adp": null,
-    "rank": 465,
+    "rank": 481,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4193,7 +4337,7 @@
     "pos": "FB",
     "team": "SF",
     "adp": null,
-    "rank": 466,
+    "rank": 482,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4202,16 +4346,7 @@
     "pos": "QB",
     "team": "NYJ",
     "adp": null,
-    "rank": 467,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Trey Smack",
-    "pos": "K",
-    "team": "GB",
-    "adp": null,
-    "rank": 468,
+    "rank": 483,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4220,7 +4355,7 @@
     "pos": "WR",
     "team": "NO",
     "adp": null,
-    "rank": 469,
+    "rank": 484,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4229,7 +4364,7 @@
     "pos": "TE",
     "team": "MIN",
     "adp": null,
-    "rank": 470,
+    "rank": 485,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4238,7 +4373,7 @@
     "pos": "WR",
     "team": "PIT",
     "adp": null,
-    "rank": 471,
+    "rank": 486,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4247,7 +4382,7 @@
     "pos": "WR",
     "team": "CIN",
     "adp": null,
-    "rank": 472,
+    "rank": 487,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4256,7 +4391,7 @@
     "pos": "TE",
     "team": "CLE",
     "adp": null,
-    "rank": 473,
+    "rank": 488,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4265,7 +4400,7 @@
     "pos": "TE",
     "team": "MIA",
     "adp": null,
-    "rank": 474,
+    "rank": 489,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4274,7 +4409,7 @@
     "pos": "TE",
     "team": "PIT",
     "adp": null,
-    "rank": 475,
+    "rank": 490,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4283,7 +4418,7 @@
     "pos": "TE",
     "team": "DET",
     "adp": null,
-    "rank": 476,
+    "rank": 491,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4292,7 +4427,7 @@
     "pos": "TE",
     "team": "MIA",
     "adp": null,
-    "rank": 477,
+    "rank": 492,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4301,7 +4436,7 @@
     "pos": "QB",
     "team": "FA",
     "adp": null,
-    "rank": 478,
+    "rank": 493,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4310,7 +4445,7 @@
     "pos": "RB",
     "team": "IND",
     "adp": null,
-    "rank": 479,
+    "rank": 494,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4319,7 +4454,7 @@
     "pos": "TE",
     "team": "TEN",
     "adp": null,
-    "rank": 480,
+    "rank": 495,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4328,7 +4463,7 @@
     "pos": "TE",
     "team": "NE",
     "adp": null,
-    "rank": 481,
+    "rank": 496,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4337,7 +4472,7 @@
     "pos": "WR",
     "team": "NO",
     "adp": null,
-    "rank": 482,
+    "rank": 497,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4346,7 +4481,7 @@
     "pos": "RB",
     "team": "KC",
     "adp": null,
-    "rank": 483,
+    "rank": 498,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4355,7 +4490,7 @@
     "pos": "RB",
     "team": "SF",
     "adp": null,
-    "rank": 484,
+    "rank": 499,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4364,7 +4499,7 @@
     "pos": "WR",
     "team": "KC",
     "adp": null,
-    "rank": 485,
+    "rank": 500,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4373,7 +4508,7 @@
     "pos": "WR",
     "team": "CHI",
     "adp": null,
-    "rank": 486,
+    "rank": 501,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4382,7 +4517,7 @@
     "pos": "WR",
     "team": "LV",
     "adp": null,
-    "rank": 487,
+    "rank": 502,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4391,7 +4526,7 @@
     "pos": "TE",
     "team": "JAX",
     "adp": null,
-    "rank": 488,
+    "rank": 503,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4400,7 +4535,7 @@
     "pos": "RB",
     "team": "NE",
     "adp": null,
-    "rank": 489,
+    "rank": 504,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4409,7 +4544,7 @@
     "pos": "WR",
     "team": "BUF",
     "adp": null,
-    "rank": 490,
+    "rank": 505,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4418,7 +4553,7 @@
     "pos": "TE",
     "team": "DEN",
     "adp": null,
-    "rank": 491,
+    "rank": 506,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4427,7 +4562,7 @@
     "pos": "WR",
     "team": "JAX",
     "adp": null,
-    "rank": 492,
+    "rank": 507,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4436,7 +4571,7 @@
     "pos": "TE",
     "team": "FA",
     "adp": null,
-    "rank": 493,
+    "rank": 508,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4445,7 +4580,7 @@
     "pos": "WR",
     "team": "LAC",
     "adp": null,
-    "rank": 494,
+    "rank": 509,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4454,7 +4589,7 @@
     "pos": "TE",
     "team": "SEA",
     "adp": null,
-    "rank": 495,
+    "rank": 510,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4463,7 +4598,7 @@
     "pos": "WR",
     "team": "JAX",
     "adp": null,
-    "rank": 496,
+    "rank": 511,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4472,7 +4607,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 497,
+    "rank": 512,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4481,7 +4616,7 @@
     "pos": "RB",
     "team": "JAX",
     "adp": null,
-    "rank": 498,
+    "rank": 513,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4490,7 +4625,7 @@
     "pos": "TE",
     "team": "KC",
     "adp": null,
-    "rank": 499,
+    "rank": 514,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4499,7 +4634,7 @@
     "pos": "WR",
     "team": "MIA",
     "adp": null,
-    "rank": 500,
+    "rank": 515,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4508,7 +4643,7 @@
     "pos": "WR",
     "team": "DEN",
     "adp": null,
-    "rank": 501,
+    "rank": 516,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4517,7 +4652,7 @@
     "pos": "WR",
     "team": "IND",
     "adp": null,
-    "rank": 502,
+    "rank": 517,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4526,7 +4661,7 @@
     "pos": "RB",
     "team": "FA",
     "adp": null,
-    "rank": 503,
+    "rank": 518,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4535,7 +4670,7 @@
     "pos": "TE",
     "team": "BAL",
     "adp": null,
-    "rank": 504,
+    "rank": 519,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4544,7 +4679,7 @@
     "pos": "TE",
     "team": "CHI",
     "adp": null,
-    "rank": 505,
+    "rank": 520,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4553,7 +4688,7 @@
     "pos": "TE",
     "team": "NO",
     "adp": null,
-    "rank": 506,
+    "rank": 521,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4562,7 +4697,7 @@
     "pos": "WR",
     "team": "CIN",
     "adp": null,
-    "rank": 507,
+    "rank": 522,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4571,7 +4706,7 @@
     "pos": "WR",
     "team": "TB",
     "adp": null,
-    "rank": 508,
+    "rank": 523,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4580,7 +4715,7 @@
     "pos": "RB",
     "team": "LAR",
     "adp": null,
-    "rank": 509,
+    "rank": 524,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4589,7 +4724,7 @@
     "pos": "WR",
     "team": "CLE",
     "adp": null,
-    "rank": 510,
+    "rank": 525,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4598,7 +4733,7 @@
     "pos": "TE",
     "team": "HOU",
     "adp": null,
-    "rank": 511,
+    "rank": 526,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4607,7 +4742,7 @@
     "pos": "QB",
     "team": "CLE",
     "adp": null,
-    "rank": 512,
+    "rank": 527,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4616,7 +4751,7 @@
     "pos": "QB",
     "team": "NYJ",
     "adp": null,
-    "rank": 513,
+    "rank": 528,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4625,7 +4760,7 @@
     "pos": "RB",
     "team": "BAL",
     "adp": null,
-    "rank": 514,
+    "rank": 529,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4634,7 +4769,7 @@
     "pos": "TE",
     "team": "JAX",
     "adp": null,
-    "rank": 515,
+    "rank": 530,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4643,7 +4778,7 @@
     "pos": "WR",
     "team": "ARI",
     "adp": null,
-    "rank": 516,
+    "rank": 531,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4652,7 +4787,7 @@
     "pos": "WR",
     "team": "MIA",
     "adp": null,
-    "rank": 517,
+    "rank": 532,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4661,7 +4796,7 @@
     "pos": "QB",
     "team": "PIT",
     "adp": null,
-    "rank": 518,
+    "rank": 533,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4670,7 +4805,7 @@
     "pos": "TE",
     "team": "CIN",
     "adp": null,
-    "rank": 519,
+    "rank": 534,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4679,7 +4814,7 @@
     "pos": "TE",
     "team": "BAL",
     "adp": null,
-    "rank": 520,
+    "rank": 535,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4688,7 +4823,7 @@
     "pos": "QB",
     "team": "ARI",
     "adp": null,
-    "rank": 521,
+    "rank": 536,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4697,7 +4832,7 @@
     "pos": "WR",
     "team": "LAR",
     "adp": null,
-    "rank": 522,
+    "rank": 537,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4706,7 +4841,7 @@
     "pos": "WR",
     "team": "PHI",
     "adp": null,
-    "rank": 523,
+    "rank": 538,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4715,7 +4850,7 @@
     "pos": "TE",
     "team": "MIN",
     "adp": null,
-    "rank": 524,
+    "rank": 539,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4724,7 +4859,7 @@
     "pos": "WR",
     "team": "CLE",
     "adp": null,
-    "rank": 525,
+    "rank": 540,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4733,16 +4868,7 @@
     "pos": "WR",
     "team": "CHI",
     "adp": null,
-    "rank": 526,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Ben Sauls",
-    "pos": "K",
-    "team": "NYG",
-    "adp": null,
-    "rank": 527,
+    "rank": 541,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4751,16 +4877,7 @@
     "pos": "RB",
     "team": "SEA",
     "adp": null,
-    "rank": 528,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Ryan Fitzgerald",
-    "pos": "K",
-    "team": "CAR",
-    "adp": null,
-    "rank": 529,
+    "rank": 542,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4769,7 +4886,7 @@
     "pos": "WR",
     "team": "MIA",
     "adp": null,
-    "rank": 530,
+    "rank": 543,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4778,7 +4895,7 @@
     "pos": "RB",
     "team": "DAL",
     "adp": null,
-    "rank": 531,
+    "rank": 544,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4787,25 +4904,7 @@
     "pos": "WR",
     "team": "LAR",
     "adp": null,
-    "rank": 532,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Andy Borregales",
-    "pos": "K",
-    "team": "NE",
-    "adp": null,
-    "rank": 533,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Tyler Loop",
-    "pos": "K",
-    "team": "BAL",
-    "adp": null,
-    "rank": 534,
+    "rank": 545,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4814,7 +4913,7 @@
     "pos": "WR",
     "team": "BAL",
     "adp": null,
-    "rank": 535,
+    "rank": 546,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4823,7 +4922,7 @@
     "pos": "WR",
     "team": "LAC",
     "adp": null,
-    "rank": 536,
+    "rank": 547,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4832,7 +4931,7 @@
     "pos": "TE",
     "team": "BUF",
     "adp": null,
-    "rank": 537,
+    "rank": 548,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4841,7 +4940,7 @@
     "pos": "WR",
     "team": "WAS",
     "adp": null,
-    "rank": 538,
+    "rank": 549,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4850,16 +4949,16 @@
     "pos": "WR",
     "team": "SF",
     "adp": null,
-    "rank": 539,
+    "rank": 550,
     "adpStd": null,
     "adpPpr": null
    },
    {
     "name": "Lenny Krieg",
     "pos": "K",
-    "team": "FA",
+    "team": "GB",
     "adp": null,
-    "rank": 540,
+    "rank": 551,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4868,7 +4967,7 @@
     "pos": "RB",
     "team": "JAX",
     "adp": null,
-    "rank": 541,
+    "rank": 552,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4877,7 +4976,7 @@
     "pos": "RB",
     "team": "CIN",
     "adp": null,
-    "rank": 542,
+    "rank": 553,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4886,7 +4985,7 @@
     "pos": "WR",
     "team": "NE",
     "adp": null,
-    "rank": 543,
+    "rank": 554,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4895,7 +4994,7 @@
     "pos": "WR",
     "team": "LV",
     "adp": null,
-    "rank": 544,
+    "rank": 555,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4904,7 +5003,7 @@
     "pos": "WR",
     "team": "NYJ",
     "adp": null,
-    "rank": 545,
+    "rank": 556,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4913,7 +5012,7 @@
     "pos": "RB",
     "team": "CAR",
     "adp": null,
-    "rank": 546,
+    "rank": 557,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4922,7 +5021,7 @@
     "pos": "WR",
     "team": "CAR",
     "adp": null,
-    "rank": 547,
+    "rank": 558,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4931,7 +5030,7 @@
     "pos": "TE",
     "team": "SEA",
     "adp": null,
-    "rank": 548,
+    "rank": 559,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4940,7 +5039,7 @@
     "pos": "WR",
     "team": "TEN",
     "adp": null,
-    "rank": 549,
+    "rank": 560,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4949,7 +5048,7 @@
     "pos": "RB",
     "team": "TEN",
     "adp": null,
-    "rank": 550,
+    "rank": 561,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4958,7 +5057,7 @@
     "pos": "RB",
     "team": "MIA",
     "adp": null,
-    "rank": 551,
+    "rank": 562,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4967,7 +5066,7 @@
     "pos": "QB",
     "team": "PIT",
     "adp": null,
-    "rank": 552,
+    "rank": 563,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4976,7 +5075,7 @@
     "pos": "QB",
     "team": "SEA",
     "adp": null,
-    "rank": 553,
+    "rank": 564,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4985,7 +5084,7 @@
     "pos": "WR",
     "team": "KC",
     "adp": null,
-    "rank": 554,
+    "rank": 565,
     "adpStd": null,
     "adpPpr": null
    },
@@ -4994,7 +5093,7 @@
     "pos": "WR",
     "team": "CLE",
     "adp": null,
-    "rank": 555,
+    "rank": 566,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5003,7 +5102,7 @@
     "pos": "QB",
     "team": "MIA",
     "adp": null,
-    "rank": 556,
+    "rank": 567,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5012,7 +5111,7 @@
     "pos": "WR",
     "team": "MIN",
     "adp": null,
-    "rank": 557,
+    "rank": 568,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5021,7 +5120,7 @@
     "pos": "RB",
     "team": "MIA",
     "adp": null,
-    "rank": 558,
+    "rank": 569,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5030,7 +5129,7 @@
     "pos": "QB",
     "team": "CLE",
     "adp": null,
-    "rank": 559,
+    "rank": 570,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5039,7 +5138,7 @@
     "pos": "WR",
     "team": "TB",
     "adp": null,
-    "rank": 560,
+    "rank": 571,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5048,7 +5147,7 @@
     "pos": "WR",
     "team": "GB",
     "adp": null,
-    "rank": 561,
+    "rank": 572,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5057,7 +5156,7 @@
     "pos": "WR",
     "team": "SEA",
     "adp": null,
-    "rank": 562,
+    "rank": 573,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5066,7 +5165,7 @@
     "pos": "TE",
     "team": "CAR",
     "adp": null,
-    "rank": 563,
+    "rank": 574,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5075,7 +5174,7 @@
     "pos": "RB",
     "team": "CLE",
     "adp": null,
-    "rank": 564,
+    "rank": 575,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5084,7 +5183,16 @@
     "pos": "RB",
     "team": "IND",
     "adp": null,
-    "rank": 565,
+    "rank": 576,
+    "adpStd": null,
+    "adpPpr": null
+   },
+   {
+    "name": "Riley Leonard",
+    "pos": "QB",
+    "team": "IND",
+    "adp": null,
+    "rank": 577,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5093,7 +5201,7 @@
     "pos": "RB",
     "team": "SF",
     "adp": null,
-    "rank": 566,
+    "rank": 578,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5102,7 +5210,7 @@
     "pos": "RB",
     "team": "GB",
     "adp": null,
-    "rank": 567,
+    "rank": 579,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5111,16 +5219,7 @@
     "pos": "RB",
     "team": "SEA",
     "adp": null,
-    "rank": 568,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Harrison Mevis",
-    "pos": "K",
-    "team": "LAR",
-    "adp": null,
-    "rank": 569,
+    "rank": 580,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5129,7 +5228,7 @@
     "pos": "WR",
     "team": "TB",
     "adp": null,
-    "rank": 570,
+    "rank": 581,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5138,7 +5237,7 @@
     "pos": "WR",
     "team": "ARI",
     "adp": null,
-    "rank": 571,
+    "rank": 582,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5147,25 +5246,7 @@
     "pos": "TE",
     "team": "TB",
     "adp": null,
-    "rank": 572,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Will Reichard",
-    "pos": "K",
-    "team": "MIN",
-    "adp": null,
-    "rank": 573,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Cam Little",
-    "pos": "K",
-    "team": "JAX",
-    "adp": null,
-    "rank": 574,
+    "rank": 583,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5174,7 +5255,7 @@
     "pos": "WR",
     "team": "IND",
     "adp": null,
-    "rank": 575,
+    "rank": 584,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5183,7 +5264,7 @@
     "pos": "RB",
     "team": "DET",
     "adp": null,
-    "rank": 576,
+    "rank": 585,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5192,7 +5273,7 @@
     "pos": "TE",
     "team": "ARI",
     "adp": null,
-    "rank": 577,
+    "rank": 586,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5201,16 +5282,7 @@
     "pos": "QB",
     "team": "LV",
     "adp": null,
-    "rank": 578,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Charlie Smyth",
-    "pos": "K",
-    "team": "NO",
-    "adp": null,
-    "rank": 579,
+    "rank": 587,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5219,7 +5291,7 @@
     "pos": "RB",
     "team": "SF",
     "adp": null,
-    "rank": 580,
+    "rank": 588,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5228,7 +5300,7 @@
     "pos": "WR",
     "team": "WAS",
     "adp": null,
-    "rank": 581,
+    "rank": 589,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5237,7 +5309,7 @@
     "pos": "WR",
     "team": "FA",
     "adp": null,
-    "rank": 582,
+    "rank": 590,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5246,7 +5318,7 @@
     "pos": "WR",
     "team": "PIT",
     "adp": null,
-    "rank": 583,
+    "rank": 591,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5255,7 +5327,7 @@
     "pos": "WR",
     "team": "BAL",
     "adp": null,
-    "rank": 584,
+    "rank": 592,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5264,7 +5336,7 @@
     "pos": "WR",
     "team": "CAR",
     "adp": null,
-    "rank": 585,
+    "rank": 593,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5273,7 +5345,7 @@
     "pos": "WR",
     "team": "LAR",
     "adp": null,
-    "rank": 586,
+    "rank": 594,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5282,7 +5354,7 @@
     "pos": "WR",
     "team": "CLE",
     "adp": null,
-    "rank": 587,
+    "rank": 595,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5291,7 +5363,7 @@
     "pos": "WR",
     "team": "SF",
     "adp": null,
-    "rank": 588,
+    "rank": 596,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5300,7 +5372,7 @@
     "pos": "WR",
     "team": "MIA",
     "adp": null,
-    "rank": 589,
+    "rank": 597,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5309,7 +5381,7 @@
     "pos": "WR",
     "team": "NYJ",
     "adp": null,
-    "rank": 590,
+    "rank": 598,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5318,7 +5390,7 @@
     "pos": "TE",
     "team": "FA",
     "adp": null,
-    "rank": 591,
+    "rank": 599,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5327,7 +5399,7 @@
     "pos": "TE",
     "team": "CAR",
     "adp": null,
-    "rank": 592,
+    "rank": 600,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5336,7 +5408,7 @@
     "pos": "TE",
     "team": "HOU",
     "adp": null,
-    "rank": 593,
+    "rank": 601,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5345,7 +5417,7 @@
     "pos": "TE",
     "team": "WAS",
     "adp": null,
-    "rank": 594,
+    "rank": 602,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5354,7 +5426,7 @@
     "pos": "TE",
     "team": "DAL",
     "adp": null,
-    "rank": 595,
+    "rank": 603,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5363,7 +5435,7 @@
     "pos": "RB",
     "team": "HOU",
     "adp": null,
-    "rank": 596,
+    "rank": 604,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5372,7 +5444,7 @@
     "pos": "RB",
     "team": "GB",
     "adp": null,
-    "rank": 597,
+    "rank": 605,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5381,7 +5453,7 @@
     "pos": "RB",
     "team": "PHI",
     "adp": null,
-    "rank": 598,
+    "rank": 606,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5390,7 +5462,7 @@
     "pos": "RB",
     "team": "LV",
     "adp": null,
-    "rank": 599,
+    "rank": 607,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5399,7 +5471,7 @@
     "pos": "RB",
     "team": "NYJ",
     "adp": null,
-    "rank": 600,
+    "rank": 608,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5408,7 +5480,7 @@
     "pos": "RB",
     "team": "BAL",
     "adp": null,
-    "rank": 601,
+    "rank": 609,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5417,7 +5489,7 @@
     "pos": "QB",
     "team": "NO",
     "adp": null,
-    "rank": 602,
+    "rank": 610,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5426,25 +5498,7 @@
     "pos": "QB",
     "team": "DAL",
     "adp": null,
-    "rank": 603,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Jake Bates",
-    "pos": "K",
-    "team": "DET",
-    "adp": null,
-    "rank": 604,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Brandon Aubrey",
-    "pos": "K",
-    "team": "DAL",
-    "adp": null,
-    "rank": 605,
+    "rank": 611,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5453,7 +5507,7 @@
     "pos": "FB",
     "team": "DAL",
     "adp": null,
-    "rank": 606,
+    "rank": 612,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5462,7 +5516,7 @@
     "pos": "RB",
     "team": "DEN",
     "adp": null,
-    "rank": 607,
+    "rank": 613,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5471,7 +5525,7 @@
     "pos": "TE",
     "team": "DEN",
     "adp": null,
-    "rank": 608,
+    "rank": 614,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5480,7 +5534,7 @@
     "pos": "WR",
     "team": "BUF",
     "adp": null,
-    "rank": 609,
+    "rank": 615,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5489,7 +5543,7 @@
     "pos": "TE",
     "team": "NE",
     "adp": null,
-    "rank": 610,
+    "rank": 616,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5498,7 +5552,7 @@
     "pos": "RB",
     "team": "GB",
     "adp": null,
-    "rank": 611,
+    "rank": 617,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5507,7 +5561,7 @@
     "pos": "WR",
     "team": "KC",
     "adp": null,
-    "rank": 612,
+    "rank": 618,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5516,7 +5570,7 @@
     "pos": "RB",
     "team": "MIN",
     "adp": null,
-    "rank": 613,
+    "rank": 619,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5525,16 +5579,7 @@
     "pos": "QB",
     "team": "NE",
     "adp": null,
-    "rank": 614,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Andre Szmyt",
-    "pos": "K",
-    "team": "CLE",
-    "adp": null,
-    "rank": 615,
+    "rank": 620,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5543,7 +5588,7 @@
     "pos": "QB",
     "team": "CHI",
     "adp": null,
-    "rank": 616,
+    "rank": 621,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5552,7 +5597,7 @@
     "pos": "TE",
     "team": "CLE",
     "adp": null,
-    "rank": 617,
+    "rank": 622,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5561,7 +5606,7 @@
     "pos": "RB",
     "team": "KC",
     "adp": null,
-    "rank": 618,
+    "rank": 623,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5570,7 +5615,7 @@
     "pos": "WR",
     "team": "LAR",
     "adp": null,
-    "rank": 619,
+    "rank": 624,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5579,7 +5624,7 @@
     "pos": "K",
     "team": "IND",
     "adp": null,
-    "rank": 620,
+    "rank": 625,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5588,25 +5633,7 @@
     "pos": "WR",
     "team": "ARI",
     "adp": null,
-    "rank": 621,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Chad Ryland",
-    "pos": "K",
-    "team": "ARI",
-    "adp": null,
-    "rank": 622,
-    "adpStd": null,
-    "adpPpr": null
-   },
-   {
-    "name": "Jake Moody",
-    "pos": "K",
-    "team": "WAS",
-    "adp": null,
-    "rank": 623,
+    "rank": 626,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5615,7 +5642,7 @@
     "pos": "TE",
     "team": "DAL",
     "adp": null,
-    "rank": 624,
+    "rank": 627,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5624,7 +5651,7 @@
     "pos": "WR",
     "team": "SEA",
     "adp": null,
-    "rank": 625,
+    "rank": 628,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5633,7 +5660,7 @@
     "pos": "WR",
     "team": "CLE",
     "adp": null,
-    "rank": 626,
+    "rank": 629,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5642,7 +5669,7 @@
     "pos": "TE",
     "team": "ARI",
     "adp": null,
-    "rank": 627,
+    "rank": 630,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5651,7 +5678,7 @@
     "pos": "TE",
     "team": "TB",
     "adp": null,
-    "rank": 628,
+    "rank": 631,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5660,7 +5687,7 @@
     "pos": "WR",
     "team": "CIN",
     "adp": null,
-    "rank": 629,
+    "rank": 632,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5669,7 +5696,7 @@
     "pos": "WR",
     "team": "HOU",
     "adp": null,
-    "rank": 630,
+    "rank": 633,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5678,16 +5705,16 @@
     "pos": "QB",
     "team": "FA",
     "adp": null,
-    "rank": 631,
+    "rank": 634,
     "adpStd": null,
     "adpPpr": null
    },
    {
     "name": "Kenny McIntosh",
     "pos": "RB",
-    "team": "SEA",
+    "team": "FA",
     "adp": null,
-    "rank": 632,
+    "rank": 635,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5696,7 +5723,7 @@
     "pos": "TE",
     "team": "LAR",
     "adp": null,
-    "rank": 633,
+    "rank": 636,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5705,7 +5732,7 @@
     "pos": "TE",
     "team": "GB",
     "adp": null,
-    "rank": 634,
+    "rank": 637,
     "adpStd": null,
     "adpPpr": null
    },
@@ -5714,7 +5741,7 @@
     "pos": "TE",
     "team": "PHI",
     "adp": null,
-    "rank": 635,
+    "rank": 638,
     "adpStd": null,
     "adpPpr": null
    }

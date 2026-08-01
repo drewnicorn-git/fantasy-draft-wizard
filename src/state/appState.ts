@@ -1,4 +1,4 @@
-import type { AppState, Player, RankingsData, ScoringFormat, SourceKey } from '../data/types';
+import type { AppState, InjuriesData, Player, RankingsData, ScoringFormat, SourceKey } from '../data/types';
 import { isBlankPlayer } from '../utils/scoring';
 import { normalizeName } from '../utils/playerKeys';
 import { buildRankingsFromLiveSources, type RefreshProgress } from '../services/buildRankings';
@@ -13,6 +13,7 @@ import {
 } from '../utils/storage';
 
 let rankingsData: RankingsData | null = null;
+let injuriesData: InjuriesData | null = null;
 let listeners: Array<() => void> = [];
 
 export const defaultState: AppState = {
@@ -156,6 +157,23 @@ export function getRankings(): RankingsData | null {
     ...rankingsData,
     players: applyPlayerOverrides(rankingsData.players),
   };
+}
+
+export function getInjuries(): InjuriesData | null {
+  return injuriesData;
+}
+
+export async function loadInjuries(): Promise<InjuriesData | null> {
+  if (injuriesData) return injuriesData;
+  const base = import.meta.env.BASE_URL;
+  try {
+    const res = await fetch(`${base}injuries.json?t=${Date.now()}`);
+    if (!res.ok) return null;
+    injuriesData = (await res.json()) as InjuriesData;
+    return injuriesData;
+  } catch {
+    return null;
+  }
 }
 
 export function getActiveSources(): SourceKey[] {

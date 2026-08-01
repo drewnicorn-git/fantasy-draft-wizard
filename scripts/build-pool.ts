@@ -11,11 +11,14 @@ import {
   type DepthChartEntry,
   type DepthIndexes,
 } from './sources/espn-depth.js';
+import { buildInjuryReport, type EspnInjuryRecord } from './sources/espn-injuries.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const rawDir = join(root, 'data', 'raw');
 const outPath = join(root, 'data', 'rankings.json');
 const publicPath = join(root, 'public', 'rankings.json');
+const injuriesOutPath = join(root, 'data', 'injuries.json');
+const injuriesPublicPath = join(root, 'public', 'injuries.json');
 
 const SEASON = currentDraftSeason();
 
@@ -318,6 +321,19 @@ function merge(): void {
   mkdirSync(join(root, 'public'), { recursive: true });
   writeFileSync(publicPath, json);
   console.log(`Built ${players.length} players (${players.filter((p) => p.teamVerified).length} team-verified) -> ${outPath}`);
+
+  const injurySnap = loadSnapshot(`espn-injuries-${SEASON}.json`);
+  const rawInjuries = (injurySnap?.data.players ?? []) as EspnInjuryRecord[];
+  const injuries = buildInjuryReport(
+    SEASON,
+    players.map((p) => ({ id: p.id, name: p.name, team: p.team, pos: p.pos })),
+    rawInjuries,
+    injurySnap?.fetchedAt ?? null,
+  );
+  const injuriesJson = JSON.stringify(injuries, null, 1) + '\n';
+  writeFileSync(injuriesOutPath, injuriesJson);
+  writeFileSync(injuriesPublicPath, injuriesJson);
+  console.log(`Built injury report (${injuries.entries.length} entries) -> ${injuriesOutPath}`);
 }
 
 merge();
