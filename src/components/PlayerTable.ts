@@ -498,8 +498,6 @@ export function renderRankingsTable(
 
       const posCls = posCssClass(String(p.pos));
 
-      const tierCls = p.tier ? `tier-${((p.tier - 1) % 6) + 1}` : '';
-
       const teamWarn = p.teamVerified === false ? ' title="Team not verified on ESPN depth chart"' : '';
 
       const avail =
@@ -526,7 +524,7 @@ export function renderRankingsTable(
 
 
 
-      return `<tr class="${posCls} ${tierCls}${roundBreak ? ' round-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}${opts.mode === 'live-draft' ? ' pickable' : ''}" data-id="${p.id}"${tagStyle}>
+      return `<tr class="${posCls}${roundBreak ? ' round-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}${opts.mode === 'live-draft' ? ' pickable' : ''}" data-id="${p.id}"${tagStyle}>
 
         <td>${overallRank}${isUserPick ? `<span class="pick-badge">${pickLabel}</span>` : ''}${roundBreak ? `<span class="round-badge">${roundLabel}</span>` : ''}</td>
 

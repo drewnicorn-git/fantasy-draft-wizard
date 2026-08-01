@@ -1,11 +1,12 @@
 import type { DraftPick, Player } from '../data/types';
-import { getRankings, state } from '../state/appState';
+import { filterPlayers, getRankings, state } from '../state/appState';
 import { mountRankingsPanel } from '../components/RankingsPanel';
 import { renderDraftBoard } from '../components/DraftBoard';
 import { getKeepersByTeam } from '../components/KeepersTable';
 import { getTeamDisplayName } from '../components/TeamNamesEditor';
 import { renderTeamNamesEditor } from '../components/TeamNamesEditor';
 import { loadLiveDraft, saveLiveDraft, loadTeamNames, loadKeepers } from '../utils/storage';
+import { getDraftAdvice, renderDraftAdvicePanel } from '../utils/draftAdvice';
 import { roundFromOverall, snakePickOrder } from '../sim/snake';
 
 interface LiveDraftRuntime {
@@ -50,6 +51,7 @@ export function mountLiveDraftView(root: HTMLElement): void {
       <div id="live-draft-bar" class="live-draft-bar"></div>
       <div id="live-draft-active" class="live-draft-active ${active ? '' : 'hidden'}">
         <div id="live-draft-board" class="live-draft-board-panel"></div>
+        <div id="live-draft-advice" class="live-draft-advice"></div>
         <div id="live-rankings-panel" class="live-draft-panel-body"></div>
       </div>
       <div id="live-rankings-setup" class="live-rankings-setup ${active ? 'hidden' : ''}">
@@ -63,6 +65,7 @@ export function mountLiveDraftView(root: HTMLElement): void {
     ? (root.querySelector('#live-rankings-panel') as HTMLElement)
     : (root.querySelector('#live-rankings-panel-setup') as HTMLElement);
   const boardEl = root.querySelector('#live-draft-board') as HTMLElement;
+  const adviceEl = root.querySelector('#live-draft-advice') as HTMLElement;
 
   const refreshBoard = (): void => {
     if (!liveDraft?.active) return;
@@ -77,6 +80,7 @@ export function mountLiveDraftView(root: HTMLElement): void {
 
   const refreshAll = (): void => {
     renderDraftBar(barEl, root, data.players);
+    renderLiveDraftAdvice(adviceEl, root, data.players);
     panelRefresh?.();
     if (liveDraft?.active) {
       refreshBoard();
@@ -98,8 +102,51 @@ export function mountLiveDraftView(root: HTMLElement): void {
 
   renderDraftBar(barEl, root, data.players);
   if (liveDraft?.active) {
+    renderLiveDraftAdvice(adviceEl, root, data.players);
     refreshBoard();
   }
+}
+
+function getLiveTeamRoster(teamIndex: number, allPlayers: Player[]): Player[] {
+  if (!liveDraft) return [];
+  const fromPicks = liveDraft.picks
+    .filter((p) => p.teamIndex === teamIndex)
+    .map((p) => allPlayers.find((ap) => ap.id === p.playerId))
+    .filter((p): p is Player => !!p);
+  const keepers = getKeepersByTeam(allPlayers).get(teamIndex) ?? [];
+  return [...keepers, ...fromPicks];
+}
+
+function renderLiveDraftAdvice(adviceEl: HTMLElement, root: HTMLElement, allPlayers: Player[]): void {
+  if (!liveDraft?.active) {
+    adviceEl.innerHTML = '';
+    return;
+  }
+
+  const cfg = state.draftConfig;
+  const order = snakePickOrder(cfg);
+  if (liveDraft.currentIndex >= order.length) {
+    adviceEl.innerHTML = '';
+    return;
+  }
+
+  const teamIndex = order[liveDraft.currentIndex];
+  const overall = liveDraft.currentIndex + 1;
+  const isYou = teamIndex === cfg.slot - 1;
+  const userRoster = getLiveTeamRoster(cfg.slot - 1, allPlayers);
+  const available = filterPlayers(allPlayers, liveDraft.draftedIds);
+  const advice = getDraftAdvice(liveDraft.picks, userRoster, available, overall, cfg);
+
+  if (!isYou) {
+    renderDraftAdvicePanel(adviceEl, { ...advice, recommendation: '', suggestedPicks: [] }, {
+      showSuggestions: false,
+    });
+    return;
+  }
+
+  renderDraftAdvicePanel(adviceEl, advice, {
+    onPick: (playerId) => recordLivePick(root, allPlayers, playerId),
+  });
 }
 
 function renderDraftBar(barEl: HTMLElement, root: HTMLElement, allPlayers: Player[]): void {

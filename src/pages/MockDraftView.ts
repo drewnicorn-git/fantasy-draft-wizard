@@ -4,8 +4,8 @@ import { renderDraftBoard } from '../components/DraftBoard';
 import { renderRankingsTable } from '../components/PlayerTable';
 import { renderPlayerSearch } from '../components/PlayerSearch';
 import { getTeamDisplayName } from '../components/TeamNamesEditor';
-import { botPick, suggestedPicks } from '../sim/bot';
-import { byeWeekConflicts, detectPositionalRun } from '../utils/analytics';
+import { botPick } from '../sim/bot';
+import { getDraftAdvice, renderDraftAdvicePanel } from '../utils/draftAdvice';
 import { picksUntilNextUserPick, roundFromOverall, snakePickOrder } from '../sim/snake';
 
 const BOT_PICK_DELAY_MS = 2_000;
@@ -272,27 +272,23 @@ function renderUserTurn(
   if (!draft) return;
   const cfg = state.draftConfig;
   const available = filterPlayers(allPlayers, draft.draftedIds);
-  const suggestions = suggestedPicks(available, cfg.scoring);
   const untilNext = picksUntilNextUserPick(overall, cfg.slot, cfg);
 
   (root.querySelector('#on-clock') as HTMLElement).innerHTML = `
     <strong>Round ${round}, pick ${pickInRound}</strong> · Overall ${overall} · You're on the clock
     ${untilNext > 0 ? `<span class="muted">· ${untilNext} picks until your next turn</span>` : ''}`;
 
-  const alerts: string[] = [];
-  const recent = draft.picks.slice(-4);
-  for (const pos of ['RB', 'WR', 'TE']) {
-    if (detectPositionalRun(recent, pos)) alerts.push(`${pos} run — ${pos}s going fast`);
-  }
   const userRoster = getTeamRoster(cfg.slot - 1, allPlayers);
-  const byes = byeWeekConflicts(userRoster);
-  if (byes.length) alerts.push(`Bye conflict weeks: ${byes.join(', ')}`);
-  (root.querySelector('#draft-alerts') as HTMLElement).innerHTML = alerts
-    .map((a) => `<div class="alert">${a}</div>`)
-    .join('');
+  const advice = getDraftAdvice(draft.picks, userRoster, available, overall, cfg);
+  renderDraftAdvicePanel(root.querySelector('#draft-alerts') as HTMLElement, advice, {
+    onPick: (playerId) => {
+      const player = allPlayers.find((p) => p.id === playerId);
+      if (player) userPick(root, allPlayers, player, round, pickInRound, overall);
+    },
+  });
 
   renderDraftBoardPanel(root);
-  renderSuggestionsPanel(root, suggestions);
+  renderSuggestionsPanel(root, []);
   renderPlayerPanel(root, allPlayers, {
     showPredictor: true,
     currentPick: overall,
