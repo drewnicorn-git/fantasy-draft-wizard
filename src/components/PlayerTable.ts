@@ -70,6 +70,8 @@ type SortKey =
 
   | 'depth'
 
+  | 'bye'
+
   | 'adp'
 
   | 'avail'
@@ -111,6 +113,8 @@ const DEFAULT_SORT_DIR: Record<SortKey, 'asc' | 'desc'> = {
   posRank: 'asc',
 
   depth: 'asc',
+
+  bye: 'asc',
 
   adp: 'asc',
 
@@ -277,6 +281,12 @@ function sortPlayers(
         cmp = compareNullable(getTeamDepthValue(a), getTeamDepthValue(b), dir);
 
         if (cmp === 0) cmp = posSortOrder(String(a.pos)) - posSortOrder(String(b.pos));
+
+        break;
+
+      case 'bye':
+
+        cmp = compareNullable(a.bye, b.bye, dir);
 
         break;
 
@@ -464,6 +474,8 @@ export function renderRankingsTable(
 
       ${sortHeader('Depth', 'depth', tableSort)}
 
+      ${sortHeader('Bye', 'bye', tableSort)}
+
       ${sortHeader('Tier', 'tier', tableSort)}
 
       ${showSources ? sources.map((s) => sortHeader(SOURCE_LABELS[s] ?? s, `source:${s}`, tableSort)).join('') : ''}
@@ -554,6 +566,8 @@ export function renderRankingsTable(
         <td${teamWarn}>${p.team}${p.teamVerified === false ? ' *' : ''}</td>
 
         <td title="Team depth from ESPN depth chart">${teamDepthLabel}</td>
+
+        <td>${p.bye ?? '—'}</td>
 
         <td>${p.tier ?? '—'}</td>
 

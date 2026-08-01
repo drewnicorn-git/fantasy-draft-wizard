@@ -1,4 +1,4 @@
-import type { DraftPick, TagDefinition } from '../data/types';
+import type { DraftPick, InSeasonState, TagDefinition } from '../data/types';
 
 const TAG_DEFS_KEY = 'fdw-tag-definitions';
 const PLAYER_TAGS_KEY = 'fdw-player-tags';
@@ -9,6 +9,7 @@ const TEAM_NAMES_KEY = 'fdw-team-names';
 const LIVE_DRAFT_KEY = 'fdw-live-draft';
 const KEEPERS_KEY = 'fdw-keepers';
 const KEEPER_TEAMS_KEY = 'fdw-keeper-teams';
+const IN_SEASON_KEY = 'fdw-in-season';
 
 export const PRESET_TAGS: TagDefinition[] = [
   { id: 'target', label: 'Target', color: '#2ecc71', description: 'Players you want to draft', preset: true },
@@ -199,4 +200,22 @@ export function toggleKeeper(playerId: string, defaultTeamIndex = 0): Set<string
 
 export function isKeeper(playerId: string): boolean {
   return loadKeepers().has(playerId);
+}
+
+export function loadInSeasonState(): InSeasonState | null {
+  try {
+    const raw = localStorage.getItem(IN_SEASON_KEY);
+    return raw ? (JSON.parse(raw) as InSeasonState) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function saveInSeasonState(state: InSeasonState | null): void {
+  if (state == null) localStorage.removeItem(IN_SEASON_KEY);
+  else localStorage.setItem(IN_SEASON_KEY, JSON.stringify(state));
+}
+
+export function clearInSeasonState(): void {
+  saveInSeasonState(null);
 }

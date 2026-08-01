@@ -34,6 +34,10 @@ jobs:
         run: npm run build:pool
         continue-on-error: true
 
+      - name: Build in-season values
+        run: npm run build:inseason
+        continue-on-error: true
+
       - name: Build site
         run: npm run build
         env:
@@ -48,6 +52,7 @@ jobs:
           test ! -f dist/src/main.ts
           test -f dist/rankings.json
           test -f dist/injuries.json
+          test -f dist/inseason.json
           test -f dist/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3

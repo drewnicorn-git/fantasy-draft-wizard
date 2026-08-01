@@ -2,7 +2,7 @@ name: Update rankings
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 12 * * *'
   workflow_dispatch:
 
 env:
@@ -33,10 +33,13 @@ jobs:
       - name: Build player pool
         run: npm run build:pool
 
+      - name: Build in-season values
+        run: npm run build:inseason
+
       - name: Detect changes
         id: diff
         run: |
-          if git diff --quiet -- data public/rankings.json public/injuries.json; then
+          if git diff --quiet -- data public/rankings.json public/injuries.json public/inseason.json; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -47,6 +50,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/rankings.json data/injuries.json public/rankings.json public/injuries.json
-          git commit -m "chore: refresh fantasy rankings and injury report"
+          git add data/rankings.json data/injuries.json data/inseason.json public/rankings.json public/injuries.json public/inseason.json
+          git commit -m "chore: refresh fantasy rankings, injuries, and in-season values"
           git push

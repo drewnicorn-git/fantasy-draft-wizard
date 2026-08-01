@@ -388,6 +388,106 @@ tr.your-pick td:first-child { font-weight: 700; }
 
 .injury-status-other { background: rgba(108, 117, 125, 0.2); color: var(--muted); }
 
+.inseason-panel { margin-top: 0.5rem; }
+
+.inseason-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.inseason-header h2 { margin: 0 0 0.25rem; }
+
+.inseason-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.inseason-team-select {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface2);
+  color: inherit;
+}
+
+.inseason-advice-panel {
+  margin-bottom: 1.25rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.inseason-advice-panel h3 { margin: 0 0 0.5rem; }
+
+.inseason-target-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.inseason-target-card {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface2);
+}
+
+.inseason-target-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.35rem;
+  color: var(--accent2);
+}
+
+.inseason-target-meta { color: var(--muted); font-size: 0.8rem; margin-left: 0.35rem; }
+
+.inseason-rosters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.inseason-team-card {
+  padding: 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.inseason-team-card.my-team { border-color: var(--accent); }
+
+.my-team-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent2);
+}
+
+.inseason-roster-table,
+.inseason-fa-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+
+.inseason-roster-table th,
+.inseason-roster-table td,
+.inseason-fa-table th,
+.inseason-fa-table td {
+  padding: 0.35rem 0.4rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.inseason-fa-section { margin-top: 1rem; }
+
+.btn-xs { font-size: 0.75rem; padding: 0.2rem 0.45rem; }
+
 .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
 
 .hint { color: var(--muted); font-size: 0.8rem; margin: 0.25rem 0 0.5rem; }

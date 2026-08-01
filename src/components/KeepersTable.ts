@@ -59,6 +59,7 @@ export function renderKeepersTable(container: HTMLElement, opts: KeepersTableOpt
       <th>Pos</th>
       <th>Pos rank</th>
       <th>Team</th>
+      <th>Bye</th>
       <th>Consensus</th>
       <th>ADP</th>
       ${showTeamAssign ? '<th>Draft team</th>' : ''}
@@ -67,7 +68,7 @@ export function renderKeepersTable(container: HTMLElement, opts: KeepersTableOpt
 
   const rows =
     keepers.length === 0
-      ? `<tr><td colspan="${showTeamAssign ? 9 : 8}" class="keepers-empty">No keepers marked yet. Check <strong>K</strong> on a player above to add them here.</td></tr>`
+      ? `<tr><td colspan="${showTeamAssign ? 10 : 9}" class="keepers-empty">No keepers marked yet. Check <strong>K</strong> on a player above to add them here.</td></tr>`
       : keepers
           .map((p, i) => {
             const posCls = posCssClass(String(p.pos));
@@ -87,6 +88,7 @@ export function renderKeepersTable(container: HTMLElement, opts: KeepersTableOpt
         <td><span class="pos-badge ${posCls}">${p.pos}</span></td>
         <td><strong>${formatPosRankLabel(p, opts.scoring)}</strong></td>
         <td>${p.team}</td>
+        <td>${p.bye ?? '—'}</td>
         <td><strong>${getConsensus(p, opts.scoring) ?? '—'}</strong></td>
         <td>${getAdp(p, opts.scoring)?.toFixed(1) ?? '—'}</td>
         ${draftTeamCell}

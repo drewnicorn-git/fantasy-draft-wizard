@@ -96,7 +96,7 @@ export type BotPersonality = 'balanced' | 'zero-rb' | 'hero-rb';
 
 export interface AppState {
   scoring: ScoringFormat;
-  tab: 'rankings' | 'mock' | 'live' | 'injuries';
+  tab: 'rankings' | 'mock' | 'live' | 'injuries' | 'inseason';
   filters: FilterState;
   selectedSources: Set<SourceKey>;
   draftConfig: DraftConfig;
@@ -115,7 +115,38 @@ export interface LiveDraftState {
   currentIndex: number;
 }
 
-export interface KeeperRecord {
+export interface InSeasonPlayerValue {
   playerId: string;
-  teamIndex: number;
+  seasonPtsStd: number | null;
+  seasonPtsPpr: number | null;
+  weekProjStd: number | null;
+  weekProjPpr: number | null;
+  posRankStd: number | null;
+  posRankPpr: number | null;
+  injuryStatus: string | null;
 }
+
+export interface InSeasonData {
+  season: number;
+  builtAt: string;
+  fetchedAt: string | null;
+  currentWeek: number;
+  projectionWeek: number;
+  players: Record<string, InSeasonPlayerValue>;
+}
+
+export interface InSeasonState {
+  active: boolean;
+  importedAt: string;
+  config: DraftConfig;
+  teamNames: string[];
+  rosters: Record<number, string[]>;
+  myTeamIndex: number;
+}
+
+export interface InSeasonTarget {
+  category: 'waiver' | 'bye' | 'injury';
+  player: Player;
+  reason: string;
+}
+

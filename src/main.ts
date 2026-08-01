@@ -1,11 +1,14 @@
 import './styles.css';
-import { loadRankings, loadInjuries, getRankings, setScoring, setState, state, subscribe } from './state/appState';
+import { loadRankings, loadInjuries, loadInSeason, getRankings, setScoring, setState, state, subscribe } from './state/appState';
 import { mountRankingsView } from './pages/RankingsView';
 import { mountMockDraftView } from './pages/MockDraftView';
 import { mountLiveDraftView } from './pages/LiveDraftView';
 import { mountInjuryReportView } from './pages/InjuryReportView';
+import { mountInSeasonView } from './pages/InSeasonView';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
+
+type TabId = 'rankings' | 'mock' | 'live' | 'injuries' | 'inseason';
 
 function render(): void {
   const data = getRankings();
@@ -26,11 +29,12 @@ function render(): void {
         <button type="button" class="${state.tab === 'mock' ? 'active' : ''}" data-tab="mock">Mock Draft</button>
         <button type="button" class="${state.tab === 'live' ? 'active' : ''}" data-tab="live">Live Draft</button>
         <button type="button" class="${state.tab === 'injuries' ? 'active' : ''}" data-tab="injuries">Injuries</button>
+        <button type="button" class="${state.tab === 'inseason' ? 'active' : ''}" data-tab="inseason">In Season</button>
       </nav>
     </header>
     <main id="main"></main>
     <footer class="app-footer">
-      <p>Rankings from FantasyPros, ESPN, Sleeper, Yahoo, NFL.com · Refreshed via GitHub Actions</p>
+      <p>Rankings from FantasyPros, ESPN, Sleeper, Yahoo, NFL.com · In-season values refresh daily via GitHub Actions</p>
     </footer>`;
 
   app.querySelectorAll('[data-scoring]').forEach((btn) => {
@@ -39,7 +43,7 @@ function render(): void {
 
   app.querySelectorAll('[data-tab]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      setState({ tab: (btn as HTMLElement).dataset.tab as 'rankings' | 'mock' | 'live' | 'injuries' });
+      setState({ tab: (btn as HTMLElement).dataset.tab as TabId });
     });
   });
 
@@ -47,14 +51,15 @@ function render(): void {
   if (state.tab === 'rankings') mountRankingsView(main);
   else if (state.tab === 'mock') mountMockDraftView(main);
   else if (state.tab === 'live') mountLiveDraftView(main);
-  else mountInjuryReportView(main);
+  else if (state.tab === 'injuries') mountInjuryReportView(main);
+  else mountInSeasonView(main, render);
 }
 
 async function init(): Promise<void> {
   app.innerHTML = '<p class="loading">Loading rankings…</p>';
   try {
     await loadRankings();
-    await loadInjuries();
+    await Promise.all([loadInjuries(), loadInSeason()]);
     subscribe(render);
     render();
   } catch (err) {

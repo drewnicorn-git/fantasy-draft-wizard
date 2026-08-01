@@ -32,6 +32,7 @@ export async function fetchSleeperAdp(season: number): Promise<RawPlayerRow[]> {
 
 export async function fetchSleeperPlayers(): Promise<
   Array<{
+    id: string;
     name: string;
     team: string;
     pos: string;
@@ -57,9 +58,10 @@ export async function fetchSleeperPlayers(): Promise<
     }
   >;
   const positions = new Set(['QB', 'RB', 'WR', 'TE', 'K', 'DEF']);
-  return Object.values(json)
-    .filter((p) => p.position && positions.has(p.position) && p.team)
-    .map((p) => ({
+  return Object.entries(json)
+    .filter(([, p]) => p.position && positions.has(p.position) && p.team)
+    .map(([id, p]) => ({
+      id,
       name: p.full_name ?? `${p.first_name ?? ''} ${p.last_name ?? ''}`.trim(),
       pos: p.position === 'DEF' ? 'DST' : p.position!,
       team: p.team!,

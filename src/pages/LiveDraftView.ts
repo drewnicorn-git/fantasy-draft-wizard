@@ -7,6 +7,8 @@ import { getTeamDisplayName } from '../components/TeamNamesEditor';
 import { renderTeamNamesEditor } from '../components/TeamNamesEditor';
 import { loadLiveDraft, saveLiveDraft, loadTeamNames, loadKeepers } from '../utils/storage';
 import { getDraftAdvice, renderDraftAdvicePanel } from '../utils/draftAdvice';
+import { moveLiveDraftToInSeason } from '../utils/rosterBuilder';
+import { setState } from '../state/appState';
 import { roundFromOverall, snakePickOrder } from '../sim/snake';
 
 interface LiveDraftRuntime {
@@ -187,9 +189,16 @@ function renderDraftBar(barEl: HTMLElement, root: HTMLElement, allPlayers: Playe
     barEl.innerHTML = `
       <div class="live-draft-controls">
         <h3>Draft complete</h3>
+        <button type="button" id="move-in-season" class="btn primary">Move to in season</button>
         <button type="button" id="reset-live-draft" class="btn secondary">Reset draft</button>
         <button type="button" id="export-live-draft" class="btn secondary">Export JSON</button>
       </div>`;
+    barEl.querySelector('#move-in-season')!.addEventListener('click', () => {
+      const expected = cfg.teams * cfg.rounds;
+      if (moveLiveDraftToInSeason(liveDraft!.picks, allPlayers, cfg, expected)) {
+        setState({ tab: 'inseason' });
+      }
+    });
     barEl.querySelector('#reset-live-draft')!.addEventListener('click', () => {
       if (confirm('Reset the live draft? All picks will be cleared.')) {
         liveDraft = null;

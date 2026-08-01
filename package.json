@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "fetch:rankings": "tsx scripts/fetch-rankings.ts",
     "build:pool": "tsx scripts/build-pool.ts",
-    "update:rankings": "npm run fetch:rankings && npm run build:pool",
+    "build:inseason": "tsx scripts/build-inseason.ts",
+    "update:rankings": "npm run fetch:rankings && npm run build:pool && npm run build:inseason",
     "seed:rankings": "tsx scripts/seed-rankings.ts"
   },
   "devDependencies": {

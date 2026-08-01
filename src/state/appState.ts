@@ -1,4 +1,4 @@
-import type { AppState, InjuriesData, Player, RankingsData, ScoringFormat, SourceKey } from '../data/types';
+import type { AppState, InjuriesData, InSeasonData, Player, RankingsData, ScoringFormat, SourceKey } from '../data/types';
 import { isBlankPlayer } from '../utils/scoring';
 import { normalizeName } from '../utils/playerKeys';
 import { buildRankingsFromLiveSources, type RefreshProgress } from '../services/buildRankings';
@@ -14,6 +14,7 @@ import {
 
 let rankingsData: RankingsData | null = null;
 let injuriesData: InjuriesData | null = null;
+let inSeasonData: InSeasonData | null = null;
 let listeners: Array<() => void> = [];
 
 export const defaultState: AppState = {
@@ -171,6 +172,23 @@ export async function loadInjuries(): Promise<InjuriesData | null> {
     if (!res.ok) return null;
     injuriesData = (await res.json()) as InjuriesData;
     return injuriesData;
+  } catch {
+    return null;
+  }
+}
+
+export function getInSeason(): InSeasonData | null {
+  return inSeasonData;
+}
+
+export async function loadInSeason(): Promise<InSeasonData | null> {
+  if (inSeasonData) return inSeasonData;
+  const base = import.meta.env.BASE_URL;
+  try {
+    const res = await fetch(`${base}inseason.json?t=${Date.now()}`);
+    if (!res.ok) return null;
+    inSeasonData = (await res.json()) as InSeasonData;
+    return inSeasonData;
   } catch {
     return null;
   }
