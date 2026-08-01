@@ -117,7 +117,10 @@ function mergePoolPlayers(target: PoolPlayer, source: PoolPlayer): void {
     target.team = source.team;
     target.teamVerified = true;
   }
-  if (source.depth != null && source.teamVerified) target.depth = source.depth;
+  if (source.depth != null && source.teamVerified) {
+    target.depth =
+      target.depth == null ? source.depth : Math.min(target.depth, source.depth);
+  }
   if (source.name.length > target.name.length) target.name = source.name;
 }
 
@@ -154,7 +157,9 @@ function getOrCreatePlayer(
     if (identity.verified) {
       p.team = identity.team;
       p.teamVerified = true;
-      if (identity.depth != null) p.depth = identity.depth;
+      if (identity.depth != null) {
+        p.depth = p.depth == null ? identity.depth : Math.min(p.depth, identity.depth);
+      }
     } else if (!p.teamVerified && identity.team) {
       p.team = identity.team;
     }

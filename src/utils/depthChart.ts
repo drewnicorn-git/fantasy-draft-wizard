@@ -48,6 +48,13 @@ export interface DepthIndexes {
   byTeamPos: Map<string, DepthChartEntry[]>;
 }
 
+function isOffensiveDepthChart(chart: { name?: string; positions?: Record<string, unknown> }): boolean {
+  const positions = chart.positions ?? {};
+  if (positions.qb || positions.wr1 || positions.rb) return true;
+  const name = (chart.name ?? '').toLowerCase();
+  return /\dwr|\dte/.test(name) || name.includes('offense');
+}
+
 export function buildDepthChartIndex(entries: DepthChartEntry[]): DepthIndexes {
   const byKey: DepthChartIndex = new Map();
   const byTeamPos = new Map<string, DepthChartEntry[]>();
@@ -57,9 +64,19 @@ export function buildDepthChartIndex(entries: DepthChartEntry[]): DepthIndexes {
       name: raw.name,
       team: normalizeTeam(raw.team),
       pos: normalizePos(raw.pos),
+      depth: raw.depth,
     };
 
-    byKey.set(canonicalKey(entry.name, entry.pos), entry);
+    const key = canonicalKey(entry.name, entry.pos);
+    const existing = byKey.get(key);
+    if (existing) {
+      if (entry.depth != null) {
+        existing.depth =
+          existing.depth == null ? entry.depth : Math.min(existing.depth, entry.depth);
+      }
+    } else {
+      byKey.set(key, entry);
+    }
 
     if (entry.pos === 'DST') {
       byKey.set(dstTeamKey(entry.team), entry);
@@ -89,12 +106,9 @@ export interface PlayerIdentity {
   depth: number | null;
 }
 
-function rosterDepth(entry: DepthChartEntry, posNorm: string, indexes: DepthIndexes): number | null {
-  if (posNorm === 'DST') return 1;
-  if (entry.depth != null) return entry.depth;
-  const list = indexes.byTeamPos.get(`${entry.team}|${posNorm}`) ?? [];
-  const idx = list.indexOf(entry);
-  return idx >= 0 ? idx + 1 : null;
+function rosterDepth(entry: DepthChartEntry, posNorm: string): number | null {
+  if (posNorm === 'DST') return entry.depth ?? 1;
+  return entry.depth ?? null;
 }
 
 export function resolvePlayerIdentity(
@@ -133,7 +147,7 @@ export function resolvePlayerIdentity(
       team: entry.team,
       verified: true,
       displayName: entry.name,
-      depth: rosterDepth(entry, posNorm, indexes),
+      depth: rosterDepth(entry, posNorm),
     };
   }
 
@@ -291,9 +305,7 @@ export async function fetchEspnDepthCharts(season: number): Promise<DepthChartEn
     };
 
     for (const chart of depthJson.depthchart ?? []) {
-      const chartName = (chart.name ?? '').toLowerCase();
-      if (chartName.includes('special')) continue;
-      if (chartName.includes('def')) continue;
+      if (!isOffensiveDepthChart(chart)) continue;
 
       for (const depthEntry of parseOffensiveDepthChart(chart.positions ?? {}, teamAbbr)) {
         if (depthEntry.depth != null) depthByKey.set(depthEntryKey(depthEntry), depthEntry.depth);

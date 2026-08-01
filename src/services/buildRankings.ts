@@ -48,7 +48,9 @@ function getOrCreatePlayer(
     if (identity.verified) {
       p.team = identity.team;
       p.teamVerified = true;
-      if (identity.depth != null) p.depth = identity.depth;
+      if (identity.depth != null) {
+        p.depth = p.depth == null ? identity.depth : Math.min(p.depth, identity.depth);
+      }
     } else if (!p.teamVerified && identity.team) {
       p.team = identity.team;
     }
