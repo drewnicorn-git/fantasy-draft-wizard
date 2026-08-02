@@ -26,8 +26,10 @@ export function renderDraftBoard(
   const title = opts.title ?? 'Draft Board';
   const keepersByTeam = opts.keepersByTeam ?? new Map<number, Player[]>();
   const hasKeepers = [...keepersByTeam.values()].some((list) => list.length > 0);
+  const bodyRows = roundsToShow + (hasKeepers ? 1 : 0);
+  const densityClass = bodyRows >= 16 ? 'draft-board-compact' : bodyRows >= 13 ? 'draft-board-dense' : '';
 
-  let html = `<div class="draft-board-shell"><h3 class="draft-board-title">${escapeHtml(title)}</h3><div class="draft-board"><table><thead><tr><th>Round</th>`;
+  let html = `<div class="draft-board-shell"><h3 class="draft-board-title">${escapeHtml(title)}</h3><div class="draft-board ${densityClass}" data-rows="${bodyRows}"><table><thead><tr><th>Round</th>`;
   for (let t = 1; t <= teams; t++) {
     const label = t === userSlot ? `You (${names[t - 1]})` : names[t - 1];
     html += `<th class="${t === userSlot ? 'user-col' : ''}">${escapeHtml(label)}</th>`;
@@ -39,13 +41,15 @@ export function renderDraftBoard(
     for (let t = 0; t < teams; t++) {
       const list = keepersByTeam.get(t) ?? [];
       const userCls = t + 1 === userSlot ? 'user-col' : '';
-      const cells = list
-        .map((p) => {
-          const posCls = posCssClass(String(p.pos));
-          return `<span class="keeper-board-pick ${posCls}"><span class="pick-pos pos-badge ${posCls}">${p.pos}</span> ${escapeHtml(p.name)}</span>`;
-        })
-        .join('<br />');
-      html += `<td class="draft-pick-cell keeper-cell ${userCls}">${cells || '—'}</td>`;
+      const cells = list.length
+        ? `<div class="keeper-board-picks">${list
+            .map((p) => {
+              const posCls = posCssClass(String(p.pos));
+              return `<span class="keeper-board-pick ${posCls}"><span class="pick-pos pos-badge ${posCls}">${p.pos}</span> ${escapeHtml(p.name)}</span>`;
+            })
+            .join('')}</div>`
+        : '—';
+      html += `<td class="draft-pick-cell keeper-cell ${userCls}">${cells}</td>`;
     }
     html += '</tr>';
   }

@@ -29,6 +29,29 @@ function renderTeamSelectOptions(inSeasonState: InSeasonState, selectedTeam: num
   }).join('');
 }
 
+const SUMMARY_POSITIONS = ['QB', 'RB', 'WR', 'TE', 'K', 'DST'] as const;
+
+function countByPosition(roster: Player[]): Record<(typeof SUMMARY_POSITIONS)[number], number> {
+  const counts = { QB: 0, RB: 0, WR: 0, TE: 0, K: 0, DST: 0 };
+  for (const p of roster) {
+    const pos = String(p.pos).toUpperCase();
+    if (pos === 'DEF' || pos === 'DST') counts.DST++;
+    else if (pos in counts) counts[pos as keyof typeof counts]++;
+  }
+  return counts;
+}
+
+function renderPositionSummary(roster: Player[]): string {
+  const counts = countByPosition(roster);
+  return `
+    <div class="inseason-pos-summary">
+      ${SUMMARY_POSITIONS.map((pos) => {
+        const cls = posCssClass(pos);
+        return `<span class="inseason-pos-count ${cls}"><span class="pos-badge ${cls}">${pos}</span><span class="inseason-pos-count-num">${counts[pos]}</span></span>`;
+      }).join('')}
+    </div>`;
+}
+
 function renderRosterCard(teamIndex: number, roster: Player[], inSeasonState: InSeasonState): string {
   const title = getTeamDisplayName(teamIndex);
   const isMine = teamIndex === inSeasonState.myTeamIndex;
@@ -37,6 +60,7 @@ function renderRosterCard(teamIndex: number, roster: Player[], inSeasonState: In
   return `
     <section class="inseason-team-card${isMine ? ' my-team' : ''}">
       <h3>${escapeHtml(title)} <span class="inseason-roster-count">${count}/${limit}</span>${isMine ? ' <span class="my-team-badge">Your team</span>' : ''}</h3>
+      ${renderPositionSummary(roster)}
       <div class="table-wrap inseason-roster-table-wrap">
         <table class="inseason-roster-table">
           <thead>
