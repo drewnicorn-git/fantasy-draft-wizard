@@ -486,6 +486,29 @@ tr.your-pick td:first-child { font-weight: 700; }
 
 .inseason-fa-section { margin-top: 1rem; }
 
+.inseason-fa-add-cell {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.inseason-fa-team-select {
+  min-width: 8rem;
+  padding: 0.25rem 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface2);
+  color: inherit;
+  font-size: 0.78rem;
+}
+
+.inseason-roster-count {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
 .btn-xs { font-size: 0.75rem; padding: 0.2rem 0.45rem; }
 
 .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem; }

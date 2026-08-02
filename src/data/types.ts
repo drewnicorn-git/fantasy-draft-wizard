@@ -141,6 +141,7 @@ export interface InSeasonState {
   config: DraftConfig;
   teamNames: string[];
   rosters: Record<number, string[]>;
+  rosterLimits: Record<number, number>;
   myTeamIndex: number;
 }
 
