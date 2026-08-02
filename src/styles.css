@@ -156,12 +156,12 @@ th.sortable.sorted { color: var(--accent2); }
 
 /* Position color coding */
 :root {
-  --pos-qb: #c77dff;
-  --pos-rb: #3ee07a;
-  --pos-wr: #ffb020;
-  --pos-te: #2ee4d0;
-  --pos-k: #b8c2cc;
-  --pos-dst: #ff6b6b;
+  --pos-qb: #dc3545;
+  --pos-rb: #2563eb;
+  --pos-wr: #22c55e;
+  --pos-te: #d4a017;
+  --pos-k: #ec4899;
+  --pos-dst: #8b949e;
   --pos-other: #9aa5b1;
 }
 
@@ -194,7 +194,7 @@ tr.pos-dst td:first-child { box-shadow: inset 4px 0 0 var(--pos-dst); }
 .pos-badge.pos-qb { background: var(--pos-qb); }
 .pos-badge.pos-rb { background: var(--pos-rb); }
 .pos-badge.pos-wr { background: var(--pos-wr); }
-.pos-badge.pos-te { background: var(--pos-te); }
+.pos-badge.pos-te { background: var(--pos-te); color: #1a1a1a; }
 .pos-badge.pos-k { background: var(--pos-k); }
 .pos-badge.pos-dst { background: var(--pos-dst); }
 .pos-badge.pos-other { background: var(--pos-other); }
