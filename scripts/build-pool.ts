@@ -22,12 +22,13 @@ const injuriesPublicPath = join(root, 'public', 'injuries.json');
 
 const SEASON = currentDraftSeason();
 
-export type SourceKey = 'fantasypros' | 'espn' | 'sleeper' | 'yahoo' | 'nfl';
+export type SourceKey = 'fantasypros' | 'espn' | 'sleeper' | 'ffc' | 'yahoo' | 'nfl';
 
 export interface SourceRanks {
   fantasypros?: number;
   espn?: number;
   sleeper?: number;
+  ffc?: number;
   yahoo?: number;
   nfl?: number;
 }
@@ -239,6 +240,24 @@ function merge(): void {
       },
     },
     {
+      source: 'ffc',
+      scoring: 'std',
+      file: `ffc-STD-${SEASON}.json`,
+      apply: (p, r) => {
+        if (r.adp != null && p.adp.std == null) p.adp.std = r.adp;
+        if (r.rank != null) p.ranks.std.ffc = r.rank;
+      },
+    },
+    {
+      source: 'ffc',
+      scoring: 'ppr',
+      file: `ffc-PPR-${SEASON}.json`,
+      apply: (p, r) => {
+        if (r.adp != null && p.adp.ppr == null) p.adp.ppr = r.adp;
+        if (r.rank != null) p.ranks.ppr.ffc = r.rank;
+      },
+    },
+    {
       source: 'yahoo',
       scoring: 'std',
       file: `yahoo-STD-${SEASON}.json`,
@@ -300,7 +319,9 @@ function merge(): void {
 
   players.sort((a, b) => (a.consensus.ppr ?? 9999) - (b.consensus.ppr ?? 9999));
 
-  const availableSources: SourceKey[] = ['fantasypros', 'espn', 'sleeper', 'yahoo', 'nfl'].filter((s) => sourceCounts[s]);
+  const availableSources: SourceKey[] = ['fantasypros', 'espn', 'sleeper', 'ffc', 'yahoo', 'nfl'].filter(
+    (s) => sourceCounts[s],
+  );
 
   const fetchedAt = readdirSync(rawDir)
     .map((f) => loadSnapshot(f)?.fetchedAt)

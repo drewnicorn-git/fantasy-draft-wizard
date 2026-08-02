@@ -7,6 +7,7 @@ import { fetchEspn } from './sources/espn.js';
 import { fetchSleeperAdp, fetchSleeperPlayers } from './sources/sleeper.js';
 import { fetchYahoo } from './sources/yahoo.js';
 import { fetchNfl } from './sources/nfl.js';
+import { fetchFfcAdp } from './sources/ffc.js';
 import { fetchEspnDepthCharts } from './sources/espn-depth.js';
 import { fetchEspnInjuries } from './sources/espn-injuries.js';
 
@@ -56,6 +57,8 @@ async function run(): Promise<void> {
     fetchYahoo(SEASON, 'STD').then((p) => writeRaw(`yahoo-STD-${SEASON}.json`, { scoring: 'STD', players: p })),
     fetchYahoo(SEASON, 'PPR').then((p) => writeRaw(`yahoo-PPR-${SEASON}.json`, { scoring: 'PPR', players: p })),
     fetchNfl(SEASON).then((p) => writeRaw(`nfl-STD-${SEASON}.json`, { scoring: 'STD', players: p })),
+    fetchFfcAdp(SEASON, 'STD').then((p) => writeRaw(`ffc-STD-${SEASON}.json`, { scoring: 'STD', players: p })),
+    fetchFfcAdp(SEASON, 'PPR').then((p) => writeRaw(`ffc-PPR-${SEASON}.json`, { scoring: 'PPR', players: p })),
   ]);
 
   let failed = false;

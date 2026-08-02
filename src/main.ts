@@ -34,7 +34,7 @@ function render(): void {
     </header>
     <main id="main"></main>
     <footer class="app-footer">
-      <p>Rankings from FantasyPros, ESPN, Sleeper, Yahoo, NFL.com · In-season values refresh daily via GitHub Actions</p>
+      <p>Rankings from FantasyPros, ESPN, Sleeper, Fantasy Calc · ADP data from <a href="https://fantasyfootballcalculator.com" target="_blank" rel="noopener noreferrer">Fantasy Football Calculator</a> · In-season values refresh daily via GitHub Actions</p>
     </footer>`;
 
   app.querySelectorAll('[data-scoring]').forEach((btn) => {

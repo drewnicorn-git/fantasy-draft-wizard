@@ -1,12 +1,13 @@
 export type ScoringFormat = 'std' | 'ppr';
 export type Position = 'QB' | 'RB' | 'WR' | 'TE' | 'K' | 'DST' | 'FLEX';
 
-export type SourceKey = 'fantasypros' | 'espn' | 'sleeper' | 'yahoo' | 'nfl';
+export type SourceKey = 'fantasypros' | 'espn' | 'sleeper' | 'ffc' | 'yahoo' | 'nfl';
 
 export interface SourceRanks {
   fantasypros?: number;
   espn?: number;
   sleeper?: number;
+  ffc?: number;
   yahoo?: number;
   nfl?: number;
 }

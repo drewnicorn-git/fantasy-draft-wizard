@@ -953,6 +953,14 @@ tr.keeper-board-row td {
 
 .app-footer p { margin: 0; }
 
+.app-footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.app-footer a:hover { color: var(--text); }
+
 .draft-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; }
 
 .draft-actions { display: flex; gap: 0.5rem; }

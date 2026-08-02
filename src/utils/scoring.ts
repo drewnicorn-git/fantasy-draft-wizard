@@ -53,8 +53,9 @@ export const SOURCE_LABELS: Record<SourceKey, string> = {
   fantasypros: 'FantasyPros',
   espn: 'ESPN',
   sleeper: 'Sleeper',
+  ffc: 'Fantasy Calc',
   yahoo: 'Yahoo',
   nfl: 'NFL.com',
 };
 
-export const ALL_SOURCES: SourceKey[] = ['fantasypros', 'espn', 'sleeper', 'yahoo', 'nfl'];
+export const ALL_SOURCES: SourceKey[] = ['fantasypros', 'espn', 'sleeper', 'ffc', 'yahoo', 'nfl'];

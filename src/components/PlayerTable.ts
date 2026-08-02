@@ -130,6 +130,8 @@ const DEFAULT_SORT_DIR: Record<SortKey, 'asc' | 'desc'> = {
 
   'source:sleeper': 'asc',
 
+  'source:ffc': 'asc',
+
   'source:yahoo': 'asc',
 
   'source:nfl': 'asc',

@@ -176,7 +176,9 @@ export async function buildRankingsFromLiveSources(
 
   const sourcesFromExisting = existing?.sources ?? [];
   const liveSources = (['espn', 'sleeper'] as SourceKey[]).filter((s) => sourceCounts[s]);
-  const preserved = sourcesFromExisting.filter((s) => !liveSources.includes(s) && (s === 'fantasypros' || s === 'yahoo' || s === 'nfl'));
+  const preserved = sourcesFromExisting.filter(
+    (s) => !liveSources.includes(s) && (s === 'fantasypros' || s === 'ffc' || s === 'yahoo' || s === 'nfl'),
+  );
   const sources = [...new Set([...liveSources, ...preserved])];
 
   if (players.length < 100) {
