@@ -13,6 +13,7 @@ import {
 } from '../utils/rosterBuilder';
 import { buildInSeasonAlerts, getInSeasonTargets, renderInSeasonAdvicePanel } from '../utils/inSeasonAdvice';
 import { clearInSeasonState, loadInSeasonState, saveInSeasonState } from '../utils/storage';
+import { formatPrevWeekDisplay, formatProjDisplay } from '../utils/inSeasonStats';
 import { posCssClass } from '../utils/position';
 
 function escapeHtml(s: string): string {
@@ -110,6 +111,7 @@ function renderFaTable(players: Player[], inSeasonState: InSeasonState): string 
             <th>Pos</th>
             <th>Team</th>
             <th>Bye</th>
+            <th>Prev Week</th>
             <th>Proj</th>
             <th>Add to team</th>
           </tr>
@@ -118,11 +120,9 @@ function renderFaTable(players: Player[], inSeasonState: InSeasonState): string 
           ${players
             .slice(0, 100)
             .map((p) => {
-              const inSeason = getInSeason();
-              const proj =
-                state.scoring === 'ppr'
-                  ? inSeason?.players[p.id]?.weekProjPpr
-                  : inSeason?.players[p.id]?.weekProjStd;
+              const row = getInSeason()?.players[p.id];
+              const prevWeek = formatPrevWeekDisplay(row, state.scoring);
+              const proj = formatProjDisplay(row, state.scoring);
               const full = isRosterFull(inSeasonState, defaultTeam);
               return `
             <tr class="${posCssClass(String(p.pos))}">
@@ -130,7 +130,8 @@ function renderFaTable(players: Player[], inSeasonState: InSeasonState): string 
               <td><span class="pos-badge ${posCssClass(String(p.pos))}">${escapeHtml(String(p.pos))}</span></td>
               <td>${escapeHtml(p.team)}</td>
               <td>${p.bye ?? '—'}</td>
-              <td>${proj != null ? proj.toFixed(1) : '—'}</td>
+              <td>${prevWeek}</td>
+              <td class="${proj.isFallback ? 'inseason-proj-fallback' : ''}" title="${proj.isFallback ? 'Season average — weekly projection unavailable' : 'Projected points for upcoming week'}">${proj.text}</td>
               <td class="inseason-fa-add-cell">
                 <select class="inseason-fa-team-select" data-add-team-for="${p.id}" aria-label="Team for ${escapeHtml(p.name)}">
                   ${teamOptions}
@@ -197,6 +198,7 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
           <p class="hint">
             Week ${inSeasonData?.currentWeek ?? '—'} · Projections for week ${inSeasonData?.projectionWeek ?? '—'}
             ${updated ? ` · Data updated ${new Date(updated).toLocaleString()}` : ''}
+            · Prev Week = last completed week actuals · Proj* = season average when weekly projection unavailable
           </p>
         </div>
         <div class="inseason-header-actions">

@@ -1,6 +1,7 @@
 import type { InSeasonData, InSeasonTarget, InjuriesData, Player, ScoringFormat } from '../data/types';
 import { countRoster, ROSTER_LIMITS } from '../sim/bot';
 import { byeWeekConflicts } from './analytics';
+import { formatProjDisplay, getProjPts } from './inSeasonStats';
 
 const INJURY_STATUSES = new Set(['out', 'doubtful', 'injured reserve', 'ir', 'suspension']);
 const SKILL = new Set(['QB', 'RB', 'WR', 'TE', 'K', 'DST']);
@@ -15,10 +16,13 @@ function getSeasonPts(p: Player, inSeason: InSeasonData | null, scoring: Scoring
   return scoring === 'ppr' ? (row.seasonPtsPpr ?? 0) : (row.seasonPtsStd ?? 0);
 }
 
-function getWeekProj(p: Player, inSeason: InSeasonData | null, scoring: ScoringFormat): number {
+function formatProjLabel(p: Player, inSeason: InSeasonData | null, scoring: ScoringFormat): string {
   const row = inSeason?.players[p.id];
-  if (!row) return 0;
-  return scoring === 'ppr' ? (row.weekProjPpr ?? 0) : (row.weekProjStd ?? 0);
+  return formatProjDisplay(row, scoring).text;
+}
+
+function getProjScore(p: Player, inSeason: InSeasonData | null, scoring: ScoringFormat): number {
+  return getProjPts(inSeason?.players[p.id], scoring) ?? 0;
 }
 
 function isInjured(p: Player, injuries: InjuriesData | null): boolean {
@@ -62,13 +66,15 @@ function waiverCandidates(
   return freeAgents
     .filter((p) => positions.has(String(p.pos)))
     .map((p) => {
-      const proj = getWeekProj(p, inSeason, scoring);
+      const proj = getProjScore(p, inSeason, scoring);
+      const projLabel = formatProjLabel(p, inSeason, scoring);
       const season = getSeasonPts(p, inSeason, scoring);
       const score = proj * 1.4 + season * 0.35;
+      const weekLabel = inSeason?.projectionWeek ?? '?';
       const reason =
         needPositions.includes(String(p.pos))
-          ? `Fills ${p.pos} need · ${proj.toFixed(1)} proj pts (W${inSeason?.projectionWeek ?? '?'})`
-          : `Upgrade at ${p.pos} · ${season.toFixed(1)} season pts, ${proj.toFixed(1)} proj`;
+          ? `Fills ${p.pos} need · ${projLabel} proj pts (W${weekLabel})`
+          : `Upgrade at ${p.pos} · ${season.toFixed(1)} season pts, ${projLabel} proj`;
       return { player: p, score, reason };
     })
     .filter((x) => x.score > 0)
@@ -93,11 +99,12 @@ function byeCandidates(
   return freeAgents
     .filter((p) => positions.has(String(p.pos)) && p.bye !== week)
     .map((p) => {
-      const proj = getWeekProj(p, inSeason, scoring);
+      const proj = getProjScore(p, inSeason, scoring);
+      const projLabel = formatProjLabel(p, inSeason, scoring);
       return {
         player: p,
         score: proj,
-        reason: `Bye fill for week ${week} · ${proj.toFixed(1)} proj pts at ${p.pos}`,
+        reason: `Bye fill for week ${week} · ${projLabel} proj pts at ${p.pos}`,
       };
     })
     .filter((x) => x.score > 0)
@@ -128,12 +135,13 @@ function injuryCandidates(
     );
     const pool = teamBackups.length ? teamBackups : posBackups;
     for (const p of pool) {
-      const proj = getWeekProj(p, inSeason, scoring);
+      const proj = getProjScore(p, inSeason, scoring);
+      const projLabel = formatProjLabel(p, inSeason, scoring);
       const depthNote = p.depth === 2 ? 'depth backup' : 'same-position fill-in';
       results.push({
         player: p,
         score: proj + (p.team === injured.team ? 2 : 0),
-        reason: `Replace ${injured.name} (${injured.injuryStatus ?? 'injured'}) · ${depthNote}, ${proj.toFixed(1)} proj`,
+        reason: `Replace ${injured.name} (${injured.injuryStatus ?? 'injured'}) · ${depthNote}, ${projLabel} proj`,
       });
     }
   }

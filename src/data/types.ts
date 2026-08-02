@@ -119,11 +119,18 @@ export interface InSeasonPlayerValue {
   playerId: string;
   seasonPtsStd: number | null;
   seasonPtsPpr: number | null;
-  weekProjStd: number | null;
-  weekProjPpr: number | null;
+  prevWeekPtsStd: number | null;
+  prevWeekPtsPpr: number | null;
+  projPtsStd: number | null;
+  projPtsPpr: number | null;
+  projIsFallback: boolean;
   posRankStd: number | null;
   posRankPpr: number | null;
   injuryStatus: string | null;
+  /** @deprecated Legacy field from older builds */
+  weekProjStd?: number | null;
+  /** @deprecated Legacy field from older builds */
+  weekProjPpr?: number | null;
 }
 
 export interface InSeasonData {

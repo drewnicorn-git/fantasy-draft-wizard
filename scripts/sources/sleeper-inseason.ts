@@ -3,6 +3,7 @@ import { normalizePos } from '../utils.js';
 
 const POSITIONS = ['QB', 'RB', 'WR', 'TE', 'K', 'DEF'] as const;
 const POS_QUERY = POSITIONS.map((p) => `position[]=${p}`).join('&');
+const MAX_WEEKLY_PROJ = 50;
 
 export interface SleeperInSeasonRaw {
   sleeperId: string;
@@ -12,8 +13,11 @@ export interface SleeperInSeasonRaw {
   injuryStatus: string | null;
   seasonPtsStd: number;
   seasonPtsPpr: number;
-  weekProjStd: number | null;
-  weekProjPpr: number | null;
+  prevWeekPtsStd: number | null;
+  prevWeekPtsPpr: number | null;
+  projPtsStd: number | null;
+  projPtsPpr: number | null;
+  projIsFallback: boolean;
   posRankStd: number | null;
   posRankPpr: number | null;
 }
@@ -40,6 +44,16 @@ function addStats(
   }
 }
 
+function isWeeklyProjectionRow(stats: Record<string, number | undefined>): boolean {
+  const ptsPpr = stats.pts_ppr ?? 0;
+  const ptsStd = stats.pts_std ?? 0;
+  const pts = Math.max(ptsPpr, ptsStd);
+  if (pts <= 0) return false;
+  const gp = stats.gp ?? 0;
+  if (gp >= 10 && pts > 60) return false;
+  return pts < MAX_WEEKLY_PROJ;
+}
+
 async function fetchWeeklyStats(season: number, week: number): Promise<Record<string, Record<string, number | undefined>>> {
   const url = `https://api.sleeper.app/v1/stats/nfl/regular/${season}/${week}?season_type=regular&${POS_QUERY}`;
   const res = await fetch(url, {
@@ -48,6 +62,33 @@ async function fetchWeeklyStats(season: number, week: number): Promise<Record<st
   });
   if (!res.ok) throw new Error(`Sleeper stats week ${week}: ${res.status}`);
   return (await res.json()) as Record<string, Record<string, number | undefined>>;
+}
+
+async function fetchWeeklyProjections(
+  season: number,
+  week: number,
+): Promise<Map<string, { pts_std: number; pts_ppr: number }>> {
+  const url = `https://api.sleeper.com/projections/nfl/${season}?season_type=regular&week=${week}&${POS_QUERY}`;
+  const res = await fetch(url, {
+    headers: { 'User-Agent': 'fantasy-draft-wizard (github.com)' },
+    signal: AbortSignal.timeout(45_000),
+  });
+  if (!res.ok) throw new Error(`Sleeper projections week ${week}: ${res.status}`);
+
+  const json = (await res.json()) as Array<{
+    player_id?: string;
+    stats?: Record<string, number | undefined>;
+  }>;
+
+  const map = new Map<string, { pts_std: number; pts_ppr: number }>();
+  for (const row of json) {
+    if (!row.player_id || !row.stats || !isWeeklyProjectionRow(row.stats)) continue;
+    map.set(row.player_id, {
+      pts_std: row.stats.pts_std ?? 0,
+      pts_ppr: row.stats.pts_ppr ?? 0,
+    });
+  }
+  return map;
 }
 
 export async function detectLatestStatsWeek(season: number): Promise<number> {
@@ -109,16 +150,26 @@ export async function fetchSleeperInSeasonStats(
     }
   }
 
+  let nextWeekProjections = new Map<string, { pts_std: number; pts_ppr: number }>();
+  try {
+    nextWeekProjections = await fetchWeeklyProjections(season, projectionWeek);
+  } catch (err) {
+    console.warn(`  Sleeper week ${projectionWeek} projections unavailable:`, err);
+  }
+
   const records: SleeperInSeasonRaw[] = [];
   for (const [, sleeper] of sleeperIndex) {
     const totals = seasonTotals.get(sleeper.id);
     const lastWeek = lastWeekTotals.get(sleeper.id);
-    if (!totals && !lastWeek) continue;
+    const projection = nextWeekProjections.get(sleeper.id);
+    if (!totals && !lastWeek && !projection) continue;
 
     const seasonPtsStd = totals?.pts_std ?? 0;
     const seasonPtsPpr = totals?.pts_ppr ?? 0;
-    const ppgStd = currentWeek > 0 ? seasonPtsStd / currentWeek : 0;
-    const ppgPpr = currentWeek > 0 ? seasonPtsPpr / currentWeek : 0;
+    const ppgStd = currentWeek > 0 ? seasonPtsStd / currentWeek : seasonPtsStd;
+    const ppgPpr = currentWeek > 0 ? seasonPtsPpr / currentWeek : seasonPtsPpr;
+
+    const hasProjection = !!projection && ((projection.pts_ppr ?? 0) > 0 || (projection.pts_std ?? 0) > 0);
 
     records.push({
       sleeperId: sleeper.id,
@@ -128,8 +179,11 @@ export async function fetchSleeperInSeasonStats(
       injuryStatus: sleeper.injuryStatus,
       seasonPtsStd,
       seasonPtsPpr,
-      weekProjStd: lastWeek?.pts_std ?? ppgStd,
-      weekProjPpr: lastWeek?.pts_ppr ?? ppgPpr,
+      prevWeekPtsStd: lastWeek?.pts_std ?? null,
+      prevWeekPtsPpr: lastWeek?.pts_ppr ?? null,
+      projPtsStd: hasProjection ? projection!.pts_std : ppgStd,
+      projPtsPpr: hasProjection ? projection!.pts_ppr : ppgPpr,
+      projIsFallback: !hasProjection,
       posRankStd: totals?.pos_rank_std ?? null,
       posRankPpr: totals?.pos_rank_ppr ?? null,
     });

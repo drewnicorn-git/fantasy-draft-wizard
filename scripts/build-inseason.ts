@@ -24,8 +24,11 @@ interface InSeasonPlayerValue {
   playerId: string;
   seasonPtsStd: number | null;
   seasonPtsPpr: number | null;
-  weekProjStd: number | null;
-  weekProjPpr: number | null;
+  prevWeekPtsStd: number | null;
+  prevWeekPtsPpr: number | null;
+  projPtsStd: number | null;
+  projPtsPpr: number | null;
+  projIsFallback: boolean;
   posRankStd: number | null;
   posRankPpr: number | null;
   injuryStatus: string | null;
@@ -67,8 +70,11 @@ async function build(): Promise<void> {
       playerId: p.id,
       seasonPtsStd: raw.seasonPtsStd,
       seasonPtsPpr: raw.seasonPtsPpr,
-      weekProjStd: raw.weekProjStd,
-      weekProjPpr: raw.weekProjPpr,
+      prevWeekPtsStd: raw.prevWeekPtsStd,
+      prevWeekPtsPpr: raw.prevWeekPtsPpr,
+      projPtsStd: raw.projPtsStd,
+      projPtsPpr: raw.projPtsPpr,
+      projIsFallback: raw.projIsFallback,
       posRankStd: raw.posRankStd,
       posRankPpr: raw.posRankPpr,
       injuryStatus: raw.injuryStatus,
