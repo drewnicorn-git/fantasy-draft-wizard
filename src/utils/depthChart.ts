@@ -21,6 +21,10 @@ export const VALID_TEAMS = new Set([
 
 const FANTASY_POS = new Set(['QB', 'RB', 'WR', 'TE', 'K', 'DST']);
 
+export const DEPTH_CHART_POSITIONS = ['QB', 'RB', 'WR', 'TE', 'K', 'DST'] as const;
+
+export const NFL_TEAMS_SORTED = [...VALID_TEAMS].sort();
+
 export function normalizeTeam(abbr: string): string {
   const t = abbr.toUpperCase();
   return ESPN_TEAM_ABBR[t] ?? t;
@@ -267,6 +271,39 @@ function parseRosterEntries(
   });
 
   return entries;
+}
+
+/** Group flat ESPN depth entries into team → position → ordered player names by depth slot. */
+export function buildTeamDepthCharts(
+  entries: DepthChartEntry[],
+): Record<string, Partial<Record<(typeof DEPTH_CHART_POSITIONS)[number], string[]>>> {
+  const teams: Record<string, Partial<Record<(typeof DEPTH_CHART_POSITIONS)[number], string[]>>> = {};
+
+  for (const raw of entries) {
+    if (raw.depth == null || raw.depth < 1) continue;
+    const team = normalizeTeam(raw.team);
+    const pos = normalizePos(raw.pos) as (typeof DEPTH_CHART_POSITIONS)[number];
+    if (!DEPTH_CHART_POSITIONS.includes(pos)) continue;
+
+    if (!teams[team]) teams[team] = {};
+    if (!teams[team]![pos]) teams[team]![pos] = [];
+
+    const slot = teams[team]![pos]!;
+    while (slot.length < raw.depth) slot.push('');
+    const idx = raw.depth - 1;
+    if (!slot[idx]) slot[idx] = raw.name.trim();
+  }
+
+  for (const team of Object.values(teams)) {
+    for (const pos of DEPTH_CHART_POSITIONS) {
+      const slot = team[pos];
+      if (!slot) continue;
+      team[pos] = slot.map((name) => name.trim()).filter(Boolean);
+      if (!team[pos]!.length) delete team[pos];
+    }
+  }
+
+  return teams;
 }
 
 export async function fetchEspnDepthCharts(season: number): Promise<DepthChartEntry[]> {

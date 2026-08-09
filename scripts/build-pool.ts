@@ -12,6 +12,7 @@ import {
   type DepthIndexes,
 } from './sources/espn-depth.js';
 import { buildInjuryReport, type EspnInjuryRecord } from './sources/espn-injuries.js';
+import { buildTeamDepthCharts } from '../src/utils/depthChart.ts';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const rawDir = join(root, 'data', 'raw');
@@ -19,6 +20,8 @@ const outPath = join(root, 'data', 'rankings.json');
 const publicPath = join(root, 'public', 'rankings.json');
 const injuriesOutPath = join(root, 'data', 'injuries.json');
 const injuriesPublicPath = join(root, 'public', 'injuries.json');
+const depthChartsOutPath = join(root, 'data', 'depth-charts.json');
+const depthChartsPublicPath = join(root, 'public', 'depth-charts.json');
 
 const SEASON = currentDraftSeason();
 
@@ -82,9 +85,13 @@ interface SourceImport {
   apply: (player: PoolPlayer, row: RawPlayerRow) => void;
 }
 
-function loadDepthIndex(): DepthIndexes {
+function loadDepthEntries(): DepthChartEntry[] {
   const snap = loadSnapshot(`espn-depth-${SEASON}.json`);
-  const entries = (snap?.data.players ?? []) as DepthChartEntry[];
+  return (snap?.data.players ?? []) as DepthChartEntry[];
+}
+
+function loadDepthIndex(): DepthIndexes {
+  const entries = loadDepthEntries();
   if (entries.length) {
     console.log(`  ESPN depth/roster index: ${entries.length} entries`);
     return buildDepthChartIndex(entries);
@@ -356,6 +363,17 @@ function merge(): void {
   writeFileSync(injuriesOutPath, injuriesJson);
   writeFileSync(injuriesPublicPath, injuriesJson);
   console.log(`Built injury report (${injuries.entries.length} entries) -> ${injuriesOutPath}`);
+
+  const depthCharts = {
+    season: SEASON,
+    builtAt,
+    fetchedAt: rawFetchedAt ?? builtAt,
+    teams: buildTeamDepthCharts(loadDepthEntries()),
+  };
+  const depthChartsJson = JSON.stringify(depthCharts, null, 1) + '\n';
+  writeFileSync(depthChartsOutPath, depthChartsJson);
+  writeFileSync(depthChartsPublicPath, depthChartsJson);
+  console.log(`Built depth charts (${Object.keys(depthCharts.teams).length} teams) -> ${depthChartsOutPath}`);
 }
 
 merge();

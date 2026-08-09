@@ -1,15 +1,16 @@
 import './styles.css';
-import { loadRankings, loadInjuries, loadInSeason, getRankings, setScoring, setState, state, subscribe } from './state/appState';
+import { loadRankings, loadInjuries, loadInSeason, loadDepthCharts, getRankings, setScoring, setState, state, subscribe } from './state/appState';
 import { mountRankingsView } from './pages/RankingsView';
 import { mountMockDraftView } from './pages/MockDraftView';
 import { mountLiveDraftView } from './pages/LiveDraftView';
 import { mountInjuryReportView } from './pages/InjuryReportView';
 import { mountInSeasonView } from './pages/InSeasonView';
+import { mountDepthChartsView } from './pages/DepthChartsView';
 import { rankingsUpdatedAt } from './utils/rankingsMeta';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
-type TabId = 'rankings' | 'mock' | 'live' | 'injuries' | 'inseason';
+type TabId = 'rankings' | 'mock' | 'live' | 'injuries' | 'inseason' | 'depth';
 
 function render(): void {
   const data = getRankings();
@@ -30,6 +31,7 @@ function render(): void {
         <button type="button" class="${state.tab === 'mock' ? 'active' : ''}" data-tab="mock">Mock Draft</button>
         <button type="button" class="${state.tab === 'live' ? 'active' : ''}" data-tab="live">Live Draft</button>
         <button type="button" class="${state.tab === 'injuries' ? 'active' : ''}" data-tab="injuries">Injuries</button>
+        <button type="button" class="${state.tab === 'depth' ? 'active' : ''}" data-tab="depth">Depth Charts</button>
         <button type="button" class="${state.tab === 'inseason' ? 'active' : ''}" data-tab="inseason">In Season</button>
       </nav>
     </header>
@@ -53,6 +55,7 @@ function render(): void {
   else if (state.tab === 'mock') mountMockDraftView(main);
   else if (state.tab === 'live') mountLiveDraftView(main);
   else if (state.tab === 'injuries') mountInjuryReportView(main);
+  else if (state.tab === 'depth') mountDepthChartsView(main);
   else mountInSeasonView(main, render);
 }
 
@@ -60,7 +63,7 @@ async function init(): Promise<void> {
   app.innerHTML = '<p class="loading">Loading rankings…</p>';
   try {
     await loadRankings();
-    await Promise.all([loadInjuries(), loadInSeason()]);
+    await Promise.all([loadInjuries(), loadInSeason(), loadDepthCharts()]);
     subscribe(render);
     render();
   } catch (err) {

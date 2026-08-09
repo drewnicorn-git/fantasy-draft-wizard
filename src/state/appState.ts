@@ -1,4 +1,4 @@
-import type { AppState, InjuriesData, InSeasonData, Player, RankingsData, ScoringFormat, SourceKey } from '../data/types';
+import type { AppState, DepthChartsData, InjuriesData, InSeasonData, Player, RankingsData, ScoringFormat, SourceKey } from '../data/types';
 import { isBlankPlayer } from '../utils/scoring';
 import { normalizeName } from '../utils/playerKeys';
 import { buildRankingsFromLiveSources, type RefreshProgress } from '../services/buildRankings';
@@ -15,6 +15,7 @@ import {
 let rankingsData: RankingsData | null = null;
 let injuriesData: InjuriesData | null = null;
 let inSeasonData: InSeasonData | null = null;
+let depthChartsData: DepthChartsData | null = null;
 let listeners: Array<() => void> = [];
 
 export const defaultState: AppState = {
@@ -182,6 +183,23 @@ export async function loadInjuries(): Promise<InjuriesData | null> {
 
 export function getInSeason(): InSeasonData | null {
   return inSeasonData;
+}
+
+export function getDepthCharts(): DepthChartsData | null {
+  return depthChartsData;
+}
+
+export async function loadDepthCharts(): Promise<DepthChartsData | null> {
+  if (depthChartsData) return depthChartsData;
+  const base = import.meta.env.BASE_URL;
+  try {
+    const res = await fetch(`${base}depth-charts.json?t=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) return null;
+    depthChartsData = (await res.json()) as DepthChartsData;
+    return depthChartsData;
+  } catch {
+    return null;
+  }
 }
 
 export async function loadInSeason(): Promise<InSeasonData | null> {

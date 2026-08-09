@@ -62,6 +62,13 @@ export interface InjuriesData {
   entries: InjuryReportEntry[];
 }
 
+export interface DepthChartsData {
+  season: number;
+  builtAt: string;
+  fetchedAt: string | null;
+  teams: Record<string, Partial<Record<'QB' | 'RB' | 'WR' | 'TE' | 'K' | 'DST', string[]>>>;
+}
+
 export interface FilterState {
   positions: Set<string>;
   teams: Set<string>;
@@ -97,7 +104,7 @@ export type BotPersonality = 'balanced' | 'zero-rb' | 'hero-rb';
 
 export interface AppState {
   scoring: ScoringFormat;
-  tab: 'rankings' | 'mock' | 'live' | 'injuries' | 'inseason';
+  tab: 'rankings' | 'mock' | 'live' | 'injuries' | 'inseason' | 'depth';
   filters: FilterState;
   selectedSources: Set<SourceKey>;
   draftConfig: DraftConfig;

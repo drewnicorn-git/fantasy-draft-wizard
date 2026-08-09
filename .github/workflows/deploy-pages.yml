@@ -45,6 +45,7 @@ jobs:
           test -f dist/rankings.json
           test -f dist/injuries.json
           test -f dist/inseason.json
+          test -f dist/depth-charts.json
           test -f dist/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
