@@ -78,6 +78,18 @@ function importRows(
 }
 
 /** Overlay static snapshot ranks (FantasyPros, etc.) and keep players only present there. */
+function mergePlayerMetadata(p: PoolPlayer, old: Player): void {
+  if (old.depth != null) {
+    p.depth = p.depth == null ? old.depth : Math.min(p.depth, old.depth);
+  }
+  if (old.teamVerified) {
+    p.teamVerified = true;
+    if (old.team) p.team = old.team;
+  }
+  if (old.injuryStatus && !p.injuryStatus) p.injuryStatus = old.injuryStatus;
+  if (old.name.length > p.name.length) p.name = old.name;
+}
+
 function mergeExistingPlayers(pool: Map<string, PoolPlayer>, existing: RankingsData | null): void {
   if (!existing) return;
   for (const old of existing.players) {
@@ -103,6 +115,22 @@ function mergeExistingPlayers(pool: Map<string, PoolPlayer>, existing: RankingsD
     if (old.bye != null && p.bye == null) p.bye = old.bye;
     if (old.adp.std != null && p.adp.std == null) p.adp.std = old.adp.std;
     if (old.adp.ppr != null && p.adp.ppr == null) p.adp.ppr = old.adp.ppr;
+    mergePlayerMetadata(p, old);
+  }
+}
+
+function refreshDepthFromIndex(pool: Map<string, PoolPlayer>, depthIndexes: DepthIndexes): void {
+  for (const p of pool.values()) {
+    const identity = resolvePlayerIdentity(p.name, String(p.pos), p.team, depthIndexes);
+    if (!identity) continue;
+    if (identity.verified) {
+      p.teamVerified = true;
+      p.team = identity.team;
+      if (identity.displayName.length > p.name.length) p.name = identity.displayName;
+    }
+    if (identity.depth != null) {
+      p.depth = p.depth == null ? identity.depth : Math.min(p.depth, identity.depth);
+    }
   }
 }
 
@@ -116,7 +144,7 @@ export async function buildRankingsFromLiveSources(
   const fetchedAt = new Date().toISOString();
   const errors: string[] = [];
 
-  onProgress?.('Fetching ESPN rosters…');
+  onProgress?.('Fetching ESPN depth charts…');
   let depthEntries = await fetchEspnDepthCharts(season).catch((e) => {
     errors.push(String(e));
     return [] as Awaited<ReturnType<typeof fetchEspnDepthCharts>>;
@@ -187,6 +215,7 @@ export async function buildRankingsFromLiveSources(
 
   onProgress?.('Merging FantasyPros snapshot…');
   mergeExistingPlayers(pool, existing);
+  refreshDepthFromIndex(pool, depthIndexes);
 
   for (const sp of sleeperPlayers) {
     const identity = resolvePlayerIdentity(sp.name, sp.pos, sp.team, depthIndexes);
