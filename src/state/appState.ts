@@ -75,19 +75,22 @@ export function toggleSource(source: SourceKey): void {
 
 export async function loadRankings(): Promise<RankingsData> {
   if (rankingsData) return rankingsData;
-  return fetchRankings();
+  return fetchRankingsFromServer();
 }
 
 export async function reloadRankings(onProgress?: RefreshProgress): Promise<RankingsData> {
-  const data = await buildRankingsFromLiveSources(rankingsData, onProgress);
+  onProgress?.('Loading latest rankings snapshot…');
+  const snapshot = await fetchRankingsFromServer(true);
+  const data = await buildRankingsFromLiveSources(snapshot, onProgress);
   rankingsData = data;
   notify();
   return data;
 }
 
-async function fetchRankings(): Promise<RankingsData> {
+async function fetchRankingsFromServer(force = false): Promise<RankingsData> {
+  if (!force && rankingsData) return rankingsData;
   const base = import.meta.env.BASE_URL;
-  const res = await fetch(`${base}rankings.json?t=${Date.now()}`);
+  const res = await fetch(`${base}rankings.json?t=${Date.now()}`, { cache: 'no-store' });
   if (!res.ok) throw new Error(`Failed to load rankings (${res.status})`);
   rankingsData = (await res.json()) as RankingsData;
   applyPersistedSettings();

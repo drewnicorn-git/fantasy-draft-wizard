@@ -5,6 +5,7 @@ import { mountMockDraftView } from './pages/MockDraftView';
 import { mountLiveDraftView } from './pages/LiveDraftView';
 import { mountInjuryReportView } from './pages/InjuryReportView';
 import { mountInSeasonView } from './pages/InSeasonView';
+import { rankingsUpdatedAt } from './utils/rankingsMeta';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
@@ -12,7 +13,7 @@ type TabId = 'rankings' | 'mock' | 'live' | 'injuries' | 'inseason';
 
 function render(): void {
   const data = getRankings();
-  const updated = data?.fetchedAt ?? data?.builtAt ?? '';
+  const updated = rankingsUpdatedAt(data);
 
   app.innerHTML = `
     <header class="app-header">

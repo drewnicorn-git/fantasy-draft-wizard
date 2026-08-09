@@ -1,5 +1,5 @@
 import type { Player, RankingsData, SourceKey } from '../data/types';
-import { fetchEspnRankings, fetchSleeperAdp, fetchSleeperPlayers } from './fetchSources';
+import { fetchEspnRankings, fetchFfcAdp, fetchSleeperAdp, fetchSleeperPlayers } from './fetchSources';
 import {
   buildDepthChartIndex,
   fetchEspnDepthCharts,
@@ -77,17 +77,32 @@ function importRows(
   return count;
 }
 
-function mergeExistingRanks(pool: Map<string, PoolPlayer>, existing: RankingsData | null): void {
+/** Overlay static snapshot ranks (FantasyPros, etc.) and keep players only present there. */
+function mergeExistingPlayers(pool: Map<string, PoolPlayer>, existing: RankingsData | null): void {
   if (!existing) return;
   for (const old of existing.players) {
-    const p = pool.get(old.id);
-    if (!p) continue;
+    let p = pool.get(old.id);
+    if (!p) {
+      pool.set(old.id, {
+        ...old,
+        ranks: {
+          std: { ...old.ranks.std },
+          ppr: { ...old.ranks.ppr },
+        },
+        adp: { ...old.adp },
+        posRank: { ...old.posRank },
+      });
+      continue;
+    }
     p.ranks.std = { ...old.ranks.std, ...p.ranks.std };
     p.ranks.ppr = { ...old.ranks.ppr, ...p.ranks.ppr };
     if (old.tier != null && p.tier == null) p.tier = old.tier;
-    if (old.posRank.std != null) p.posRank.std = old.posRank.std;
-    if (old.posRank.ppr != null) p.posRank.ppr = old.posRank.ppr;
-    if (old.rankStdDev != null) p.rankStdDev = old.rankStdDev;
+    if (old.posRank.std != null && p.posRank.std == null) p.posRank.std = old.posRank.std;
+    if (old.posRank.ppr != null && p.posRank.ppr == null) p.posRank.ppr = old.posRank.ppr;
+    if (old.rankStdDev != null && p.rankStdDev == null) p.rankStdDev = old.rankStdDev;
+    if (old.bye != null && p.bye == null) p.bye = old.bye;
+    if (old.adp.std != null && p.adp.std == null) p.adp.std = old.adp.std;
+    if (old.adp.ppr != null && p.adp.ppr == null) p.adp.ppr = old.adp.ppr;
   }
 }
 
@@ -147,7 +162,31 @@ export async function buildRankingsFromLiveSources(
     });
   }
 
-  mergeExistingRanks(pool, existing);
+  onProgress?.('Fetching Fantasy Calc ADP…');
+  const ffcStdRows = await fetchFfcAdp(season, 'std').catch((e) => {
+    errors.push(String(e));
+    return [] as RawPlayerRow[];
+  });
+  if (ffcStdRows.length) {
+    sourceCounts.ffc = importRows(pool, depthIndexes, ffcStdRows, (p, r) => {
+      if (r.adp != null && p.adp.std == null) p.adp.std = r.adp;
+      if (r.rank != null) p.ranks.std.ffc = r.rank;
+    });
+  }
+
+  const ffcPprRows = await fetchFfcAdp(season, 'ppr').catch((e) => {
+    errors.push(String(e));
+    return [] as RawPlayerRow[];
+  });
+  if (ffcPprRows.length) {
+    sourceCounts.ffc = (sourceCounts.ffc ?? 0) + importRows(pool, depthIndexes, ffcPprRows, (p, r) => {
+      if (r.adp != null && p.adp.ppr == null) p.adp.ppr = r.adp;
+      if (r.rank != null) p.ranks.ppr.ffc = r.rank;
+    });
+  }
+
+  onProgress?.('Merging FantasyPros snapshot…');
+  mergeExistingPlayers(pool, existing);
 
   for (const sp of sleeperPlayers) {
     const identity = resolvePlayerIdentity(sp.name, sp.pos, sp.team, depthIndexes);
@@ -175,9 +214,9 @@ export async function buildRankingsFromLiveSources(
   players.sort((a, b) => (a.consensus.ppr ?? 9999) - (b.consensus.ppr ?? 9999));
 
   const sourcesFromExisting = existing?.sources ?? [];
-  const liveSources = (['espn', 'sleeper'] as SourceKey[]).filter((s) => sourceCounts[s]);
+  const liveSources = (['espn', 'sleeper', 'ffc'] as SourceKey[]).filter((s) => sourceCounts[s]);
   const preserved = sourcesFromExisting.filter(
-    (s) => !liveSources.includes(s) && (s === 'fantasypros' || s === 'ffc' || s === 'yahoo' || s === 'nfl'),
+    (s) => !liveSources.includes(s) && (s === 'fantasypros' || s === 'yahoo' || s === 'nfl'),
   );
   const sources = [...new Set([...liveSources, ...preserved])];
 

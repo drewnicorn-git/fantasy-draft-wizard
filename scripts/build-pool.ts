@@ -323,7 +323,8 @@ function merge(): void {
     (s) => sourceCounts[s],
   );
 
-  const fetchedAt = readdirSync(rawDir)
+  const builtAt = new Date().toISOString();
+  const rawFetchedAt = readdirSync(rawDir)
     .map((f) => loadSnapshot(f)?.fetchedAt)
     .filter(Boolean)
     .sort()
@@ -331,8 +332,8 @@ function merge(): void {
 
   const output = {
     season: SEASON,
-    builtAt: new Date().toISOString(),
-    fetchedAt: fetchedAt ?? null,
+    builtAt,
+    fetchedAt: rawFetchedAt ?? builtAt,
     sources: availableSources,
     players,
   };

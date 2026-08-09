@@ -30,14 +30,6 @@ jobs:
 
       - run: npm ci
 
-      - name: Build pool from committed raw data
-        run: npm run build:pool
-        continue-on-error: true
-
-      - name: Build in-season values
-        run: npm run build:inseason
-        continue-on-error: true
-
       - name: Build site
         run: npm run build
         env:
