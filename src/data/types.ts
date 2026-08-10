@@ -113,7 +113,6 @@ export interface AppState {
 
 export interface SheetState {
   locked: boolean;
-  tierOverrides: Record<string, number>;
   savedAt: string | null;
 }
 

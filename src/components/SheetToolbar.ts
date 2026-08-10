@@ -15,10 +15,10 @@ export function renderSheetToolbar(container: HTMLElement, onChange: () => void)
       <span id="refresh-status" class="sheet-status muted"></span>
       ${
         locked
-          ? `<button type="button" id="unlock-sheet" class="btn secondary">Edit sheet</button>
-             <span class="sheet-status locked">Sheet locked — tag edits saved</span>`
-          : `<button type="button" id="save-sheet" class="btn primary">Save changes</button>
-             <span class="sheet-status">Unsaved tag edits</span>`
+          ? `<button type="button" id="unlock-sheet" class="btn secondary">Unlock sheet</button>
+             <span class="sheet-status locked">Sheet locked — tags cannot be edited</span>`
+          : `<button type="button" id="save-sheet" class="btn primary">Lock sheet</button>
+             <span class="sheet-status">Sheet unlocked — tag edits allowed</span>`
       }
     </div>`;
 

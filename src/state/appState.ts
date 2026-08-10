@@ -209,10 +209,6 @@ export function unlockSheet(): void {
   saveSheetState(sheet);
 }
 
-export function applyPlayerOverrides(players: Player[]): Player[] {
-  return players;
-}
-
 export function updateDraftConfig(teams: number, slot: number, rounds: number): void {
   const clampedSlot = Math.max(1, Math.min(slot, teams));
   state.draftConfig = { ...state.draftConfig, teams, slot: clampedSlot, rounds, scoring: state.scoring };
@@ -229,11 +225,7 @@ export function applyDraftConfig(teams: number, slot: number, rounds: number, bo
 }
 
 export function getRankings(): RankingsData | null {
-  if (!rankingsData) return null;
-  return {
-    ...rankingsData,
-    players: applyPlayerOverrides(rankingsData.players),
-  };
+  return rankingsData;
 }
 
 export function getInjuries(): InjuriesData | null {

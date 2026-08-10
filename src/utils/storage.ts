@@ -1,4 +1,4 @@
-import type { DraftPick, InSeasonState, TagDefinition } from '../data/types';
+import type { DraftPick, InSeasonState, TagDefinition, SheetState } from '../data/types';
 
 const TAG_DEFS_KEY = 'fdw-tag-definitions';
 const PLAYER_TAGS_KEY = 'fdw-player-tags';
@@ -98,17 +98,18 @@ export function saveDraftConfig(config: { teams: number; slot: number; rounds: n
   localStorage.setItem(DRAFT_CONFIG_KEY, JSON.stringify(config));
 }
 
-export function loadSheetState(): { locked: boolean; tierOverrides: Record<string, number>; savedAt: string | null } {
+export function loadSheetState(): SheetState {
   try {
     const raw = localStorage.getItem(SHEET_STATE_KEY);
-    if (!raw) return { locked: false, tierOverrides: {}, savedAt: null };
-    return JSON.parse(raw) as { locked: boolean; tierOverrides: Record<string, number>; savedAt: string | null };
+    if (!raw) return { locked: false, savedAt: null };
+    const parsed = JSON.parse(raw) as SheetState & { tierOverrides?: unknown };
+    return { locked: !!parsed.locked, savedAt: parsed.savedAt ?? null };
   } catch {
-    return { locked: false, tierOverrides: {}, savedAt: null };
+    return { locked: false, savedAt: null };
   }
 }
 
-export function saveSheetState(state: { locked: boolean; tierOverrides: Record<string, number>; savedAt: string | null }): void {
+export function saveSheetState(state: SheetState): void {
   localStorage.setItem(SHEET_STATE_KEY, JSON.stringify(state));
 }
 
