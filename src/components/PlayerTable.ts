@@ -145,7 +145,7 @@ const DEFAULT_SORT_DIR: Record<SortKey, 'asc' | 'desc'> = {
 
 
 
-function sortHeader(label: string, key: SortKey, sort: SortState): string {
+function sortHeader(label: string, key: SortKey, sort: SortState, extraClass = ''): string {
 
   const active = sort.key === key;
 
@@ -153,7 +153,9 @@ function sortHeader(label: string, key: SortKey, sort: SortState): string {
 
   const aria = active ? sort.dir : 'none';
 
-  return `<th class="sortable${active ? ' sorted' : ''}" data-sort="${key}" role="columnheader" aria-sort="${aria}" tabindex="0">${label}${arrow}</th>`;
+  const cls = ['sortable', active ? 'sorted' : '', extraClass].filter(Boolean).join(' ');
+
+  return `<th class="${cls}" data-sort="${key}" role="columnheader" aria-sort="${aria}" tabindex="0">${label}${arrow}</th>`;
 
 }
 
@@ -181,7 +183,7 @@ function renderDeltaCompareHeader(
 
 
 
-  return `<th class="sortable delta-compare-col${active ? ' sorted' : ''}" data-sort="delta" role="columnheader" aria-sort="${aria}" tabindex="0">
+  return `<th class="sortable delta-compare-col col-compact-hide${active ? ' sorted' : ''}" data-sort="delta" role="columnheader" aria-sort="${aria}" tabindex="0">
 
     <div class="delta-compare-header">
 
@@ -485,13 +487,13 @@ export function renderRankingsTable(
 
       ${sortHeader('Team', 'team', tableSort)}
 
-      ${sortHeader('Depth', 'depth', tableSort)}
+      ${sortHeader('Depth', 'depth', tableSort, 'col-compact-hide')}
 
-      ${sortHeader('Bye', 'bye', tableSort)}
+      ${sortHeader('Bye', 'bye', tableSort, 'col-compact-hide')}
 
-      ${sortHeader('Tier', 'tier', tableSort)}
+      ${sortHeader('Tier', 'tier', tableSort, 'col-compact-hide')}
 
-      ${showSources ? sources.map((s) => sortHeader(SOURCE_LABELS[s] ?? s, `source:${s}`, tableSort)).join('') : ''}
+      ${showSources ? sources.map((s) => sortHeader(SOURCE_LABELS[s] ?? s, `source:${s}`, tableSort, 'col-compact-hide')).join('') : ''}
 
       ${showDeltaCol ? renderDeltaCompareHeader(rankMetrics, rankDeltaCompare, tableSort) : ''}
 
@@ -580,15 +582,15 @@ export function renderRankingsTable(
 
         <td${teamWarn}>${p.team}${p.teamVerified === false ? ' *' : ''}</td>
 
-        <td title="Team depth from ESPN depth chart">${teamDepthLabel}</td>
+        <td class="col-compact-hide" title="Team depth from ESPN depth chart">${teamDepthLabel}</td>
 
-        <td>${p.bye ?? '—'}</td>
+        <td class="col-compact-hide">${p.bye ?? '—'}</td>
 
-        <td>${p.tier ?? '—'}</td>
+        <td class="col-compact-hide">${p.tier ?? '—'}</td>
 
-        ${showSources ? sources.map((s) => `<td>${getSourceRank(p, s, scoring) ?? '—'}</td>`).join('') : ''}
+        ${showSources ? sources.map((s) => `<td class="col-compact-hide">${getSourceRank(p, s, scoring) ?? '—'}</td>`).join('') : ''}
 
-        ${showDeltaCol ? `<td class="delta-col">${deltaCell}</td>` : ''}
+        ${showDeltaCol ? `<td class="delta-col col-compact-hide">${deltaCell}</td>` : ''}
 
         <td><strong>${getConsensus(p, scoring) ?? '—'}</strong></td>
 
@@ -622,7 +624,7 @@ export function renderRankingsTable(
 
 
 
-  container.innerHTML = `<div class="table-wrap"><table>${thead}<tbody>${rows}</tbody></table></div>`;
+  container.innerHTML = `<div class="table-wrap"><table class="player-table">${thead}<tbody>${rows}</tbody></table></div>`;
 
 
 

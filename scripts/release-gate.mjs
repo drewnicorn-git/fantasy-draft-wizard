@@ -212,6 +212,12 @@ async function main() {
     } catch (e) {
       fail(`Production build failed: ${e.stderr ?? e.message}`);
     }
+    try {
+      sh('npm run data:smoke');
+      pass('Data pipeline smoke checks pass');
+    } catch (e) {
+      fail(`Data smoke checks failed: ${e.stderr ?? e.message}`);
+    }
     await checkArchiveFrozen();
   }
 

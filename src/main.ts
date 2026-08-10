@@ -5,6 +5,9 @@ import {
   loadInSeason,
   loadDepthCharts,
   getRankings,
+  getInjuries,
+  getInSeason,
+  getDepthCharts,
   setScoringSettings,
   setState,
   state,
@@ -14,7 +17,7 @@ import {
   dismissSecondaryDataBanner,
   retrySecondaryData,
 } from './state/appState';
-import { getActiveLeague } from './state/leaguesStore';
+import { getActiveLeague, setActiveLeague } from './state/leaguesStore';
 import { FULL_PPR_SCORING, HALF_PPR_SCORING, STANDARD_SCORING } from './utils/fantasyPoints';
 import { rulesMatch } from './utils/fantasyPoints';
 import { mountRankingsView } from './pages/RankingsView';
@@ -26,22 +29,31 @@ import { mountDepthChartsView } from './pages/DepthChartsView';
 import { mountLeagueSwitcher } from './components/LeagueSwitcher';
 import { resetMockDraftModuleState } from './pages/MockDraftView';
 import { syncAppStateFromActiveLeague } from './state/appState';
-import { rankingsUpdatedAt } from './utils/rankingsMeta';
+import {
+  formatDataFreshness,
+  formatDepthFreshness,
+  formatInjuryFreshness,
+  formatInSeasonFreshness,
+} from './utils/rankingsMeta';
+import { parseAppHash, syncHashFromApp, type AppTabId } from './utils/appRouting';
+import { applyLayoutMode, loadLayoutMode, saveLayoutMode, type LayoutMode } from './utils/layoutMode';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
-type TabId = 'rankings' | 'mock' | 'live' | 'injuries' | 'inseason' | 'depth';
+type TabId = AppTabId;
 
 let shellReady = false;
 let mountedTab: TabId | null = null;
 let bannerEventsBound = false;
 let refreshLeagueSwitcher: (() => void) | null = null;
+let hashRoutingBound = false;
 
 function onLeagueChanged(): void {
   resetMockDraftModuleState();
   syncAppStateFromActiveLeague();
   mountedTab = null;
   refreshLeagueSwitcher?.();
+  syncHashFromApp(state.tab, getActiveLeague().id);
   render();
 }
 
@@ -62,6 +74,11 @@ function bindBannerEvents(): void {
   bannerEventsBound = true;
 }
 
+function navigateToTab(tab: TabId): void {
+  setState({ tab });
+  syncHashFromApp(tab, getActiveLeague().id);
+}
+
 function bindShellEvents(): void {
   app.querySelectorAll('[data-scoring-preset]').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -74,9 +91,43 @@ function bindShellEvents(): void {
 
   app.querySelectorAll('[data-tab]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      setState({ tab: (btn as HTMLElement).dataset.tab as TabId });
+      navigateToTab((btn as HTMLElement).dataset.tab as TabId);
     });
   });
+
+  app.querySelector('#layout-mode-toggle')?.addEventListener('click', () => {
+    const next: LayoutMode = loadLayoutMode() === 'mobile' ? 'desktop' : 'mobile';
+    saveLayoutMode(next);
+    updateShell();
+  });
+}
+
+function bindHashRouting(): void {
+  if (hashRoutingBound) return;
+  window.addEventListener('hashchange', () => {
+    applyHashToApp(false);
+  });
+  hashRoutingBound = true;
+}
+
+function applyHashToApp(syncHash: boolean): void {
+  const { tab, leagueId } = parseAppHash();
+  if (leagueId && leagueId !== getActiveLeague().id) {
+    try {
+      setActiveLeague(leagueId);
+      syncAppStateFromActiveLeague();
+      mountedTab = null;
+      refreshLeagueSwitcher?.();
+    } catch {
+      /* unknown league id in URL — ignore */
+    }
+  }
+  if (tab && tab !== state.tab) {
+    setState({ tab });
+  }
+  if (syncHash) {
+    syncHashFromApp(state.tab, getActiveLeague().id);
+  }
 }
 
 function ensureShell(): void {
@@ -92,15 +143,16 @@ function ensureShell(): void {
           <button type="button" data-scoring-preset="half">Half PPR</button>
           <button type="button" data-scoring-preset="full">Full PPR</button>
         </div>
+        <button type="button" id="layout-mode-toggle" class="btn layout-mode-btn" aria-pressed="false" title="Toggle mobile-friendly layout">Layout: Desktop</button>
         <span class="updated"></span>
       </div>
-      <nav class="tabs">
-        <button type="button" data-tab="rankings">Rankings</button>
-        <button type="button" data-tab="mock">Mock Draft</button>
-        <button type="button" data-tab="live">Live Draft</button>
-        <button type="button" data-tab="injuries">Injuries</button>
-        <button type="button" data-tab="depth">Depth Charts</button>
-        <button type="button" data-tab="inseason">In Season</button>
+      <nav class="tabs" role="tablist" aria-label="Main sections">
+        <button type="button" role="tab" data-tab="rankings">Rankings</button>
+        <button type="button" role="tab" data-tab="mock">Mock Draft</button>
+        <button type="button" role="tab" data-tab="live">Live Draft</button>
+        <button type="button" role="tab" data-tab="injuries">Injuries</button>
+        <button type="button" role="tab" data-tab="depth">Depth Charts</button>
+        <button type="button" role="tab" data-tab="inseason">In Season</button>
       </nav>
     </header>
     <div id="data-load-banner" class="data-load-banner hidden" role="alert" aria-live="polite">
@@ -117,9 +169,37 @@ function ensureShell(): void {
 
   bindShellEvents();
   bindBannerEvents();
+  bindHashRouting();
   const leagueEl = app.querySelector('#league-switcher') as HTMLElement;
   refreshLeagueSwitcher = mountLeagueSwitcher(leagueEl, onLeagueChanged);
   shellReady = true;
+}
+
+function tabFreshnessLabel(tab: TabId): string {
+  switch (tab) {
+    case 'rankings': {
+      const label = formatDataFreshness(getRankings());
+      return label ? `Rankings updated ${label}` : '';
+    }
+    case 'injuries': {
+      const label = formatInjuryFreshness(getInjuries());
+      return label ? `Injuries: ${label}` : 'Injuries: data unavailable';
+    }
+    case 'depth': {
+      const label = formatDepthFreshness(getDepthCharts());
+      return label ? `Depth: ${label}` : 'Depth: data unavailable';
+    }
+    case 'inseason': {
+      const label = formatInSeasonFreshness(getInSeason());
+      return label ? `In season: ${label}` : 'In season: data unavailable';
+    }
+    case 'mock':
+      return 'Mock draft — local to this league';
+    case 'live':
+      return 'Live draft — local to this league';
+    default:
+      return '';
+  }
 }
 
 function updateDataLoadBanner(): void {
@@ -140,7 +220,16 @@ function updateDataLoadBanner(): void {
 }
 
 function updateShell(): void {
-  const updated = rankingsUpdatedAt(getRankings());
+  const layoutMode = loadLayoutMode();
+  applyLayoutMode(layoutMode);
+  const layoutBtn = app.querySelector('#layout-mode-toggle') as HTMLButtonElement | null;
+  if (layoutBtn) {
+    const mobile = layoutMode === 'mobile';
+    layoutBtn.textContent = mobile ? 'Layout: Mobile' : 'Layout: Desktop';
+    layoutBtn.setAttribute('aria-pressed', mobile ? 'true' : 'false');
+    layoutBtn.classList.toggle('active', mobile);
+  }
+
   app.querySelectorAll('[data-scoring-preset]').forEach((btn) => {
     const preset = (btn as HTMLElement).dataset.scoringPreset;
     const rules = getActiveLeague().scoringSettings;
@@ -152,10 +241,12 @@ function updateShell(): void {
   });
   app.querySelectorAll('[data-tab]').forEach((btn) => {
     const tab = (btn as HTMLElement).dataset.tab;
-    btn.classList.toggle('active', tab === state.tab);
+    const active = tab === state.tab;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-selected', active ? 'true' : 'false');
   });
   const updatedEl = app.querySelector('.updated') as HTMLElement;
-  updatedEl.textContent = updated ? `Updated ${new Date(updated).toLocaleString()}` : '';
+  updatedEl.textContent = tabFreshnessLabel(state.tab);
   updateDataLoadBanner();
 }
 
@@ -171,7 +262,6 @@ function mountCurrentTab(main: HTMLElement): void {
 function shouldRemountMain(): boolean {
   if (mountedTab === null) return true;
   if (mountedTab !== state.tab) return true;
-  // Keep mock draft mounted (timers + in-progress picks) unless the user leaves the tab.
   if (state.tab === 'mock') return false;
   return true;
 }
@@ -188,12 +278,16 @@ function render(): void {
 }
 
 async function init(): Promise<void> {
+  applyLayoutMode(loadLayoutMode());
+  applyHashToApp(false);
+
   app.innerHTML = '<p class="loading">Loading rankings…</p>';
   shellReady = false;
   mountedTab = null;
   try {
     await loadRankings();
     await Promise.all([loadInjuries(), loadInSeason(), loadDepthCharts()]);
+    applyHashToApp(true);
     subscribe(render);
     render();
   } catch (err) {

@@ -1379,3 +1379,77 @@ tr.pickable:hover { outline: 1px solid var(--accent); }
   color: inherit;
 }
 
+.layout-mode-btn {
+  font-size: 0.82rem;
+  padding: 0.35rem 0.65rem;
+}
+
+.layout-mode-btn.active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+
+.header-controls .updated {
+  font-size: 0.8rem;
+  color: var(--muted);
+  max-width: 22rem;
+}
+
+/* Optional mobile-friendly layout (toggle in header) */
+html.layout-mobile .draft-layout {
+  grid-template-columns: 1fr;
+}
+
+html.layout-mobile .draft-header,
+html.layout-mobile .on-clock-bar,
+html.layout-mobile #on-clock {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--surface);
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border);
+}
+
+html.layout-mobile .col-compact-hide {
+  display: none;
+}
+
+html.layout-mobile .player-table {
+  font-size: 0.82rem;
+}
+
+html.layout-mobile .chip,
+html.layout-mobile .pick-btn,
+html.layout-mobile .tabs button,
+html.layout-mobile .btn {
+  min-height: 2.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+html.layout-mobile .mock-draft-active,
+html.layout-mobile .live-draft-active {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+html.layout-mobile #pick-list .table-wrap {
+  max-height: 50vh;
+}
+
+html.layout-mobile .inseason-team-card {
+  margin-bottom: 0.75rem;
+}
+
+html.layout-mobile .header-controls {
+  gap: 0.5rem;
+}
+
+html.layout-mobile .header-controls .updated {
+  flex: 1 1 100%;
+  max-width: none;
+}
+
