@@ -1,15 +1,5 @@
-import type { DraftPick, InSeasonState, TagDefinition, SheetState } from '../data/types';
-
-const TAG_DEFS_KEY = 'fdw-tag-definitions';
-const PLAYER_TAGS_KEY = 'fdw-player-tags';
-const SELECTED_SOURCES_KEY = 'fdw-selected-sources';
-const DRAFT_CONFIG_KEY = 'fdw-draft-config';
-const SHEET_STATE_KEY = 'fdw-sheet-state';
-const TEAM_NAMES_KEY = 'fdw-team-names';
-const LIVE_DRAFT_KEY = 'fdw-live-draft';
-const KEEPERS_KEY = 'fdw-keepers';
-const KEEPER_TEAMS_KEY = 'fdw-keeper-teams';
-const IN_SEASON_KEY = 'fdw-in-season';
+import type { BotPersonality, DraftPick, InSeasonState, ScoringFormat, SourceKey, TagDefinition, SheetState } from '../data/types';
+import { getActiveLeague, updateActiveLeague } from '../state/leaguesStore';
 
 export const PRESET_TAGS: TagDefinition[] = [
   { id: 'target', label: 'Target', color: '#2ecc71', description: 'Players you want to draft', preset: true },
@@ -18,19 +8,13 @@ export const PRESET_TAGS: TagDefinition[] = [
 ];
 
 export function loadTagDefinitions(): TagDefinition[] {
-  try {
-    const custom = JSON.parse(localStorage.getItem(TAG_DEFS_KEY) ?? '[]') as TagDefinition[];
-    const presetIds = new Set(PRESET_TAGS.map((t) => t.id));
-    const merged = [...PRESET_TAGS, ...custom.filter((t) => !presetIds.has(t.id))];
-    return merged;
-  } catch {
-    return [...PRESET_TAGS];
-  }
+  const custom = getActiveLeague().customTagDefinitions;
+  const presetIds = new Set(PRESET_TAGS.map((t) => t.id));
+  return [...PRESET_TAGS, ...custom.filter((t) => !presetIds.has(t.id))];
 }
 
 export function saveCustomTagDefinitions(custom: TagDefinition[]): void {
-  const nonPreset = custom.filter((t) => !t.preset);
-  localStorage.setItem(TAG_DEFS_KEY, JSON.stringify(nonPreset));
+  updateActiveLeague({ customTagDefinitions: custom.filter((t) => !t.preset) });
 }
 
 export function addCustomTag(label: string, color: string): TagDefinition {
@@ -53,15 +37,11 @@ export function removeCustomTag(tagId: string): void {
 }
 
 export function loadPlayerTags(): Record<string, string> {
-  try {
-    return JSON.parse(localStorage.getItem(PLAYER_TAGS_KEY) ?? '{}') as Record<string, string>;
-  } catch {
-    return {};
-  }
+  return { ...getActiveLeague().playerTags };
 }
 
 export function savePlayerTags(tags: Record<string, string>): void {
-  localStorage.setItem(PLAYER_TAGS_KEY, JSON.stringify(tags));
+  updateActiveLeague({ playerTags: tags });
 }
 
 export function setPlayerTag(playerId: string, tagId: string | null): Record<string, string> {
@@ -73,72 +53,50 @@ export function setPlayerTag(playerId: string, tagId: string | null): Record<str
 }
 
 export function loadSelectedSources(): string[] | null {
-  try {
-    const raw = localStorage.getItem(SELECTED_SOURCES_KEY);
-    return raw ? (JSON.parse(raw) as string[]) : null;
-  } catch {
-    return null;
-  }
+  const sources = getActiveLeague().selectedSources;
+  return sources.length ? [...sources] : null;
 }
 
 export function saveSelectedSources(sources: string[]): void {
-  localStorage.setItem(SELECTED_SOURCES_KEY, JSON.stringify(sources));
+  updateActiveLeague({ selectedSources: sources as SourceKey[] });
 }
 
 export function loadDraftConfig(): { teams: number; slot: number; rounds: number } | null {
-  try {
-    const raw = localStorage.getItem(DRAFT_CONFIG_KEY);
-    return raw ? (JSON.parse(raw) as { teams: number; slot: number; rounds: number }) : null;
-  } catch {
-    return null;
-  }
+  const { teams, slot, rounds } = getActiveLeague().draftConfig;
+  return { teams, slot, rounds };
 }
 
 export function saveDraftConfig(config: { teams: number; slot: number; rounds: number }): void {
-  localStorage.setItem(DRAFT_CONFIG_KEY, JSON.stringify(config));
+  const league = getActiveLeague();
+  updateActiveLeague({
+    draftConfig: { ...league.draftConfig, ...config },
+  });
 }
 
 export function loadSheetState(): SheetState {
-  try {
-    const raw = localStorage.getItem(SHEET_STATE_KEY);
-    if (!raw) return { locked: false, savedAt: null };
-    const parsed = JSON.parse(raw) as SheetState & { tierOverrides?: unknown };
-    return { locked: !!parsed.locked, savedAt: parsed.savedAt ?? null };
-  } catch {
-    return { locked: false, savedAt: null };
-  }
+  return { ...getActiveLeague().sheetState };
 }
 
 export function saveSheetState(state: SheetState): void {
-  localStorage.setItem(SHEET_STATE_KEY, JSON.stringify(state));
+  updateActiveLeague({ sheetState: state });
 }
 
 export function loadTeamNames(teams: number): string[] {
-  try {
-    const raw = localStorage.getItem(TEAM_NAMES_KEY);
-    const saved = raw ? (JSON.parse(raw) as string[]) : [];
-    return Array.from({ length: teams }, (_, i) => saved[i]?.trim() || `Team ${i + 1}`);
-  } catch {
-    return Array.from({ length: teams }, (_, i) => `Team ${i + 1}`);
-  }
+  const saved = getActiveLeague().teamNames;
+  return Array.from({ length: teams }, (_, i) => saved[i]?.trim() || `Team ${i + 1}`);
 }
 
 export function saveTeamNames(names: string[]): void {
-  localStorage.setItem(TEAM_NAMES_KEY, JSON.stringify(names));
+  updateActiveLeague({ teamNames: names });
 }
 
 export function loadLiveDraft(): { active: boolean; picks: DraftPick[]; currentIndex: number } | null {
-  try {
-    const raw = localStorage.getItem(LIVE_DRAFT_KEY);
-    return raw ? (JSON.parse(raw) as { active: boolean; picks: DraftPick[]; currentIndex: number }) : null;
-  } catch {
-    return null;
-  }
+  const draft = getActiveLeague().liveDraft;
+  return draft ? { ...draft, picks: [...draft.picks] } : null;
 }
 
 export function saveLiveDraft(draft: { active: boolean; picks: DraftPick[]; currentIndex: number } | null): void {
-  if (draft == null) localStorage.removeItem(LIVE_DRAFT_KEY);
-  else localStorage.setItem(LIVE_DRAFT_KEY, JSON.stringify(draft));
+  updateActiveLeague({ liveDraft: draft });
 }
 
 export function getTagById(tagId: string | undefined, defs: TagDefinition[]): TagDefinition | undefined {
@@ -147,29 +105,19 @@ export function getTagById(tagId: string | undefined, defs: TagDefinition[]): Ta
 }
 
 export function loadKeepers(): Set<string> {
-  try {
-    const raw = JSON.parse(localStorage.getItem(KEEPERS_KEY) ?? '[]') as string[];
-    return new Set(Array.isArray(raw) ? raw : []);
-  } catch {
-    return new Set();
-  }
+  return new Set(getActiveLeague().keepers);
 }
 
 export function saveKeepers(keepers: Set<string>): void {
-  localStorage.setItem(KEEPERS_KEY, JSON.stringify([...keepers]));
+  updateActiveLeague({ keepers: [...keepers] });
 }
 
 export function loadKeeperTeams(): Record<string, number> {
-  try {
-    const raw = JSON.parse(localStorage.getItem(KEEPER_TEAMS_KEY) ?? '{}') as Record<string, number>;
-    return raw && typeof raw === 'object' ? raw : {};
-  } catch {
-    return {};
-  }
+  return { ...getActiveLeague().keeperTeams };
 }
 
 export function saveKeeperTeams(teams: Record<string, number>): void {
-  localStorage.setItem(KEEPER_TEAMS_KEY, JSON.stringify(teams));
+  updateActiveLeague({ keeperTeams: teams });
 }
 
 export function getKeeperTeam(playerId: string, defaultTeamIndex = 0): number {
@@ -204,19 +152,26 @@ export function isKeeper(playerId: string): boolean {
 }
 
 export function loadInSeasonState(): InSeasonState | null {
-  try {
-    const raw = localStorage.getItem(IN_SEASON_KEY);
-    return raw ? (JSON.parse(raw) as InSeasonState) : null;
-  } catch {
-    return null;
-  }
+  const state = getActiveLeague().inSeason;
+  return state ? { ...state } : null;
 }
 
 export function saveInSeasonState(state: InSeasonState | null): void {
-  if (state == null) localStorage.removeItem(IN_SEASON_KEY);
-  else localStorage.setItem(IN_SEASON_KEY, JSON.stringify(state));
+  updateActiveLeague({ inSeason: state });
 }
 
 export function clearInSeasonState(): void {
   saveInSeasonState(null);
+}
+
+export function saveScoring(scoring: ScoringFormat): void {
+  const league = getActiveLeague();
+  updateActiveLeague({
+    scoring,
+    draftConfig: { ...league.draftConfig, scoring },
+  });
+}
+
+export function saveBotPersonality(personality: BotPersonality): void {
+  updateActiveLeague({ botPersonality: personality });
 }

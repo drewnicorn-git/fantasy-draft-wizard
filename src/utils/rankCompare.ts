@@ -1,10 +1,9 @@
 import type { Player, RankDeltaCompare, RankMetric, ScoringFormat, SourceKey } from '../data/types';
+import { getActiveLeague, updateActiveLeague } from '../state/leaguesStore';
 import { getManualRank } from './manualOrder';
 import { SOURCE_LABELS, getAdp, getConsensus, getSourceRank } from './scoring';
 
 export type { RankDeltaCompare, RankMetric } from '../data/types';
-
-const STORAGE_KEY = 'fdw-rank-delta-compare';
 
 export function availableRankMetrics(sources: SourceKey[]): RankMetric[] {
   return ['consensus', 'manual', 'adp', ...sources];
@@ -23,19 +22,16 @@ export function loadRankDeltaCompare(sources: SourceKey[]): RankDeltaCompare {
     from: metrics.includes('fantasypros') ? 'fantasypros' : 'consensus',
     to: metrics.includes('espn') ? 'espn' : metrics.find((m) => m !== 'consensus') ?? 'consensus',
   };
-  try {
-    const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}') as Partial<RankDeltaCompare>;
-    const from = raw.from && metrics.includes(raw.from) ? raw.from : fallback.from;
-    let to = raw.to && metrics.includes(raw.to) ? raw.to : fallback.to;
-    if (from === to) to = metrics.find((m) => m !== from) ?? fallback.to;
-    return { from, to };
-  } catch {
-    return fallback;
-  }
+  const saved = getActiveLeague().rankDeltaCompare;
+  if (!saved) return fallback;
+  const from = saved.from && metrics.includes(saved.from) ? saved.from : fallback.from;
+  let to = saved.to && metrics.includes(saved.to) ? saved.to : fallback.to;
+  if (from === to) to = metrics.find((m) => m !== from) ?? fallback.to;
+  return { from, to };
 }
 
 export function saveRankDeltaCompare(compare: RankDeltaCompare): void {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(compare));
+  updateActiveLeague({ rankDeltaCompare: compare });
 }
 
 export function getPlayerRankMetric(

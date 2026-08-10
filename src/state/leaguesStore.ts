@@ -1,4 +1,9 @@
 import type { DraftConfig, LeagueProfile, LeaguesStore, ScoringFormat } from '../data/types';
+import {
+  buildMigratedLeaguesStore,
+  clearLegacyFlatStorage,
+  hasLegacyFlatStorage,
+} from '../utils/leagueStorage';
 
 export const LEAGUES_STORE_KEY = 'fdw-leagues-store';
 export const LEAGUES_STORE_VERSION = 1;
@@ -68,6 +73,12 @@ export function loadLeaguesStore(): LeaguesStore {
   try {
     const raw = localStorage.getItem(LEAGUES_STORE_KEY);
     if (!raw) {
+      if (hasLegacyFlatStorage()) {
+        cachedStore = buildMigratedLeaguesStore();
+        saveLeaguesStore(cachedStore);
+        clearLegacyFlatStorage();
+        return cachedStore;
+      }
       cachedStore = createDefaultLeaguesStore();
       saveLeaguesStore(cachedStore);
       return cachedStore;

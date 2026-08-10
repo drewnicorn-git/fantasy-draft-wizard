@@ -1,28 +1,21 @@
 import type { StoredMockDraft } from '../data/types';
+import { getActiveLeague, updateActiveLeague } from '../state/leaguesStore';
 
 export type { MockDraftPhase, StoredMockDraft } from '../data/types';
 
-const STORAGE_KEY = 'fdw-mock-draft';
-
 export function loadMockDraft(): StoredMockDraft | null {
-  try {
-    const raw = sessionStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw) as StoredMockDraft;
-    if (!parsed || !Array.isArray(parsed.picks)) return null;
-    return parsed;
-  } catch {
-    return null;
-  }
+  const draft = getActiveLeague().mockDraft;
+  if (!draft || !Array.isArray(draft.picks)) return null;
+  return {
+    ...draft,
+    picks: [...draft.picks],
+    draftedIds: [...draft.draftedIds],
+    history: draft.history.map((h) => [...h]),
+  };
 }
 
 export function saveMockDraft(draft: StoredMockDraft | null): void {
-  try {
-    if (draft == null) sessionStorage.removeItem(STORAGE_KEY);
-    else sessionStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
-  } catch {
-    /* quota / private mode */
-  }
+  updateActiveLeague({ mockDraft: draft });
 }
 
 export function clearMockDraft(): void {

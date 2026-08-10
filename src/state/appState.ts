@@ -10,7 +10,10 @@ import {
   saveDraftConfig,
   loadSheetState,
   saveSheetState,
+  saveScoring,
+  saveBotPersonality,
 } from '../utils/storage';
+import { getActiveLeague } from './leaguesStore';
 
 let rankingsData: RankingsData | null = null;
 let injuriesData: InjuriesData | null = null;
@@ -116,7 +119,10 @@ export function notify(): void {
 
 export function setState(partial: Partial<AppState>): void {
   state = { ...state, ...partial };
-  if (partial.scoring) state.draftConfig = { ...state.draftConfig, scoring: partial.scoring };
+  if (partial.scoring) {
+    state.draftConfig = { ...state.draftConfig, scoring: partial.scoring };
+    saveScoring(partial.scoring);
+  }
   if (partial.selectedSources) {
     saveSelectedSources([...partial.selectedSources]);
   }
@@ -172,6 +178,10 @@ async function fetchRankingsFromServer(force = false): Promise<RankingsData> {
 
 function applyPersistedSettings(): void {
   if (!rankingsData) return;
+  const league = getActiveLeague();
+  state.scoring = league.scoring;
+  state.botPersonality = league.botPersonality;
+
   const saved = loadSelectedSources();
   const available = new Set(rankingsData.sources);
   if (saved?.length) {
@@ -188,8 +198,17 @@ function applyPersistedSettings(): void {
       teams: savedDraft.teams,
       slot: Math.min(savedDraft.slot, savedDraft.teams),
       rounds: savedDraft.rounds,
+      scoring: league.scoring,
     };
+  } else {
+    state.draftConfig = { ...league.draftConfig };
   }
+}
+
+/** Re-apply the active league profile into runtime state (e.g. after switching leagues). */
+export function syncAppStateFromActiveLeague(): void {
+  applyPersistedSettings();
+  notify();
 }
 
 export function getSheetLocked(): boolean {
@@ -216,11 +235,13 @@ export function updateDraftConfig(teams: number, slot: number, rounds: number): 
   notify();
 }
 
-/** Update draft config without re-rendering the whole app (mock draft start). */
 export function applyDraftConfig(teams: number, slot: number, rounds: number, botPersonality?: typeof state.botPersonality): void {
   const clampedSlot = Math.max(1, Math.min(slot, teams));
   state.draftConfig = { ...state.draftConfig, teams, slot: clampedSlot, rounds, scoring: state.scoring };
-  if (botPersonality) state.botPersonality = botPersonality;
+  if (botPersonality) {
+    state.botPersonality = botPersonality;
+    saveBotPersonality(botPersonality);
+  }
   saveDraftConfig({ teams, slot: clampedSlot, rounds });
 }
 

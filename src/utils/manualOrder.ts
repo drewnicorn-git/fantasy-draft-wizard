@@ -1,52 +1,21 @@
-import type { Player, ScoringFormat } from '../data/types';
+import type { ManualRanksByScoring, Player, ScoringFormat } from '../data/types';
+import { getActiveLeague, updateActiveLeague } from '../state/leaguesStore';
 import { getConsensus } from './scoring';
 
-const MANUAL_RANKS_KEY = 'fdw-manual-ranks';
-const LEGACY_MANUAL_ORDER_KEY = 'fdw-manual-order';
-
 type ManualRanksStore = Record<string, number>;
-type ManualRanksFile = Partial<Record<ScoringFormat, ManualRanksStore>>;
 
-function readRanksFile(): ManualRanksFile {
-  try {
-    return JSON.parse(localStorage.getItem(MANUAL_RANKS_KEY) ?? '{}') as ManualRanksFile;
-  } catch {
-    return {};
-  }
+function readRanksFile(): ManualRanksByScoring {
+  return { ...getActiveLeague().manualRanks };
 }
 
-function writeRanksFile(store: ManualRanksFile): void {
-  localStorage.setItem(MANUAL_RANKS_KEY, JSON.stringify(store));
-}
-
-function migrateLegacyOrder(scoring: ScoringFormat): ManualRanksStore {
-  try {
-    const legacy = JSON.parse(localStorage.getItem(LEGACY_MANUAL_ORDER_KEY) ?? '{}') as Partial<
-      Record<ScoringFormat, { order?: string[] }>
-    >;
-    const order = legacy[scoring]?.order;
-    if (!order?.length) return {};
-    const ranks: ManualRanksStore = {};
-    order.forEach((id, i) => {
-      ranks[id] = i + 1;
-    });
-    return ranks;
-  } catch {
-    return {};
-  }
+function writeRanksFile(store: ManualRanksByScoring): void {
+  updateActiveLeague({ manualRanks: store });
 }
 
 export function loadManualRanks(scoring: ScoringFormat): ManualRanksStore {
   const file = readRanksFile();
   const existing = file[scoring];
-  if (existing && Object.keys(existing).length) return { ...existing };
-
-  const migrated = migrateLegacyOrder(scoring);
-  if (Object.keys(migrated).length) {
-    file[scoring] = migrated;
-    writeRanksFile(file);
-  }
-  return migrated;
+  return existing && Object.keys(existing).length ? { ...existing } : {};
 }
 
 export function getManualRank(scoring: ScoringFormat, playerId: string): number | null {
