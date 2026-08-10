@@ -1,4 +1,4 @@
-import type { DraftPick, Player, ScoringFormat } from '../data/types';
+import type { DraftPick, Player } from '../data/types';
 import { filterPlayers, getRankings, applyDraftConfig, state } from '../state/appState';
 import { renderDraftBoard } from '../components/DraftBoard';
 import { renderRankingsTable } from '../components/PlayerTable';
@@ -16,6 +16,7 @@ import {
   type StoredMockDraft,
 } from '../utils/mockDraftStorage';
 import { escapeHtml } from '../utils/escapeHtml';
+import { getAdp } from '../utils/scoring';
 
 const BOT_PICK_DELAY_MS = 2_000;
 
@@ -446,10 +447,9 @@ function renderDraftSummary(root: HTMLElement, allPlayers: Player[]): void {
   summary.classList.remove('hidden');
 
   const cfg = state.draftConfig;
-  const scoring: ScoringFormat = cfg.scoring;
   const roster = getTeamRoster(cfg.slot - 1, allPlayers);
   const grades = roster.map((p) => {
-    const adp = p.adp[scoring];
+    const adp = getAdp(p, cfg.scoring);
     const pick = draft!.picks.find((x) => x.playerId === p.id && x.teamIndex === cfg.slot - 1);
     const value = adp != null && pick ? adp - pick.overall : 0;
     return { ...p, pick: pick?.overall, adp, value };

@@ -1,4 +1,4 @@
-import type { AppState, DepthChartsData, InjuriesData, InSeasonData, Player, RankingsData, ScoringFormat, SourceKey } from '../data/types';
+import type { AppState, DepthChartsData, InjuriesData, InSeasonData, LeagueScoringSettings, Player, RankingsData, RosterPositionSettings, ScoringFormat, SourceKey } from '../data/types';
 import { isBlankPlayer } from '../utils/scoring';
 import { normalizeName } from '../utils/playerKeys';
 import { buildRankingsFromLiveSources, type RefreshProgress } from '../services/buildRankings';
@@ -11,7 +11,9 @@ import {
   loadSheetState,
   saveSheetState,
   saveScoring,
+  saveScoringSettings,
   saveBotPersonality,
+  saveRosterPositions,
 } from '../utils/storage';
 import { getActiveLeague } from './leaguesStore';
 
@@ -130,7 +132,31 @@ export function setState(partial: Partial<AppState>): void {
 }
 
 export function setScoring(scoring: ScoringFormat): void {
-  setState({ scoring, draftConfig: { ...state.draftConfig, scoring } });
+  setScoringSettings({ receptionPoints: scoring === 'std' ? 0 : 1 });
+}
+
+export function setScoringSettings(settings: LeagueScoringSettings): void {
+  saveScoringSettings(settings);
+  const league = getActiveLeague();
+  state.scoring = league.scoring;
+  state.draftConfig = {
+    ...state.draftConfig,
+    scoring: league.scoring,
+    scoringSettings: league.scoringSettings,
+    rosterPositions: league.rosterPositions,
+  };
+  notify();
+}
+
+export function setRosterPositions(positions: RosterPositionSettings): void {
+  saveRosterPositions(positions);
+  const league = getActiveLeague();
+  state.draftConfig = {
+    ...state.draftConfig,
+    rosterPositions: league.rosterPositions,
+    scoringSettings: league.scoringSettings,
+  };
+  notify();
 }
 
 export function toggleSource(source: SourceKey): void {
@@ -192,17 +218,14 @@ function applyPersistedSettings(): void {
   }
 
   const savedDraft = loadDraftConfig();
-  if (savedDraft) {
-    state.draftConfig = {
-      ...state.draftConfig,
-      teams: savedDraft.teams,
-      slot: Math.min(savedDraft.slot, savedDraft.teams),
-      rounds: savedDraft.rounds,
-      scoring: league.scoring,
-    };
-  } else {
-    state.draftConfig = { ...league.draftConfig };
-  }
+  state.draftConfig = {
+    ...league.draftConfig,
+    ...(savedDraft ?? {}),
+    scoring: league.scoring,
+    scoringSettings: league.scoringSettings,
+    rosterPositions: league.rosterPositions,
+    slot: savedDraft ? Math.min(savedDraft.slot, savedDraft.teams) : league.draftConfig.slot,
+  };
 }
 
 /** Re-apply the active league profile into runtime state (e.g. after switching leagues). */
@@ -230,14 +253,32 @@ export function unlockSheet(): void {
 
 export function updateDraftConfig(teams: number, slot: number, rounds: number): void {
   const clampedSlot = Math.max(1, Math.min(slot, teams));
-  state.draftConfig = { ...state.draftConfig, teams, slot: clampedSlot, rounds, scoring: state.scoring };
+  const league = getActiveLeague();
+  state.draftConfig = {
+    ...state.draftConfig,
+    teams,
+    slot: clampedSlot,
+    rounds,
+    scoring: league.scoring,
+    scoringSettings: league.scoringSettings,
+    rosterPositions: league.rosterPositions,
+  };
   saveDraftConfig({ teams, slot: clampedSlot, rounds });
   notify();
 }
 
 export function applyDraftConfig(teams: number, slot: number, rounds: number, botPersonality?: typeof state.botPersonality): void {
   const clampedSlot = Math.max(1, Math.min(slot, teams));
-  state.draftConfig = { ...state.draftConfig, teams, slot: clampedSlot, rounds, scoring: state.scoring };
+  const league = getActiveLeague();
+  state.draftConfig = {
+    ...state.draftConfig,
+    teams,
+    slot: clampedSlot,
+    rounds,
+    scoring: league.scoring,
+    scoringSettings: league.scoringSettings,
+    rosterPositions: league.rosterPositions,
+  };
   if (botPersonality) {
     state.botPersonality = botPersonality;
     saveBotPersonality(botPersonality);

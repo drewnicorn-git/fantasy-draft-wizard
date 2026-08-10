@@ -1,6 +1,7 @@
 import type { DraftConfig, DraftPick, Player, ScoringFormat } from '../data/types';
-import { countRoster, rosterNeedScore, ROSTER_LIMITS } from '../sim/bot';
-import { getConsensus } from './scoring';
+import { countRoster, resolveRosterLimits, rosterNeedScore } from '../sim/bot';
+import type { BotRosterLimits } from '../utils/leagueSettings';
+import { getAdp, getConsensus } from './scoring';
 import { byeWeekConflicts, detectPositionalRun } from './analytics';
 import { picksUntilNextUserPick, roundFromOverall } from '../sim/snake';
 import { escapeHtml } from './escapeHtml';
@@ -12,10 +13,17 @@ export interface DraftAdvice {
 }
 
 const RUN_POSITIONS = ['RB', 'WR', 'TE', 'QB'] as const;
-const SKILL_POSITIONS = ['RB', 'WR', 'TE', 'QB', 'K', 'DST'] as const;
+
+function skillPositionsForConfig(config: DraftConfig): string[] {
+  const limits = resolveRosterLimits(config);
+  const positions: string[] = ['RB', 'WR', 'TE', 'QB'];
+  if (limits.K > 0) positions.push('K');
+  if (limits.DST > 0) positions.push('DST');
+  return positions;
+}
 
 function getAdpOrConsensus(p: Player, scoring: ScoringFormat): number | null {
-  return p.adp[scoring] ?? getConsensus(p, scoring);
+  return getAdp(p, scoring) ?? getConsensus(p, scoring);
 }
 
 function pureValueScore(p: Player, overallPick: number, scoring: ScoringFormat): number {
@@ -36,19 +44,20 @@ function scorePlayerForUser(
   round: number,
   counts: ReturnType<typeof countRoster>,
   config: DraftConfig,
+  limits: BotRosterLimits,
 ): number {
   const scoring = config.scoring;
-  const need = rosterNeedScore(p.pos, counts, round, 'balanced');
+  const need = rosterNeedScore(p.pos, counts, round, 'balanced', limits);
   return pureValueScore(p, overallPick, scoring) * need;
 }
 
-function isStarterMissing(pos: string, counts: ReturnType<typeof countRoster>): boolean {
-  if (pos === 'QB') return counts.QB < ROSTER_LIMITS.QB;
-  if (pos === 'RB') return counts.RB < ROSTER_LIMITS.RB;
-  if (pos === 'WR') return counts.WR < ROSTER_LIMITS.WR;
-  if (pos === 'TE') return counts.TE < ROSTER_LIMITS.TE;
-  if (pos === 'K') return counts.K < ROSTER_LIMITS.K;
-  if (pos === 'DST') return counts.DST < ROSTER_LIMITS.DST;
+function isStarterMissing(pos: string, counts: ReturnType<typeof countRoster>, limits: BotRosterLimits): boolean {
+  if (pos === 'QB') return counts.QB < limits.QB + limits.SUPERFLEX;
+  if (pos === 'RB') return counts.RB < limits.RB;
+  if (pos === 'WR') return counts.WR < limits.WR;
+  if (pos === 'TE') return counts.TE < limits.TE;
+  if (pos === 'K') return limits.K > 0 && counts.K < limits.K;
+  if (pos === 'DST') return limits.DST > 0 && counts.DST < limits.DST;
   return false;
 }
 
@@ -76,7 +85,7 @@ function leaguePosPressure(allPicks: DraftPick[], pos: string, window = 8): numb
 }
 
 interface PositionTarget {
-  pos: (typeof SKILL_POSITIONS)[number];
+  pos: string;
   score: number;
   best: Player;
   pool: Player[];
@@ -119,15 +128,16 @@ function analyzePositionTargets(
   const counts = countRoster(roster);
   const { round } = roundFromOverall(overall, config.teams);
   const scoring = config.scoring;
+  const limits = resolveRosterLimits(config);
 
   const targets: PositionTarget[] = [];
-  for (const pos of SKILL_POSITIONS) {
-    const need = rosterNeedScore(pos, counts, round, 'balanced');
+  for (const pos of skillPositionsForConfig(config)) {
+    const need = rosterNeedScore(pos, counts, round, 'balanced', limits);
     const pool = qualityBeforeNextPick(available, pos, overall, untilNext, scoring);
     const best = pool[0];
     if (!best || need < 0.08) continue;
 
-    const starterMissing = isStarterMissing(pos, counts);
+    const starterMissing = isStarterMissing(pos, counts, limits);
     const value = pureValueScore(best, overall, scoring);
     const scarcity = untilNext / Math.max(pool.length, 1);
     const pressure = leaguePosPressure(allPicks, pos);
@@ -150,7 +160,7 @@ function recommendPosition(
 ): string {
   const untilNext = picksUntilNextUserPick(overall, config.slot, config);
   const scoring = config.scoring;
-  const skillAvailable = available.filter((p) => SKILL_POSITIONS.includes(p.pos as (typeof SKILL_POSITIONS)[number]));
+  const skillAvailable = available.filter((p) => skillPositionsForConfig(config).includes(p.pos));
   if (!skillAvailable.length) return 'No skill players left — take the best remaining option.';
 
   const bpa = [...skillAvailable].sort(
@@ -221,7 +231,12 @@ export function userSuggestedPicks(
   const { round } = roundFromOverall(overallPick, config.teams);
   const counts = countRoster(roster);
   const scoring = config.scoring;
-  const skillAvailable = available.filter((p) => ['QB', 'RB', 'WR', 'TE', 'K', 'DST'].includes(p.pos));
+  const limits = resolveRosterLimits(config);
+  const skillAvailable = available.filter((p) => {
+    if (p.pos === 'K') return limits.K > 0;
+    if (p.pos === 'DST') return limits.DST > 0;
+    return ['QB', 'RB', 'WR', 'TE'].includes(p.pos);
+  });
 
   const bpa = [...skillAvailable].sort(
     (a, b) => pureValueScore(b, overallPick, scoring) - pureValueScore(a, overallPick, scoring),
@@ -234,7 +249,7 @@ export function userSuggestedPicks(
 
   if (useBpa) {
     return [...skillAvailable]
-      .map((p) => ({ p, score: scorePlayerForUser(p, overallPick, round, counts, config) }))
+      .map((p) => ({ p, score: scorePlayerForUser(p, overallPick, round, counts, config, limits) }))
       .sort((a, b) => b.score - a.score)
       .slice(0, limit)
       .map((x) => x.p);
@@ -242,7 +257,7 @@ export function userSuggestedPicks(
 
   return available
     .filter((p) => p.pos === criticalTarget!.pos)
-    .map((p) => ({ p, score: scorePlayerForUser(p, overallPick, round, counts, config) }))
+    .map((p) => ({ p, score: scorePlayerForUser(p, overallPick, round, counts, config, limits) }))
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map((x) => x.p);

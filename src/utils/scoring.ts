@@ -1,6 +1,22 @@
-import type { Player, ScoringFormat, SourceKey } from '../data/types';
-import { state } from '../state/appState';
+import type { Player, ScoringFormat, SourceKey, LeagueScoringSettings } from '../data/types';
+import { getActiveLeague } from '../state/leaguesStore';
+import { getLeagueAdp, getLeagueConsensus, getLeaguePosRank, getLeagueSourceRank } from './leagueRankings';
+import { normalizeReceptionPoints } from './leagueSettings';
 export { normalizeName } from './playerKeys';
+
+function activeScoringSettings(): LeagueScoringSettings {
+  return getActiveLeague().scoringSettings;
+}
+
+function activeSources(): SourceKey[] {
+  const sources = getActiveLeague().selectedSources;
+  return sources.length ? sources : ALL_SOURCES;
+}
+
+function usesBlendedScoring(settings: LeagueScoringSettings): boolean {
+  const points = normalizeReceptionPoints(settings.receptionPoints);
+  return points !== 0 && points !== 1;
+}
 
 export function computeConsensus(
   player: Player,
@@ -18,20 +34,35 @@ export function computeConsensus(
 }
 
 export function getConsensus(player: Player, scoring?: ScoringFormat): number | null {
-  const s = scoring ?? state.scoring;
-  return computeConsensus(player, s, state.selectedSources);
+  const league = getActiveLeague();
+  const settings = league.scoringSettings;
+  if (usesBlendedScoring(settings)) {
+    return getLeagueConsensus(player, settings, activeSources());
+  }
+  const s = scoring ?? league.scoring;
+  return computeConsensus(player, s, activeSources());
 }
 
-export function getAdp(player: Player, scoring: ScoringFormat): number | null {
-  return player.adp[scoring];
+export function getAdp(player: Player, scoring?: ScoringFormat): number | null {
+  const settings = activeScoringSettings();
+  if (usesBlendedScoring(settings)) return getLeagueAdp(player, settings);
+  return player.adp[scoring ?? getActiveLeague().scoring];
 }
 
 export function getSourceRank(
   player: Player,
   source: SourceKey,
-  scoring: ScoringFormat,
+  scoring?: ScoringFormat,
 ): number | null {
-  return player.ranks[scoring][source] ?? null;
+  const settings = activeScoringSettings();
+  if (usesBlendedScoring(settings)) return getLeagueSourceRank(player, source, settings);
+  return player.ranks[scoring ?? getActiveLeague().scoring][source] ?? null;
+}
+
+export function getPosRank(player: Player, scoring?: ScoringFormat): number | null {
+  const settings = activeScoringSettings();
+  if (usesBlendedScoring(settings)) return getLeaguePosRank(player, settings);
+  return player.posRank[scoring ?? getActiveLeague().scoring];
 }
 
 export function isBlankPlayer(player: Player): boolean {

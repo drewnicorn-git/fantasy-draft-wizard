@@ -389,6 +389,59 @@ tr.your-pick td:first-child { font-weight: 700; }
 
 .league-settings .label { font-weight: 600; display: block; margin-bottom: 0.5rem; }
 
+.league-rules-section {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+.league-rules-section .sub-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.scoring-preset-row,
+.roster-preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.65rem;
+}
+
+.custom-scoring-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.custom-scoring-label input {
+  width: 4.5rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.roster-pos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.roster-pos-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.roster-pos-grid input {
+  padding: 0.35rem 0.45rem;
+}
+
 .league-settings-grid {
   display: flex;
   flex-wrap: wrap;

@@ -5,7 +5,7 @@ import {
   loadInSeason,
   loadDepthCharts,
   getRankings,
-  setScoring,
+  setScoringSettings,
   setState,
   state,
   subscribe,
@@ -14,6 +14,8 @@ import {
   dismissSecondaryDataBanner,
   retrySecondaryData,
 } from './state/appState';
+import { getActiveLeague } from './state/leaguesStore';
+import { normalizeReceptionPoints } from './utils/leagueSettings';
 import { mountRankingsView } from './pages/RankingsView';
 import { mountMockDraftView } from './pages/MockDraftView';
 import { mountLiveDraftView } from './pages/LiveDraftView';
@@ -24,7 +26,6 @@ import { mountLeagueSwitcher } from './components/LeagueSwitcher';
 import { resetMockDraftModuleState } from './pages/MockDraftView';
 import { syncAppStateFromActiveLeague } from './state/appState';
 import { rankingsUpdatedAt } from './utils/rankingsMeta';
-import type { ScoringFormat } from './data/types';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
@@ -61,8 +62,10 @@ function bindBannerEvents(): void {
 }
 
 function bindShellEvents(): void {
-  app.querySelectorAll('[data-scoring]').forEach((btn) => {
-    btn.addEventListener('click', () => setScoring((btn as HTMLElement).dataset.scoring as ScoringFormat));
+  app.querySelectorAll('[data-reception]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      setScoringSettings({ receptionPoints: normalizeReceptionPoints(Number((btn as HTMLElement).dataset.reception)) });
+    });
   });
 
   app.querySelectorAll('[data-tab]').forEach((btn) => {
@@ -81,8 +84,9 @@ function ensureShell(): void {
       <div class="header-controls">
         <div id="league-switcher"></div>
         <div class="scoring-toggle" role="group" aria-label="Scoring format">
-          <button type="button" data-scoring="std">Standard</button>
-          <button type="button" data-scoring="ppr">PPR</button>
+          <button type="button" data-reception="0">Standard</button>
+          <button type="button" data-reception="0.5">Half PPR</button>
+          <button type="button" data-reception="1">Full PPR</button>
         </div>
         <span class="updated"></span>
       </div>
@@ -133,9 +137,9 @@ function updateDataLoadBanner(): void {
 
 function updateShell(): void {
   const updated = rankingsUpdatedAt(getRankings());
-  app.querySelectorAll('[data-scoring]').forEach((btn) => {
-    const scoring = (btn as HTMLElement).dataset.scoring;
-    btn.classList.toggle('active', scoring === state.scoring);
+  app.querySelectorAll('[data-reception]').forEach((btn) => {
+    const reception = normalizeReceptionPoints(Number((btn as HTMLElement).dataset.reception));
+    btn.classList.toggle('active', getActiveLeague().scoringSettings.receptionPoints === reception);
   });
   app.querySelectorAll('[data-tab]').forEach((btn) => {
     const tab = (btn as HTMLElement).dataset.tab;

@@ -1,4 +1,39 @@
 export type ScoringFormat = 'std' | 'ppr';
+
+/** League scoring rules mapped to available std/ppr ranking data. */
+export interface LeagueScoringSettings {
+  /** Points per reception: 0 = standard, 0.5 = half PPR, 1 = full PPR. */
+  receptionPoints: number;
+}
+
+/** Starting lineup and bench slot counts for a league roster. */
+export interface RosterPositionSettings {
+  QB: number;
+  RB: number;
+  WR: number;
+  TE: number;
+  FLEX: number;
+  SUPERFLEX: number;
+  K: number;
+  DST: number;
+  BENCH: number;
+}
+
+export const DEFAULT_SCORING_SETTINGS: LeagueScoringSettings = { receptionPoints: 1 };
+
+export const DEFAULT_ROSTER_POSITIONS: RosterPositionSettings = {
+  QB: 1,
+  RB: 2,
+  WR: 2,
+  TE: 1,
+  FLEX: 1,
+  SUPERFLEX: 0,
+  K: 1,
+  DST: 1,
+  BENCH: 6,
+};
+
+export type RosterLimitKey = keyof RosterPositionSettings;
 export type Position = 'QB' | 'RB' | 'WR' | 'TE' | 'K' | 'DST' | 'FLEX';
 
 export type SourceKey = 'fantasypros' | 'espn' | 'sleeper' | 'ffc' | 'yahoo' | 'nfl';
@@ -82,6 +117,8 @@ export interface DraftConfig {
   slot: number;
   rounds: number;
   scoring: ScoringFormat;
+  scoringSettings?: LeagueScoringSettings;
+  rosterPositions?: RosterPositionSettings;
 }
 
 export interface DraftPick {
@@ -192,6 +229,8 @@ export interface LeagueProfile {
   createdAt: string;
   updatedAt: string;
   scoring: ScoringFormat;
+  scoringSettings: LeagueScoringSettings;
+  rosterPositions: RosterPositionSettings;
   draftConfig: DraftConfig;
   botPersonality: BotPersonality;
   selectedSources: SourceKey[];

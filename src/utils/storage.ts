@@ -1,5 +1,16 @@
-import type { BotPersonality, DraftPick, InSeasonState, ScoringFormat, SourceKey, TagDefinition, SheetState } from '../data/types';
+import type {
+  BotPersonality,
+  DraftPick,
+  InSeasonState,
+  LeagueScoringSettings,
+  RosterPositionSettings,
+  ScoringFormat,
+  SourceKey,
+  TagDefinition,
+  SheetState,
+} from '../data/types';
 import { getActiveLeague, updateActiveLeague } from '../state/leaguesStore';
+import { normalizeRosterPositions, normalizeScoringSettings, scoringSettingsToLegacyFormat } from '../utils/leagueSettings';
 
 export const PRESET_TAGS: TagDefinition[] = [
   { id: 'target', label: 'Target', color: '#2ecc71', description: 'Players you want to draft', preset: true },
@@ -69,7 +80,12 @@ export function loadDraftConfig(): { teams: number; slot: number; rounds: number
 export function saveDraftConfig(config: { teams: number; slot: number; rounds: number }): void {
   const league = getActiveLeague();
   updateActiveLeague({
-    draftConfig: { ...league.draftConfig, ...config },
+    draftConfig: {
+      ...league.draftConfig,
+      ...config,
+      scoringSettings: league.scoringSettings,
+      rosterPositions: league.rosterPositions,
+    },
   });
 }
 
@@ -164,12 +180,36 @@ export function clearInSeasonState(): void {
   saveInSeasonState(null);
 }
 
-export function saveScoring(scoring: ScoringFormat): void {
+export function loadScoringSettings(): LeagueScoringSettings {
+  return { ...getActiveLeague().scoringSettings };
+}
+
+export function loadRosterPositions(): RosterPositionSettings {
+  return { ...getActiveLeague().rosterPositions };
+}
+
+export function saveScoringSettings(settings: LeagueScoringSettings): void {
+  const scoringSettings = normalizeScoringSettings(settings);
+  const scoring = scoringSettingsToLegacyFormat(scoringSettings);
   const league = getActiveLeague();
   updateActiveLeague({
     scoring,
-    draftConfig: { ...league.draftConfig, scoring },
+    scoringSettings,
+    draftConfig: { ...league.draftConfig, scoring, scoringSettings },
   });
+}
+
+export function saveRosterPositions(positions: RosterPositionSettings): void {
+  const rosterPositions = normalizeRosterPositions(positions);
+  const league = getActiveLeague();
+  updateActiveLeague({
+    rosterPositions,
+    draftConfig: { ...league.draftConfig, rosterPositions },
+  });
+}
+
+export function saveScoring(scoring: ScoringFormat): void {
+  saveScoringSettings({ receptionPoints: scoring === 'std' ? 0 : 1 });
 }
 
 export function saveBotPersonality(personality: BotPersonality): void {

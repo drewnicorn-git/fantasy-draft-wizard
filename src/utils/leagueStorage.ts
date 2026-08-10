@@ -12,7 +12,9 @@ import type {
   StoredMockDraft,
   TagDefinition,
 } from '../data/types';
+import { DEFAULT_ROSTER_POSITIONS } from '../data/types';
 import { LEAGUES_STORE_VERSION } from '../state/leaguesStore';
+import { scoringSettingsFromLegacyFormat } from '../utils/leagueSettings';
 
 /** Flat localStorage keys used before Phase 2 multi-league storage. */
 export const LEGACY_FLAT_KEYS = [
@@ -133,6 +135,7 @@ export function buildLegacyLeagueProfile(name = 'My league'): LeagueProfile {
   const keepers = readJson<string[]>('fdw-keepers', []);
   const rankDeltaCompare = readJson<RankDeltaCompare | null>('fdw-rank-delta-compare', null);
   const depthTeamRaw = localStorage.getItem('fdw-depth-team');
+  const scoringSettings = scoringSettingsFromLegacyFormat(scoring);
 
   return {
     id,
@@ -140,7 +143,16 @@ export function buildLegacyLeagueProfile(name = 'My league'): LeagueProfile {
     createdAt: now,
     updatedAt: now,
     scoring,
-    draftConfig,
+    scoringSettings,
+    rosterPositions: { ...DEFAULT_ROSTER_POSITIONS },
+    draftConfig: {
+      teams: draftConfig.teams,
+      slot: draftConfig.slot,
+      rounds: draftConfig.rounds,
+      scoring,
+      scoringSettings,
+      rosterPositions: { ...DEFAULT_ROSTER_POSITIONS },
+    },
     botPersonality: 'balanced',
     selectedSources,
     customTagDefinitions,

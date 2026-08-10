@@ -1,9 +1,16 @@
 import type { DraftConfig, LeagueProfile, LeaguesStore, ScoringFormat } from '../data/types';
+import { DEFAULT_ROSTER_POSITIONS, DEFAULT_SCORING_SETTINGS } from '../data/types';
 import {
   buildMigratedLeaguesStore,
   clearLegacyFlatStorage,
   hasLegacyFlatStorage,
 } from '../utils/leagueStorage';
+import {
+  normalizeRosterPositions,
+  normalizeScoringSettings,
+  scoringSettingsFromLegacyFormat,
+  scoringSettingsToLegacyFormat,
+} from '../utils/leagueSettings';
 
 export const LEAGUES_STORE_KEY = 'fdw-leagues-store';
 export const LEAGUES_STORE_VERSION = 1;
@@ -30,7 +37,13 @@ export function createDefaultLeagueProfile(name = 'My league'): LeagueProfile {
     createdAt: now,
     updatedAt: now,
     scoring: DEFAULT_DRAFT_CONFIG.scoring,
-    draftConfig: { ...DEFAULT_DRAFT_CONFIG },
+    scoringSettings: { ...DEFAULT_SCORING_SETTINGS },
+    rosterPositions: { ...DEFAULT_ROSTER_POSITIONS },
+    draftConfig: {
+      ...DEFAULT_DRAFT_CONFIG,
+      scoringSettings: { ...DEFAULT_SCORING_SETTINGS },
+      rosterPositions: { ...DEFAULT_ROSTER_POSITIONS },
+    },
     botPersonality: 'balanced',
     selectedSources: [],
     customTagDefinitions: [],
@@ -59,11 +72,18 @@ export function createDefaultLeaguesStore(): LeaguesStore {
 
 function normalizeLeagueProfile(raw: Partial<LeagueProfile>, fallbackName: string): LeagueProfile {
   const base = createDefaultLeagueProfile(raw.name?.trim() || fallbackName);
-  const scoring = raw.scoring === 'std' || raw.scoring === 'ppr' ? raw.scoring : base.scoring;
+  const legacyScoring = raw.scoring === 'std' || raw.scoring === 'ppr' ? raw.scoring : base.scoring;
+  const scoringSettings = normalizeScoringSettings(
+    raw.scoringSettings ?? scoringSettingsFromLegacyFormat(legacyScoring),
+  );
+  const rosterPositions = normalizeRosterPositions(raw.rosterPositions);
+  const scoring = scoringSettingsToLegacyFormat(scoringSettings);
   const draftConfig = {
     ...base.draftConfig,
     ...(raw.draftConfig ?? {}),
     scoring,
+    scoringSettings,
+    rosterPositions,
   };
   draftConfig.slot = Math.max(1, Math.min(draftConfig.slot, draftConfig.teams));
 
@@ -75,6 +95,8 @@ function normalizeLeagueProfile(raw: Partial<LeagueProfile>, fallbackName: strin
     createdAt: typeof raw.createdAt === 'string' ? raw.createdAt : base.createdAt,
     updatedAt: typeof raw.updatedAt === 'string' ? raw.updatedAt : new Date().toISOString(),
     scoring,
+    scoringSettings,
+    rosterPositions,
     draftConfig,
     botPersonality:
       raw.botPersonality === 'balanced' || raw.botPersonality === 'zero-rb' || raw.botPersonality === 'hero-rb'
@@ -175,10 +197,17 @@ export function setActiveLeague(id: string): LeagueProfile {
 }
 
 function mergeLeaguePatch(current: LeagueProfile, patch: Partial<LeagueProfile>): LeagueProfile {
-  const scoring: ScoringFormat = patch.scoring ?? current.scoring;
+  const scoringSettings = normalizeScoringSettings(patch.scoringSettings ?? current.scoringSettings);
+  const rosterPositions = normalizeRosterPositions(patch.rosterPositions ?? current.rosterPositions);
+  const scoring: ScoringFormat =
+    patch.scoring === 'std' || patch.scoring === 'ppr'
+      ? patch.scoring
+      : scoringSettingsToLegacyFormat(scoringSettings);
   const draftConfig: DraftConfig = {
     ...(patch.draftConfig ?? current.draftConfig),
     scoring,
+    scoringSettings,
+    rosterPositions,
   };
 
   return {
@@ -187,6 +216,8 @@ function mergeLeaguePatch(current: LeagueProfile, patch: Partial<LeagueProfile>)
     id: current.id,
     createdAt: current.createdAt,
     scoring,
+    scoringSettings,
+    rosterPositions,
     draftConfig,
     updatedAt: new Date().toISOString(),
   };

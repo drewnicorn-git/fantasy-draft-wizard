@@ -1,5 +1,6 @@
 import type { InSeasonData, InSeasonTarget, InjuriesData, Player, ScoringFormat } from '../data/types';
-import { countRoster, ROSTER_LIMITS } from '../sim/bot';
+import { countRoster, resolveRosterLimits } from '../sim/bot';
+import { getActiveLeague } from '../state/leaguesStore';
 import { byeWeekConflicts } from './analytics';
 import { formatProjDisplay, getProjPts } from './inSeasonStats';
 import { escapeHtml } from './escapeHtml';
@@ -32,13 +33,14 @@ function isInjured(p: Player, injuries: InjuriesData | null): boolean {
 }
 
 function starterNeedPositions(counts: ReturnType<typeof countRoster>): string[] {
+  const limits = resolveRosterLimits(getActiveLeague().draftConfig);
   const need: string[] = [];
-  if (counts.QB < ROSTER_LIMITS.QB) need.push('QB');
-  if (counts.RB < ROSTER_LIMITS.RB) need.push('RB');
-  if (counts.WR < ROSTER_LIMITS.WR) need.push('WR');
-  if (counts.TE < ROSTER_LIMITS.TE) need.push('TE');
-  if (counts.K < ROSTER_LIMITS.K) need.push('K');
-  if (counts.DST < ROSTER_LIMITS.DST) need.push('DST');
+  if (counts.QB < limits.QB + limits.SUPERFLEX) need.push('QB');
+  if (counts.RB < limits.RB) need.push('RB');
+  if (counts.WR < limits.WR) need.push('WR');
+  if (counts.TE < limits.TE) need.push('TE');
+  if (limits.K > 0 && counts.K < limits.K) need.push('K');
+  if (limits.DST > 0 && counts.DST < limits.DST) need.push('DST');
   return need;
 }
 
