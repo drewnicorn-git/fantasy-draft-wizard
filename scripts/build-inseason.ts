@@ -2,8 +2,12 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { currentDraftSeason } from './season.js';
-import { canonicalKey } from './sources/espn-depth.js';
 import { fetchSleeperInSeasonStats } from './sources/sleeper-inseason.js';
+import {
+  buildInSeasonMatchIndexes,
+  matchPoolPlayerToSleeper,
+  statsBySleeperId,
+} from './sources/inseason-match.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const rankingsPath = join(root, 'data', 'rankings.json');
@@ -32,6 +36,25 @@ interface InSeasonPlayerValue {
   posRankStd: number | null;
   posRankPpr: number | null;
   injuryStatus: string | null;
+  hasStats: boolean;
+}
+
+function hasAnyStats(raw: {
+  seasonPtsStd: number;
+  seasonPtsPpr: number;
+  prevWeekPtsStd: number | null;
+  prevWeekPtsPpr: number | null;
+  projPtsStd: number | null;
+  projPtsPpr: number | null;
+}): boolean {
+  return (
+    raw.seasonPtsStd > 0 ||
+    raw.seasonPtsPpr > 0 ||
+    (raw.prevWeekPtsStd ?? 0) > 0 ||
+    (raw.prevWeekPtsPpr ?? 0) > 0 ||
+    (raw.projPtsStd ?? 0) > 0 ||
+    (raw.projPtsPpr ?? 0) > 0
+  );
 }
 
 async function build(): Promise<void> {
@@ -60,26 +83,57 @@ async function build(): Promise<void> {
     projectionWeek = fallback.projectionWeek;
     records = fallback.records;
   }
-  const bySleeperKey = new Map(records.map((r) => [canonicalKey(r.name, r.pos), r]));
+
+  const statsMap = statsBySleeperId(records);
+  const matchIndexes = buildInSeasonMatchIndexes(sleeperPlayers);
 
   const players: Record<string, InSeasonPlayerValue> = {};
+  let matched = 0;
+  let withStats = 0;
+
   for (const p of rankings.players) {
-    const raw = bySleeperKey.get(p.id) ?? bySleeperKey.get(canonicalKey(p.name, p.pos));
-    if (!raw) continue;
-    players[p.id] = {
-      playerId: p.id,
-      seasonPtsStd: raw.seasonPtsStd,
-      seasonPtsPpr: raw.seasonPtsPpr,
-      prevWeekPtsStd: raw.prevWeekPtsStd,
-      prevWeekPtsPpr: raw.prevWeekPtsPpr,
-      projPtsStd: raw.projPtsStd,
-      projPtsPpr: raw.projPtsPpr,
-      projIsFallback: raw.projIsFallback,
-      posRankStd: raw.posRankStd,
-      posRankPpr: raw.posRankPpr,
-      injuryStatus: raw.injuryStatus,
-    };
+    const sleeper = matchPoolPlayerToSleeper(p, matchIndexes);
+    if (!sleeper) continue;
+
+    matched++;
+    const raw = statsMap.get(sleeper.id);
+    const injuryStatus = raw?.injuryStatus ?? sleeper.injuryStatus ?? null;
+
+    if (raw && hasAnyStats(raw)) {
+      withStats++;
+      players[p.id] = {
+        playerId: p.id,
+        seasonPtsStd: raw.seasonPtsStd,
+        seasonPtsPpr: raw.seasonPtsPpr,
+        prevWeekPtsStd: raw.prevWeekPtsStd,
+        prevWeekPtsPpr: raw.prevWeekPtsPpr,
+        projPtsStd: raw.projPtsStd,
+        projPtsPpr: raw.projPtsPpr,
+        projIsFallback: raw.projIsFallback,
+        posRankStd: raw.posRankStd,
+        posRankPpr: raw.posRankPpr,
+        injuryStatus,
+        hasStats: true,
+      };
+    } else {
+      players[p.id] = {
+        playerId: p.id,
+        seasonPtsStd: null,
+        seasonPtsPpr: null,
+        prevWeekPtsStd: null,
+        prevWeekPtsPpr: null,
+        projPtsStd: null,
+        projPtsPpr: null,
+        projIsFallback: false,
+        posRankStd: null,
+        posRankPpr: null,
+        injuryStatus,
+        hasStats: false,
+      };
+    }
   }
+
+  const matchPct = rankings.players.length ? ((matched / rankings.players.length) * 100).toFixed(1) : '0';
 
   const output = {
     season,
@@ -87,6 +141,7 @@ async function build(): Promise<void> {
     fetchedAt: new Date().toISOString(),
     currentWeek,
     projectionWeek,
+    matchStats: { pool: rankings.players.length, matched, withStats, matchPct: Number(matchPct) },
     players,
   };
 
@@ -95,7 +150,7 @@ async function build(): Promise<void> {
   mkdirSync(join(root, 'public'), { recursive: true });
   writeFileSync(publicPath, json);
   console.log(
-    `Built in-season values for ${Object.keys(players).length} players (week ${currentWeek}, proj ${projectionWeek}) -> ${outPath}`,
+    `Built in-season values for ${Object.keys(players).length} players (${matchPct}% pool match, ${withStats} with stats; week ${currentWeek}, proj ${projectionWeek}) -> ${outPath}`,
   );
 }
 

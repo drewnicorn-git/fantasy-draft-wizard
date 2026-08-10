@@ -52,8 +52,7 @@ import {
 } from '../utils/rankCompare';
 
 import { formatRankDeltaCell } from '../utils/rankDelta';
-
-
+import { isCompareSelected, toggleComparePlayer } from '../state/playerCompare';
 
 type SortKey =
 
@@ -415,6 +414,10 @@ export function renderRankingsTable(
 
     onManualRankChange?: () => void;
 
+    showCompare?: boolean;
+
+    onCompareChange?: () => void;
+
   } = {},
 
 ): void {
@@ -455,6 +458,8 @@ export function renderRankingsTable(
 
   const showDeltaCol = rankMetrics.length >= 2;
 
+  const showCompareCol = opts.showCompare !== false && !isMockDraft;
+
   const showPickSpots = !showPredictorCol && !isMockDraft;
 
   const { teams, slot, rounds } = state.draftConfig;
@@ -476,6 +481,8 @@ export function renderRankingsTable(
     <thead><tr>
 
       <th>#</th>
+
+      ${showCompareCol ? '<th class="col-compare" title="Add to compare (up to 3)">Cmp</th>' : ''}
 
       ${showManualCol ? sortHeader('Manual', 'manual', tableSort) : ''}
 
@@ -571,6 +578,8 @@ export function renderRankingsTable(
       return `<tr class="${posCls}${roundBreak ? ' round-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}${opts.mode === 'live-draft' ? ' pickable' : ''}" data-id="${p.id}"${tagStyle}>
 
         <td>${overallRank}${isUserPick ? `<span class="pick-badge">${pickLabel}</span>` : ''}${roundBreak ? `<span class="round-badge">${roundLabel}</span>` : ''}</td>
+
+        ${showCompareCol ? `<td class="col-compare"><button type="button" class="compare-toggle${isCompareSelected(p.id) ? ' active' : ''}" data-compare-toggle="${escapeHtml(p.id)}" aria-label="Compare ${escapeHtml(p.name)}" aria-pressed="${isCompareSelected(p.id)}">${isCompareSelected(p.id) ? '✓' : '+'}</button></td>` : ''}
 
         ${showManualCol ? `<td class="manual-rank-cell"><input type="number" class="manual-rank-input" data-manual-rank="${p.id}" aria-label="Manual rank for ${escapeHtml(p.name)}" value="${manualRank ?? ''}" placeholder="—" min="1" max="999" ${editable ? '' : 'disabled'} /></td>` : ''}
 
@@ -783,6 +792,24 @@ export function renderRankingsTable(
       toggleKeeper(box.dataset.keeper!, state.draftConfig.slot - 1);
 
       if (opts.onKeeperChange) opts.onKeeperChange();
+
+      else renderRankingsTable(container, players, scoring, opts);
+
+    });
+
+  });
+
+
+
+  container.querySelectorAll('[data-compare-toggle]').forEach((btn) => {
+
+    btn.addEventListener('click', (e) => {
+
+      e.stopPropagation();
+
+      toggleComparePlayer((btn as HTMLElement).dataset.compareToggle!);
+
+      if (opts.onCompareChange) opts.onCompareChange();
 
       else renderRankingsTable(container, players, scoring, opts);
 

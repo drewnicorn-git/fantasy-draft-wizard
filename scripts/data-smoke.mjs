@@ -80,6 +80,13 @@ function checkInSeason() {
   } else {
     pass(`inseason.json has ${count} matched players`);
   }
+  const pool = data.matchStats?.pool;
+  const matchPct = data.matchStats?.matchPct;
+  if (pool && matchPct != null && matchPct < 80) {
+    fail(`inseason.json match rate ${matchPct}% below 80% target (${data.matchStats.matched}/${pool})`);
+  } else if (matchPct != null) {
+    pass(`inseason.json match rate ${matchPct}%`);
+  }
   if (!data.season || !data.currentWeek) {
     fail('inseason.json missing season or currentWeek');
   } else {

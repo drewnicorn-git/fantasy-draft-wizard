@@ -11,11 +11,12 @@ import {
   resolveRosterPlayers,
   tryAddPlayerToTeam,
 } from '../utils/rosterBuilder';
-import { buildInSeasonAlerts, getInSeasonTargets, renderInSeasonAdvicePanel } from '../utils/inSeasonAdvice';
+import { buildInSeasonAlerts, buildStartSitAdvice, getDropCandidates, getInSeasonTargets, renderInSeasonAdvicePanel } from '../utils/inSeasonAdvice';
 import { clearInSeasonState, loadInSeasonState, saveInSeasonState } from '../utils/storage';
-import { formatPrevWeekDisplay, formatProjDisplay } from '../utils/inSeasonStats';
+import { formatPrevWeekDisplay, formatProjDisplay, hasInSeasonStats } from '../utils/inSeasonStats';
 import { posCssClass } from '../utils/position';
 import { escapeHtml } from '../utils/escapeHtml';
+import { isCompareSelected, toggleComparePlayer } from '../state/playerCompare';
 
 function renderTeamSelectOptions(inSeasonState: InSeasonState, selectedTeam: number): string {
   return Array.from({ length: inSeasonState.config.teams }, (_, i) => {
@@ -120,15 +121,16 @@ function renderFaTable(players: Player[], inSeasonState: InSeasonState): string 
               const row = getInSeason()?.players[p.id];
               const prevWeek = formatPrevWeekDisplay(row, state.scoring);
               const proj = formatProjDisplay(row, state.scoring);
+              const noStats = row && !hasInSeasonStats(row);
               const full = isRosterFull(inSeasonState, defaultTeam);
               return `
-            <tr class="${posCssClass(String(p.pos))}">
-              <td><strong>${escapeHtml(p.name)}</strong></td>
+            <tr class="${posCssClass(String(p.pos))}${noStats ? ' inseason-no-stats' : ''}">
+              <td><button type="button" class="compare-toggle${isCompareSelected(p.id) ? ' active' : ''}" data-compare-toggle="${escapeHtml(p.id)}" aria-label="Compare ${escapeHtml(p.name)}">${isCompareSelected(p.id) ? '✓' : '+'}</button> <strong>${escapeHtml(p.name)}</strong>${noStats ? ' <span class="inseason-no-stats-badge">No stats</span>' : ''}</td>
               <td><span class="pos-badge ${posCssClass(String(p.pos))}">${escapeHtml(String(p.pos))}</span></td>
               <td>${escapeHtml(p.team)}</td>
               <td>${p.bye ?? '—'}</td>
-              <td>${prevWeek}</td>
-              <td class="${proj.isFallback ? 'inseason-proj-fallback' : ''}" title="${proj.isFallback ? 'Season average — weekly projection unavailable' : 'Projected points for upcoming week'}">${proj.text}</td>
+              <td class="${noStats ? 'inseason-no-stats-cell' : ''}">${prevWeek}</td>
+              <td class="${proj.isFallback ? 'inseason-proj-fallback' : ''}${noStats ? ' inseason-no-stats-cell' : ''}" title="${noStats ? 'Matched in Sleeper but no season stats yet' : proj.isFallback ? 'Season average — weekly projection unavailable' : 'Projected points for upcoming week'}">${proj.text}</td>
               <td class="inseason-fa-add-cell">
                 <select class="inseason-fa-team-select" data-add-team-for="${p.id}" aria-label="Team for ${escapeHtml(p.name)}">
                   ${teamOptions}
@@ -183,7 +185,9 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
   const myTeamIndex = inSeasonState.myTeamIndex;
   const myRoster = resolveRosterPlayers(inSeasonState.rosters[myTeamIndex] ?? [], allPlayers);
   const freeAgents = allPlayers.filter((p) => !owned.has(p.id));
-  const targets = getInSeasonTargets(myRoster, freeAgents, inSeasonData, injuries, state.scoring);
+  const targets = getInSeasonTargets(myRoster, freeAgents, inSeasonData, injuries, state.scoring, 6, inSeasonState.config);
+  const startSit = buildStartSitAdvice(myRoster, inSeasonData, injuries, state.scoring, inSeasonState.config);
+  const dropCandidates = getDropCandidates(myRoster, inSeasonData, state.scoring, inSeasonState.config);
   const alerts = buildInSeasonAlerts(myRoster);
   const updated = inSeasonData?.fetchedAt ?? inSeasonData?.builtAt ?? '';
 
@@ -231,7 +235,7 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
       </div>
     </section>`;
 
-  renderInSeasonAdvicePanel(root.querySelector('#inseason-advice') as HTMLElement, targets, alerts);
+  renderInSeasonAdvicePanel(root.querySelector('#inseason-advice') as HTMLElement, targets, alerts, startSit, dropCandidates);
 
   const persistAndRefresh = (next: InSeasonState): void => {
     saveInSeasonState(ensureRosterLimits(next));
@@ -266,6 +270,14 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
   const searchEl = root.querySelector('#inseason-fa-search') as HTMLInputElement;
 
   const bindFaTable = (currentState: InSeasonState): void => {
+    faHost.querySelectorAll('[data-compare-toggle]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleComparePlayer((btn as HTMLElement).dataset.compareToggle!);
+        renderFa();
+      });
+    });
+
     faHost.querySelectorAll('[data-add]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const playerId = (btn as HTMLElement).dataset.add!;

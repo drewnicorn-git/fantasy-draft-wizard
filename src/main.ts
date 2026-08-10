@@ -40,6 +40,8 @@ import {
 } from './utils/rankingsMeta';
 import { parseAppHash, syncHashFromApp, type AppTabId } from './utils/appRouting';
 import { applyLayoutMode, loadLayoutMode, saveLayoutMode, type LayoutMode } from './utils/layoutMode';
+import { mountPlayerComparePanel } from './components/PlayerComparePanel';
+import { getComparePlayerIds, setComparePlayerIds } from './state/playerCompare';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
@@ -50,6 +52,7 @@ let mountedTab: TabId | null = null;
 let bannerEventsBound = false;
 let refreshLeagueSwitcher: (() => void) | null = null;
 let hashRoutingBound = false;
+let comparePanelMounted = false;
 
 function onAuthChanged(): void {
   syncAppStateFromActiveLeague();
@@ -63,7 +66,7 @@ function onLeagueChanged(): void {
   syncAppStateFromActiveLeague();
   mountedTab = null;
   refreshLeagueSwitcher?.();
-  syncHashFromApp(state.tab, getActiveLeague().id);
+  syncHashFromApp(state.tab, getActiveLeague().id, getComparePlayerIds());
   render();
 }
 
@@ -86,7 +89,7 @@ function bindBannerEvents(): void {
 
 function navigateToTab(tab: TabId): void {
   setState({ tab });
-  syncHashFromApp(tab, getActiveLeague().id);
+  syncHashFromApp(tab, getActiveLeague().id, getComparePlayerIds());
 }
 
 function bindShellEvents(): void {
@@ -121,7 +124,8 @@ function bindHashRouting(): void {
 }
 
 function applyHashToApp(syncHash: boolean): void {
-  const { tab, leagueId } = parseAppHash();
+  const { tab, leagueId, compareIds } = parseAppHash();
+  if (compareIds.length) setComparePlayerIds(compareIds);
   if (leagueId && leagueId !== getActiveLeague().id) {
     try {
       setActiveLeague(leagueId);
@@ -136,7 +140,7 @@ function applyHashToApp(syncHash: boolean): void {
     setState({ tab });
   }
   if (syncHash) {
-    syncHashFromApp(state.tab, getActiveLeague().id);
+    syncHashFromApp(state.tab, getActiveLeague().id, getComparePlayerIds());
   }
 }
 
@@ -174,6 +178,7 @@ function ensureShell(): void {
       </div>
     </div>
     <main id="main"></main>
+    <div id="player-compare-host" class="player-compare-host hidden"></div>
     <footer class="app-footer">
       <p>Rankings from FantasyPros, ESPN, Sleeper, Fantasy Calc · ADP data from <a href="https://fantasyfootballcalculator.com" target="_blank" rel="noopener noreferrer">Fantasy Football Calculator</a> · In-season values refresh daily via GitHub Actions</p>
     </footer>`;
@@ -185,6 +190,11 @@ function ensureShell(): void {
   refreshLeagueSwitcher = mountLeagueSwitcher(leagueEl, onLeagueChanged);
   const authEl = app.querySelector('#auth-panel') as HTMLElement;
   mountAuthPanel(authEl, onAuthChanged);
+  if (!comparePanelMounted) {
+    const compareHost = app.querySelector('#player-compare-host') as HTMLElement;
+    mountPlayerComparePanel(compareHost);
+    comparePanelMounted = true;
+  }
   shellReady = true;
 }
 

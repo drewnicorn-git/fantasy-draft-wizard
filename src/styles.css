@@ -693,6 +693,85 @@ tr.your-pick td:first-child { font-weight: 700; }
   text-align: left;
 }
 
+.inseason-proj-fallback { color: var(--muted); font-style: italic; }
+
+.inseason-no-stats-badge {
+  font-size: 0.68rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.05rem 0.3rem;
+  margin-left: 0.25rem;
+}
+
+.inseason-no-stats-cell { color: var(--muted); font-style: italic; }
+
+.inseason-start-sit-panel {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel-bg, rgba(255, 255, 255, 0.02));
+}
+
+.inseason-start-sit-panel h3 { margin: 0 0 0.5rem; }
+
+.inseason-lineup-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.inseason-lineup-table th,
+.inseason-lineup-table td {
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.inseason-slot-badge {
+  display: inline-block;
+  min-width: 2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  background: var(--accent-dim, rgba(99, 102, 241, 0.15));
+  color: var(--accent, #6366f1);
+}
+
+.inseason-slot-badge.sit {
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--muted);
+}
+
+.inseason-flag {
+  color: #f59e0b;
+  font-size: 0.75rem;
+  margin-left: 0.35rem;
+}
+
+.inseason-drop-panel {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.inseason-drop-panel h4 { margin: 0 0 0.35rem; font-size: 0.9rem; }
+
+.inseason-drop-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.inseason-drop-suggestion {
+  margin: 0.25rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
 .inseason-fa-section { margin-top: 1rem; }
 
 .inseason-fa-add-cell {
@@ -1536,6 +1615,97 @@ html.layout-mobile .header-controls .updated {
 
 .auth-status-error {
   color: var(--danger);
+}
+
+.player-compare-host {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.player-compare-host:not(.hidden) {
+  pointer-events: auto;
+}
+
+.player-compare-panel {
+  background: var(--surface);
+  border-top: 2px solid var(--accent);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.35);
+  max-height: 45vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-compare-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.player-compare-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.player-compare-body {
+  overflow: auto;
+  padding: 0.5rem 1rem 0.75rem;
+}
+
+.player-compare-table th,
+.player-compare-table td {
+  padding: 0.35rem 0.55rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.player-compare-table th[scope='row'] {
+  color: var(--muted);
+  font-weight: 600;
+  position: sticky;
+  left: 0;
+  background: var(--surface);
+}
+
+.player-compare-host.player-compare-collapsed .player-compare-body {
+  display: none;
+}
+
+.col-compare {
+  width: 2.5rem;
+  text-align: center;
+}
+
+.compare-toggle {
+  min-width: 1.75rem;
+  min-height: 1.75rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.compare-toggle.active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+
+html.layout-mobile .player-compare-panel {
+  max-height: 55vh;
+}
+
+body:has(.player-compare-open) #main {
+  padding-bottom: 3rem;
 }
 
 .auth-signed-in {

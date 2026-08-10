@@ -92,6 +92,8 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
         draftOverall,
         onKeeperChange: refresh,
         onManualRankChange: refresh,
+        onCompareChange: refresh,
+        showCompare: options.tableMode !== 'live-draft',
       });
     });
   };

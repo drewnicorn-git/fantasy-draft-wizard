@@ -232,6 +232,8 @@ export interface InSeasonPlayerValue {
   posRankStd: number | null;
   posRankPpr: number | null;
   injuryStatus: string | null;
+  /** True when Sleeper match exists but no season/week stats yet */
+  hasStats?: boolean;
   /** @deprecated Legacy field from older builds */
   weekProjStd?: number | null;
   /** @deprecated Legacy field from older builds */
@@ -261,6 +263,27 @@ export interface InSeasonTarget {
   category: 'waiver' | 'bye' | 'injury';
   player: Player;
   reason: string;
+  dropPlayer?: Player;
+  dropReason?: string;
+}
+
+export interface StartSitSlot {
+  player: Player;
+  slot: string;
+  proj: number;
+  flags: string[];
+}
+
+export interface StartSitAdvice {
+  projectionWeek: number | null;
+  starters: StartSitSlot[];
+  sit: Array<{ player: Player; proj: number; reason: string }>;
+}
+
+export interface InSeasonDropCandidate {
+  player: Player;
+  reason: string;
+  score: number;
 }
 
 export type MockDraftPhase = 'setup' | 'active' | 'summary';
