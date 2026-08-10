@@ -8,6 +8,13 @@ import { botPick } from '../sim/bot';
 import { getDraftAdvice, renderDraftAdvicePanel } from '../utils/draftAdvice';
 import { preserveScroll } from '../utils/scrollPreserve';
 import { picksUntilNextUserPick, roundFromOverall, snakePickOrder } from '../sim/snake';
+import {
+  clearMockDraft,
+  loadMockDraft,
+  saveMockDraft,
+  type MockDraftPhase,
+  type StoredMockDraft,
+} from '../utils/mockDraftStorage';
 
 const BOT_PICK_DELAY_MS = 2_000;
 
@@ -25,6 +32,31 @@ let botTimer: ReturnType<typeof setTimeout> | null = null;
 let countdownTimer: ReturnType<typeof setInterval> | null = null;
 let pickListClickHandler: ((e: Event) => void) | null = null;
 
+function persistDraft(phase: MockDraftPhase): void {
+  if (!draft) {
+    clearMockDraft();
+    return;
+  }
+  saveMockDraft({
+    picks: draft.picks,
+    draftedIds: [...draft.draftedIds],
+    currentIndex: draft.currentIndex,
+    finished: draft.finished,
+    history: draft.history,
+    phase,
+  });
+}
+
+function restoreDraftFromStorage(stored: StoredMockDraft): DraftState {
+  return {
+    picks: stored.picks,
+    draftedIds: new Set(stored.draftedIds),
+    currentIndex: stored.currentIndex,
+    finished: stored.finished,
+    history: stored.history,
+  };
+}
+
 export function mountMockDraftView(root: HTMLElement): void {
   clearTimers();
   const data = getRankings();
@@ -32,6 +64,9 @@ export function mountMockDraftView(root: HTMLElement): void {
     root.innerHTML = '<p class="error">No rankings loaded.</p>';
     return;
   }
+
+  const stored = loadMockDraft();
+  draft = stored ? restoreDraftFromStorage(stored) : null;
 
   root.innerHTML = `
     <section class="panel mock-draft">
@@ -57,9 +92,37 @@ export function mountMockDraftView(root: HTMLElement): void {
       <div id="draft-summary" class="hidden"></div>
     </section>`;
 
-  renderSetup(root, data.players);
+  const setupEl = () => root.querySelector('#draft-setup') as HTMLElement;
+  const activeEl = () => root.querySelector('#draft-active') as HTMLElement;
+
   listenersAttached = false;
-  draft = null;
+
+  if (!draft || stored?.phase === 'setup') {
+    draft = null;
+    clearMockDraft();
+    renderSetup(root, data.players);
+    return;
+  }
+
+  attachDraftActionListeners(root, data.players);
+  setupEl().classList.add('hidden');
+
+  if (stored?.phase === 'summary' || draft.finished) {
+    activeEl().classList.add('hidden');
+    renderDraftSummary(root, data.players);
+    return;
+  }
+
+  activeEl().classList.remove('hidden');
+  (root.querySelector('#draft-summary') as HTMLElement).classList.add('hidden');
+  advanceDraft(root, data.players);
+}
+
+function attachDraftActionListeners(root: HTMLElement, allPlayers: Player[]): void {
+  if (listenersAttached) return;
+  root.querySelector('#redo-pick')!.addEventListener('click', () => redoPick(root, allPlayers));
+  root.querySelector('#export-draft')!.addEventListener('click', () => exportDraft());
+  listenersAttached = true;
 }
 
 function clearTimers(): void {
@@ -173,12 +236,8 @@ function startDraft(root: HTMLElement, allPlayers: Player[]): void {
   (root.querySelector('#draft-active') as HTMLElement).classList.remove('hidden');
   (root.querySelector('#draft-summary') as HTMLElement).classList.add('hidden');
 
-  if (!listenersAttached) {
-    root.querySelector('#redo-pick')!.addEventListener('click', () => redoPick(root, allPlayers));
-    root.querySelector('#export-draft')!.addEventListener('click', () => exportDraft());
-    listenersAttached = true;
-  }
-
+  attachDraftActionListeners(root, allPlayers);
+  persistDraft('active');
   advanceDraft(root, allPlayers);
 }
 
@@ -263,6 +322,7 @@ function makePick(player: Player, teamIndex: number, round: number, pickInRound:
   });
   draft.draftedIds.add(player.id);
   draft.currentIndex++;
+  persistDraft('active');
 }
 
 function getTeamRoster(teamIndex: number, allPlayers: Player[]): Player[] {
@@ -347,6 +407,12 @@ function finishDraft(root: HTMLElement, allPlayers: Player[]): void {
   clearTimers();
   draft.finished = true;
   (root.querySelector('#draft-active') as HTMLElement).classList.add('hidden');
+  renderDraftSummary(root, allPlayers);
+  persistDraft('summary');
+}
+
+function renderDraftSummary(root: HTMLElement, allPlayers: Player[]): void {
+  if (!draft) return;
   const summary = root.querySelector('#draft-summary') as HTMLElement;
   summary.classList.remove('hidden');
 
@@ -374,9 +440,11 @@ function finishDraft(root: HTMLElement, allPlayers: Player[]): void {
     <button type="button" id="new-draft" class="btn primary">New mock draft</button>`;
 
   summary.querySelector('#new-draft')!.addEventListener('click', () => {
+    clearMockDraft();
+    draft = null;
     summary.classList.add('hidden');
     (root.querySelector('#draft-setup') as HTMLElement).classList.remove('hidden');
-    draft = null;
+    renderSetup(root, allPlayers);
   });
 }
 
@@ -386,6 +454,8 @@ function redoPick(root: HTMLElement, allPlayers: Player[]): void {
   const last = draft.picks.pop()!;
   draft.draftedIds.delete(last.playerId);
   draft.currentIndex = Math.max(0, draft.currentIndex - 1);
+  draft.finished = false;
+  persistDraft('active');
   advanceDraft(root, allPlayers);
 }
 
