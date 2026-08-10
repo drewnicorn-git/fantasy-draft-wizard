@@ -20,6 +20,8 @@ import { mountLiveDraftView } from './pages/LiveDraftView';
 import { mountInjuryReportView } from './pages/InjuryReportView';
 import { mountInSeasonView } from './pages/InSeasonView';
 import { mountDepthChartsView } from './pages/DepthChartsView';
+import { mountLeagueSwitcher } from './components/LeagueSwitcher';
+import { syncAppStateFromActiveLeague } from './state/appState';
 import { rankingsUpdatedAt } from './utils/rankingsMeta';
 import type { ScoringFormat } from './data/types';
 
@@ -30,6 +32,14 @@ type TabId = 'rankings' | 'mock' | 'live' | 'injuries' | 'inseason' | 'depth';
 let shellReady = false;
 let mountedTab: TabId | null = null;
 let bannerEventsBound = false;
+let refreshLeagueSwitcher: (() => void) | null = null;
+
+function onLeagueChanged(): void {
+  syncAppStateFromActiveLeague();
+  mountedTab = null;
+  refreshLeagueSwitcher?.();
+  render();
+}
 
 function bindBannerEvents(): void {
   if (bannerEventsBound) return;
@@ -67,6 +77,7 @@ function ensureShell(): void {
     <header class="app-header">
       <h1>Fantasy Draft Wizard</h1>
       <div class="header-controls">
+        <div id="league-switcher"></div>
         <div class="scoring-toggle" role="group" aria-label="Scoring format">
           <button type="button" data-scoring="std">Standard</button>
           <button type="button" data-scoring="ppr">PPR</button>
@@ -96,6 +107,8 @@ function ensureShell(): void {
 
   bindShellEvents();
   bindBannerEvents();
+  const leagueEl = app.querySelector('#league-switcher') as HTMLElement;
+  refreshLeagueSwitcher = mountLeagueSwitcher(leagueEl, onLeagueChanged);
   shellReady = true;
 }
 

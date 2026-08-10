@@ -57,6 +57,126 @@ body { margin: 0; min-height: 100vh; }
 
 .updated { color: var(--muted); font-size: 0.85rem; }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.league-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.league-switcher-label { display: flex; align-items: center; }
+
+.league-select {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  max-width: 14rem;
+}
+
+.league-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.league-modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  width: min(28rem, 100%);
+  max-height: min(80vh, 32rem);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.league-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.league-modal-header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.league-modal-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  overflow-y: auto;
+}
+
+.league-modal-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.league-modal-item.active { background: rgba(61, 139, 253, 0.08); }
+
+.league-modal-name { font-weight: 500; }
+
+.league-active-badge {
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.league-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: flex-end;
+}
+
+.league-rename-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.league-rename-input {
+  flex: 1;
+  min-width: 8rem;
+  padding: 0.35rem 0.5rem;
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.league-modal-footer {
+  padding: 0.85rem 1rem;
+  border-top: 1px solid var(--border);
+}
+
 main { flex: 1; padding: 1rem 1.25rem; min-height: 0; overflow-y: auto; }
 
 .panel { max-width: 1400px; margin: 0 auto; }
