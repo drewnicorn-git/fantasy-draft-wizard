@@ -1,6 +1,6 @@
 import type { BotPersonality, DraftConfig, Player } from '../data/types';
 import { DEFAULT_ROSTER_POSITIONS } from '../data/types';
-import { getAdp, getConsensus, getPosRank } from '../utils/scoring';
+import { getAdp, getConsensus, getPosRank, getProjectedPoints } from '../utils/scoring';
 import { getBotRosterLimits, type BotRosterLimits } from '../utils/leagueSettings';
 import { roundFromOverall } from './snake';
 
@@ -149,8 +149,9 @@ function playerPickScore(
   personality: BotPersonality,
   limits: BotRosterLimits,
 ): number {
-  const adp = getAdp(p, config.scoring) ?? getConsensus(p, config.scoring) ?? 999;
-  const adpScore = Math.exp(-adp / 75);
+  const projected = getProjectedPoints(p);
+  const adp = projected ?? getAdp(p, config.scoring) ?? getConsensus(p, config.scoring) ?? 999;
+  const adpScore = projected != null ? projected / 320 : Math.exp(-adp / 75);
   const need = rosterNeedScore(p.pos, counts, round, personality, limits);
   const tierBoost = positionalTierBoost(p, config.teams, config);
   const reach = reachMultiplier(adp, overallPick);

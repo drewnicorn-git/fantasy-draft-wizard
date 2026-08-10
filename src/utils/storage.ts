@@ -10,7 +10,8 @@ import type {
   SheetState,
 } from '../data/types';
 import { getActiveLeague, updateActiveLeague } from '../state/leaguesStore';
-import { normalizeRosterPositions, normalizeScoringSettings, scoringSettingsToLegacyFormat } from '../utils/leagueSettings';
+import { FULL_PPR_SCORING, STANDARD_SCORING } from './fantasyPoints';
+import { normalizeRosterPositions, normalizeScoringSettings, scoringSettingsToLegacyFormat } from './leagueSettings';
 
 export const PRESET_TAGS: TagDefinition[] = [
   { id: 'target', label: 'Target', color: '#2ecc71', description: 'Players you want to draft', preset: true },
@@ -209,7 +210,7 @@ export function saveRosterPositions(positions: RosterPositionSettings): void {
 }
 
 export function saveScoring(scoring: ScoringFormat): void {
-  saveScoringSettings({ receptionPoints: scoring === 'std' ? 0 : 1 });
+  saveScoringSettings(scoring === 'std' ? { ...STANDARD_SCORING } : { ...FULL_PPR_SCORING });
 }
 
 export function saveBotPersonality(personality: BotPersonality): void {

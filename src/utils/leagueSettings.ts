@@ -1,18 +1,31 @@
 import type {
-  LeagueScoringSettings,
+  CustomScoringRules,
   RosterPositionSettings,
   ScoringFormat,
 } from '../data/types';
-import { DEFAULT_ROSTER_POSITIONS, DEFAULT_SCORING_SETTINGS } from '../data/types';
+import { DEFAULT_ROSTER_POSITIONS } from '../data/types';
+import {
+  FULL_PPR_SCORING,
+  HALF_PPR_SCORING,
+  normalizeCustomScoringRules,
+  SCORING_RULE_PRESETS,
+  scoringRulesLabel,
+  STANDARD_SCORING,
+} from './fantasyPoints';
+
+export { SCORING_RULE_PRESETS, scoringRulesLabel, normalizeCustomScoringRules };
+export { STANDARD_SCORING, HALF_PPR_SCORING, FULL_PPR_SCORING };
+
+export const DEFAULT_SCORING_SETTINGS: CustomScoringRules = { ...FULL_PPR_SCORING };
 
 export function normalizeReceptionPoints(value: unknown): number {
   const n = typeof value === 'number' ? value : Number(value);
-  if (!Number.isFinite(n)) return DEFAULT_SCORING_SETTINGS.receptionPoints;
+  if (!Number.isFinite(n)) return DEFAULT_SCORING_SETTINGS.reception;
   return Math.max(0, Math.min(2, Math.round(n * 4) / 4));
 }
 
-export function normalizeScoringSettings(raw: Partial<LeagueScoringSettings> | undefined): LeagueScoringSettings {
-  return { receptionPoints: normalizeReceptionPoints(raw?.receptionPoints) };
+export function normalizeScoringSettings(raw: Partial<CustomScoringRules> | undefined): CustomScoringRules {
+  return normalizeCustomScoringRules(raw);
 }
 
 export function normalizeRosterPositions(raw: Partial<RosterPositionSettings> | undefined): RosterPositionSettings {
@@ -35,19 +48,16 @@ export function normalizeRosterPositions(raw: Partial<RosterPositionSettings> | 
   };
 }
 
-export function scoringSettingsFromLegacyFormat(scoring: ScoringFormat): LeagueScoringSettings {
-  return { receptionPoints: scoring === 'std' ? 0 : 1 };
+export function scoringSettingsFromLegacyFormat(scoring: ScoringFormat): CustomScoringRules {
+  return scoring === 'std' ? { ...STANDARD_SCORING } : { ...FULL_PPR_SCORING };
 }
 
-export function scoringSettingsToLegacyFormat(settings: LeagueScoringSettings): ScoringFormat {
-  return settings.receptionPoints >= 0.5 ? 'ppr' : 'std';
+export function scoringSettingsToLegacyFormat(settings: CustomScoringRules): ScoringFormat {
+  return settings.reception >= 0.5 ? 'ppr' : 'std';
 }
 
-export function scoringSettingsLabel(settings: LeagueScoringSettings): string {
-  if (settings.receptionPoints === 0) return 'Standard';
-  if (settings.receptionPoints === 0.5) return 'Half PPR';
-  if (settings.receptionPoints === 1) return 'Full PPR';
-  return `${settings.receptionPoints} PPR/rec`;
+export function scoringSettingsLabel(settings: CustomScoringRules): string {
+  return scoringRulesLabel(settings);
 }
 
 export function rosterStarterCount(positions: RosterPositionSettings): number {
@@ -115,11 +125,10 @@ export function getBotRosterLimits(positions: RosterPositionSettings): BotRoster
   };
 }
 
-export const SCORING_PRESETS: { label: string; settings: LeagueScoringSettings }[] = [
-  { label: 'Standard', settings: { receptionPoints: 0 } },
-  { label: 'Half PPR', settings: { receptionPoints: 0.5 } },
-  { label: 'Full PPR', settings: { receptionPoints: 1 } },
-];
+export const SCORING_PRESETS = SCORING_RULE_PRESETS.map((preset) => ({
+  label: preset.label,
+  settings: preset.rules,
+}));
 
 export const ROSTER_PRESETS: { label: string; positions: RosterPositionSettings }[] = [
   {

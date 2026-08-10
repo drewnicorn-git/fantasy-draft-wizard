@@ -1,8 +1,9 @@
-import type { RosterPositionSettings } from '../data/types';
+import type { CustomScoringRules, RosterPositionSettings } from '../data/types';
 import { state, setScoringSettings, setRosterPositions, updateDraftConfig } from '../state/appState';
 import { getActiveLeague } from '../state/leaguesStore';
+import { rulesMatch, SCORING_RULE_FIELDS } from '../utils/fantasyPoints';
 import {
-  normalizeReceptionPoints,
+  normalizeCustomScoringRules,
   normalizeRosterPositions,
   rosterPositionsSummary,
   rosterTotalSize,
@@ -25,13 +26,18 @@ const ROSTER_FIELDS: { key: keyof RosterPositionSettings; label: string; max: nu
   { key: 'BENCH', label: 'BN', max: 10 },
 ];
 
+function presetActive(rules: CustomScoringRules, presetRules: CustomScoringRules): boolean {
+  return rulesMatch(rules, presetRules);
+}
+
 export function renderLeagueSettings(container: HTMLElement, onChange: () => void): void {
   const cfg = state.draftConfig;
   const league = getActiveLeague();
+  const rules = league.scoringSettings;
   const positions = league.rosterPositions;
-  const scoringLabel = scoringSettingsLabel(league.scoringSettings);
+  const scoringLabel = scoringSettingsLabel(rules);
   const rosterSize = rosterTotalSize(positions);
-  const suggestedRounds = suggestedDraftRounds(positions);
+  const suggested = suggestedDraftRounds(positions);
 
   container.innerHTML = `
     <div class="league-settings">
@@ -49,16 +55,25 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
       </div>
 
       <div class="league-rules-section">
-        <span class="sub-label">Scoring</span>
+        <span class="sub-label">Scoring presets</span>
         <div class="scoring-preset-row" role="group" aria-label="Scoring preset">
           ${SCORING_PRESETS.map(
-            (preset) => `<button type="button" class="chip scoring-preset${league.scoringSettings.receptionPoints === preset.settings.receptionPoints ? ' active' : ''}" data-reception="${preset.settings.receptionPoints}">${escapeHtml(preset.label)}</button>`,
+            (preset) =>
+              `<button type="button" class="chip scoring-preset${presetActive(rules, preset.settings) ? ' active' : ''}" data-preset="${escapeHtml(preset.label)}">${escapeHtml(preset.label)}</button>`,
           ).join('')}
         </div>
-        <label class="custom-scoring-label">Custom PPR/rec
-          <input type="number" id="lg-reception" min="0" max="2" step="0.25" value="${league.scoringSettings.receptionPoints}" />
-        </label>
-        <p class="hint">Rankings blend Standard and Full PPR sources for half/custom PPR leagues. Current: ${escapeHtml(scoringLabel)}.</p>
+        <details class="scoring-rules-details">
+          <summary>Custom scoring rules</summary>
+          <div class="scoring-rules-grid">
+            ${SCORING_RULE_FIELDS.map(
+              (field) => `<label>${field.label}
+                <input type="number" class="scoring-rule-input" data-rule="${field.key}" step="${field.step}" value="${rules[field.key]}" />
+              </label>`,
+            ).join('')}
+          </div>
+          <button type="button" id="save-scoring-rules" class="btn secondary btn-xs">Apply scoring rules</button>
+        </details>
+        <p class="hint">Projected points use Sleeper season stats with your rules. Current: ${escapeHtml(scoringLabel)}.</p>
       </div>
 
       <div class="league-rules-section">
@@ -75,7 +90,7 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
             </label>`,
           ).join('')}
         </div>
-        <p class="hint">${escapeHtml(rosterPositionsSummary(positions))} · ${rosterSize} roster spots · suggested ${suggestedRounds} draft rounds</p>
+        <p class="hint">${escapeHtml(rosterPositionsSummary(positions))} · ${rosterSize} roster spots · suggested ${suggested} draft rounds</p>
       </div>
 
       <p class="hint">Yellow lines mark the end of each draft round (every ${cfg.teams} players). Pick badges show expected players at your snake-draft slots.</p>
@@ -84,12 +99,11 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
   const teamsInput = container.querySelector('#lg-teams') as HTMLInputElement;
   const slotInput = container.querySelector('#lg-slot') as HTMLInputElement;
   const roundsInput = container.querySelector('#lg-rounds') as HTMLInputElement;
-  const receptionInput = container.querySelector('#lg-reception') as HTMLInputElement;
 
   const syncDraft = (): void => {
     const teams = Math.max(8, Math.min(14, Number(teamsInput.value) || 12));
     const slot = Math.max(1, Math.min(teams, Number(slotInput.value) || 1));
-    const rounds = Math.max(10, Math.min(24, Number(roundsInput.value) || suggestedRounds));
+    const rounds = Math.max(10, Math.min(24, Number(roundsInput.value) || suggested));
     teamsInput.value = String(teams);
     slotInput.value = String(slot);
     slotInput.max = String(teams);
@@ -98,8 +112,8 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
     onChange();
   };
 
-  const syncScoring = (receptionPoints: number): void => {
-    setScoringSettings({ receptionPoints: normalizeReceptionPoints(receptionPoints) });
+  const applyScoringRules = (next: CustomScoringRules): void => {
+    setScoringSettings(normalizeCustomScoringRules(next));
     onChange();
     renderLeagueSettings(container, onChange);
   };
@@ -108,9 +122,9 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
     const normalized = normalizeRosterPositions(next);
     setRosterPositions(normalized);
     if (offerRoundUpdate) {
-      const suggested = suggestedDraftRounds(normalized);
-      if (cfg.rounds !== suggested && confirm(`Update draft rounds to ${suggested} to match your ${rosterTotalSize(normalized)}-player roster?`)) {
-        updateDraftConfig(cfg.teams, cfg.slot, suggested);
+      const suggestedRounds = suggestedDraftRounds(normalized);
+      if (cfg.rounds !== suggestedRounds && confirm(`Update draft rounds to ${suggestedRounds} to match your ${rosterTotalSize(normalized)}-player roster?`)) {
+        updateDraftConfig(cfg.teams, cfg.slot, suggestedRounds);
       }
     }
     onChange();
@@ -121,14 +135,22 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
   slotInput.addEventListener('change', syncDraft);
   roundsInput.addEventListener('change', syncDraft);
 
-  receptionInput.addEventListener('change', () => {
-    syncScoring(Number(receptionInput.value));
-  });
-
   container.querySelectorAll('.scoring-preset').forEach((btn) => {
     btn.addEventListener('click', () => {
-      syncScoring(Number((btn as HTMLElement).dataset.reception));
+      const label = (btn as HTMLElement).dataset.preset;
+      const preset = SCORING_PRESETS.find((p) => p.label === label);
+      if (!preset) return;
+      applyScoringRules(preset.settings);
     });
+  });
+
+  container.querySelector('#save-scoring-rules')?.addEventListener('click', () => {
+    const next = { ...rules };
+    for (const input of container.querySelectorAll('.scoring-rule-input')) {
+      const key = (input as HTMLElement).dataset.rule as keyof CustomScoringRules;
+      next[key] = Number((input as HTMLInputElement).value);
+    }
+    applyScoringRules(next);
   });
 
   container.querySelectorAll('.roster-preset').forEach((btn) => {

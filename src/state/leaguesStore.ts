@@ -1,16 +1,17 @@
 import type { DraftConfig, LeagueProfile, LeaguesStore, ScoringFormat } from '../data/types';
-import { DEFAULT_ROSTER_POSITIONS, DEFAULT_SCORING_SETTINGS } from '../data/types';
+import { DEFAULT_ROSTER_POSITIONS } from '../data/types';
 import {
-  buildMigratedLeaguesStore,
-  clearLegacyFlatStorage,
-  hasLegacyFlatStorage,
-} from '../utils/leagueStorage';
-import {
+  DEFAULT_SCORING_SETTINGS,
   normalizeRosterPositions,
   normalizeScoringSettings,
   scoringSettingsFromLegacyFormat,
   scoringSettingsToLegacyFormat,
 } from '../utils/leagueSettings';
+import {
+  buildMigratedLeaguesStore,
+  clearLegacyFlatStorage,
+  hasLegacyFlatStorage,
+} from '../utils/leagueStorage';
 
 export const LEAGUES_STORE_KEY = 'fdw-leagues-store';
 export const LEAGUES_STORE_VERSION = 1;

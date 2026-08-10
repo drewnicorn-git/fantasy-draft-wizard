@@ -12,6 +12,7 @@ export interface RawPlayerRow {
   rankMin?: number | null;
   rankMax?: number | null;
   rankStd?: number | null;
+  projections?: Record<string, number | null | undefined>;
 }
 
 export function normalizeName(name: string): string {

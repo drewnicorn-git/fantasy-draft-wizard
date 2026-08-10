@@ -51,6 +51,7 @@ export interface PoolPlayer {
   adp: { std: number | null; ppr: number | null };
   posRank: { std: number | null; ppr: number | null };
   rankStdDev: number | null;
+  projections?: Record<string, number | null | undefined> | null;
 }
 
 interface Snapshot {
@@ -124,6 +125,7 @@ function mergePoolPlayers(target: PoolPlayer, source: PoolPlayer): void {
   if (source.rankStdDev != null) target.rankStdDev = source.rankStdDev;
   if (source.posRank.std != null) target.posRank.std = source.posRank.std;
   if (source.posRank.ppr != null) target.posRank.ppr = source.posRank.ppr;
+  if (source.projections) target.projections = { ...(target.projections ?? {}), ...source.projections };
   if (source.teamVerified) {
     target.team = source.team;
     target.teamVerified = true;
@@ -162,6 +164,7 @@ function getOrCreatePlayer(
       adp: { std: null, ppr: null },
       posRank: { std: null, ppr: null },
       rankStdDev: null,
+      projections: null,
     };
     pool.set(identity.id, p);
   } else {
@@ -244,6 +247,7 @@ function merge(): void {
         if (ext.adpPpr != null) p.adp.ppr = ext.adpPpr;
         if (r.adp != null && p.adp.ppr == null) p.adp.ppr = r.adp;
         if (r.rank != null) p.ranks.ppr.sleeper = r.rank;
+        if (r.projections) p.projections = r.projections;
       },
     },
     {

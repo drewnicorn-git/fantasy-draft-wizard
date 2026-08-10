@@ -15,7 +15,8 @@ import {
   retrySecondaryData,
 } from './state/appState';
 import { getActiveLeague } from './state/leaguesStore';
-import { normalizeReceptionPoints } from './utils/leagueSettings';
+import { FULL_PPR_SCORING, HALF_PPR_SCORING, STANDARD_SCORING } from './utils/fantasyPoints';
+import { rulesMatch } from './utils/fantasyPoints';
 import { mountRankingsView } from './pages/RankingsView';
 import { mountMockDraftView } from './pages/MockDraftView';
 import { mountLiveDraftView } from './pages/LiveDraftView';
@@ -62,9 +63,12 @@ function bindBannerEvents(): void {
 }
 
 function bindShellEvents(): void {
-  app.querySelectorAll('[data-reception]').forEach((btn) => {
+  app.querySelectorAll('[data-scoring-preset]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      setScoringSettings({ receptionPoints: normalizeReceptionPoints(Number((btn as HTMLElement).dataset.reception)) });
+      const preset = (btn as HTMLElement).dataset.scoringPreset;
+      if (preset === 'standard') setScoringSettings({ ...STANDARD_SCORING });
+      else if (preset === 'half') setScoringSettings({ ...HALF_PPR_SCORING });
+      else setScoringSettings({ ...FULL_PPR_SCORING });
     });
   });
 
@@ -84,9 +88,9 @@ function ensureShell(): void {
       <div class="header-controls">
         <div id="league-switcher"></div>
         <div class="scoring-toggle" role="group" aria-label="Scoring format">
-          <button type="button" data-reception="0">Standard</button>
-          <button type="button" data-reception="0.5">Half PPR</button>
-          <button type="button" data-reception="1">Full PPR</button>
+          <button type="button" data-scoring-preset="standard">Standard</button>
+          <button type="button" data-scoring-preset="half">Half PPR</button>
+          <button type="button" data-scoring-preset="full">Full PPR</button>
         </div>
         <span class="updated"></span>
       </div>
@@ -137,9 +141,14 @@ function updateDataLoadBanner(): void {
 
 function updateShell(): void {
   const updated = rankingsUpdatedAt(getRankings());
-  app.querySelectorAll('[data-reception]').forEach((btn) => {
-    const reception = normalizeReceptionPoints(Number((btn as HTMLElement).dataset.reception));
-    btn.classList.toggle('active', getActiveLeague().scoringSettings.receptionPoints === reception);
+  app.querySelectorAll('[data-scoring-preset]').forEach((btn) => {
+    const preset = (btn as HTMLElement).dataset.scoringPreset;
+    const rules = getActiveLeague().scoringSettings;
+    const active =
+      (preset === 'standard' && rulesMatch(rules, STANDARD_SCORING)) ||
+      (preset === 'half' && rulesMatch(rules, HALF_PPR_SCORING)) ||
+      (preset === 'full' && rulesMatch(rules, FULL_PPR_SCORING));
+    btn.classList.toggle('active', !!active);
   });
   app.querySelectorAll('[data-tab]').forEach((btn) => {
     const tab = (btn as HTMLElement).dataset.tab;

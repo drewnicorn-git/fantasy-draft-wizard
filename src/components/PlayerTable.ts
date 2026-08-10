@@ -2,7 +2,7 @@ import type { Player, ScoringFormat, SourceKey } from '../data/types';
 
 import { getActiveSources, getSheetLocked, state } from '../state/appState';
 
-import { SOURCE_LABELS, getAdp, getConsensus, getSourceRank } from '../utils/scoring';
+import { SOURCE_LABELS, getAdp, getConsensus, getProjectedPoints, getSourceRank } from '../utils/scoring';
 
 import { pickPredictor } from '../utils/analytics';
 
@@ -75,6 +75,8 @@ type SortKey =
 
   | 'adp'
 
+  | 'proj'
+
   | 'avail'
 
   | 'manual'
@@ -118,6 +120,8 @@ const DEFAULT_SORT_DIR: Record<SortKey, 'asc' | 'desc'> = {
   bye: 'asc',
 
   adp: 'asc',
+
+  proj: 'desc',
 
   avail: 'desc',
 
@@ -296,6 +300,12 @@ function sortPlayers(
       case 'adp':
 
         cmp = compareNullable(getAdp(a, scoring), getAdp(b, scoring), dir);
+
+        break;
+
+      case 'proj':
+
+        cmp = compareNullable(getProjectedPoints(a), getProjectedPoints(b), dir === 'asc' ? 'desc' : 'asc');
 
         break;
 
@@ -487,6 +497,8 @@ export function renderRankingsTable(
 
       ${sortHeader('Consensus', 'consensus', tableSort)}
 
+      ${sortHeader('Proj', 'proj', tableSort)}
+
       ${sortHeader('ADP', 'adp', tableSort)}
 
       ${showPredictorCol ? sortHeader('Avail%', 'avail', tableSort) : ''}
@@ -579,6 +591,8 @@ export function renderRankingsTable(
         ${showDeltaCol ? `<td class="delta-col">${deltaCell}</td>` : ''}
 
         <td><strong>${getConsensus(p, scoring) ?? '—'}</strong></td>
+
+        <td><strong>${getProjectedPoints(p)?.toFixed(1) ?? '—'}</strong></td>
 
         <td>${getAdp(p, scoring)?.toFixed(1) ?? '—'}</td>
 

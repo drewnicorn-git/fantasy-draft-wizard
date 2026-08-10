@@ -21,7 +21,7 @@ export function getLeagueConsensus(
   settings: LeagueScoringSettings,
   sources: Iterable<SourceKey>,
 ): number | null {
-  const weight = normalizeReceptionPoints(settings.receptionPoints);
+  const weight = normalizeReceptionPoints(settings.reception);
   if (weight === 0) return computeFromSide(player, 'std', sources);
   if (weight === 1) return computeFromSide(player, 'ppr', sources);
   const std = computeFromSide(player, 'std', sources);
@@ -45,11 +45,11 @@ function computeFromSide(
 }
 
 export function getLeagueAdp(player: Player, settings: LeagueScoringSettings): number | null {
-  return blendRankValue(player.adp.std, player.adp.ppr, settings.receptionPoints);
+  return blendRankValue(player.adp.std, player.adp.ppr, settings.reception);
 }
 
 export function getLeaguePosRank(player: Player, settings: LeagueScoringSettings): number | null {
-  return blendRankValue(player.posRank.std, player.posRank.ppr, settings.receptionPoints);
+  return blendRankValue(player.posRank.std, player.posRank.ppr, settings.reception);
 }
 
 export function getLeagueSourceRank(
@@ -57,5 +57,5 @@ export function getLeagueSourceRank(
   source: SourceKey,
   settings: LeagueScoringSettings,
 ): number | null {
-  return blendRankValue(player.ranks.std[source], player.ranks.ppr[source], settings.receptionPoints);
+  return blendRankValue(player.ranks.std[source], player.ranks.ppr[source], settings.reception);
 }

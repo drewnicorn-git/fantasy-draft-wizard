@@ -1,7 +1,9 @@
 import type { DraftConfig, DraftPick, Player, ScoringFormat } from '../data/types';
 import { countRoster, resolveRosterLimits, rosterNeedScore } from '../sim/bot';
 import type { BotRosterLimits } from '../utils/leagueSettings';
-import { getAdp, getConsensus } from './scoring';
+import { getActiveLeague } from '../state/leaguesStore';
+import { buildProjectedRankMap } from '../utils/fantasyPoints';
+import { getAdp, getConsensus, getProjectedPoints, getValueRank } from './scoring';
 import { byeWeekConflicts, detectPositionalRun } from './analytics';
 import { picksUntilNextUserPick, roundFromOverall } from '../sim/snake';
 import { escapeHtml } from './escapeHtml';
@@ -26,7 +28,29 @@ function getAdpOrConsensus(p: Player, scoring: ScoringFormat): number | null {
   return getAdp(p, scoring) ?? getConsensus(p, scoring);
 }
 
-function pureValueScore(p: Player, overallPick: number, scoring: ScoringFormat): number {
+function projectedRankMapFor(available: Player[]): Map<string, number> {
+  const rules = getActiveLeague().scoringSettings;
+  return buildProjectedRankMap(available, rules);
+}
+
+function playerValueRank(p: Player, projectedRankMap?: Map<string, number>): number | null {
+  return getValueRank(p, projectedRankMap);
+}
+
+function pureValueScore(
+  p: Player,
+  overallPick: number,
+  scoring: ScoringFormat,
+  projectedRankMap?: Map<string, number>,
+): number {
+  const projected = getProjectedPoints(p);
+  if (projected != null) {
+    const rank = playerValueRank(p, projectedRankMap);
+    const adp = rank ?? getAdpOrConsensus(p, scoring) ?? 999;
+    const reach = reachMultiplier(adp, overallPick);
+    return (projected / 320) * reach;
+  }
+
   const adp = getAdpOrConsensus(p, scoring) ?? 999;
   const adpScore = Math.exp(-adp / 75);
   const diff = adp - overallPick;
@@ -38,6 +62,15 @@ function pureValueScore(p: Player, overallPick: number, scoring: ScoringFormat):
   return adpScore * reach;
 }
 
+function reachMultiplier(adp: number, overallPick: number): number {
+  const diff = adp - overallPick;
+  if (diff > 18) return 0.5;
+  if (diff > 12) return 0.72;
+  if (diff < -18) return 1.12;
+  if (diff < -8) return 1.06;
+  return 1;
+}
+
 function scorePlayerForUser(
   p: Player,
   overallPick: number,
@@ -45,10 +78,11 @@ function scorePlayerForUser(
   counts: ReturnType<typeof countRoster>,
   config: DraftConfig,
   limits: BotRosterLimits,
+  projectedRankMap?: Map<string, number>,
 ): number {
   const scoring = config.scoring;
   const need = rosterNeedScore(p.pos, counts, round, 'balanced', limits);
-  return pureValueScore(p, overallPick, scoring) * need;
+  return pureValueScore(p, overallPick, scoring, projectedRankMap) * need;
 }
 
 function isStarterMissing(pos: string, counts: ReturnType<typeof countRoster>, limits: BotRosterLimits): boolean {
@@ -67,15 +101,18 @@ function qualityBeforeNextPick(
   overall: number,
   untilNext: number,
   scoring: ScoringFormat,
+  projectedRankMap?: Map<string, number>,
 ): Player[] {
   const horizon = overall + Math.max(untilNext, 1) + 3;
+  const rankFor = (p: Player): number | null =>
+    playerValueRank(p, projectedRankMap) ?? getAdpOrConsensus(p, scoring);
   return available
     .filter((p) => p.pos === pos)
     .filter((p) => {
-      const rank = getAdpOrConsensus(p, scoring);
+      const rank = rankFor(p);
       return rank != null && rank <= horizon;
     })
-    .sort((a, b) => (getAdpOrConsensus(a, scoring) ?? 9999) - (getAdpOrConsensus(b, scoring) ?? 9999));
+    .sort((a, b) => (rankFor(a) ?? 9999) - (rankFor(b) ?? 9999));
 }
 
 function leaguePosPressure(allPicks: DraftPick[], pos: string, window = 8): number {
@@ -99,9 +136,18 @@ function getCriticalTarget(
   overall: number,
   config: DraftConfig,
   allPicks: DraftPick[],
+  projectedRankMap: Map<string, number>,
 ): PositionTarget | null {
   const untilNext = picksUntilNextUserPick(overall, config.slot, config);
-  const targets = analyzePositionTargets(roster, available, overall, untilNext, config, allPicks);
+  const targets = analyzePositionTargets(
+    roster,
+    available,
+    overall,
+    untilNext,
+    config,
+    allPicks,
+    projectedRankMap,
+  );
   return targets[0] ?? null;
 }
 
@@ -124,6 +170,7 @@ function analyzePositionTargets(
   untilNext: number,
   config: DraftConfig,
   allPicks: DraftPick[],
+  projectedRankMap: Map<string, number>,
 ): PositionTarget[] {
   const counts = countRoster(roster);
   const { round } = roundFromOverall(overall, config.teams);
@@ -133,12 +180,12 @@ function analyzePositionTargets(
   const targets: PositionTarget[] = [];
   for (const pos of skillPositionsForConfig(config)) {
     const need = rosterNeedScore(pos, counts, round, 'balanced', limits);
-    const pool = qualityBeforeNextPick(available, pos, overall, untilNext, scoring);
+    const pool = qualityBeforeNextPick(available, pos, overall, untilNext, scoring, projectedRankMap);
     const best = pool[0];
     if (!best || need < 0.08) continue;
 
     const starterMissing = isStarterMissing(pos, counts, limits);
-    const value = pureValueScore(best, overall, scoring);
+    const value = pureValueScore(best, overall, scoring, projectedRankMap);
     const scarcity = untilNext / Math.max(pool.length, 1);
     const pressure = leaguePosPressure(allPicks, pos);
 
@@ -157,6 +204,7 @@ function recommendPosition(
   overall: number,
   config: DraftConfig,
   criticalTarget: PositionTarget | null,
+  projectedRankMap: Map<string, number>,
 ): string {
   const untilNext = picksUntilNextUserPick(overall, config.slot, config);
   const scoring = config.scoring;
@@ -164,9 +212,9 @@ function recommendPosition(
   if (!skillAvailable.length) return 'No skill players left — take the best remaining option.';
 
   const bpa = [...skillAvailable].sort(
-    (a, b) => pureValueScore(b, overall, scoring) - pureValueScore(a, overall, scoring),
+    (a, b) => pureValueScore(b, overall, scoring, projectedRankMap) - pureValueScore(a, overall, scoring, projectedRankMap),
   )[0];
-  const bpaValue = pureValueScore(bpa, overall, scoring);
+  const bpaValue = pureValueScore(bpa, overall, scoring, projectedRankMap);
 
   if (!criticalTarget) {
     return `Best value: ${bpa.pos} — ${bpa.name} is the strongest player available.`;
@@ -226,6 +274,7 @@ export function userSuggestedPicks(
   overallPick: number,
   config: DraftConfig,
   criticalTarget: PositionTarget | null,
+  projectedRankMap: Map<string, number>,
   limit = 3,
 ): Player[] {
   const { round } = roundFromOverall(overallPick, config.teams);
@@ -239,9 +288,11 @@ export function userSuggestedPicks(
   });
 
   const bpa = [...skillAvailable].sort(
-    (a, b) => pureValueScore(b, overallPick, scoring) - pureValueScore(a, overallPick, scoring),
+    (a, b) =>
+      pureValueScore(b, overallPick, scoring, projectedRankMap) -
+      pureValueScore(a, overallPick, scoring, projectedRankMap),
   )[0];
-  const bpaValue = bpa ? pureValueScore(bpa, overallPick, scoring) : 0;
+  const bpaValue = bpa ? pureValueScore(bpa, overallPick, scoring, projectedRankMap) : 0;
   const useBpa =
     !criticalTarget ||
     !bpa ||
@@ -249,7 +300,10 @@ export function userSuggestedPicks(
 
   if (useBpa) {
     return [...skillAvailable]
-      .map((p) => ({ p, score: scorePlayerForUser(p, overallPick, round, counts, config, limits) }))
+      .map((p) => ({
+        p,
+        score: scorePlayerForUser(p, overallPick, round, counts, config, limits, projectedRankMap),
+      }))
       .sort((a, b) => b.score - a.score)
       .slice(0, limit)
       .map((x) => x.p);
@@ -257,7 +311,10 @@ export function userSuggestedPicks(
 
   return available
     .filter((p) => p.pos === criticalTarget!.pos)
-    .map((p) => ({ p, score: scorePlayerForUser(p, overallPick, round, counts, config, limits) }))
+    .map((p) => ({
+      p,
+      score: scorePlayerForUser(p, overallPick, round, counts, config, limits, projectedRankMap),
+    }))
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map((x) => x.p);
@@ -270,12 +327,27 @@ export function getDraftAdvice(
   overall: number,
   config: DraftConfig,
 ): DraftAdvice {
-  const criticalTarget = getCriticalTarget(userRoster, available, overall, config, allPicks);
+  const projectedRankMap = projectedRankMapFor(available);
+  const criticalTarget = getCriticalTarget(
+    userRoster,
+    available,
+    overall,
+    config,
+    allPicks,
+    projectedRankMap,
+  );
 
   return {
     alerts: buildDraftAlerts(allPicks, userRoster, overall, config, criticalTarget),
-    recommendation: recommendPosition(available, overall, config, criticalTarget),
-    suggestedPicks: userSuggestedPicks(available, userRoster, overall, config, criticalTarget),
+    recommendation: recommendPosition(available, overall, config, criticalTarget, projectedRankMap),
+    suggestedPicks: userSuggestedPicks(
+      available,
+      userRoster,
+      overall,
+      config,
+      criticalTarget,
+      projectedRankMap,
+    ),
   };
 }
 

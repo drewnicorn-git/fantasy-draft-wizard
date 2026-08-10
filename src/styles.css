@@ -402,6 +402,36 @@ tr.your-pick td:first-child { font-weight: 700; }
   margin-bottom: 0.5rem;
 }
 
+.scoring-rules-details {
+  margin-top: 0.5rem;
+}
+
+.scoring-rules-details summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.scoring-rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+  gap: 0.45rem;
+  margin-bottom: 0.65rem;
+}
+
+.scoring-rules-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.scoring-rules-grid input {
+  padding: 0.3rem 0.4rem;
+}
+
 .scoring-preset-row,
 .roster-preset-row {
   display: flex;

@@ -1,10 +1,10 @@
-import type { Player, ScoringFormat, SourceKey, LeagueScoringSettings } from '../data/types';
+import type { Player, ScoringFormat, SourceKey, CustomScoringRules } from '../data/types';
 import { getActiveLeague } from '../state/leaguesStore';
-import { getLeagueAdp, getLeagueConsensus, getLeaguePosRank, getLeagueSourceRank } from './leagueRankings';
-import { normalizeReceptionPoints } from './leagueSettings';
+import { getPlayerProjectedPoints } from './fantasyPoints';
+import { scoringSettingsToLegacyFormat } from './leagueSettings';
 export { normalizeName } from './playerKeys';
 
-function activeScoringSettings(): LeagueScoringSettings {
+function activeScoringRules(): CustomScoringRules {
   return getActiveLeague().scoringSettings;
 }
 
@@ -13,9 +13,8 @@ function activeSources(): SourceKey[] {
   return sources.length ? sources : ALL_SOURCES;
 }
 
-function usesBlendedScoring(settings: LeagueScoringSettings): boolean {
-  const points = normalizeReceptionPoints(settings.receptionPoints);
-  return points !== 0 && points !== 1;
+function legacyScoringFromRules(rules: CustomScoringRules): ScoringFormat {
+  return scoringSettingsToLegacyFormat(rules);
 }
 
 export function computeConsensus(
@@ -33,20 +32,21 @@ export function computeConsensus(
   return Math.round(values.reduce((a, b) => a + b, 0) / values.length);
 }
 
+export function getProjectedPoints(player: Player, rules?: CustomScoringRules): number | null {
+  return getPlayerProjectedPoints(player, rules ?? activeScoringRules());
+}
+
 export function getConsensus(player: Player, scoring?: ScoringFormat): number | null {
   const league = getActiveLeague();
-  const settings = league.scoringSettings;
-  if (usesBlendedScoring(settings)) {
-    return getLeagueConsensus(player, settings, activeSources());
-  }
-  const s = scoring ?? league.scoring;
+  const rules = league.scoringSettings;
+  const s = scoring ?? legacyScoringFromRules(rules);
   return computeConsensus(player, s, activeSources());
 }
 
 export function getAdp(player: Player, scoring?: ScoringFormat): number | null {
-  const settings = activeScoringSettings();
-  if (usesBlendedScoring(settings)) return getLeagueAdp(player, settings);
-  return player.adp[scoring ?? getActiveLeague().scoring];
+  const rules = activeScoringRules();
+  const s = scoring ?? legacyScoringFromRules(rules);
+  return player.adp[s];
 }
 
 export function getSourceRank(
@@ -54,15 +54,32 @@ export function getSourceRank(
   source: SourceKey,
   scoring?: ScoringFormat,
 ): number | null {
-  const settings = activeScoringSettings();
-  if (usesBlendedScoring(settings)) return getLeagueSourceRank(player, source, settings);
-  return player.ranks[scoring ?? getActiveLeague().scoring][source] ?? null;
+  const rules = activeScoringRules();
+  const s = scoring ?? legacyScoringFromRules(rules);
+  return player.ranks[s][source] ?? null;
 }
 
 export function getPosRank(player: Player, scoring?: ScoringFormat): number | null {
-  const settings = activeScoringSettings();
-  if (usesBlendedScoring(settings)) return getLeaguePosRank(player, settings);
-  return player.posRank[scoring ?? getActiveLeague().scoring];
+  const rules = activeScoringRules();
+  const s = scoring ?? legacyScoringFromRules(rules);
+  return player.posRank[s];
+}
+
+/** Value rank for draft tools: projected points descending rank, else ADP/consensus. */
+export function getValueRank(player: Player, projectedRankMap?: Map<string, number>): number | null {
+  const fromProj = projectedRankMap?.get(player.id);
+  if (fromProj != null) return fromProj;
+  const rules = activeScoringRules();
+  const s = legacyScoringFromRules(rules);
+  return getAdp(player, s) ?? getConsensus(player, s);
+}
+
+export function getAdpOrValue(player: Player, scoring?: ScoringFormat, projectedRankMap?: Map<string, number>): number | null {
+  const valueRank = getValueRank(player, projectedRankMap);
+  if (valueRank != null) return valueRank;
+  const rules = activeScoringRules();
+  const s = scoring ?? legacyScoringFromRules(rules);
+  return player.adp[s] ?? getConsensus(player, s);
 }
 
 export function isBlankPlayer(player: Player): boolean {

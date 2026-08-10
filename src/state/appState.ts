@@ -1,4 +1,4 @@
-import type { AppState, DepthChartsData, InjuriesData, InSeasonData, LeagueScoringSettings, Player, RankingsData, RosterPositionSettings, ScoringFormat, SourceKey } from '../data/types';
+import type { AppState, DepthChartsData, InjuriesData, InSeasonData, CustomScoringRules, Player, RankingsData, RosterPositionSettings, ScoringFormat, SourceKey } from '../data/types';
 import { isBlankPlayer } from '../utils/scoring';
 import { normalizeName } from '../utils/playerKeys';
 import { buildRankingsFromLiveSources, type RefreshProgress } from '../services/buildRankings';
@@ -16,6 +16,7 @@ import {
   saveRosterPositions,
 } from '../utils/storage';
 import { getActiveLeague } from './leaguesStore';
+import { scoringSettingsFromLegacyFormat } from '../utils/leagueSettings';
 
 let rankingsData: RankingsData | null = null;
 let injuriesData: InjuriesData | null = null;
@@ -132,10 +133,10 @@ export function setState(partial: Partial<AppState>): void {
 }
 
 export function setScoring(scoring: ScoringFormat): void {
-  setScoringSettings({ receptionPoints: scoring === 'std' ? 0 : 1 });
+  setScoringSettings(scoringSettingsFromLegacyFormat(scoring));
 }
 
-export function setScoringSettings(settings: LeagueScoringSettings): void {
+export function setScoringSettings(settings: CustomScoringRules): void {
   saveScoringSettings(settings);
   const league = getActiveLeague();
   state.scoring = league.scoring;

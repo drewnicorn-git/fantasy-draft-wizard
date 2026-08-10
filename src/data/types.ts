@@ -1,9 +1,69 @@
 export type ScoringFormat = 'std' | 'ppr';
 
-/** League scoring rules mapped to available std/ppr ranking data. */
-export interface LeagueScoringSettings {
-  /** Points per reception: 0 = standard, 0.5 = half PPR, 1 = full PPR. */
-  receptionPoints: number;
+/** Full custom fantasy scoring rules for projected points. */
+export interface CustomScoringRules {
+  passYd: number;
+  passTd: number;
+  passInt: number;
+  passTwoPt: number;
+  rushYd: number;
+  rushTd: number;
+  rushTwoPt: number;
+  reception: number;
+  recYd: number;
+  recTd: number;
+  recTwoPt: number;
+  fumLost: number;
+  tePremium: number;
+  fgMade: number;
+  fgMiss: number;
+  fg40_49: number;
+  fg50Plus: number;
+  xpMade: number;
+  xpMiss: number;
+  dstSack: number;
+  dstInt: number;
+  dstFumRec: number;
+  dstTd: number;
+  dstSafety: number;
+  dstBlk: number;
+}
+
+/** @deprecated Use CustomScoringRules */
+export type LeagueScoringSettings = CustomScoringRules;
+
+export interface PlayerProjectionStats {
+  passYd?: number | null;
+  passTd?: number | null;
+  passInt?: number | null;
+  passTwoPt?: number | null;
+  rushYd?: number | null;
+  rushTd?: number | null;
+  rushTwoPt?: number | null;
+  rec?: number | null;
+  recYd?: number | null;
+  recTd?: number | null;
+  recTwoPt?: number | null;
+  fumLost?: number | null;
+  fgm?: number | null;
+  fgm40_49?: number | null;
+  fgm50Plus?: number | null;
+  fgmiss40_49?: number | null;
+  fgmiss50Plus?: number | null;
+  xpm?: number | null;
+  xpmiss?: number | null;
+  sacks?: number | null;
+  interceptions?: number | null;
+  fumRec?: number | null;
+  defTd?: number | null;
+  defKrTd?: number | null;
+  defPrTd?: number | null;
+  stTd?: number | null;
+  blkKick?: number | null;
+  safety?: number | null;
+  ptsStd?: number | null;
+  ptsPpr?: number | null;
+  ptsHalfPpr?: number | null;
 }
 
 /** Starting lineup and bench slot counts for a league roster. */
@@ -19,7 +79,6 @@ export interface RosterPositionSettings {
   BENCH: number;
 }
 
-export const DEFAULT_SCORING_SETTINGS: LeagueScoringSettings = { receptionPoints: 1 };
 
 export const DEFAULT_ROSTER_POSITIONS: RosterPositionSettings = {
   QB: 1,
@@ -70,6 +129,8 @@ export interface Player {
   adp: { std: number | null; ppr: number | null };
   posRank: { std: number | null; ppr: number | null };
   rankStdDev: number | null;
+  /** Sleeper season projection stats used for custom scoring. */
+  projections?: PlayerProjectionStats | null;
 }
 
 export interface RankingsData {
@@ -117,7 +178,7 @@ export interface DraftConfig {
   slot: number;
   rounds: number;
   scoring: ScoringFormat;
-  scoringSettings?: LeagueScoringSettings;
+  scoringSettings?: CustomScoringRules;
   rosterPositions?: RosterPositionSettings;
 }
 
@@ -229,7 +290,7 @@ export interface LeagueProfile {
   createdAt: string;
   updatedAt: string;
   scoring: ScoringFormat;
-  scoringSettings: LeagueScoringSettings;
+  scoringSettings: CustomScoringRules;
   rosterPositions: RosterPositionSettings;
   draftConfig: DraftConfig;
   botPersonality: BotPersonality;
