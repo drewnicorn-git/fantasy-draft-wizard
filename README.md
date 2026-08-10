@@ -8,10 +8,10 @@ A static fantasy football draft assistant: multi-source rankings, mock and live 
 
 | Repo | Purpose |
 |------|---------|
-| [fantasy-draft-wizard](https://github.com/drewnicorn-git/fantasy-draft-wizard) | Development, issues, and launch roadmap |
-| [fantasy-draft-wizard-app](https://github.com/drewnicorn-git/fantasy-draft-wizard-app) | Deploy target — GitHub Pages production site |
+| [fantasy-draft-wizard](https://github.com/drewnicorn-git/fantasy-draft-wizard) | Development, issues, and launch roadmap (CI build only) |
+| [fantasy-draft-wizard-app](https://github.com/drewnicorn-git/fantasy-draft-wizard-app) | Deploy target — GitHub Pages production site + daily data refresh |
 
-Pushes to `fantasy-draft-wizard-app` `main` deploy the static site. This repo tracks feature work and merges/releases to the app repo as phases complete.
+Pushes to `fantasy-draft-wizard-app` `main` deploy the static site. The dev repo runs the same build workflow to verify changes but does **not** deploy (GitHub Pages is enabled only on the app repo).
 
 ## Features
 

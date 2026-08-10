@@ -1,4 +1,4 @@
-name: Deploy Pages
+name: Build and Deploy Pages
 
 on:
   push:
@@ -49,11 +49,13 @@ jobs:
           test -f dist/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
+        if: github.repository == 'drewnicorn-git/fantasy-draft-wizard-app'
         with:
           path: dist
 
   deploy:
     needs: build
+    if: github.repository == 'drewnicorn-git/fantasy-draft-wizard-app'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
