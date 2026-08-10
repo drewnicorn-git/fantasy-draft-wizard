@@ -208,6 +208,8 @@ export interface LeagueProfile {
   liveDraft: LiveDraftState | null;
   mockDraft: StoredMockDraft | null;
   inSeason: InSeasonState | null;
+  /** Last selected NFL team on the Depth Charts tab. */
+  depthChartTeam: string | null;
 }
 
 export interface LeaguesStore {

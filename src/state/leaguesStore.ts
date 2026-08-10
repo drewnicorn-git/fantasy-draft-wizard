@@ -44,6 +44,7 @@ export function createDefaultLeagueProfile(name = 'My league'): LeagueProfile {
     liveDraft: null,
     mockDraft: null,
     inSeason: null,
+    depthChartTeam: null,
   };
 }
 
@@ -56,14 +57,57 @@ export function createDefaultLeaguesStore(): LeaguesStore {
   };
 }
 
+function normalizeLeagueProfile(raw: Partial<LeagueProfile>, fallbackName: string): LeagueProfile {
+  const base = createDefaultLeagueProfile(raw.name?.trim() || fallbackName);
+  const scoring = raw.scoring === 'std' || raw.scoring === 'ppr' ? raw.scoring : base.scoring;
+  const draftConfig = {
+    ...base.draftConfig,
+    ...(raw.draftConfig ?? {}),
+    scoring,
+  };
+  draftConfig.slot = Math.max(1, Math.min(draftConfig.slot, draftConfig.teams));
+
+  return {
+    ...base,
+    ...raw,
+    id: typeof raw.id === 'string' && raw.id ? raw.id : base.id,
+    name: raw.name?.trim() || base.name,
+    createdAt: typeof raw.createdAt === 'string' ? raw.createdAt : base.createdAt,
+    updatedAt: typeof raw.updatedAt === 'string' ? raw.updatedAt : new Date().toISOString(),
+    scoring,
+    draftConfig,
+    botPersonality:
+      raw.botPersonality === 'balanced' || raw.botPersonality === 'zero-rb' || raw.botPersonality === 'hero-rb'
+        ? raw.botPersonality
+        : base.botPersonality,
+    selectedSources: Array.isArray(raw.selectedSources) ? [...raw.selectedSources] : base.selectedSources,
+    customTagDefinitions: Array.isArray(raw.customTagDefinitions) ? [...raw.customTagDefinitions] : base.customTagDefinitions,
+    playerTags: raw.playerTags && typeof raw.playerTags === 'object' ? { ...raw.playerTags } : base.playerTags,
+    sheetState: raw.sheetState ? { ...base.sheetState, ...raw.sheetState } : base.sheetState,
+    teamNames: Array.isArray(raw.teamNames) ? [...raw.teamNames] : base.teamNames,
+    manualRanks: raw.manualRanks && typeof raw.manualRanks === 'object' ? { ...raw.manualRanks } : base.manualRanks,
+    rankDeltaCompare: raw.rankDeltaCompare ?? base.rankDeltaCompare,
+    keepers: Array.isArray(raw.keepers) ? [...raw.keepers] : base.keepers,
+    keeperTeams: raw.keeperTeams && typeof raw.keeperTeams === 'object' ? { ...raw.keeperTeams } : base.keeperTeams,
+    liveDraft: raw.liveDraft ?? base.liveDraft,
+    mockDraft: raw.mockDraft ?? base.mockDraft,
+    inSeason: raw.inSeason ?? base.inSeason,
+    depthChartTeam: typeof raw.depthChartTeam === 'string' ? raw.depthChartTeam : base.depthChartTeam,
+  };
+}
+
 function normalizeLeaguesStore(raw: Partial<LeaguesStore>): LeaguesStore | null {
   if (!raw?.leagues || typeof raw.activeLeagueId !== 'string') return null;
-  const active = raw.leagues[raw.activeLeagueId];
+  const leagues: Record<string, LeagueProfile> = {};
+  for (const [id, league] of Object.entries(raw.leagues)) {
+    leagues[id] = normalizeLeagueProfile(league, 'Imported league');
+  }
+  const active = leagues[raw.activeLeagueId] ? raw.activeLeagueId : Object.keys(leagues)[0];
   if (!active) return null;
   return {
     version: LEAGUES_STORE_VERSION,
-    activeLeagueId: raw.activeLeagueId,
-    leagues: raw.leagues,
+    activeLeagueId: active,
+    leagues,
   };
 }
 
@@ -189,4 +233,34 @@ export function removeLeague(id: string): void {
     store.activeLeagueId = Object.keys(store.leagues)[0];
   }
   saveLeaguesStore(store);
+}
+
+function newImportLeagueId(): string {
+  return newLeagueId();
+}
+
+export function importLeague(raw: Partial<LeagueProfile>, options: { activate?: boolean; name?: string } = {}): LeagueProfile {
+  const store = loadLeaguesStore();
+  const normalized = normalizeLeagueProfile(
+    { ...raw, name: options.name?.trim() || raw.name },
+    options.name?.trim() || 'Imported league',
+  );
+  const id = store.leagues[normalized.id] ? newImportLeagueId() : normalized.id;
+  const now = new Date().toISOString();
+  const league: LeagueProfile = {
+    ...normalized,
+    id,
+    createdAt: now,
+    updatedAt: now,
+  };
+  store.leagues[id] = league;
+  if (options.activate !== false) store.activeLeagueId = id;
+  saveLeaguesStore(store);
+  return league;
+}
+
+export function replaceLeaguesStore(store: LeaguesStore): void {
+  const normalized = normalizeLeaguesStore(store);
+  if (!normalized) throw new Error('Invalid leagues store');
+  saveLeaguesStore(normalized);
 }

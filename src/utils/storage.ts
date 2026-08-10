@@ -175,3 +175,11 @@ export function saveScoring(scoring: ScoringFormat): void {
 export function saveBotPersonality(personality: BotPersonality): void {
   updateActiveLeague({ botPersonality: personality });
 }
+
+export function loadDepthChartTeam(fallback: string): string {
+  return getActiveLeague().depthChartTeam ?? fallback;
+}
+
+export function saveDepthChartTeam(team: string): void {
+  updateActiveLeague({ depthChartTeam: team });
+}

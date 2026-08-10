@@ -177,6 +177,12 @@ body { margin: 0; min-height: 100vh; }
   border-top: 1px solid var(--border);
 }
 
+.league-modal-footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 main { flex: 1; padding: 1rem 1.25rem; min-height: 0; overflow-y: auto; }
 
 .panel { max-width: 1400px; margin: 0 auto; }

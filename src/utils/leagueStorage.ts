@@ -28,6 +28,7 @@ export const LEGACY_FLAT_KEYS = [
   'fdw-in-season',
   'fdw-manual-ranks',
   'fdw-rank-delta-compare',
+  'fdw-depth-team',
 ] as const;
 
 export const LEGACY_MANUAL_ORDER_KEY = 'fdw-manual-order';
@@ -131,6 +132,7 @@ export function buildLegacyLeagueProfile(name = 'My league'): LeagueProfile {
   const customTagDefinitions = readJson<TagDefinition[]>('fdw-tag-definitions', []).filter((t) => !t.preset);
   const keepers = readJson<string[]>('fdw-keepers', []);
   const rankDeltaCompare = readJson<RankDeltaCompare | null>('fdw-rank-delta-compare', null);
+  const depthTeamRaw = localStorage.getItem('fdw-depth-team');
 
   return {
     id,
@@ -152,6 +154,7 @@ export function buildLegacyLeagueProfile(name = 'My league'): LeagueProfile {
     liveDraft: readJson<LiveDraftState | null>('fdw-live-draft', null),
     mockDraft: readLegacyMockDraft(),
     inSeason,
+    depthChartTeam: depthTeamRaw?.trim() || null,
   };
 }
 

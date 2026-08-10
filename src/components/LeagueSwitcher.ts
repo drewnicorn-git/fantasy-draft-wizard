@@ -2,15 +2,79 @@ import { escapeHtml } from '../utils/escapeHtml';
 import {
   addLeague,
   getActiveLeague,
+  importLeague,
   listLeagues,
+  loadLeaguesStore,
   removeLeague,
   renameLeague,
+  replaceLeaguesStore,
   setActiveLeague,
 } from '../state/leaguesStore';
+import {
+  buildLeagueExportFile,
+  buildLeaguesStoreExportFile,
+  downloadJson,
+  parseLeagueImportPayload,
+  parseLeaguesStoreImportPayload,
+  sanitizeImportedStore,
+} from '../utils/leagueExport';
+
+function safeFilename(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'league';
+}
 
 export function mountLeagueSwitcher(container: HTMLElement, onLeagueChange: () => void): () => void {
   let manageOpen = false;
   let renameId: string | null = null;
+  let importInput: HTMLInputElement | null = null;
+
+  const ensureImportInput = (): HTMLInputElement => {
+    if (importInput) return importInput;
+    importInput = document.createElement('input');
+    importInput.type = 'file';
+    importInput.accept = 'application/json,.json';
+    importInput.hidden = true;
+    importInput.addEventListener('change', () => {
+      const file = importInput?.files?.[0];
+      if (!file) return;
+      void handleImportFile(file);
+      if (importInput) importInput.value = '';
+    });
+    document.body.appendChild(importInput);
+    return importInput;
+  };
+
+  const handleImportFile = async (file: File): Promise<void> => {
+    try {
+      const text = await file.text();
+      const parsed = JSON.parse(text) as unknown;
+
+      if (
+        typeof parsed === 'object' &&
+        parsed != null &&
+        ('format' in parsed
+          ? (parsed as { format?: string }).format === 'fdw-leagues-store'
+          : 'leagues' in parsed && 'activeLeagueId' in parsed)
+      ) {
+        if (!confirm('Replace all leagues with this backup? Current leagues will be overwritten.')) return;
+        const store = sanitizeImportedStore(parseLeaguesStoreImportPayload(parsed));
+        replaceLeaguesStore(store);
+        closeManage();
+        onLeagueChange();
+        return;
+      }
+
+      const profile = parseLeagueImportPayload(parsed);
+      const defaultName = profile.name.trim() || 'Imported league';
+      const name = prompt('Import league as:', defaultName);
+      if (name == null) return;
+      importLeague(profile, { name, activate: true });
+      closeManage();
+      onLeagueChange();
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Could not import league file');
+    }
+  };
 
   const closeManage = (): void => {
     manageOpen = false;
@@ -68,6 +132,7 @@ export function mountLeagueSwitcher(container: HTMLElement, onLeagueChange: () =
                       : `<span class="league-modal-name">${escapeHtml(league.name)}${isActive ? ' <span class="league-active-badge">Active</span>' : ''}</span>
                          <div class="league-modal-actions">
                            ${isActive ? '' : `<button type="button" class="btn secondary btn-xs league-switch-btn" data-id="${escapeHtml(league.id)}">Switch</button>`}
+                           <button type="button" class="btn secondary btn-xs league-export-btn" data-id="${escapeHtml(league.id)}">Export</button>
                            <button type="button" class="btn secondary btn-xs league-rename-btn" data-id="${escapeHtml(league.id)}">Rename</button>
                            ${leagues.length > 1 ? `<button type="button" class="btn secondary btn-xs league-delete-btn" data-id="${escapeHtml(league.id)}">Delete</button>` : ''}
                          </div>`
@@ -76,8 +141,11 @@ export function mountLeagueSwitcher(container: HTMLElement, onLeagueChange: () =
               })
               .join('')}
           </ul>
-          <footer class="league-modal-footer">
+          <footer class="league-modal-footer league-modal-footer-actions">
             <button type="button" id="add-league" class="btn primary">Add league</button>
+            <button type="button" id="export-active-league" class="btn secondary">Export active</button>
+            <button type="button" id="export-all-leagues" class="btn secondary">Backup all</button>
+            <button type="button" id="import-league" class="btn secondary">Import…</button>
           </footer>
         </div>
       </div>`
@@ -103,6 +171,28 @@ export function mountLeagueSwitcher(container: HTMLElement, onLeagueChange: () =
       if (name == null) return;
       const league = addLeague(name);
       switchLeague(league.id);
+    });
+
+    container.querySelector('#export-active-league')?.addEventListener('click', () => {
+      const league = getActiveLeague();
+      downloadJson(`${safeFilename(league.name)}-league.json`, buildLeagueExportFile(league));
+    });
+
+    container.querySelector('#export-all-leagues')?.addEventListener('click', () => {
+      downloadJson('fantasy-draft-wizard-leagues.json', buildLeaguesStoreExportFile(loadLeaguesStore()));
+    });
+
+    container.querySelector('#import-league')?.addEventListener('click', () => {
+      ensureImportInput().click();
+    });
+
+    container.querySelectorAll('.league-export-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = (btn as HTMLElement).dataset.id!;
+        const league = listLeagues().find((l) => l.id === id);
+        if (!league) return;
+        downloadJson(`${safeFilename(league.name)}-league.json`, buildLeagueExportFile(league));
+      });
     });
 
     container.querySelectorAll('.league-switch-btn').forEach((btn) => {

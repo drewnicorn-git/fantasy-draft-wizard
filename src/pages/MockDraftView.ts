@@ -153,6 +153,14 @@ function clearTimers(): void {
   countdownTimer = null;
 }
 
+/** Clear in-memory mock draft state when switching leagues. */
+export function resetMockDraftModuleState(): void {
+  clearTimers();
+  draft = null;
+  listenersAttached = false;
+  pickListClickHandler = null;
+}
+
 function renderDraftBoardPanel(root: HTMLElement): void {
   if (!draft) return;
   const cfg = state.draftConfig;

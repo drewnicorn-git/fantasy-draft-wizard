@@ -21,6 +21,7 @@ import { mountInjuryReportView } from './pages/InjuryReportView';
 import { mountInSeasonView } from './pages/InSeasonView';
 import { mountDepthChartsView } from './pages/DepthChartsView';
 import { mountLeagueSwitcher } from './components/LeagueSwitcher';
+import { resetMockDraftModuleState } from './pages/MockDraftView';
 import { syncAppStateFromActiveLeague } from './state/appState';
 import { rankingsUpdatedAt } from './utils/rankingsMeta';
 import type { ScoringFormat } from './data/types';
@@ -35,6 +36,7 @@ let bannerEventsBound = false;
 let refreshLeagueSwitcher: (() => void) | null = null;
 
 function onLeagueChanged(): void {
+  resetMockDraftModuleState();
   syncAppStateFromActiveLeague();
   mountedTab = null;
   refreshLeagueSwitcher?.();

@@ -1,28 +1,19 @@
 import type { DepthChartsData } from '../data/types';
 import { getDepthCharts } from '../state/appState';
+import { loadDepthChartTeam, saveDepthChartTeam } from '../utils/storage';
 import { DEPTH_CHART_POSITIONS, NFL_TEAMS_SORTED } from '../utils/depthChart';
 import { posCssClass } from '../utils/position';
 import { rankingsUpdatedAt } from '../utils/rankingsMeta';
 import { escapeHtml } from '../utils/escapeHtml';
 
-const STORAGE_KEY = 'fdw-depth-team';
-
 function loadSelectedTeam(): string {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && NFL_TEAMS_SORTED.includes(saved)) return saved;
-  } catch {
-    /* ignore */
-  }
-  return NFL_TEAMS_SORTED[0] ?? 'ARI';
+  const fallback = NFL_TEAMS_SORTED[0] ?? 'ARI';
+  const saved = loadDepthChartTeam(fallback);
+  return NFL_TEAMS_SORTED.includes(saved) ? saved : fallback;
 }
 
 function saveSelectedTeam(team: string): void {
-  try {
-    localStorage.setItem(STORAGE_KEY, team);
-  } catch {
-    /* ignore */
-  }
+  saveDepthChartTeam(team);
 }
 
 function maxDepthSlots(teamChart: Partial<Record<(typeof DEPTH_CHART_POSITIONS)[number], string[]>>): number {
