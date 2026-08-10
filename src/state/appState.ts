@@ -81,7 +81,15 @@ export async function loadRankings(): Promise<RankingsData> {
 
 export async function reloadRankings(onProgress?: RefreshProgress): Promise<RankingsData> {
   onProgress?.('Loading latest rankings snapshot…');
+  if (import.meta.env.PROD) {
+    rankingsData = null;
+    const data = await fetchRankingsFromServer(true);
+    onProgress?.('Snapshot reloaded');
+    notify();
+    return data;
+  }
   const snapshot = await fetchRankingsFromServer(true);
+  onProgress?.('Fetching live ADP from ESPN, Sleeper, and Fantasy Calc…');
   const data = await buildRankingsFromLiveSources(snapshot, onProgress);
   rankingsData = data;
   notify();

@@ -3,8 +3,9 @@ import type { RawPlayerRow, ScoringKey } from './utils.js';
 function fantasyProsApiKey(): string {
   const fromEnv = process.env.FANTASYPROS_API_KEY?.trim();
   if (fromEnv) return fromEnv;
-  // Fallback for local dev; CI should set FANTASYPROS_API_KEY repo secret when available.
-  return 'zjxN52G3lP4fORpHRftGI2mTU8cTwxVNvkjByM3j';
+  throw new Error(
+    'FANTASYPROS_API_KEY is not set. Add it to your environment for local fetches, or configure the GitHub Actions secret for CI.',
+  );
 }
 
 export async function fetchFantasyPros(season: number, scoring: ScoringKey): Promise<RawPlayerRow[]> {

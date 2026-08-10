@@ -1,11 +1,17 @@
 import { reloadRankings, getSheetLocked, lockSheet, unlockSheet } from '../state/appState';
 
+const isProd = import.meta.env.PROD;
+const refreshLabel = isProd ? 'Reload snapshot' : 'Refresh from live APIs';
+const refreshTitle = isProd
+  ? 'Reload rankings.json from this site (updated daily by GitHub Actions)'
+  : 'Dev only: fetch live ESPN, Sleeper, and Fantasy Calc data in the browser';
+
 export function renderSheetToolbar(container: HTMLElement, onChange: () => void): void {
   const locked = getSheetLocked();
 
   container.innerHTML = `
     <div class="sheet-toolbar">
-      <button type="button" id="refresh-rankings" class="btn secondary">Refresh rankings</button>
+      <button type="button" id="refresh-rankings" class="btn secondary" title="${refreshTitle}">${refreshLabel}</button>
       <span id="refresh-status" class="sheet-status muted"></span>
       ${
         locked
