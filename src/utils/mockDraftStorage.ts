@@ -1,17 +1,8 @@
-import type { DraftPick } from '../data/types';
+import type { StoredMockDraft } from '../data/types';
+
+export type { MockDraftPhase, StoredMockDraft } from '../data/types';
 
 const STORAGE_KEY = 'fdw-mock-draft';
-
-export type MockDraftPhase = 'setup' | 'active' | 'summary';
-
-export interface StoredMockDraft {
-  picks: DraftPick[];
-  draftedIds: string[];
-  currentIndex: number;
-  finished: boolean;
-  history: DraftPick[][];
-  phase: MockDraftPhase;
-}
 
 export function loadMockDraft(): StoredMockDraft | null {
   try {

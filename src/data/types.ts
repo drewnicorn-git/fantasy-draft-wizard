@@ -165,3 +165,54 @@ export interface InSeasonTarget {
   reason: string;
 }
 
+export type MockDraftPhase = 'setup' | 'active' | 'summary';
+
+export interface StoredMockDraft {
+  picks: DraftPick[];
+  draftedIds: string[];
+  currentIndex: number;
+  finished: boolean;
+  history: DraftPick[][];
+  phase: MockDraftPhase;
+}
+
+export type RankMetric = 'consensus' | 'manual' | 'adp' | SourceKey;
+
+export interface RankDeltaCompare {
+  from: RankMetric;
+  to: RankMetric;
+}
+
+export type ManualRanksByScoring = Partial<Record<ScoringFormat, Record<string, number>>>;
+
+/** Per-league persisted settings and draft state (Phase 2 multi-league). */
+export interface LeagueProfile {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  scoring: ScoringFormat;
+  draftConfig: DraftConfig;
+  botPersonality: BotPersonality;
+  selectedSources: SourceKey[];
+  /** Non-preset tag definitions only; presets are merged at read time. */
+  customTagDefinitions: TagDefinition[];
+  playerTags: Record<string, string>;
+  sheetState: SheetState;
+  teamNames: string[];
+  manualRanks: ManualRanksByScoring;
+  /** Null uses UI defaults based on available ranking sources. */
+  rankDeltaCompare: RankDeltaCompare | null;
+  keepers: string[];
+  keeperTeams: Record<string, number>;
+  liveDraft: LiveDraftState | null;
+  mockDraft: StoredMockDraft | null;
+  inSeason: InSeasonState | null;
+}
+
+export interface LeaguesStore {
+  version: number;
+  activeLeagueId: string;
+  leagues: Record<string, LeagueProfile>;
+}
+

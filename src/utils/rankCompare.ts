@@ -1,15 +1,10 @@
-import type { Player, ScoringFormat, SourceKey } from '../data/types';
+import type { Player, RankDeltaCompare, RankMetric, ScoringFormat, SourceKey } from '../data/types';
 import { getManualRank } from './manualOrder';
 import { SOURCE_LABELS, getAdp, getConsensus, getSourceRank } from './scoring';
 
-export type RankMetric = 'consensus' | 'manual' | 'adp' | SourceKey;
+export type { RankDeltaCompare, RankMetric } from '../data/types';
 
 const STORAGE_KEY = 'fdw-rank-delta-compare';
-
-export interface RankDeltaCompare {
-  from: RankMetric;
-  to: RankMetric;
-}
 
 export function availableRankMetrics(sources: SourceKey[]): RankMetric[] {
   return ['consensus', 'manual', 'adp', ...sources];
