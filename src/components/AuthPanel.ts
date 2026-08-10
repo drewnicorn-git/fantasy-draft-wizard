@@ -37,7 +37,7 @@ export function mountAuthPanel(container: HTMLElement, onAuthChange: () => void)
           </button>
           ${signedIn && status === 'syncing' ? '<span class="auth-sync-hint">Syncing…</span>' : ''}
           ${signedIn && status === 'synced' ? '<span class="auth-sync-hint synced">Synced</span>' : ''}
-          ${status === 'error' ? `<span class="auth-sync-hint error" title="${escapeHtml(detail)}">Sync error</span>` : ''}
+          ${status === 'error' ? `<span class="auth-sync-hint error">${escapeHtml(detail || 'Sync error')}</span>` : ''}
         </div>`;
       container.querySelector('#auth-toggle')?.addEventListener('click', () => {
         open = true;
@@ -56,7 +56,11 @@ export function mountAuthPanel(container: HTMLElement, onAuthChange: () => void)
         ${
           signedIn
             ? `<p class="auth-signed-in">Signed in as <strong>${escapeHtml(email || 'your account')}</strong></p>
-               <p class="hint auth-status">${escapeHtml(detail || 'Your leagues sync automatically when you make changes.')}</p>
+               <p class="hint auth-status${status === 'error' ? ' auth-status-error' : ''}">${escapeHtml(
+                 status === 'error'
+                   ? detail || 'Sync failed — open Account for details or run supabase/schema.sql.'
+                   : detail || 'Your leagues sync automatically when you make changes.',
+               )}</p>
                <div class="auth-actions">
                  <button type="button" id="auth-sync-now" class="btn secondary btn-xs" ${busy ? 'disabled' : ''}>Sync now</button>
                  <button type="button" id="auth-sign-out" class="btn secondary btn-xs" ${busy ? 'disabled' : ''}>Sign out</button>

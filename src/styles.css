@@ -1530,6 +1530,12 @@ html.layout-mobile .header-controls .updated {
 
 .auth-sync-hint.error {
   color: var(--danger);
+  max-width: 14rem;
+  line-height: 1.25;
+}
+
+.auth-status-error {
+  color: var(--danger);
 }
 
 .auth-signed-in {

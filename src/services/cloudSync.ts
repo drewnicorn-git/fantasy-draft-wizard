@@ -8,6 +8,7 @@ import {
 } from '../state/leaguesStore';
 import { sanitizeImportedStore } from '../utils/leagueExport';
 import { getAuthRedirectUrl, getSupabase, isSupabaseConfigured } from './supabaseClient';
+import { formatSupabaseError } from '../utils/supabaseErrors';
 
 const CLOUD_TABLE = 'user_leagues_store';
 const PUSH_DEBOUNCE_MS = 2_000;
@@ -129,7 +130,7 @@ export async function reconcileCloudStoreOnSignIn(): Promise<void> {
       setStatus('synced', 'Already up to date');
     }
   } catch (err) {
-    setStatus('error', err instanceof Error ? err.message : 'Sync failed');
+    setStatus('error', formatSupabaseError(err));
     throw err;
   }
 }
@@ -150,7 +151,7 @@ export async function pushCloudStoreNow(): Promise<void> {
     await pushRemoteStore(userId, store);
     setStatus('synced', 'Saved to your account');
   } catch (err) {
-    setStatus('error', err instanceof Error ? err.message : 'Save failed');
+    setStatus('error', formatSupabaseError(err, 'Save failed'));
     throw err;
   }
 }
@@ -170,7 +171,7 @@ export function scheduleCloudPush(store: LeaguesStore): void {
       pushTimer = null;
       void pushRemoteStore(userId, store).then(
         () => setStatus('synced', 'Saved to your account'),
-        (err) => setStatus('error', err instanceof Error ? err.message : 'Save failed'),
+        (err) => setStatus('error', formatSupabaseError(err, 'Save failed')),
       );
     }, PUSH_DEBOUNCE_MS);
   });

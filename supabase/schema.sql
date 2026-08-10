@@ -8,16 +8,18 @@ create table if not exists public.user_leagues_store (
 
 alter table public.user_leagues_store enable row level security;
 
-create policy "Users read own leagues store"
-  on public.user_leagues_store for select
-  using (auth.uid() = user_id);
+-- Table-level grants (required when creating via SQL editor — dashboard-created tables get these automatically)
+grant select, insert, update, delete on table public.user_leagues_store to authenticated;
 
-create policy "Users insert own leagues store"
-  on public.user_leagues_store for insert
-  with check (auth.uid() = user_id);
+drop policy if exists "Users read own leagues store" on public.user_leagues_store;
+drop policy if exists "Users insert own leagues store" on public.user_leagues_store;
+drop policy if exists "Users update own leagues store" on public.user_leagues_store;
+drop policy if exists "Users manage own leagues store" on public.user_leagues_store;
 
-create policy "Users update own leagues store"
-  on public.user_leagues_store for update
+create policy "Users manage own leagues store"
+  on public.user_leagues_store
+  for all
+  to authenticated
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
 
@@ -38,7 +40,13 @@ create table if not exists public.notification_subscriptions (
 
 alter table public.notification_subscriptions enable row level security;
 
+grant select, insert, update, delete on table public.notification_subscriptions to authenticated;
+
+drop policy if exists "Users manage own notification subscriptions" on public.notification_subscriptions;
+
 create policy "Users manage own notification subscriptions"
-  on public.notification_subscriptions for all
+  on public.notification_subscriptions
+  for all
+  to authenticated
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
