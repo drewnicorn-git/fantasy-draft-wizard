@@ -3,11 +3,9 @@ import type { DraftPick, DraftConfig, Player } from '../data/types';
 import { getTeamDisplayName } from './TeamNamesEditor';
 
 import { posCssClass } from '../utils/position';
-
-
+import { escapeHtml } from '../utils/escapeHtml';
 
 export function renderDraftBoard(
-
   container: HTMLElement,
 
   picks: DraftPick[],
@@ -84,18 +82,7 @@ export function renderDraftBoard(
   html += '</tbody></table></div></div>';
 
   container.innerHTML = html;
-
 }
-
-
-
-function escapeHtml(s: string): string {
-
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-}
-
-
 
 export function renderRosterSummary(container: HTMLElement, roster: { name: string; pos: string; team: string; adp: number | null }[]): void {
 
@@ -105,7 +92,7 @@ export function renderRosterSummary(container: HTMLElement, roster: { name: stri
 
     <ul class="roster-list">
 
-      ${roster.map((p) => `<li class="${posCssClass(p.pos)}"><span class="pos-badge ${posCssClass(p.pos)}">${p.pos}</span> ${escapeHtml(p.name)} <span class="muted">${p.team}${p.adp != null ? ` · ADP ${p.adp.toFixed(1)}` : ''}</span></li>`).join('')}
+      ${roster.map((p) => `<li class="${posCssClass(p.pos)}"><span class="pos-badge ${posCssClass(p.pos)}">${p.pos}</span> ${escapeHtml(p.name)} <span class="muted">${escapeHtml(p.team)}${p.adp != null ? ` · ADP ${p.adp.toFixed(1)}` : ''}</span></li>`).join('')}
 
     </ul>`;
 

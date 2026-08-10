@@ -15,10 +15,7 @@ import { buildInSeasonAlerts, getInSeasonTargets, renderInSeasonAdvicePanel } fr
 import { clearInSeasonState, loadInSeasonState, saveInSeasonState } from '../utils/storage';
 import { formatPrevWeekDisplay, formatProjDisplay } from '../utils/inSeasonStats';
 import { posCssClass } from '../utils/position';
-
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+import { escapeHtml } from '../utils/escapeHtml';
 
 function renderTeamSelectOptions(inSeasonState: InSeasonState, selectedTeam: number): string {
   return Array.from({ length: inSeasonState.config.teams }, (_, i) => {

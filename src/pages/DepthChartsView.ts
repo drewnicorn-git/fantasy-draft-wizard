@@ -3,12 +3,9 @@ import { getDepthCharts } from '../state/appState';
 import { DEPTH_CHART_POSITIONS, NFL_TEAMS_SORTED } from '../utils/depthChart';
 import { posCssClass } from '../utils/position';
 import { rankingsUpdatedAt } from '../utils/rankingsMeta';
+import { escapeHtml } from '../utils/escapeHtml';
 
 const STORAGE_KEY = 'fdw-depth-team';
-
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
 
 function loadSelectedTeam(): string {
   try {

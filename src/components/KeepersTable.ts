@@ -11,16 +11,13 @@ import {
   setKeeperTeam,
   toggleKeeper,
 } from '../utils/storage';
+import { escapeHtml } from '../utils/escapeHtml';
 
 export interface KeepersTableOptions {
   mode: 'rankings' | 'live-setup' | 'live-active';
   scoring: ScoringFormat;
   players: Player[];
   onChange: () => void;
-}
-
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 function keeperPlayers(allPlayers: Player[]): Player[] {

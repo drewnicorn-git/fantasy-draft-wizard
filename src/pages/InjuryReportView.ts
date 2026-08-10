@@ -1,6 +1,7 @@
 import type { InjuryReportEntry } from '../data/types';
 import { getInjuries } from '../state/appState';
 import { posCssClass } from '../utils/position';
+import { escapeHtml } from '../utils/escapeHtml';
 
 type SortKey = 'name' | 'pos' | 'team' | 'status';
 type SortDir = 'asc' | 'desc';
@@ -25,10 +26,6 @@ const POS_ORDER: Record<string, number> = {
   TE: 3,
   K: 4,
 };
-
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
 
 function statusClass(status: string): string {
   const key = status.toLowerCase();

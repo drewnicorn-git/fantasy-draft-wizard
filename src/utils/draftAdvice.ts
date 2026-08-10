@@ -3,6 +3,7 @@ import { countRoster, rosterNeedScore, ROSTER_LIMITS } from '../sim/bot';
 import { getConsensus } from './scoring';
 import { byeWeekConflicts, detectPositionalRun } from './analytics';
 import { picksUntilNextUserPick, roundFromOverall } from '../sim/snake';
+import { escapeHtml } from './escapeHtml';
 
 export interface DraftAdvice {
   alerts: string[];
@@ -263,17 +264,13 @@ export function getDraftAdvice(
   };
 }
 
-export function escapeDraftHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
 export function renderDraftAdvicePanel(
   container: HTMLElement,
   advice: DraftAdvice,
   opts: { onPick?: (playerId: string) => void; showSuggestions?: boolean } = {},
 ): void {
   const showSuggestions = opts.showSuggestions ?? !!opts.onPick;
-  const alertsHtml = advice.alerts.map((a) => `<div class="alert">${escapeDraftHtml(a)}</div>`).join('');
+  const alertsHtml = advice.alerts.map((a) => `<div class="alert">${escapeHtml(a)}</div>`).join('');
   const suggestionHtml =
     showSuggestions && advice.suggestedPicks.length
       ? `<div class="draft-suggestions">
@@ -282,7 +279,7 @@ export function renderDraftAdvicePanel(
             ${advice.suggestedPicks
               .map(
                 (p) =>
-                  `<button type="button" class="chip pick-btn" data-id="${p.id}">${escapeDraftHtml(p.name)} (${p.pos})</button>`,
+                  `<button type="button" class="chip pick-btn" data-id="${escapeHtml(p.id)}">${escapeHtml(p.name)} (${escapeHtml(String(p.pos))})</button>`,
               )
               .join('')}
           </div>
@@ -291,7 +288,7 @@ export function renderDraftAdvicePanel(
 
   container.innerHTML = `
     <div class="draft-advice-panel">
-      ${advice.recommendation ? `<div class="alert alert-info"><strong>Recommendation:</strong> ${escapeDraftHtml(advice.recommendation)}</div>` : ''}
+      ${advice.recommendation ? `<div class="alert alert-info"><strong>Recommendation:</strong> ${escapeHtml(advice.recommendation)}</div>` : ''}
       ${alertsHtml ? `<div class="draft-alert-list">${alertsHtml}</div>` : ''}
       ${suggestionHtml}
     </div>`;

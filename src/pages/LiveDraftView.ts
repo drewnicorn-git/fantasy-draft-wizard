@@ -10,6 +10,7 @@ import { getDraftAdvice, renderDraftAdvicePanel } from '../utils/draftAdvice';
 import { moveLiveDraftToInSeason } from '../utils/rosterBuilder';
 import { setState } from '../state/appState';
 import { roundFromOverall, snakePickOrder } from '../sim/snake';
+import { escapeHtml } from '../utils/escapeHtml';
 
 interface LiveDraftRuntime {
   picks: DraftPick[];
@@ -220,7 +221,7 @@ function renderDraftBar(barEl: HTMLElement, root: HTMLElement, allPlayers: Playe
     <div class="live-draft-controls on-clock-bar">
       <div>
         <strong>Round ${round}, pick ${pickInRound}</strong> · Overall ${overall}
-        · <span class="${isYou ? 'your-turn' : ''}">${teamName} on the clock</span>
+        · <span class="${isYou ? 'your-turn' : ''}">${escapeHtml(teamName)} on the clock</span>
         ${isYou ? ' — click a player below to draft' : ' — select their pick from the table'}
       </div>
       <div class="draft-actions">

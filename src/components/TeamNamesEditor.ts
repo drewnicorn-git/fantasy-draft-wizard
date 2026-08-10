@@ -1,5 +1,6 @@
 import { loadTeamNames, saveTeamNames } from '../utils/storage';
 import { state } from '../state/appState';
+import { escapeHtml } from '../utils/escapeHtml';
 
 export function renderTeamNamesEditor(container: HTMLElement, onChange: () => void): void {
   const teams = state.draftConfig.teams;
@@ -36,8 +37,4 @@ export function renderTeamNamesEditor(container: HTMLElement, onChange: () => vo
 export function getTeamDisplayName(teamIndex: number): string {
   const names = loadTeamNames(state.draftConfig.teams);
   return names[teamIndex] ?? `Team ${teamIndex + 1}`;
-}
-
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }

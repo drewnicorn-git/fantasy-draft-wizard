@@ -1,8 +1,5 @@
 import { state } from '../state/appState';
-
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+import { escapeHtml } from '../utils/escapeHtml';
 
 function syncClearButton(container: HTMLElement, visible: boolean): void {
   const clearBtn = container.querySelector('#clear-player-search') as HTMLElement | null;

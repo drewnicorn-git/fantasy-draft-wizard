@@ -31,6 +31,7 @@ import {
 } from '../utils/storage';
 
 import { getManualRank, setManualRank } from '../utils/manualOrder';
+import { escapeHtml } from '../utils/escapeHtml';
 
 import {
 
@@ -886,14 +887,6 @@ export function renderTagManager(container: HTMLElement, onChange: () => void): 
     }
 
   });
-
-}
-
-
-
-function escapeHtml(s: string): string {
-
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 }
 

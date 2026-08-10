@@ -2,13 +2,10 @@ import type { InSeasonData, InSeasonTarget, InjuriesData, Player, ScoringFormat 
 import { countRoster, ROSTER_LIMITS } from '../sim/bot';
 import { byeWeekConflicts } from './analytics';
 import { formatProjDisplay, getProjPts } from './inSeasonStats';
+import { escapeHtml } from './escapeHtml';
 
 const INJURY_STATUSES = new Set(['out', 'doubtful', 'injured reserve', 'ir', 'suspension']);
 const SKILL = new Set(['QB', 'RB', 'WR', 'TE', 'K', 'DST']);
-
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
 
 function getSeasonPts(p: Player, inSeason: InSeasonData | null, scoring: ScoringFormat): number {
   const row = inSeason?.players[p.id];

@@ -15,6 +15,7 @@ import {
   type MockDraftPhase,
   type StoredMockDraft,
 } from '../utils/mockDraftStorage';
+import { escapeHtml } from '../utils/escapeHtml';
 
 const BOT_PICK_DELAY_MS = 2_000;
 
@@ -181,7 +182,7 @@ function renderSuggestionsPanel(root: HTMLElement, suggestions: Player[] = [], p
     el.innerHTML = `
       <h3>Suggested picks</h3>
       <div class="suggestion-chips">
-        ${suggestions.map((p) => `<button type="button" class="chip pick-btn" data-id="${p.id}">${p.name} (${p.pos})</button>`).join('')}
+        ${suggestions.map((p) => `<button type="button" class="chip pick-btn" data-id="${escapeHtml(p.id)}">${escapeHtml(p.name)} (${escapeHtml(String(p.pos))})</button>`).join('')}
       </div>`;
   } else {
     el.innerHTML = placeholder ? `<p class="suggestions-placeholder muted">${placeholder}</p>` : '<p class="suggestions-placeholder muted">&nbsp;</p>';
@@ -277,8 +278,8 @@ function scheduleBotPick(
   const onClock = root.querySelector('#on-clock') as HTMLElement;
   let remaining = BOT_PICK_DELAY_MS / 1000;
 
-  onClock.innerHTML = `<strong>Round ${round}, pick ${pickInRound}</strong> · Overall ${overall} · <span class="bot-picking">${teamName} on the clock</span> · <span id="pick-countdown">${remaining}s</span>`;
-  (root.querySelector('#draft-alerts') as HTMLElement).innerHTML = `<div class="alert muted">Waiting for ${teamName} to pick… Browse available players below.</div>`;
+  onClock.innerHTML = `<strong>Round ${round}, pick ${pickInRound}</strong> · Overall ${overall} · <span class="bot-picking">${escapeHtml(teamName)} on the clock</span> · <span id="pick-countdown">${remaining}s</span>`;
+  (root.querySelector('#draft-alerts') as HTMLElement).innerHTML = `<div class="alert muted">Waiting for ${escapeHtml(teamName)} to pick… Browse available players below.</div>`;
 
   renderDraftBoardPanel(root);
   renderSuggestionsPanel(root, [], 'Suggested picks appear when you are on the clock.');
@@ -431,11 +432,11 @@ function renderDraftSummary(root: HTMLElement, allPlayers: Player[]): void {
 
   summary.innerHTML = `
     <h2>Draft complete</h2>
-    <p>Best value: <strong>${best?.name ?? '—'}</strong>${best?.adp != null ? ` (ADP ${best.adp.toFixed(1)} at pick ${best.pick})` : ''}</p>
-    <p>Reach: <strong>${worst?.name ?? '—'}</strong>${worst?.adp != null ? ` (ADP ${worst.adp.toFixed(1)} at pick ${worst.pick})` : ''}</p>
+    <p>Best value: <strong>${escapeHtml(best?.name ?? '—')}</strong>${best?.adp != null ? ` (ADP ${best.adp.toFixed(1)} at pick ${best.pick})` : ''}</p>
+    <p>Reach: <strong>${escapeHtml(worst?.name ?? '—')}</strong>${worst?.adp != null ? ` (ADP ${worst.adp.toFixed(1)} at pick ${worst.pick})` : ''}</p>
     <h3>Your roster</h3>
     <ul class="roster-list">
-      ${grades.map((g) => `<li><span class="pos">${g.pos}</span> ${g.name} <span class="muted">${g.team}${g.adp != null ? ` · ADP ${g.adp.toFixed(1)}` : ''}</span></li>`).join('')}
+      ${grades.map((g) => `<li><span class="pos">${escapeHtml(String(g.pos))}</span> ${escapeHtml(g.name)} <span class="muted">${escapeHtml(g.team)}${g.adp != null ? ` · ADP ${g.adp.toFixed(1)}` : ''}</span></li>`).join('')}
     </ul>
     <button type="button" id="new-draft" class="btn primary">New mock draft</button>`;
 

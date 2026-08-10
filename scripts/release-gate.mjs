@@ -54,6 +54,22 @@ function checkNoLeakedSecrets() {
   }
 }
 
+function checkSingleEscapeHtmlUtility() {
+  try {
+    const matches = sh('git grep -n "function escapeHtml" -- src')
+      .split('\n')
+      .filter(Boolean)
+      .filter((line) => !line.includes('src/utils/escapeHtml.ts'));
+    if (matches.length) {
+      fail(`Duplicate escapeHtml implementations found:\\n${matches.join('\\n')}`);
+    } else {
+      pass('Single shared escapeHtml utility (no duplicates in src/)');
+    }
+  } catch {
+    pass('Single shared escapeHtml utility (no duplicates in src/)');
+  }
+}
+
 function checkReadmeRepoPolicy() {
   const readme = readFileSync('README.md', 'utf8');
   if (!readme.includes('Do not push') && !readme.includes('do not push')) {
@@ -174,6 +190,7 @@ async function main() {
     await checkPagesEnabled();
     checkNoLeakedSecrets();
     checkReadmeRepoPolicy();
+    checkSingleEscapeHtmlUtility();
   } else if (mode === 'ci-post-deploy') {
     try {
       assertCanonicalRepo();
@@ -188,6 +205,7 @@ async function main() {
     checkLocalRemotes();
     checkNoLeakedSecrets();
     checkReadmeRepoPolicy();
+    checkSingleEscapeHtmlUtility();
     try {
       sh('npm run build');
       pass('Production build succeeds');
