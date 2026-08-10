@@ -18,6 +18,70 @@ let inSeasonData: InSeasonData | null = null;
 let depthChartsData: DepthChartsData | null = null;
 let listeners: Array<() => void> = [];
 
+export type SecondaryDataset = 'injuries' | 'inSeason' | 'depthCharts';
+export type DataLoadStatus = 'idle' | 'loading' | 'loaded' | 'failed';
+
+const SECONDARY_LABELS: Record<SecondaryDataset, string> = {
+  injuries: 'Injury report',
+  inSeason: 'In-season values',
+  depthCharts: 'Depth charts',
+};
+
+const secondaryStatus: Record<SecondaryDataset, DataLoadStatus> = {
+  injuries: 'idle',
+  inSeason: 'idle',
+  depthCharts: 'idle',
+};
+
+let secondaryBannerDismissed = false;
+
+async function fetchSecondaryJson<T>(file: string, dataset: SecondaryDataset): Promise<T | null> {
+  secondaryStatus[dataset] = 'loading';
+  const base = import.meta.env.BASE_URL;
+  try {
+    const res = await fetch(`${base}${file}?t=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) {
+      secondaryStatus[dataset] = 'failed';
+      notify();
+      return null;
+    }
+    const data = (await res.json()) as T;
+    secondaryStatus[dataset] = 'loaded';
+    if (getSecondaryLoadFailures().length === 0) secondaryBannerDismissed = false;
+    notify();
+    return data;
+  } catch {
+    secondaryStatus[dataset] = 'failed';
+    notify();
+    return null;
+  }
+}
+
+export function getSecondaryLoadFailures(): SecondaryDataset[] {
+  return (Object.keys(secondaryStatus) as SecondaryDataset[]).filter((k) => secondaryStatus[k] === 'failed');
+}
+
+export function getSecondaryLoadFailureLabels(): string[] {
+  return getSecondaryLoadFailures().map((k) => SECONDARY_LABELS[k]);
+}
+
+export function isSecondaryDataBannerVisible(): boolean {
+  return getSecondaryLoadFailures().length > 0 && !secondaryBannerDismissed;
+}
+
+export function dismissSecondaryDataBanner(): void {
+  secondaryBannerDismissed = true;
+  notify();
+}
+
+export async function retrySecondaryData(): Promise<void> {
+  secondaryBannerDismissed = false;
+  injuriesData = null;
+  inSeasonData = null;
+  depthChartsData = null;
+  await Promise.all([loadInjuries(), loadInSeason(), loadDepthCharts()]);
+}
+
 export const defaultState: AppState = {
   scoring: 'ppr',
   tab: 'rankings',
@@ -177,16 +241,13 @@ export function getInjuries(): InjuriesData | null {
 }
 
 export async function loadInjuries(): Promise<InjuriesData | null> {
-  if (injuriesData) return injuriesData;
-  const base = import.meta.env.BASE_URL;
-  try {
-    const res = await fetch(`${base}injuries.json?t=${Date.now()}`);
-    if (!res.ok) return null;
-    injuriesData = (await res.json()) as InjuriesData;
+  if (injuriesData) {
+    secondaryStatus.injuries = 'loaded';
     return injuriesData;
-  } catch {
-    return null;
   }
+  const data = await fetchSecondaryJson<InjuriesData>('injuries.json', 'injuries');
+  injuriesData = data;
+  return injuriesData;
 }
 
 export function getInSeason(): InSeasonData | null {
@@ -198,29 +259,23 @@ export function getDepthCharts(): DepthChartsData | null {
 }
 
 export async function loadDepthCharts(): Promise<DepthChartsData | null> {
-  if (depthChartsData) return depthChartsData;
-  const base = import.meta.env.BASE_URL;
-  try {
-    const res = await fetch(`${base}depth-charts.json?t=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) return null;
-    depthChartsData = (await res.json()) as DepthChartsData;
+  if (depthChartsData) {
+    secondaryStatus.depthCharts = 'loaded';
     return depthChartsData;
-  } catch {
-    return null;
   }
+  const data = await fetchSecondaryJson<DepthChartsData>('depth-charts.json', 'depthCharts');
+  depthChartsData = data;
+  return depthChartsData;
 }
 
 export async function loadInSeason(): Promise<InSeasonData | null> {
-  if (inSeasonData) return inSeasonData;
-  const base = import.meta.env.BASE_URL;
-  try {
-    const res = await fetch(`${base}inseason.json?t=${Date.now()}`);
-    if (!res.ok) return null;
-    inSeasonData = (await res.json()) as InSeasonData;
+  if (inSeasonData) {
+    secondaryStatus.inSeason = 'loaded';
     return inSeasonData;
-  } catch {
-    return null;
   }
+  const data = await fetchSecondaryJson<InSeasonData>('inseason.json', 'inSeason');
+  inSeasonData = data;
+  return inSeasonData;
 }
 
 export function getActiveSources(): SourceKey[] {

@@ -1001,6 +1001,34 @@ tr.keeper-board-row td {
 
 .loading, .error { padding: 2rem; text-align: center; color: var(--muted); }
 
+.data-load-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin: 0 0 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: rgba(231, 76, 60, 0.12);
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.data-load-banner.hidden { display: none; }
+
+.data-load-banner-msg {
+  margin: 0;
+  flex: 1 1 12rem;
+  color: var(--text);
+}
+
+.data-load-banner-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
 .error { color: var(--danger); }
 
 .app-footer {
