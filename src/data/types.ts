@@ -286,6 +286,22 @@ export interface InSeasonDropCandidate {
   score: number;
 }
 
+export type DigestFrequency = 'daily' | 'weekly';
+
+export interface NotificationSubscription {
+  id?: string;
+  leagueId: string;
+  email: string | null;
+  slackWebhookUrl: string | null;
+  frequency: DigestFrequency;
+  includeInjuries: boolean;
+  includeWaiver: boolean;
+  includeStartSit: boolean;
+  enabled: boolean;
+  lastSentAt?: string | null;
+  updatedAt?: string | null;
+}
+
 export type MockDraftPhase = 'setup' | 'active' | 'summary';
 
 export interface StoredMockDraft {

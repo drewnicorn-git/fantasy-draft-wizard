@@ -49,6 +49,21 @@ Sign in with a **magic link** to sync your leagues across devices (laptop, phone
 
 Leagues save to localStorage immediately and **debounce-upload** to your account when signed in. On sign-in, the newer copy (local vs cloud) wins.
 
+### Email & Slack digests (optional)
+
+When signed in, open **Account** to configure per-league digests (start/sit, waivers, injuries). Requires:
+
+1. Re-run [`supabase/schema.sql`](supabase/schema.sql) (includes `notification_subscriptions`)
+2. Deploy the edge function: `supabase functions deploy send-digest`
+3. Set Supabase **secrets**:
+   - `RESEND_API_KEY` — from [Resend](https://resend.com)
+   - `DIGEST_FROM_EMAIL` — verified sender, e.g. `digests@yourdomain.com`
+   - `SITE_DATA_URL` — `https://drewnicorn-git.github.io/fantasy-draft-wizard` (rankings/in-season JSON)
+   - `CRON_SECRET` — random string; use the same value in cron HTTP headers as `x-cron-secret`
+4. Enable the scheduled trigger in `supabase/config.toml` (daily 14:00 UTC) or invoke manually
+
+**Test send** uses your session JWT; scheduled runs use the service role and `CRON_SECRET` header.
+
 ## Data updates
 
 The `update-rankings` workflow (daily + manual dispatch):

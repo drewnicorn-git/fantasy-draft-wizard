@@ -38,6 +38,15 @@ create table if not exists public.notification_subscriptions (
   unique (user_id, league_id)
 );
 
+alter table public.notification_subscriptions
+  add column if not exists enabled boolean not null default true;
+
+alter table public.notification_subscriptions
+  add column if not exists last_sent_at timestamptz;
+
+alter table public.notification_subscriptions
+  add column if not exists updated_at timestamptz not null default now();
+
 alter table public.notification_subscriptions enable row level security;
 
 grant select, insert, update, delete on table public.notification_subscriptions to authenticated;

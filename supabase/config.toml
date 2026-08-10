@@ -1,0 +1,5 @@
+[functions.send-digest]
+verify_jwt = false
+
+[functions.send-digest.schedule]
+cron = "0 14 * * *"

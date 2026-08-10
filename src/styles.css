@@ -1617,6 +1617,92 @@ html.layout-mobile .header-controls .updated {
   color: var(--danger);
 }
 
+.notification-panel {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.notification-panel h4 { margin: 0 0 0.35rem; font-size: 0.95rem; }
+
+.notification-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.notification-grid label,
+.notification-full {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.82rem;
+}
+
+.notification-full input,
+.notification-grid input,
+.notification-grid select {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--input-bg, transparent);
+  color: inherit;
+}
+
+.notification-fieldset {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem 0;
+  font-size: 0.82rem;
+}
+
+.notification-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-right: 0.75rem;
+}
+
+.notification-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  margin: 0.35rem 0;
+}
+
+.notification-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.notification-preview {
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+}
+
+.notification-preview-body {
+  white-space: pre-wrap;
+  max-height: 240px;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+}
+
+.notification-warning { color: #f59e0b; }
+
+.notification-signin-hint { margin: 0; font-size: 0.82rem; }
+
+html.layout-mobile .notification-grid {
+  grid-template-columns: 1fr;
+}
+
 .player-compare-host {
   position: fixed;
   left: 0;

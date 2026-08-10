@@ -1,4 +1,5 @@
 import { escapeHtml } from '../utils/escapeHtml';
+import { mountNotificationPanel } from './NotificationPanel';
 import {
   getCloudSyncDetail,
   getCloudSyncStatus,
@@ -16,6 +17,7 @@ export function mountAuthPanel(container: HTMLElement, onAuthChange: () => void)
   let message = '';
   let messageKind: 'info' | 'error' = 'info';
   let busy = false;
+  let notifCleanup: (() => void) | null = null;
 
   const render = (): void => {
     if (!isSupabaseConfigured()) {
@@ -71,11 +73,14 @@ export function mountAuthPanel(container: HTMLElement, onAuthChange: () => void)
                <button type="button" id="auth-send-link" class="btn btn-xs" ${busy ? 'disabled' : ''}>Send magic link</button>`
         }
         ${message ? `<p class="auth-message ${messageKind}">${escapeHtml(message)}</p>` : ''}
+        ${signedIn ? '<div id="auth-notifications"></div>' : ''}
       </div>`;
 
     container.querySelector('#auth-close')?.addEventListener('click', () => {
       open = false;
       message = '';
+      notifCleanup?.();
+      notifCleanup = null;
       render();
     });
 
@@ -94,6 +99,15 @@ export function mountAuthPanel(container: HTMLElement, onAuthChange: () => void)
     container.querySelector('#auth-sync-now')?.addEventListener('click', () => {
       void handleSyncNow();
     });
+
+    if (signedIn) {
+      notifCleanup?.();
+      const notifHost = container.querySelector('#auth-notifications') as HTMLElement;
+      if (notifHost) notifCleanup = mountNotificationPanel(notifHost);
+    } else {
+      notifCleanup?.();
+      notifCleanup = null;
+    }
   };
 
   async function refreshEmail(): Promise<void> {
@@ -163,5 +177,6 @@ export function mountAuthPanel(container: HTMLElement, onAuthChange: () => void)
 
   return () => {
     unsubSync();
+    notifCleanup?.();
   };
 }
