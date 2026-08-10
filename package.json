@@ -14,7 +14,9 @@
     "build:pool": "tsx scripts/build-pool.ts",
     "build:inseason": "tsx scripts/build-inseason.ts",
     "update:rankings": "npm run fetch:rankings && npm run build:pool && npm run build:inseason",
-    "seed:rankings": "tsx scripts/seed-rankings.ts"
+    "seed:rankings": "tsx scripts/seed-rankings.ts",
+    "release:gate": "node scripts/release-gate.mjs",
+    "release:review": "node scripts/post-senior-review.mjs"
   },
   "devDependencies": {
     "tsx": "^4.19.0",

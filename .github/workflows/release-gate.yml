@@ -1,0 +1,56 @@
+name: Release gate
+
+on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: [Build and Deploy Pages]
+    types: [completed]
+
+permissions:
+  contents: read
+  pages: read
+
+jobs:
+  pre-deploy-gate:
+    if: github.event_name == 'push' && github.repository == 'drewnicorn-git/fantasy-draft-wizard'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - run: npm ci
+      - name: Senior engineer gate (pre-deploy)
+        run: node scripts/release-gate.mjs --ci-deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  post-deploy-gate:
+    if: >-
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.repository == 'drewnicorn-git/fantasy-draft-wizard'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Senior engineer gate (post-deploy)
+        run: node scripts/release-gate.mjs --ci-post-deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-failed:
+    if: >-
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.conclusion != 'success' &&
+      github.repository == 'drewnicorn-git/fantasy-draft-wizard'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Block release — deploy workflow failed
+        run: |
+          echo "::error::Build and Deploy Pages failed. Do not close issues or publish to archive repo."
+          exit 1

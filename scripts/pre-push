@@ -1,0 +1,25 @@
+#!/bin/sh
+# Blocks accidental pushes to the frozen archive repo.
+# Install: cp scripts/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+protected="github.com/drewnicorn-git/fantasy-draft-wizard-app"
+while read local_ref local_sha remote_ref remote_sha; do
+  url=$(git remote get-url "$(echo "$remote_ref" | sed 's|refs/heads/.*||')" 2>/dev/null || true)
+done
+
+for remote in $(git remote); do
+  url=$(git remote get-url "$remote" 2>/dev/null || true)
+  case "$url" in
+    *fantasy-draft-wizard-app*)
+      echo "pre-push: remote '$remote' points at frozen archive repo — remove it:" >&2
+      echo "  git remote remove $remote" >&2
+      exit 1
+      ;;
+  esac
+done
+
+if echo "$@" | grep -q "fantasy-draft-wizard-app"; then
+  echo "pre-push: refusing push to fantasy-draft-wizard-app (frozen archive)" >&2
+  exit 1
+fi
+
+exit 0

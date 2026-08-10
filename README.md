@@ -13,7 +13,9 @@ A static fantasy football draft assistant: multi-source rankings, mock and live 
 
 The archived site remains at [fantasy-draft-wizard-app](https://drewnicorn-git.github.io/fantasy-draft-wizard-app/) (last updated at commit `c86ffb8`).
 
-**Important:** Push all overhaul work only to this repo (`git push origin main`). Do not push to `fantasy-draft-wizard-app`.
+All new work is committed and pushed **only to this repo** (`git push origin main`). Do not push to `fantasy-draft-wizard-app`.
+
+Before closing launch issues, run `npm run release:gate` and follow [.github/SENIOR_ENGINEER_REVIEW.md](.github/SENIOR_ENGINEER_REVIEW.md).
 
 ## Features
 
