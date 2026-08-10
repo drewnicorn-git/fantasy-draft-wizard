@@ -2,16 +2,18 @@
 
 A static fantasy football draft assistant: multi-source rankings, mock and live draft rooms, injury reports, depth charts, and in-season roster tools.
 
-**Live site:** [fantasy-draft-wizard-app on GitHub Pages](https://drewnicorn-git.github.io/fantasy-draft-wizard-app/)
+**Live site (overhaul):** [fantasy-draft-wizard on GitHub Pages](https://drewnicorn-git.github.io/fantasy-draft-wizard/)
 
 ## Repositories
 
 | Repo | Purpose |
 |------|---------|
-| [fantasy-draft-wizard](https://github.com/drewnicorn-git/fantasy-draft-wizard) | Development, issues, and launch roadmap (CI build only) |
-| [fantasy-draft-wizard-app](https://github.com/drewnicorn-git/fantasy-draft-wizard-app) | Deploy target — GitHub Pages production site + daily data refresh |
+| **[fantasy-draft-wizard](https://github.com/drewnicorn-git/fantasy-draft-wizard)** (this repo) | Launch overhaul: issues, CI, GitHub Pages deploy, daily data refresh |
+| **[fantasy-draft-wizard-app](https://github.com/drewnicorn-git/fantasy-draft-wizard-app)** | **Frozen archive** — pre-overhaul version; do not push here |
 
-Pushes to `fantasy-draft-wizard-app` `main` deploy the static site. The dev repo runs the same build workflow to verify changes but does **not** deploy (GitHub Pages is enabled only on the app repo).
+The archived site remains at [fantasy-draft-wizard-app](https://drewnicorn-git.github.io/fantasy-draft-wizard-app/) (last updated at commit `c86ffb8`).
+
+**Important:** Push all overhaul work only to this repo (`git push origin main`). Do not push to `fantasy-draft-wizard-app`.
 
 ## Features
 
