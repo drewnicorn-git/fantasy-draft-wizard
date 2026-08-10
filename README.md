@@ -36,7 +36,16 @@ Sign in with a **magic link** to sync your leagues across devices (laptop, phone
 2. Run [`supabase/schema.sql`](supabase/schema.sql) in the SQL editor
 3. Enable Email auth (magic link) under Authentication → Providers
 4. Add your site URL under Authentication → URL configuration (e.g. `https://drewnicorn-git.github.io/fantasy-draft-wizard/`)
-5. Set GitHub Actions secrets `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` for deploy, or add them to local `.env` for dev
+5. Set GitHub Actions **repository secrets** `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` for deploy, or add them to local `.env` for dev
+
+**`VITE_SUPABASE_URL` must be the Project URL** (`https://YOUR_REF.supabase.co`). Do **not** paste the REST API URL (`.../rest/v1`) from the API settings panel — that causes magic-link sign-in to fail with “Invalid path specified in request URL”.
+
+**Supabase → Authentication → URL configuration** (required for magic links):
+
+| Field | Value |
+|-------|--------|
+| Site URL | `https://drewnicorn-git.github.io/fantasy-draft-wizard/` |
+| Redirect URLs | `https://drewnicorn-git.github.io/fantasy-draft-wizard/**` and `http://localhost:5173/**` |
 
 Leagues save to localStorage immediately and **debounce-upload** to your account when signed in. On sign-in, the newer copy (local vs cloud) wins.
 
@@ -87,7 +96,7 @@ Set in GitHub → Settings → Secrets → Actions on **both** repos that run fe
 | Secret | Used for |
 |--------|----------|
 | `FANTASYPROS_API_KEY` | FantasyPros consensus rankings API |
-| `VITE_SUPABASE_URL` | Optional cloud sync (Supabase project URL) |
+| `VITE_SUPABASE_URL` | Optional cloud sync — **Project URL only** (`https://xxx.supabase.co`, not `.../rest/v1`) |
 | `VITE_SUPABASE_ANON_KEY` | Optional cloud sync (Supabase anon key) |
 
 For local fetches, set `FANTASYPROS_API_KEY` in a `.env` file (never commit). If a key was ever committed to git history, **rotate it** in the FantasyPros dashboard.

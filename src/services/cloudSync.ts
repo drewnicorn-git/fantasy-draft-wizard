@@ -7,7 +7,7 @@ import {
   saveLeaguesStore,
 } from '../state/leaguesStore';
 import { sanitizeImportedStore } from '../utils/leagueExport';
-import { getSupabase, isSupabaseConfigured } from './supabaseClient';
+import { getAuthRedirectUrl, getSupabase, isSupabaseConfigured } from './supabaseClient';
 
 const CLOUD_TABLE = 'user_leagues_store';
 const PUSH_DEBOUNCE_MS = 2_000;
@@ -214,7 +214,7 @@ export async function signInWithEmail(email: string): Promise<void> {
   const supabase = getSupabase();
   if (!supabase) throw new Error('Cloud sync is not configured on this deployment');
 
-  const redirectTo = `${window.location.origin}${window.location.pathname}`;
+  const redirectTo = getAuthRedirectUrl();
   const { error } = await supabase.auth.signInWithOtp({
     email: email.trim(),
     options: { emailRedirectTo: redirectTo },
