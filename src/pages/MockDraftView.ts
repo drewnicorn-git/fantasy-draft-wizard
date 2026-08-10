@@ -78,6 +78,7 @@ export function mountMockDraftView(root: HTMLElement): void {
           <div id="on-clock"></div>
           <div class="draft-actions">
             <button type="button" id="redo-pick" class="btn secondary">Redo last pick</button>
+            <button type="button" id="reset-mock-draft" class="btn secondary">Reset draft</button>
             <button type="button" id="export-draft" class="btn secondary">Export JSON</button>
           </div>
         </div>
@@ -122,8 +123,27 @@ export function mountMockDraftView(root: HTMLElement): void {
 function attachDraftActionListeners(root: HTMLElement, allPlayers: Player[]): void {
   if (listenersAttached) return;
   root.querySelector('#redo-pick')!.addEventListener('click', () => redoPick(root, allPlayers));
+  root.querySelector('#reset-mock-draft')!.addEventListener('click', () => resetMockDraft(root, allPlayers));
   root.querySelector('#export-draft')!.addEventListener('click', () => exportDraft());
   listenersAttached = true;
+}
+
+function resetMockDraft(root: HTMLElement, allPlayers: Player[]): void {
+  if (!draft) return;
+  if (!confirm('Reset this mock draft? All picks will be cleared.')) return;
+  returnToMockSetup(root, allPlayers);
+}
+
+function returnToMockSetup(root: HTMLElement, allPlayers: Player[]): void {
+  clearTimers();
+  clearMockDraft();
+  draft = null;
+  listenersAttached = false;
+  (root.querySelector('#draft-active') as HTMLElement).classList.add('hidden');
+  (root.querySelector('#draft-summary') as HTMLElement).classList.add('hidden');
+  (root.querySelector('#draft-alerts') as HTMLElement).innerHTML = '';
+  (root.querySelector('#draft-setup') as HTMLElement).classList.remove('hidden');
+  renderSetup(root, allPlayers);
 }
 
 function clearTimers(): void {
@@ -441,11 +461,7 @@ function renderDraftSummary(root: HTMLElement, allPlayers: Player[]): void {
     <button type="button" id="new-draft" class="btn primary">New mock draft</button>`;
 
   summary.querySelector('#new-draft')!.addEventListener('click', () => {
-    clearMockDraft();
-    draft = null;
-    summary.classList.add('hidden');
-    (root.querySelector('#draft-setup') as HTMLElement).classList.remove('hidden');
-    renderSetup(root, allPlayers);
+    returnToMockSetup(root, allPlayers);
   });
 }
 
