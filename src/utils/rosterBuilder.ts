@@ -1,7 +1,83 @@
 import type { DraftConfig, DraftPick, InSeasonState, Player } from '../data/types';
 import { getKeepersByTeam } from '../components/KeepersTable';
 import { getTeamDisplayName } from '../components/TeamNamesEditor';
-import { loadTeamNames, saveInSeasonState } from './storage';
+import { loadKeepers, loadTeamNames, saveInSeasonState } from './storage';
+
+export interface InSeasonHandoffSummary {
+  ready: boolean;
+  draftPicks: number;
+  draftTarget: number;
+  keeperCount: number;
+  myTeamIndex: number;
+  myTeamKeepers: number;
+  myTeamDraftPicks: number;
+  myTeamRosterSize: number;
+  message: string;
+}
+
+export function getLiveDraftPickTarget(config: DraftConfig): number {
+  return config.teams * config.rounds;
+}
+
+export function getInSeasonHandoffSummary(
+  picks: DraftPick[],
+  allPlayers: Player[],
+  config: DraftConfig,
+): InSeasonHandoffSummary {
+  const draftTarget = getLiveDraftPickTarget(config);
+  const draftPicks = picks.length;
+  const keeperCount = loadKeepers().size;
+  const myTeamIndex = config.slot - 1;
+  const keepersByTeam = getKeepersByTeam(allPlayers);
+  const myTeamKeepers = keepersByTeam.get(myTeamIndex)?.length ?? 0;
+  const myTeamDraftPicks = picks.filter((p) => p.teamIndex === myTeamIndex).length;
+  const myTeamRosterSize = myTeamKeepers + myTeamDraftPicks;
+  const rosters = buildRostersFromLiveDraft(picks, allPlayers, config);
+
+  if (draftPicks < draftTarget) {
+    const remaining = draftTarget - draftPicks;
+    return {
+      ready: false,
+      draftPicks,
+      draftTarget,
+      keeperCount,
+      myTeamIndex,
+      myTeamKeepers,
+      myTeamDraftPicks,
+      myTeamRosterSize,
+      message: `Live draft incomplete: ${draftPicks} of ${draftTarget} picks recorded (${remaining} remaining). Finish the draft first — ${keeperCount} keeper${keeperCount === 1 ? '' : 's'} will be included automatically.`,
+    };
+  }
+
+  const emptyTeams = Object.entries(rosters)
+    .filter(([, ids]) => ids.length === 0)
+    .map(([team]) => getTeamDisplayName(Number(team)));
+  if (emptyTeams.length) {
+    return {
+      ready: false,
+      draftPicks,
+      draftTarget,
+      keeperCount,
+      myTeamIndex,
+      myTeamKeepers,
+      myTeamDraftPicks,
+      myTeamRosterSize,
+      message: `Cannot import: ${emptyTeams.join(', ')} ${emptyTeams.length === 1 ? 'has' : 'have'} no players (check keeper team assignments).`,
+    };
+  }
+
+  return {
+    ready: true,
+    draftPicks,
+    draftTarget,
+    keeperCount,
+    myTeamIndex,
+    myTeamKeepers,
+    myTeamDraftPicks,
+    myTeamRosterSize,
+    message: `Import ${config.teams} teams to in-season? Your roster: ${myTeamKeepers} keeper${myTeamKeepers === 1 ? '' : 's'} + ${myTeamDraftPicks} draft picks (${myTeamRosterSize} players). League total: ${keeperCount} keeper${keeperCount === 1 ? '' : 's'} + ${draftPicks} draft picks.`,
+  };
+}
 
 export function buildRostersFromLiveDraft(
   picks: DraftPick[],
@@ -119,12 +195,13 @@ export function moveLiveDraftToInSeason(
   picks: DraftPick[],
   allPlayers: Player[],
   config: DraftConfig,
-  expectedPicks: number,
 ): boolean {
-  if (picks.length < expectedPicks) {
-    alert('Finish the live draft before moving to in-season management.');
+  const summary = getInSeasonHandoffSummary(picks, allPlayers, config);
+  if (!summary.ready) {
+    alert(summary.message);
     return false;
   }
+  if (!confirm(summary.message)) return false;
   saveInSeasonState(createInSeasonStateFromLiveDraft(picks, allPlayers, config));
   return true;
 }

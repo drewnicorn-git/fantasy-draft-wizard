@@ -999,6 +999,11 @@ tr.keeper-board-row td {
 
 .hidden { display: none !important; }
 
+.live-draft-handoff-summary {
+  margin: 0.35rem 0 0.65rem;
+  max-width: 42rem;
+}
+
 .loading, .error { padding: 2rem; text-align: center; color: var(--muted); }
 
 .data-load-banner {

@@ -7,7 +7,7 @@ import { getTeamDisplayName } from '../components/TeamNamesEditor';
 import { renderTeamNamesEditor } from '../components/TeamNamesEditor';
 import { loadLiveDraft, saveLiveDraft, loadTeamNames, loadKeepers } from '../utils/storage';
 import { getDraftAdvice, renderDraftAdvicePanel } from '../utils/draftAdvice';
-import { moveLiveDraftToInSeason } from '../utils/rosterBuilder';
+import { moveLiveDraftToInSeason, getInSeasonHandoffSummary } from '../utils/rosterBuilder';
 import { setState } from '../state/appState';
 import { roundFromOverall, snakePickOrder } from '../sim/snake';
 import { escapeHtml } from '../utils/escapeHtml';
@@ -187,16 +187,22 @@ function renderDraftBar(barEl: HTMLElement, root: HTMLElement, allPlayers: Playe
   }
 
   if (finished) {
+    const handoff = getInSeasonHandoffSummary(liveDraft!.picks, allPlayers, cfg);
     barEl.innerHTML = `
       <div class="live-draft-controls">
         <h3>Draft complete</h3>
+        <p class="hint live-draft-handoff-summary">
+          Your roster: <strong>${handoff.myTeamKeepers}</strong> keeper${handoff.myTeamKeepers === 1 ? '' : 's'}
+          + <strong>${handoff.myTeamDraftPicks}</strong> draft picks
+          = <strong>${handoff.myTeamRosterSize}</strong> players
+          · League: ${handoff.keeperCount} keeper${handoff.keeperCount === 1 ? '' : 's'}, ${handoff.draftPicks} picks
+        </p>
         <button type="button" id="move-in-season" class="btn primary">Move to in season</button>
         <button type="button" id="reset-live-draft" class="btn secondary">Reset draft</button>
         <button type="button" id="export-live-draft" class="btn secondary">Export JSON</button>
       </div>`;
     barEl.querySelector('#move-in-season')!.addEventListener('click', () => {
-      const expected = cfg.teams * cfg.rounds;
-      if (moveLiveDraftToInSeason(liveDraft!.picks, allPlayers, cfg, expected)) {
+      if (moveLiveDraftToInSeason(liveDraft!.picks, allPlayers, cfg)) {
         setState({ tab: 'inseason' });
       }
     });
