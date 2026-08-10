@@ -28,6 +28,18 @@ Before closing launch issues, run `npm run release:gate` and follow [.github/SEN
 
 Rankings, injuries, depth charts, and in-season values refresh **daily** via GitHub Actions (no server required at runtime).
 
+### Cloud sync (optional)
+
+Sign in with a **magic link** to sync your leagues across devices (laptop, phone, etc.). When `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are configured at build time, the header shows **Sign in**.
+
+1. Create a [Supabase](https://supabase.com) project
+2. Run [`supabase/schema.sql`](supabase/schema.sql) in the SQL editor
+3. Enable Email auth (magic link) under Authentication → Providers
+4. Add your site URL under Authentication → URL configuration (e.g. `https://drewnicorn-git.github.io/fantasy-draft-wizard/`)
+5. Set GitHub Actions secrets `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` for deploy, or add them to local `.env` for dev
+
+Leagues save to localStorage immediately and **debounce-upload** to your account when signed in. On sign-in, the newer copy (local vs cloud) wins.
+
 ## Data updates
 
 The `update-rankings` workflow (daily + manual dispatch):
@@ -75,6 +87,8 @@ Set in GitHub → Settings → Secrets → Actions on **both** repos that run fe
 | Secret | Used for |
 |--------|----------|
 | `FANTASYPROS_API_KEY` | FantasyPros consensus rankings API |
+| `VITE_SUPABASE_URL` | Optional cloud sync (Supabase project URL) |
+| `VITE_SUPABASE_ANON_KEY` | Optional cloud sync (Supabase anon key) |
 
 For local fetches, set `FANTASYPROS_API_KEY` in a `.env` file (never commit). If a key was ever committed to git history, **rotate it** in the FantasyPros dashboard.
 

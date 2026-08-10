@@ -27,8 +27,11 @@ import { mountInjuryReportView } from './pages/InjuryReportView';
 import { mountInSeasonView } from './pages/InSeasonView';
 import { mountDepthChartsView } from './pages/DepthChartsView';
 import { mountLeagueSwitcher } from './components/LeagueSwitcher';
+import { mountAuthPanel } from './components/AuthPanel';
 import { resetMockDraftModuleState } from './pages/MockDraftView';
 import { syncAppStateFromActiveLeague } from './state/appState';
+import { setCloudPushHook } from './state/leaguesStore';
+import { initCloudSync, scheduleCloudPush } from './services/cloudSync';
 import {
   formatDataFreshness,
   formatDepthFreshness,
@@ -47,6 +50,13 @@ let mountedTab: TabId | null = null;
 let bannerEventsBound = false;
 let refreshLeagueSwitcher: (() => void) | null = null;
 let hashRoutingBound = false;
+
+function onAuthChanged(): void {
+  syncAppStateFromActiveLeague();
+  mountedTab = null;
+  refreshLeagueSwitcher?.();
+  render();
+}
 
 function onLeagueChanged(): void {
   resetMockDraftModuleState();
@@ -138,6 +148,7 @@ function ensureShell(): void {
       <h1>Fantasy Draft Wizard</h1>
       <div class="header-controls">
         <div id="league-switcher"></div>
+        <div id="auth-panel"></div>
         <div class="scoring-toggle" role="group" aria-label="Scoring format">
           <button type="button" data-scoring-preset="standard">Standard</button>
           <button type="button" data-scoring-preset="half">Half PPR</button>
@@ -172,6 +183,8 @@ function ensureShell(): void {
   bindHashRouting();
   const leagueEl = app.querySelector('#league-switcher') as HTMLElement;
   refreshLeagueSwitcher = mountLeagueSwitcher(leagueEl, onLeagueChanged);
+  const authEl = app.querySelector('#auth-panel') as HTMLElement;
+  mountAuthPanel(authEl, onAuthChanged);
   shellReady = true;
 }
 
@@ -279,6 +292,7 @@ function render(): void {
 
 async function init(): Promise<void> {
   applyLayoutMode(loadLayoutMode());
+  setCloudPushHook(scheduleCloudPush);
   applyHashToApp(false);
 
   app.innerHTML = '<p class="loading">Loading rankings…</p>';
@@ -287,6 +301,7 @@ async function init(): Promise<void> {
   try {
     await loadRankings();
     await Promise.all([loadInjuries(), loadInSeason(), loadDepthCharts()]);
+    await initCloudSync(onAuthChanged);
     applyHashToApp(true);
     subscribe(render);
     render();

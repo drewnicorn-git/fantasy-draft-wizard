@@ -316,5 +316,7 @@ export interface LeaguesStore {
   version: number;
   activeLeagueId: string;
   leagues: Record<string, LeagueProfile>;
+  /** ISO timestamp — used for cross-device cloud sync conflict resolution. */
+  updatedAt?: string;
 }
 

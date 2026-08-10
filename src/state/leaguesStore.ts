@@ -13,6 +13,13 @@ import {
   hasLegacyFlatStorage,
 } from '../utils/leagueStorage';
 
+let cloudPushHook: ((store: LeaguesStore) => void) | null = null;
+
+/** Register debounced cloud sync (wired from main after cloudSync loads). */
+export function setCloudPushHook(fn: ((store: LeaguesStore) => void) | null): void {
+  cloudPushHook = fn;
+}
+
 export const LEAGUES_STORE_KEY = 'fdw-leagues-store';
 export const LEAGUES_STORE_VERSION = 1;
 
@@ -64,10 +71,12 @@ export function createDefaultLeagueProfile(name = 'My league'): LeagueProfile {
 
 export function createDefaultLeaguesStore(): LeaguesStore {
   const league = createDefaultLeagueProfile();
+  const now = new Date().toISOString();
   return {
     version: LEAGUES_STORE_VERSION,
     activeLeagueId: league.id,
     leagues: { [league.id]: league },
+    updatedAt: now,
   };
 }
 
@@ -127,10 +136,18 @@ function normalizeLeaguesStore(raw: Partial<LeaguesStore>): LeaguesStore | null 
   }
   const active = leagues[raw.activeLeagueId] ? raw.activeLeagueId : Object.keys(leagues)[0];
   if (!active) return null;
+  const leagueTimes = Object.values(leagues).map((l) => Date.parse(l.updatedAt) || 0);
+  const updatedAt =
+    typeof raw.updatedAt === 'string'
+      ? raw.updatedAt
+      : leagueTimes.length
+        ? new Date(Math.max(...leagueTimes)).toISOString()
+        : new Date().toISOString();
   return {
     version: LEAGUES_STORE_VERSION,
     activeLeagueId: active,
     leagues,
+    updatedAt,
   };
 }
 
@@ -165,9 +182,14 @@ export function loadLeaguesStore(): LeaguesStore {
   }
 }
 
-export function saveLeaguesStore(store: LeaguesStore): void {
-  cachedStore = store;
-  localStorage.setItem(LEAGUES_STORE_KEY, JSON.stringify(store));
+export function saveLeaguesStore(store: LeaguesStore, options?: { skipCloud?: boolean }): void {
+  const stamped: LeaguesStore = {
+    ...store,
+    updatedAt: new Date().toISOString(),
+  };
+  cachedStore = stamped;
+  localStorage.setItem(LEAGUES_STORE_KEY, JSON.stringify(stamped));
+  if (!options?.skipCloud) cloudPushHook?.(stamped);
 }
 
 export function resetLeaguesStoreCache(): void {
@@ -291,8 +313,8 @@ export function importLeague(raw: Partial<LeagueProfile>, options: { activate?: 
   return league;
 }
 
-export function replaceLeaguesStore(store: LeaguesStore): void {
+export function replaceLeaguesStore(store: LeaguesStore, options?: { skipCloud?: boolean }): void {
   const normalized = normalizeLeaguesStore(store);
   if (!normalized) throw new Error('Invalid leagues store');
-  saveLeaguesStore(normalized);
+  saveLeaguesStore(normalized, options);
 }

@@ -1453,3 +1453,87 @@ html.layout-mobile .header-controls .updated {
   max-width: none;
 }
 
+.auth-panel-compact {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.auth-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 50;
+  margin-top: 0.35rem;
+  min-width: 16rem;
+  max-width: 20rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+#auth-panel {
+  position: relative;
+}
+
+#auth-panel.hidden {
+  display: none;
+}
+
+.auth-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.auth-email-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.auth-email-label input {
+  padding: 0.4rem 0.5rem;
+}
+
+.auth-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.auth-message.info {
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.auth-message.error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.auth-sync-hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.auth-sync-hint.synced {
+  color: var(--accent2);
+}
+
+.auth-sync-hint.error {
+  color: var(--danger);
+}
+
+.auth-signed-in {
+  font-size: 0.9rem;
+  margin: 0.35rem 0;
+}
+
