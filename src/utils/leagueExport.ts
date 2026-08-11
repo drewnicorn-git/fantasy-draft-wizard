@@ -89,5 +89,6 @@ export function sanitizeImportedStore(store: LeaguesStore): LeaguesStore {
     version: LEAGUES_STORE_VERSION,
     activeLeagueId: store.activeLeagueId,
     leagues: { ...store.leagues },
+    updatedAt: store.updatedAt,
   };
 }

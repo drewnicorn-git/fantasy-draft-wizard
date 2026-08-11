@@ -163,8 +163,9 @@ export function loadLeaguesStore(): LeaguesStore {
         clearLegacyFlatStorage();
         return cachedStore;
       }
+      // In-memory default only — do not persist until the user edits or cloud sync runs.
+      // Persisting here caused fresh mobile installs to overwrite cloud leagues on sign-in.
       cachedStore = createDefaultLeaguesStore();
-      saveLeaguesStore(cachedStore);
       return cachedStore;
     }
     const parsed = normalizeLeaguesStore(JSON.parse(raw) as Partial<LeaguesStore>);

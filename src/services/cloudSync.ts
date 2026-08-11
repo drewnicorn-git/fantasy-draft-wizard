@@ -7,6 +7,12 @@ import {
   saveLeaguesStore,
 } from '../state/leaguesStore';
 import { sanitizeImportedStore } from '../utils/leagueExport';
+import {
+  isPristineDefaultStore,
+  leagueCount,
+  mergeLeaguesStores,
+  storesEqual,
+} from '../utils/leaguesStoreMerge';
 import { getAuthRedirectUrl, getSupabase, isSupabaseConfigured } from './supabaseClient';
 import { formatSupabaseError } from '../utils/supabaseErrors';
 
@@ -95,7 +101,7 @@ async function pushRemoteStore(userId: string, store: LeaguesStore): Promise<voi
   if (error) throw error;
 }
 
-/** After sign-in: pull cloud copy if newer, otherwise upload local. */
+/** After sign-in: merge with cloud — never overwrite real cloud data with a fresh mobile default. */
 export async function reconcileCloudStoreOnSignIn(): Promise<void> {
   if (!isSupabaseConfigured()) return;
 
@@ -111,24 +117,52 @@ export async function reconcileCloudStoreOnSignIn(): Promise<void> {
     const remote = await pullRemoteStore(userId);
 
     if (!remote) {
-      await pushRemoteStore(userId, stampStore(local));
-      setStatus('synced', 'Leagues backed up to your account');
+      if (!isPristineDefaultStore(local)) {
+        await pushRemoteStore(userId, stampStore(local));
+        setStatus('synced', 'Leagues backed up to your account');
+      } else {
+        setStatus('synced', 'Signed in — your leagues will sync when you make changes');
+      }
       return;
     }
 
-    const localTs = storeTimestamp(local);
-    const remoteTs = Date.parse(remote.remoteUpdatedAt) || storeTimestamp(remote.store);
+    const localPristine = isPristineDefaultStore(local);
+    const remoteStore = remote.store;
 
-    if (remoteTs > localTs) {
-      replaceLeaguesStore(remote.store, { skipCloud: true });
+    // Fresh install on a new device: always prefer cloud over factory default localStorage.
+    if (localPristine && leagueCount(remoteStore) > 0) {
+      replaceLeaguesStore(remoteStore, { skipCloud: true });
       resetLeaguesStoreCache();
       setStatus('synced', 'Loaded leagues from your account');
-    } else if (localTs > remoteTs) {
+      return;
+    }
+
+    // Rich local data beats empty or thinner cloud (e.g. desktop recovering after a bad mobile push).
+    if (leagueCount(remoteStore) === 0 || leagueCount(local) > leagueCount(remoteStore)) {
       await pushRemoteStore(userId, stampStore(local));
       setStatus('synced', 'Uploaded local leagues to your account');
-    } else {
-      setStatus('synced', 'Already up to date');
+      return;
     }
+
+    const merged = mergeLeaguesStores(local, remoteStore);
+
+    if (storesEqual(merged, local)) {
+      const remoteTs = storeTimestamp(remoteStore);
+      const localTs = storeTimestamp(local);
+      if (remoteTs > localTs) {
+        replaceLeaguesStore(remoteStore, { skipCloud: true });
+        resetLeaguesStoreCache();
+        setStatus('synced', 'Loaded leagues from your account');
+      } else {
+        setStatus('synced', 'Already up to date');
+      }
+      return;
+    }
+
+    replaceLeaguesStore(merged, { skipCloud: true });
+    resetLeaguesStoreCache();
+    await pushRemoteStore(userId, stampStore(merged));
+    setStatus('synced', 'Synced and merged leagues with your account');
   } catch (err) {
     setStatus('error', formatSupabaseError(err));
     throw err;
@@ -146,7 +180,17 @@ export async function pushCloudStoreNow(): Promise<void> {
 
   setStatus('syncing', 'Saving…');
   try {
-    const store = stampStore(loadLeaguesStore());
+    const local = loadLeaguesStore();
+    const remote = await pullRemoteStore(userId);
+
+    if (remote && isPristineDefaultStore(local) && leagueCount(remote.store) > 0) {
+      replaceLeaguesStore(remote.store, { skipCloud: true });
+      resetLeaguesStoreCache();
+      setStatus('synced', 'Loaded leagues from your account');
+      return;
+    }
+
+    const store = stampStore(local);
     saveLeaguesStore(store, { skipCloud: true });
     await pushRemoteStore(userId, store);
     setStatus('synced', 'Saved to your account');
@@ -158,6 +202,7 @@ export async function pushCloudStoreNow(): Promise<void> {
 
 export function scheduleCloudPush(store: LeaguesStore): void {
   if (!isSupabaseConfigured()) return;
+  if (isPristineDefaultStore(store)) return;
 
   void getUserId().then((userId) => {
     if (!userId) {
