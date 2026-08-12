@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-08-11T15:30:58.381Z",
+ "fetchedAt": "2026-08-12T15:30:58.312Z",
  "data": {
   "players": [
    {
@@ -389,7 +389,7 @@
     "name": "Joe Fagnano",
     "team": "BAL",
     "pos": "QB",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Zay Flowers",
@@ -443,7 +443,7 @@
     "name": "Ja'Kobi Lane",
     "team": "BAL",
     "pos": "WR",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Dontae McMillan",
@@ -502,7 +502,7 @@
     "name": "Skylar Thompson",
     "team": "BAL",
     "pos": "QB",
-    "depth": 3
+    "depth": 5
    },
    {
     "name": "Dayton Wade",
@@ -514,7 +514,7 @@
     "name": "Devontez Walker",
     "team": "BAL",
     "pos": "WR",
-    "depth": 3
+    "depth": 4
    },
    {
     "name": "LaJohntay Wester",
@@ -566,7 +566,7 @@
     "name": "Keon Coleman",
     "team": "BUF",
     "pos": "WR",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "James Cook III",
@@ -650,7 +650,7 @@
     "name": "Joshua Palmer",
     "team": "BUF",
     "pos": "WR",
-    "depth": 3
+    "depth": 4
    },
    {
     "name": "Dante Pettis",
@@ -1043,13 +1043,13 @@
     "name": "Zavion Thomas",
     "team": "CHI",
     "pos": "WR",
-    "depth": 4
+    "depth": 7
    },
    {
     "name": "Jahdae Walker",
     "team": "CHI",
     "pos": "WR",
-    "depth": 7
+    "depth": 4
    },
    {
     "name": "Caleb Williams",
@@ -1415,6 +1415,12 @@
     "depth": 6
    },
    {
+    "name": "Dae'Quan Wright",
+    "team": "CLE",
+    "pos": "TE",
+    "depth": 7
+   },
+   {
     "name": "Andre Szmyt",
     "team": "CLE",
     "pos": "K"
@@ -1495,7 +1501,7 @@
     "name": "Zack Kuntz",
     "team": "DAL",
     "pos": "TE",
-    "depth": 4
+    "depth": 6
    },
    {
     "name": "CeeDee Lamb",
@@ -1548,7 +1554,7 @@
     "name": "DJ Rogers",
     "team": "DAL",
     "pos": "TE",
-    "depth": 6
+    "depth": 5
    },
    {
     "name": "Luke Schoonmaker",
@@ -1578,7 +1584,7 @@
     "name": "Michael Trigg",
     "team": "DAL",
     "pos": "TE",
-    "depth": 5
+    "depth": 4
    },
    {
     "name": "KaVontae Turpin",
@@ -1983,12 +1989,6 @@
     "depth": 1
    },
    {
-    "name": "Drew Biber",
-    "team": "GB",
-    "pos": "TE",
-    "depth": 7
-   },
-   {
     "name": "Chris Brooks",
     "team": "GB",
     "pos": "RB",
@@ -2160,7 +2160,7 @@
     "name": "Thomas Yassmin",
     "team": "GB",
     "pos": "TE",
-    "depth": 8
+    "depth": 7
    },
    {
     "name": "Trey Smack",
@@ -2410,7 +2410,7 @@
     "name": "DJ Giddens",
     "team": "IND",
     "pos": "RB",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Anthony Gould",
@@ -2452,7 +2452,7 @@
     "name": "Seth McGowan",
     "team": "IND",
     "pos": "RB",
-    "depth": 2
+    "depth": 3
    },
    {
     "name": "D.J. Montgomery",
@@ -3485,7 +3485,7 @@
     "name": "Tutu Atwell",
     "team": "MIA",
     "pos": "WR",
-    "depth": 3
+    "depth": 4
    },
    {
     "name": "Chris Bell",
@@ -3503,7 +3503,7 @@
     "name": "Caleb Douglas",
     "team": "MIA",
     "pos": "WR",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Greg Dulcich",
@@ -3527,7 +3527,7 @@
     "name": "Jeremiah Franklin",
     "team": "MIA",
     "pos": "TE",
-    "depth": 6
+    "depth": 5
    },
    {
     "name": "Ollie Gordon II",
@@ -3539,7 +3539,7 @@
     "name": "AJ Henning",
     "team": "MIA",
     "pos": "WR",
-    "depth": 9
+    "depth": 6
    },
    {
     "name": "DJ Herman",
@@ -3556,7 +3556,7 @@
     "name": "Terrace Marshall Jr.",
     "team": "MIA",
     "pos": "WR",
-    "depth": 6
+    "depth": 8
    },
    {
     "name": "Donaven McCulley",
@@ -3574,13 +3574,12 @@
     "name": "Jalen Reagor",
     "team": "MIA",
     "pos": "WR",
-    "depth": 11
+    "depth": 5
    },
    {
     "name": "Ben Sims",
     "team": "MIA",
-    "pos": "TE",
-    "depth": 4
+    "pos": "TE"
    },
    {
     "name": "Jalen Tolbert",
@@ -3598,7 +3597,7 @@
     "name": "Cole Turner",
     "team": "MIA",
     "pos": "TE",
-    "depth": 5
+    "depth": 4
    },
    {
     "name": "Malik Washington",
@@ -3610,7 +3609,7 @@
     "name": "Tahj Washington",
     "team": "MIA",
     "pos": "WR",
-    "depth": 8
+    "depth": 11
    },
    {
     "name": "Carlos Washington Jr.",
@@ -3622,7 +3621,7 @@
     "name": "Theo Wease Jr.",
     "team": "MIA",
     "pos": "WR",
-    "depth": 5
+    "depth": 9
    },
    {
     "name": "Malik Willis",
@@ -4656,19 +4655,19 @@
     "name": "Ja'Quinden Jackson",
     "team": "PHI",
     "pos": "RB",
-    "depth": 5
+    "depth": 6
    },
    {
     "name": "E.J. Jenkins",
     "team": "PHI",
     "pos": "TE",
-    "depth": 7
+    "depth": 6
    },
    {
     "name": "Cameron Latu",
     "team": "PHI",
     "pos": "TE",
-    "depth": 6
+    "depth": 5
    },
    {
     "name": "Makai Lemon",
@@ -4716,7 +4715,7 @@
     "name": "Stone Smartt",
     "team": "PHI",
     "pos": "TE",
-    "depth": 5
+    "depth": 7
    },
    {
     "name": "DeVonta Smith",
@@ -4727,7 +4726,8 @@
    {
     "name": "Carson Steele",
     "team": "PHI",
-    "pos": "RB"
+    "pos": "RB",
+    "depth": 5
    },
    {
     "name": "Eli Stowers",
@@ -5271,11 +5271,6 @@
     "team": "SEA",
     "pos": "QB",
     "depth": 3
-   },
-   {
-    "name": "Robbie Ouzts",
-    "team": "SEA",
-    "pos": "RB"
    },
    {
     "name": "Jadarian Price",
