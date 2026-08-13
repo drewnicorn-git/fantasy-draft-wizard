@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-08-12T15:30:54.525Z",
+ "fetchedAt": "2026-08-13T15:32:16.378Z",
  "data": {
   "players": [
    {
@@ -240,6 +240,14 @@
     "name": "Stefon Diggs",
     "pos": "WR",
     "team": "WAS",
+    "injuryStatus": null,
+    "yearsExp": 11
+   },
+   {
+    "id": "2505",
+    "name": "Darren Waller",
+    "pos": "TE",
+    "team": "CAR",
     "injuryStatus": null,
     "yearsExp": 11
    },
@@ -1796,6 +1804,14 @@
     "yearsExp": 2
    },
    {
+    "id": "6996",
+    "name": "JaMycal Hasty",
+    "pos": "RB",
+    "team": "NE",
+    "injuryStatus": null,
+    "yearsExp": 6
+   },
+   {
     "id": "7002",
     "name": "Juwan Johnson",
     "pos": "TE",
@@ -2092,14 +2108,6 @@
     "yearsExp": 5
    },
    {
-    "id": "7561",
-    "name": "Elijah Mitchell",
-    "pos": "RB",
-    "team": "PHI",
-    "injuryStatus": "Questionable",
-    "yearsExp": 5
-   },
-   {
     "id": "7562",
     "name": "Tutu Atwell",
     "pos": "WR",
@@ -2233,6 +2241,14 @@
     "pos": "TE",
     "team": "ARI",
     "injuryStatus": "IR",
+    "yearsExp": 5
+   },
+   {
+    "id": "7599",
+    "name": "Jermar Jefferson",
+    "pos": "RB",
+    "team": "MIN",
+    "injuryStatus": null,
     "yearsExp": 5
    },
    {
@@ -2420,14 +2436,6 @@
     "yearsExp": 5
    },
    {
-    "id": "7989",
-    "name": "DJ Turner",
-    "pos": "WR",
-    "team": "HOU",
-    "injuryStatus": "Questionable",
-    "yearsExp": 5
-   },
-   {
     "id": "8002",
     "name": "Shane Buechele",
     "pos": "QB",
@@ -2556,6 +2564,14 @@
     "yearsExp": 4
    },
    {
+    "id": "8123",
+    "name": "Hassan Haskins",
+    "pos": "RB",
+    "team": "NE",
+    "injuryStatus": null,
+    "yearsExp": 4
+   },
+   {
     "id": "8125",
     "name": "Calvin Austin",
     "pos": "WR",
@@ -2648,6 +2664,14 @@
     "name": "James Cook",
     "pos": "RB",
     "team": "BUF",
+    "injuryStatus": null,
+    "yearsExp": 4
+   },
+   {
+    "id": "8139",
+    "name": "Zamir White",
+    "pos": "RB",
+    "team": "SF",
     "injuryStatus": null,
     "yearsExp": 4
    },
@@ -4608,7 +4632,7 @@
     "name": "Johnny Wilson",
     "pos": "WR",
     "team": "PHI",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -5472,7 +5496,7 @@
     "name": "Emeka Egbuka",
     "pos": "WR",
     "team": "TB",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 1
    },
    {
@@ -5816,7 +5840,7 @@
     "name": "Luke Lachey",
     "pos": "TE",
     "team": "GB",
-    "injuryStatus": "IR",
+    "injuryStatus": "Questionable",
     "yearsExp": 1
    },
    {
@@ -6796,14 +6820,6 @@
     "yearsExp": 0
    },
    {
-    "id": "13309",
-    "name": "Aaron Anderson",
-    "pos": "WR",
-    "team": "CLE",
-    "injuryStatus": "Questionable",
-    "yearsExp": 0
-   },
-   {
     "id": "13310",
     "name": "Miller Moss",
     "pos": "QB",
@@ -7345,14 +7361,6 @@
     "pos": "TE",
     "team": "GB",
     "injuryStatus": "IR",
-    "yearsExp": 0
-   },
-   {
-    "id": "13431",
-    "name": "Miles Kitselman",
-    "pos": "TE",
-    "team": "DET",
-    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -8104,7 +8112,7 @@
     "name": "Myles Montgomery",
     "pos": "RB",
     "team": "NE",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -8248,7 +8256,7 @@
     "name": "Malick Meiga",
     "pos": "WR",
     "team": "CAR",
-    "injuryStatus": "IR",
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -8272,14 +8280,6 @@
     "name": "Jeff Weimer",
     "pos": "WR",
     "team": "KC",
-    "injuryStatus": null,
-    "yearsExp": 0
-   },
-   {
-    "id": "14068",
-    "name": "Drew Biber",
-    "pos": "TE",
-    "team": "GB",
     "injuryStatus": null,
     "yearsExp": 0
    },
