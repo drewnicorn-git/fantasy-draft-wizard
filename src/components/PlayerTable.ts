@@ -144,7 +144,22 @@ const DEFAULT_SORT_DIR: Record<SortKey, 'asc' | 'desc'> = {
 
 
 
-function sortHeader(label: string, key: SortKey, sort: SortState, extraClass = ''): string {
+const SOURCE_HEADER_ABBR: Record<SourceKey, string> = {
+  fantasypros: 'FP',
+  espn: 'ESPN',
+  sleeper: 'SLP',
+  ffc: 'FFC',
+  yahoo: 'YAH',
+  nfl: 'NFL',
+};
+
+function sortHeader(
+  label: string,
+  key: SortKey,
+  sort: SortState,
+  extraClass = '',
+  title?: string,
+): string {
 
   const active = sort.key === key;
 
@@ -154,8 +169,40 @@ function sortHeader(label: string, key: SortKey, sort: SortState, extraClass = '
 
   const cls = ['sortable', active ? 'sorted' : '', extraClass].filter(Boolean).join(' ');
 
-  return `<th class="${cls}" data-sort="${key}" role="columnheader" aria-sort="${aria}" tabindex="0">${label}${arrow}</th>`;
+  const titleAttr = title ? ` title="${escapeHtml(title)}"` : '';
 
+  return `<th class="${cls}" data-sort="${key}" role="columnheader" aria-sort="${aria}" tabindex="0"${titleAttr}>${label}${arrow}</th>`;
+
+}
+
+function buildPlayerTableColgroup(options: {
+  showCompareCol: boolean;
+  showKeepers: boolean;
+  showTags: boolean;
+  showManualCol: boolean;
+  showSources: boolean;
+  sourceCount: number;
+  showDeltaCol: boolean;
+  showPredictorCol: boolean;
+}): string {
+  const weights: number[] = [2];
+  if (options.showCompareCol) weights.push(2);
+  if (options.showKeepers) weights.push(2);
+  if (options.showTags) weights.push(5.5);
+  if (options.showManualCol) weights.push(2.8);
+  weights.push(15, 2.4, 3.2, 2.4, 2.4, 1.8, 1.8); // player, pos, pos rank, team, depth, bye, tier
+  if (options.showSources) {
+    for (let i = 0; i < options.sourceCount; i++) weights.push(2.2);
+  }
+  if (options.showDeltaCol) weights.push(7);
+  weights.push(2.8, 2.4, 2.4); // consensus, proj, adp
+  if (options.showPredictorCol) weights.push(2.4);
+
+  const total = weights.reduce((sum, weight) => sum + weight, 0);
+  const cols = weights
+    .map((weight) => `<col style="width:${((weight / total) * 100).toFixed(3)}%">`)
+    .join('');
+  return `<colgroup>${cols}</colgroup>`;
 }
 
 
@@ -504,7 +551,19 @@ export function renderRankingsTable(
 
       ${sortHeader('Tier', 'tier', tableSort, 'col-compact-hide')}
 
-      ${showSources ? sources.map((s) => sortHeader(SOURCE_LABELS[s] ?? s, `source:${s}`, tableSort, 'col-compact-hide')).join('') : ''}
+      ${showSources
+        ? sources
+            .map((s) =>
+              sortHeader(
+                SOURCE_HEADER_ABBR[s] ?? s,
+                `source:${s}`,
+                tableSort,
+                'col-compact-hide col-source',
+                SOURCE_LABELS[s] ?? s,
+              ),
+            )
+            .join('')
+        : ''}
 
       ${showDeltaCol ? renderDeltaCompareHeader(rankMetrics, rankDeltaCompare, tableSort) : ''}
 
@@ -599,7 +658,7 @@ export function renderRankingsTable(
 
         ${showManualCol ? `<td class="manual-rank-cell"><input type="number" class="manual-rank-input" data-manual-rank="${p.id}" aria-label="Manual rank for ${escapeHtml(p.name)}" value="${manualRank ?? ''}" placeholder="—" min="1" max="999" ${editable ? '' : 'disabled'} /></td>` : ''}
 
-        <td class="player-name">${escapeHtml(p.name)} ${injury}</td>
+        <td class="player-name" title="${escapeHtml(p.name)}">${escapeHtml(p.name)} ${injury}</td>
 
         <td><span class="pos-badge ${posCls}">${p.pos}</span></td>
 
@@ -613,7 +672,7 @@ export function renderRankingsTable(
 
         <td class="col-compact-hide">${p.tier ?? '—'}</td>
 
-        ${showSources ? sources.map((s) => `<td class="col-compact-hide">${getSourceRank(p, s, scoring) ?? '—'}</td>`).join('') : ''}
+        ${showSources ? sources.map((s) => `<td class="col-compact-hide col-source">${getSourceRank(p, s, scoring) ?? '—'}</td>`).join('') : ''}
 
         ${showDeltaCol ? `<td class="delta-col col-compact-hide">${deltaCell}</td>` : ''}
 
@@ -633,7 +692,18 @@ export function renderRankingsTable(
 
 
 
-  container.innerHTML = `<div class="table-wrap"><table class="player-table">${thead}<tbody>${rows}</tbody></table></div>`;
+  const colgroup = buildPlayerTableColgroup({
+    showCompareCol,
+    showKeepers,
+    showTags,
+    showManualCol,
+    showSources,
+    sourceCount: sources.length,
+    showDeltaCol,
+    showPredictorCol,
+  });
+
+  container.innerHTML = `<div class="table-wrap player-table-wrap"><table class="player-table">${colgroup}${thead}<tbody>${rows}</tbody></table></div>`;
 
 
 
