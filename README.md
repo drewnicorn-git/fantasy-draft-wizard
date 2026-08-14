@@ -9,9 +9,7 @@ A static fantasy football draft assistant: multi-source rankings, mock and live 
 | Repo | Purpose |
 |------|---------|
 | **[fantasy-draft-wizard](https://github.com/drewnicorn-git/fantasy-draft-wizard)** (this repo) | Launch overhaul: issues, CI, GitHub Pages deploy, daily data refresh |
-| **[fantasy-draft-wizard-app](https://github.com/drewnicorn-git/fantasy-draft-wizard-app)** | **Frozen archive** — pre-overhaul version; do not push here |
-
-The archived site remains at [fantasy-draft-wizard-app](https://drewnicorn-git.github.io/fantasy-draft-wizard-app/) (last updated at commit `c86ffb8`).
+| **[fantasy-draft-wizard-app](https://github.com/drewnicorn-git/fantasy-draft-wizard-app)** | **Separate legacy repo** — not part of this project's CI or deploys |
 
 All new work is committed and pushed **only to this repo** (`git push origin main`). Do not push to `fantasy-draft-wizard-app`.
 

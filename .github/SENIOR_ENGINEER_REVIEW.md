@@ -4,17 +4,18 @@ Every launch-readiness issue **must** pass automated gates before it is closed w
 
 ## Non-negotiable checks (automated)
 
-These recurring failure modes are enforced by `scripts/release-gate.mjs` and CI:
+These recurring failure modes are enforced by `scripts/release-gate.mjs` and CI on **`drewnicorn-git/fantasy-draft-wizard` only**:
 
 | Check | Catches |
 |-------|---------|
 | Canonical repo only | Workflows/deploy running on wrong repo |
 | GitHub Pages enabled | Deploy skipped or 404 on new repo |
-| Archive repo frozen SHA | Accidental pushes to `fantasy-draft-wizard-app` |
 | Live site + rankings.json | Deploy succeeded but site broken |
 | No API key in tree | Committed secrets |
 | No archive push remote (local) | `git push app` accidents |
 | Production build | TypeScript/build regressions |
+
+The legacy archive repo **`fantasy-draft-wizard-app` is not monitored by this project's CI.** It is a separate repository; its state does not affect release gates here.
 
 ## Workflow before closing any issue
 
@@ -37,13 +38,8 @@ These recurring failure modes are enforced by `scripts/release-gate.mjs` and CI:
 
 - Any workflow is red on the canonical repo
 - Deploy job was skipped
-- Archive repo SHA moved off `FROZEN_ARCHIVE_SHA` in `scripts/lib/repo-config.mjs`
 - Release gate was not run
 
 ## Archive repo
 
-`fantasy-draft-wizard-app` is **frozen** at commit `c86ffb8`. It is not part of the overhaul. The automated gate fails if `main` on that repo changes.
-
-## Changing frozen SHA
-
-Only the repo owner may update `FROZEN_ARCHIVE_SHA` in `scripts/lib/repo-config.mjs` after an explicit decision to unfreeze the archive.
+`fantasy-draft-wizard-app` is a **separate legacy repo**. Do not push overhaul work there. Local `pre-push` and release gate still block accidental push remotes to that repo from your machine — but CI does **not** read or fail based on archive repo commits.

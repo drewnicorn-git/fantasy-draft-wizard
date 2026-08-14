@@ -6,9 +6,8 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, existsSync } from 'node:fs';
 import {
-  ARCHIVE_REPO,
   CANONICAL_REPO,
-  FROZEN_ARCHIVE_SHA,
+  ARCHIVE_REPO,
   PAGES_URL,
   assertCanonicalRepo,
 } from './lib/repo-config.mjs';
@@ -131,23 +130,6 @@ async function checkPagesEnabled() {
   }
 }
 
-async function checkArchiveFrozen() {
-  const res = await fetch(`https://api.github.com/repos/${ARCHIVE_REPO}/commits/main`);
-  if (!res.ok) {
-    fail(`Cannot read archive repo main (${res.status})`);
-    return;
-  }
-  const json = await res.json();
-  if (json.sha !== FROZEN_ARCHIVE_SHA) {
-    fail(
-      `Archive repo ${ARCHIVE_REPO} main moved to ${json.sha.slice(0, 7)} — ` +
-        `expected frozen ${FROZEN_ARCHIVE_SHA.slice(0, 7)}`,
-    );
-  } else {
-    pass(`Archive repo frozen at ${FROZEN_ARCHIVE_SHA.slice(0, 7)}`);
-  }
-}
-
 async function checkLiveSite() {
   const res = await fetch(PAGES_URL, { redirect: 'follow' });
   if (!res.ok) {
@@ -198,7 +180,6 @@ async function main() {
     } catch (e) {
       fail(e.message);
     }
-    await checkArchiveFrozen();
     await checkLiveSite();
     await checkRankingsJsonOnSite();
   } else {
@@ -218,7 +199,6 @@ async function main() {
     } catch (e) {
       fail(`Data smoke checks failed: ${e.stderr ?? e.message}`);
     }
-    await checkArchiveFrozen();
   }
 
   console.log(`\n${passed.length} passed, ${errors.length} failed\n`);

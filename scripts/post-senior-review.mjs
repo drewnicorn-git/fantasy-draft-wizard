@@ -8,7 +8,7 @@ import { execSync, spawnSync } from 'node:child_process';
 import { writeFileSync, unlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { CANONICAL_REPO, ARCHIVE_REPO, FROZEN_ARCHIVE_SHA, PAGES_URL } from './lib/repo-config.mjs';
+import { CANONICAL_REPO, ARCHIVE_REPO, PAGES_URL } from './lib/repo-config.mjs';
 
 const issue = process.argv[2];
 if (!issue || !/^\d+$/.test(issue)) {
@@ -44,13 +44,12 @@ const body = `## Senior Engineer Review — Approved
 - [x] No hardcoded API key fallbacks in tree
 - [x] README documents do-not-push policy for archive repo
 - [x] Production build succeeds
-- [x] Archive repo frozen at \`${FROZEN_ARCHIVE_SHA.slice(0, 7)}\`
 - [x] CI **Build and Deploy Pages** green on canonical repo (deploy job ran, not skipped)
 - [x] Live site verified: ${PAGES_URL}
 
 ### Repo separation (recurring incident class — auto-checked)
 - [x] Changes pushed **only** to \`${CANONICAL_REPO}\`
-- [x] Archive repo \`${ARCHIVE_REPO}\` **unchanged** at frozen SHA
+- [x] No local push remotes targeting \`${ARCHIVE_REPO}\`
 - [x] GitHub Pages deploy runs on canonical repo only
 
 ### Verdict
