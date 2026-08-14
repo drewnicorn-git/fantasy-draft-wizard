@@ -1541,16 +1541,24 @@ html.layout-mobile .header-controls .updated {
 .auth-panel {
   position: absolute;
   top: 100%;
-  right: 0;
+  left: 0;
+  right: auto;
   z-index: 50;
   margin-top: 0.35rem;
-  min-width: 16rem;
-  max-width: 20rem;
+  min-width: min(16rem, calc(100vw - 2rem));
+  max-width: min(24rem, calc(100vw - 2rem));
+  max-height: min(70vh, calc(100dvh - 5rem));
+  overflow-y: auto;
+  box-sizing: border-box;
   padding: 0.75rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+html.layout-mobile .auth-panel {
+  max-width: calc(100vw - 2.5rem);
 }
 
 #auth-panel {

@@ -19,6 +19,31 @@ export function mountAuthPanel(container: HTMLElement, onAuthChange: () => void)
   let busy = false;
   let notifCleanup: (() => void) | null = null;
 
+  /** Keep dropdown inside the viewport when header layout wraps on small screens. */
+  const clampAuthPanelPosition = (): void => {
+    const panel = container.querySelector('.auth-panel') as HTMLElement | null;
+    if (!panel) return;
+
+    panel.style.left = '0';
+    panel.style.right = 'auto';
+
+    requestAnimationFrame(() => {
+      const margin = 12;
+      const panelRect = panel.getBoundingClientRect();
+      let offset = 0;
+
+      if (panelRect.left < margin) {
+        offset = margin - panelRect.left;
+      } else if (panelRect.right > window.innerWidth - margin) {
+        offset = window.innerWidth - margin - panelRect.right;
+      }
+
+      if (offset !== 0) {
+        panel.style.left = `${offset}px`;
+      }
+    });
+  };
+
   const render = (): void => {
     if (!isSupabaseConfigured()) {
       container.innerHTML = '';
@@ -108,6 +133,8 @@ export function mountAuthPanel(container: HTMLElement, onAuthChange: () => void)
       notifCleanup?.();
       notifCleanup = null;
     }
+
+    clampAuthPanelPosition();
   };
 
   async function refreshEmail(): Promise<void> {
