@@ -185,23 +185,20 @@ function buildPlayerTableColgroup(options: {
   showDeltaCol: boolean;
   showPredictorCol: boolean;
 }): string {
-  const weights: number[] = [2];
-  if (options.showCompareCol) weights.push(2);
-  if (options.showKeepers) weights.push(2);
-  if (options.showTags) weights.push(5.5);
-  if (options.showManualCol) weights.push(2.8);
-  weights.push(15, 2.4, 3.2, 2.4, 2.4, 1.8, 1.8); // player, pos, pos rank, team, depth, bye, tier
+  const widths: number[] = [80];
+  if (options.showCompareCol) widths.push(46);
+  if (options.showKeepers) widths.push(42);
+  if (options.showTags) widths.push(90);
+  if (options.showManualCol) widths.push(54);
+  widths.push(170, 46, 58, 50, 50, 38, 38); // player, pos, pos rank, team, depth, bye, tier
   if (options.showSources) {
-    for (let i = 0; i < options.sourceCount; i++) weights.push(2.2);
+    for (let i = 0; i < options.sourceCount; i++) widths.push(46);
   }
-  if (options.showDeltaCol) weights.push(7);
-  weights.push(2.8, 2.4, 2.4); // consensus, proj, adp
-  if (options.showPredictorCol) weights.push(2.4);
+  if (options.showDeltaCol) widths.push(128);
+  widths.push(54, 46, 46); // consensus, proj, adp
+  if (options.showPredictorCol) widths.push(46);
 
-  const total = weights.reduce((sum, weight) => sum + weight, 0);
-  const cols = weights
-    .map((weight) => `<col style="width:${((weight / total) * 100).toFixed(3)}%">`)
-    .join('');
+  const cols = widths.map((width) => `<col style="width:${width}px">`).join('');
   return `<colgroup>${cols}</colgroup>`;
 }
 
@@ -527,7 +524,7 @@ export function renderRankingsTable(
 
     <thead><tr>
 
-      <th>#</th>
+      <th class="col-rank">#</th>
 
       ${showCompareCol ? '<th class="col-compare" title="Add to compare (up to 3)">Cmp</th>' : ''}
 
@@ -636,7 +633,7 @@ export function renderRankingsTable(
 
       return `<tr class="${posCls}${roundBreak ? ' round-break' : ''}${isUserPick ? ' your-pick' : ''}${tagDef ? ' has-tag' : ''}${opts.mode === 'live-draft' ? ' pickable' : ''}" data-id="${p.id}"${tagStyle}>
 
-        <td>${overallRank}${isUserPick ? `<span class="pick-badge">${pickLabel}</span>` : ''}${roundBreak ? `<span class="round-badge">${roundLabel}</span>` : ''}</td>
+        <td class="col-rank">${overallRank}${isUserPick ? `<span class="pick-badge">${pickLabel}</span>` : ''}${roundBreak ? `<span class="round-badge">${roundLabel}</span>` : ''}</td>
 
         ${showCompareCol ? `<td class="col-compare"><button type="button" class="compare-toggle${isCompareSelected(p.id) ? ' active' : ''}" data-compare-toggle="${escapeHtml(p.id)}" aria-label="Compare ${escapeHtml(p.name)}" aria-pressed="${isCompareSelected(p.id)}">${isCompareSelected(p.id) ? '✓' : '+'}</button></td>` : ''}
 

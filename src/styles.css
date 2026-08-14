@@ -183,9 +183,14 @@ body { margin: 0; min-height: 100vh; }
   gap: 0.5rem;
 }
 
-main { flex: 1; padding: 0.75rem 0.85rem; min-height: 0; overflow-y: auto; overflow-x: hidden; }
+main { flex: 1; padding: 1rem 1.25rem; min-height: 0; overflow-y: auto; overflow-x: hidden; }
 
-.panel { width: 100%; max-width: none; margin: 0; min-width: 0; }
+.panel {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  min-width: 0;
+}
 
 #rankings-table {
   width: 100%;
@@ -278,7 +283,9 @@ input[type='number'] {
 }
 
 .player-table-wrap {
-  overflow-x: visible;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
   overflow-y: visible;
 }
 
@@ -286,7 +293,7 @@ table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
 
 .player-table,
 .keepers-table {
-  width: 100%;
+  width: auto;
   table-layout: fixed;
 }
 
@@ -296,6 +303,24 @@ table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
   font-size: 0.78rem;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.player-table th.col-rank,
+.player-table td.col-rank {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  vertical-align: top;
+  line-height: 1.25;
+  min-width: 5rem;
+}
+
+.player-table td.col-rank .pick-badge,
+.player-table td.col-rank .round-badge {
+  display: block;
+  margin: 0.15rem 0 0;
+  width: fit-content;
+  max-width: 100%;
 }
 
 .player-table .player-name {
@@ -1308,7 +1333,7 @@ tr.keeper-board-row td {
 
 .mock-draft-players-panel table,
 .live-draft-players-panel #rankings-table table {
-  width: 100%;
+  width: auto;
   table-layout: fixed;
 }
 
