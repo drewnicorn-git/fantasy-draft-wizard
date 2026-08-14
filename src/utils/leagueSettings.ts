@@ -77,8 +77,14 @@ export function rosterTotalSize(positions: RosterPositionSettings): number {
   return rosterStarterCount(positions) + positions.BENCH;
 }
 
-export function suggestedDraftRounds(positions: RosterPositionSettings): number {
-  return Math.max(15, Math.min(20, rosterTotalSize(positions)));
+export function draftPicksPerTeam(positions: RosterPositionSettings, keepersPerTeam = 0): number {
+  const rosterSize = rosterTotalSize(positions);
+  const keepers = Math.max(0, Math.min(keepersPerTeam, Math.max(0, rosterSize - 1)));
+  return Math.max(1, rosterSize - keepers);
+}
+
+export function suggestedDraftRounds(positions: RosterPositionSettings, keepersPerTeam = 0): number {
+  return Math.max(10, Math.min(24, draftPicksPerTeam(positions, keepersPerTeam)));
 }
 
 export function rosterPositionsSummary(positions: RosterPositionSettings): string {

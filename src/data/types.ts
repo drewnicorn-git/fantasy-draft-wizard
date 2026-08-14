@@ -177,6 +177,8 @@ export interface DraftConfig {
   teams: number;
   slot: number;
   rounds: number;
+  /** Max keepers each team may retain before the draft (0 = no limit). */
+  keepersPerTeam?: number;
   scoring: ScoringFormat;
   scoringSettings?: CustomScoringRules;
   rosterPositions?: RosterPositionSettings;

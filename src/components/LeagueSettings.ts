@@ -7,6 +7,7 @@ import {
   normalizeRosterPositions,
   rosterPositionsSummary,
   rosterTotalSize,
+  draftPicksPerTeam,
   ROSTER_PRESETS,
   SCORING_PRESETS,
   scoringSettingsLabel,
@@ -36,8 +37,10 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
   const rules = league.scoringSettings;
   const positions = league.rosterPositions;
   const scoringLabel = scoringSettingsLabel(rules);
+  const keepersPerTeam = cfg.keepersPerTeam ?? 0;
   const rosterSize = rosterTotalSize(positions);
-  const suggested = suggestedDraftRounds(positions);
+  const draftPicks = draftPicksPerTeam(positions, keepersPerTeam);
+  const suggested = suggestedDraftRounds(positions, keepersPerTeam);
 
   container.innerHTML = `
     <div class="league-settings">
@@ -48,6 +51,9 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
         </label>
         <label>Draft slot
           <input type="number" id="lg-slot" min="1" max="${cfg.teams}" value="${cfg.slot}" />
+        </label>
+        <label>Keepers / team
+          <input type="number" id="lg-keepers" min="0" max="10" value="${keepersPerTeam}" title="Keepers each team retains before the draft (0 = no limit)" />
         </label>
         <label>Rounds
           <input type="number" id="lg-rounds" min="10" max="24" value="${cfg.rounds}" />
@@ -90,7 +96,7 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
             </label>`,
           ).join('')}
         </div>
-        <p class="hint">${escapeHtml(rosterPositionsSummary(positions))} · ${rosterSize} roster spots · suggested ${suggested} draft rounds</p>
+        <p class="hint">${escapeHtml(rosterPositionsSummary(positions))} · ${rosterSize} roster spots${keepersPerTeam ? ` · ${keepersPerTeam} keepers` : ''} · ${draftPicks} draft picks · suggested ${suggested} rounds</p>
       </div>
 
       <p class="hint">Yellow lines mark the end of each draft round (every ${cfg.teams} players). Pick badges show expected players at your snake-draft slots.</p>
@@ -98,17 +104,22 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
 
   const teamsInput = container.querySelector('#lg-teams') as HTMLInputElement;
   const slotInput = container.querySelector('#lg-slot') as HTMLInputElement;
+  const keepersInput = container.querySelector('#lg-keepers') as HTMLInputElement;
   const roundsInput = container.querySelector('#lg-rounds') as HTMLInputElement;
 
   const syncDraft = (): void => {
     const teams = Math.max(8, Math.min(14, Number(teamsInput.value) || 12));
     const slot = Math.max(1, Math.min(teams, Number(slotInput.value) || 1));
-    const rounds = Math.max(10, Math.min(24, Number(roundsInput.value) || suggested));
+    const keepers = Math.max(0, Math.min(10, Number(keepersInput.value) || 0));
+    const positionsNow = getActiveLeague().rosterPositions;
+    const suggestedNow = suggestedDraftRounds(positionsNow, keepers);
+    const rounds = Math.max(10, Math.min(24, Number(roundsInput.value) || suggestedNow));
     teamsInput.value = String(teams);
     slotInput.value = String(slot);
     slotInput.max = String(teams);
+    keepersInput.value = String(keepers);
     roundsInput.value = String(rounds);
-    updateDraftConfig(teams, slot, rounds);
+    updateDraftConfig(teams, slot, rounds, keepers);
     onChange();
   };
 
@@ -122,9 +133,16 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
     const normalized = normalizeRosterPositions(next);
     setRosterPositions(normalized);
     if (offerRoundUpdate) {
-      const suggestedRounds = suggestedDraftRounds(normalized);
-      if (cfg.rounds !== suggestedRounds && confirm(`Update draft rounds to ${suggestedRounds} to match your ${rosterTotalSize(normalized)}-player roster?`)) {
-        updateDraftConfig(cfg.teams, cfg.slot, suggestedRounds);
+      const keepers = cfg.keepersPerTeam ?? 0;
+      const suggestedRounds = suggestedDraftRounds(normalized, keepers);
+      const draftPicks = draftPicksPerTeam(normalized, keepers);
+      if (
+        cfg.rounds !== suggestedRounds &&
+        confirm(
+          `Update draft rounds to ${suggestedRounds} to match your ${draftPicks} draft picks (${rosterTotalSize(normalized)} roster${keepers ? ` − ${keepers} keepers` : ''})?`,
+        )
+      ) {
+        updateDraftConfig(cfg.teams, cfg.slot, suggestedRounds, keepers);
       }
     }
     onChange();
@@ -133,6 +151,22 @@ export function renderLeagueSettings(container: HTMLElement, onChange: () => voi
 
   teamsInput.addEventListener('change', syncDraft);
   slotInput.addEventListener('change', syncDraft);
+  keepersInput.addEventListener('change', () => {
+    const keepers = Math.max(0, Math.min(10, Number(keepersInput.value) || 0));
+    keepersInput.value = String(keepers);
+    const positionsNow = getActiveLeague().rosterPositions;
+    const suggestedRounds = suggestedDraftRounds(positionsNow, keepers);
+    const draftPicks = draftPicksPerTeam(positionsNow, keepers);
+    if (
+      cfg.rounds !== suggestedRounds &&
+      confirm(
+        `Update draft rounds to ${suggestedRounds} for ${draftPicks} draft picks (${rosterTotalSize(positionsNow)} roster${keepers ? ` − ${keepers} keepers` : ''})?`,
+      )
+    ) {
+      roundsInput.value = String(suggestedRounds);
+    }
+    syncDraft();
+  });
   roundsInput.addEventListener('change', syncDraft);
 
   container.querySelectorAll('.scoring-preset').forEach((btn) => {

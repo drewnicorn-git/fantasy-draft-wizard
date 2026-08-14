@@ -788,13 +788,17 @@ export function renderRankingsTable(
     box.addEventListener('click', (e) => e.stopPropagation());
 
     box.addEventListener('change', () => {
-
-      toggleKeeper(box.dataset.keeper!, state.draftConfig.slot - 1);
+      const teamIndex = state.draftConfig.slot - 1;
+      const changed = toggleKeeper(box.dataset.keeper!, teamIndex);
+      if (!changed) {
+        box.checked = false;
+        const limit = state.draftConfig.keepersPerTeam ?? 0;
+        alert(`Your team already has the maximum of ${limit} keeper${limit === 1 ? '' : 's'}.`);
+        return;
+      }
 
       if (opts.onKeeperChange) opts.onKeeperChange();
-
       else renderRankingsTable(container, players, scoring, opts);
-
     });
 
   });

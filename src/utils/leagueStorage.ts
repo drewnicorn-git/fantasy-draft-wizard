@@ -40,6 +40,7 @@ const DEFAULT_DRAFT_CONFIG: DraftConfig = {
   teams: 12,
   slot: 7,
   rounds: 15,
+  keepersPerTeam: 0,
   scoring: 'ppr',
 };
 
@@ -121,6 +122,7 @@ export function buildLegacyLeagueProfile(name = 'My league'): LeagueProfile {
     teams: savedDraft.teams ?? DEFAULT_DRAFT_CONFIG.teams,
     slot: savedDraft.slot ?? DEFAULT_DRAFT_CONFIG.slot,
     rounds: savedDraft.rounds ?? DEFAULT_DRAFT_CONFIG.rounds,
+    keepersPerTeam: savedDraft.keepersPerTeam ?? DEFAULT_DRAFT_CONFIG.keepersPerTeam,
     scoring,
   };
   draftConfig.slot = Math.max(1, Math.min(draftConfig.slot, draftConfig.teams));

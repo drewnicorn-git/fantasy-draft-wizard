@@ -114,7 +114,16 @@ export function renderKeepersTable(container: HTMLElement, opts: KeepersTableOpt
   container.querySelectorAll<HTMLInputElement>('[data-keeper]').forEach((box) => {
     if (!editable) return;
     box.addEventListener('change', () => {
-      toggleKeeper(box.dataset.keeper!, defaultTeam);
+      const playerId = box.dataset.keeper!;
+      const teamSelect = container.querySelector<HTMLSelectElement>(`[data-keeper-team="${playerId}"]`);
+      const teamIndex = teamSelect ? Number(teamSelect.value) : getKeeperTeam(playerId, defaultTeam);
+      const changed = toggleKeeper(playerId, teamIndex);
+      if (!changed) {
+        box.checked = false;
+        const limit = state.draftConfig.keepersPerTeam ?? 0;
+        alert(`That team already has the maximum of ${limit} keeper${limit === 1 ? '' : 's'}.`);
+        return;
+      }
       opts.onChange();
     });
   });

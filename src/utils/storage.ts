@@ -73,12 +73,22 @@ export function saveSelectedSources(sources: string[]): void {
   updateActiveLeague({ selectedSources: sources as SourceKey[] });
 }
 
-export function loadDraftConfig(): { teams: number; slot: number; rounds: number } | null {
-  const { teams, slot, rounds } = getActiveLeague().draftConfig;
-  return { teams, slot, rounds };
+export function loadDraftConfig(): {
+  teams: number;
+  slot: number;
+  rounds: number;
+  keepersPerTeam?: number;
+} | null {
+  const { teams, slot, rounds, keepersPerTeam } = getActiveLeague().draftConfig;
+  return { teams, slot, rounds, keepersPerTeam: keepersPerTeam ?? 0 };
 }
 
-export function saveDraftConfig(config: { teams: number; slot: number; rounds: number }): void {
+export function saveDraftConfig(config: {
+  teams: number;
+  slot: number;
+  rounds: number;
+  keepersPerTeam?: number;
+}): void {
   const league = getActiveLeague();
   updateActiveLeague({
     draftConfig: {
@@ -149,19 +159,36 @@ export function setKeeperTeam(playerId: string, teamIndex: number): void {
   saveKeeperTeams(teams);
 }
 
-export function toggleKeeper(playerId: string, defaultTeamIndex = 0): Set<string> {
+export function countKeepersForTeam(teamIndex: number): number {
+  const keepers = loadKeepers();
+  let count = 0;
+  for (const id of keepers) {
+    if (getKeeperTeam(id, teamIndex) === teamIndex) count++;
+  }
+  return count;
+}
+
+export function getKeepersPerTeamLimit(): number {
+  return Math.max(0, getActiveLeague().draftConfig.keepersPerTeam ?? 0);
+}
+
+export function toggleKeeper(playerId: string, defaultTeamIndex = 0): boolean {
   const next = loadKeepers();
   const teams = loadKeeperTeams();
   if (next.has(playerId)) {
     next.delete(playerId);
     delete teams[playerId];
   } else {
+    const limit = getKeepersPerTeamLimit();
+    if (limit > 0 && countKeepersForTeam(defaultTeamIndex) >= limit) {
+      return false;
+    }
     next.add(playerId);
     teams[playerId] = defaultTeamIndex;
   }
   saveKeepers(next);
   saveKeeperTeams(teams);
-  return next;
+  return true;
 }
 
 export function isKeeper(playerId: string): boolean {

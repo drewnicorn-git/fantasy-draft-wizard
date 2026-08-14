@@ -27,6 +27,7 @@ const DEFAULT_DRAFT_CONFIG: DraftConfig = {
   teams: 12,
   slot: 7,
   rounds: 15,
+  keepersPerTeam: 0,
   scoring: 'ppr',
 };
 

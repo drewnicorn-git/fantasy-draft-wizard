@@ -99,7 +99,7 @@ export const defaultState: AppState = {
     adpMax: 999,
   },
   selectedSources: new Set<SourceKey>(),
-  draftConfig: { teams: 12, slot: 7, rounds: 15, scoring: 'ppr' },
+  draftConfig: { teams: 12, slot: 7, rounds: 15, keepersPerTeam: 0, scoring: 'ppr' },
   botPersonality: 'balanced',
 };
 
@@ -252,30 +252,45 @@ export function unlockSheet(): void {
   saveSheetState(sheet);
 }
 
-export function updateDraftConfig(teams: number, slot: number, rounds: number): void {
+export function updateDraftConfig(
+  teams: number,
+  slot: number,
+  rounds: number,
+  keepersPerTeam?: number,
+): void {
   const clampedSlot = Math.max(1, Math.min(slot, teams));
   const league = getActiveLeague();
+  const keepers = keepersPerTeam ?? league.draftConfig.keepersPerTeam ?? 0;
   state.draftConfig = {
     ...state.draftConfig,
     teams,
     slot: clampedSlot,
     rounds,
+    keepersPerTeam: keepers,
     scoring: league.scoring,
     scoringSettings: league.scoringSettings,
     rosterPositions: league.rosterPositions,
   };
-  saveDraftConfig({ teams, slot: clampedSlot, rounds });
+  saveDraftConfig({ teams, slot: clampedSlot, rounds, keepersPerTeam: keepers });
   notify();
 }
 
-export function applyDraftConfig(teams: number, slot: number, rounds: number, botPersonality?: typeof state.botPersonality): void {
+export function applyDraftConfig(
+  teams: number,
+  slot: number,
+  rounds: number,
+  botPersonality?: typeof state.botPersonality,
+  keepersPerTeam?: number,
+): void {
   const clampedSlot = Math.max(1, Math.min(slot, teams));
   const league = getActiveLeague();
+  const keepers = keepersPerTeam ?? league.draftConfig.keepersPerTeam ?? 0;
   state.draftConfig = {
     ...state.draftConfig,
     teams,
     slot: clampedSlot,
     rounds,
+    keepersPerTeam: keepers,
     scoring: league.scoring,
     scoringSettings: league.scoringSettings,
     rosterPositions: league.rosterPositions,
@@ -284,7 +299,7 @@ export function applyDraftConfig(teams: number, slot: number, rounds: number, bo
     state.botPersonality = botPersonality;
     saveBotPersonality(botPersonality);
   }
-  saveDraftConfig({ teams, slot: clampedSlot, rounds });
+  saveDraftConfig({ teams, slot: clampedSlot, rounds, keepersPerTeam: keepers });
 }
 
 export function getRankings(): RankingsData | null {

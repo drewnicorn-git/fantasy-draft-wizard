@@ -16,7 +16,7 @@ import { clearInSeasonState, loadInSeasonState, saveInSeasonState } from '../uti
 import { formatPrevWeekDisplay, formatProjDisplay, hasInSeasonStats } from '../utils/inSeasonStats';
 import { posCssClass } from '../utils/position';
 import { escapeHtml } from '../utils/escapeHtml';
-import { isCompareSelected, toggleComparePlayer } from '../state/playerCompare';
+import { isCompareSelected, subscribeComparePlayers, toggleComparePlayer } from '../state/playerCompare';
 
 function renderTeamSelectOptions(inSeasonState: InSeasonState, selectedTeam: number): string {
   return Array.from({ length: inSeasonState.config.teams }, (_, i) => {
@@ -308,4 +308,5 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
 
   searchEl.addEventListener('input', renderFa);
   renderFa();
+  subscribeComparePlayers(renderFa);
 }

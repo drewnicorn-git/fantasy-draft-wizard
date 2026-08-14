@@ -10,6 +10,7 @@ import { SOURCE_LABELS } from '../utils/scoring';
 import { formatPickLabel, getRemainingUserPickNumbers, getUserPickNumbers } from '../sim/snake';
 import { loadKeepers } from '../utils/storage';
 import { preserveScroll } from '../utils/scrollPreserve';
+import { subscribeComparePlayers } from '../state/playerCompare';
 
 export interface RankingsPanelOptions {
   tableMode?: 'rankings' | 'live-draft';
@@ -105,6 +106,8 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
   renderFilters(filtersEl, refresh);
   mountPlayerSearch(searchEl, refresh);
   refresh();
+
+  subscribeComparePlayers(refresh);
 
   return refresh;
 }

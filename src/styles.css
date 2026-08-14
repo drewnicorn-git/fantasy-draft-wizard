@@ -263,9 +263,16 @@ input[type='number'] {
   border-radius: 6px;
 }
 
-.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; -webkit-overflow-scrolling: touch; }
 
 table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+
+.player-table,
+.keepers-table {
+  width: max-content;
+  min-width: 100%;
+  table-layout: auto;
+}
 
 th, td { padding: 0.45rem 0.55rem; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
 
@@ -969,10 +976,11 @@ tr.is-keeper td:first-child { box-shadow: inset 3px 0 0 var(--accent2); }
 
 .keeper-col,
 .keeper-cell {
-  width: 2.25rem;
+  width: 2.75rem;
+  min-width: 2.75rem;
   text-align: center;
   padding-left: 0.35rem;
-  padding-right: 0.35rem;
+  padding-right: 0.5rem;
 }
 
 .keeper-check {
@@ -1221,8 +1229,9 @@ tr.keeper-board-row td {
 
 .mock-draft-players-panel table,
 .live-draft-players-panel #rankings-table table {
-  width: 100%;
-  table-layout: fixed;
+  width: max-content;
+  min-width: 100%;
+  table-layout: auto;
 }
 
 .live-draft-active {
@@ -1773,8 +1782,10 @@ html.layout-mobile .notification-grid {
 }
 
 .col-compare {
-  width: 2.5rem;
+  width: 2.75rem;
+  min-width: 2.75rem;
   text-align: center;
+  padding-right: 0.5rem;
 }
 
 .compare-toggle {
