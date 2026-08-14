@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-08-13T15:32:16.378Z",
+ "fetchedAt": "2026-08-14T15:08:21.158Z",
  "data": {
   "players": [
    {
@@ -1552,7 +1552,7 @@
     "name": "Tua Tagovailoa",
     "pos": "QB",
     "team": "ATL",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 6
    },
    {
@@ -2216,7 +2216,7 @@
     "name": "Chuba Hubbard",
     "pos": "RB",
     "team": "CAR",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 5
    },
    {
@@ -3116,14 +3116,6 @@
     "yearsExp": 4
    },
    {
-    "id": "8475",
-    "name": "Montrell Washington",
-    "pos": "WR",
-    "team": "HOU",
-    "injuryStatus": null,
-    "yearsExp": 4
-   },
-   {
     "id": "8484",
     "name": "Ko Kieft",
     "pos": "TE",
@@ -3280,7 +3272,7 @@
     "name": "Jahmyr Gibbs",
     "pos": "RB",
     "team": "DET",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -3504,7 +3496,7 @@
     "name": "Tyjae Spears",
     "pos": "RB",
     "team": "TEN",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -3576,7 +3568,7 @@
     "name": "Zay Flowers",
     "pos": "WR",
     "team": "BAL",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -3768,7 +3760,7 @@
     "name": "Cedric Tillman",
     "pos": "WR",
     "team": "CLE",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 3
    },
    {
@@ -4089,14 +4081,6 @@
     "pos": "WR",
     "team": "BUF",
     "injuryStatus": "PUP",
-    "yearsExp": 3
-   },
-   {
-    "id": "11378",
-    "name": "Jordan Mims",
-    "pos": "RB",
-    "team": "MIN",
-    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -5104,7 +5088,7 @@
     "name": "Terrell Jennings",
     "pos": "RB",
     "team": "NE",
-    "injuryStatus": null,
+    "injuryStatus": "IR",
     "yearsExp": 2
    },
    {
@@ -5216,7 +5200,7 @@
     "name": "Kurtis Rourke",
     "pos": "QB",
     "team": "SF",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 1
    },
    {
@@ -5792,7 +5776,7 @@
     "name": "Graham Mertz",
     "pos": "QB",
     "team": "HOU",
-    "injuryStatus": null,
+    "injuryStatus": "Doubtful",
     "yearsExp": 1
    },
    {
@@ -5836,14 +5820,6 @@
     "yearsExp": 1
    },
    {
-    "id": "12725",
-    "name": "Luke Lachey",
-    "pos": "TE",
-    "team": "GB",
-    "injuryStatus": "Questionable",
-    "yearsExp": 1
-   },
-   {
     "id": "12732",
     "name": "Dominic Lovett",
     "pos": "WR",
@@ -5864,14 +5840,6 @@
     "name": "Phil Mafah",
     "pos": "RB",
     "team": "DAL",
-    "injuryStatus": null,
-    "yearsExp": 1
-   },
-   {
-    "id": "12743",
-    "name": "Junior Bergen",
-    "pos": "WR",
-    "team": "SF",
     "injuryStatus": null,
     "yearsExp": 1
    },
@@ -6584,7 +6552,7 @@
     "name": "Carson Beck",
     "pos": "QB",
     "team": "ARI",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -6648,7 +6616,7 @@
     "name": "Jordyn Tyson",
     "pos": "WR",
     "team": "NO",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -6680,7 +6648,7 @@
     "name": "Jeremiyah Love",
     "pos": "RB",
     "team": "ARI",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -7312,7 +7280,7 @@
     "name": "Jaren Kanak",
     "pos": "TE",
     "team": "TEN",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -7360,7 +7328,7 @@
     "name": "RJ Maryland",
     "pos": "TE",
     "team": "GB",
-    "injuryStatus": "IR",
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -8108,14 +8076,6 @@
     "yearsExp": 0
    },
    {
-    "id": "13964",
-    "name": "Myles Montgomery",
-    "pos": "RB",
-    "team": "NE",
-    "injuryStatus": "Questionable",
-    "yearsExp": 0
-   },
-   {
     "id": "13967",
     "name": "Jimmy Kibble",
     "pos": "WR",
@@ -8249,14 +8209,6 @@
     "pos": "WR",
     "team": "DEN",
     "injuryStatus": null,
-    "yearsExp": 0
-   },
-   {
-    "id": "14058",
-    "name": "Malick Meiga",
-    "pos": "WR",
-    "team": "CAR",
-    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
