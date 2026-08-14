@@ -484,6 +484,10 @@ export function renderRankingsTable(
 
       ${showCompareCol ? '<th class="col-compare" title="Add to compare (up to 3)">Cmp</th>' : ''}
 
+      ${showKeepers ? '<th class="keeper-col" title="Keeper">K</th>' : ''}
+
+      ${showTags ? '<th class="tag-col">Tag</th>' : ''}
+
       ${showManualCol ? sortHeader('Manual', 'manual', tableSort) : ''}
 
       ${sortHeader('Player', 'name', tableSort)}
@@ -511,10 +515,6 @@ export function renderRankingsTable(
       ${sortHeader('ADP', 'adp', tableSort)}
 
       ${showPredictorCol ? sortHeader('Avail%', 'avail', tableSort) : ''}
-
-      ${showKeepers ? '<th class="keeper-col" title="Keeper">K</th>' : ''}
-
-      ${showTags ? '<th>Tag</th>' : ''}
 
     </tr></thead>`;
 
@@ -581,6 +581,22 @@ export function renderRankingsTable(
 
         ${showCompareCol ? `<td class="col-compare"><button type="button" class="compare-toggle${isCompareSelected(p.id) ? ' active' : ''}" data-compare-toggle="${escapeHtml(p.id)}" aria-label="Compare ${escapeHtml(p.name)}" aria-pressed="${isCompareSelected(p.id)}">${isCompareSelected(p.id) ? '✓' : '+'}</button></td>` : ''}
 
+        ${showKeepers ? `<td class="keeper-cell"><input type="checkbox" class="keeper-check" data-keeper="${p.id}" aria-label="Keeper: ${escapeHtml(p.name)}" ${isKeeper ? 'checked' : ''} ${editable ? '' : 'disabled'} /></td>` : ''}
+
+        ${showTags ? `<td class="tag-cell">
+
+          <select data-player-tag="${p.id}" aria-label="Tag for ${escapeHtml(p.name)}" ${editable ? '' : 'disabled'}>
+
+            <option value="">—</option>
+
+            ${tagOptions}
+
+          </select>
+
+          ${tagDef ? `<span class="tag-pill" style="background:${tagDef.color}">${escapeHtml(tagDef.label)}</span>` : ''}
+
+        </td>` : ''}
+
         ${showManualCol ? `<td class="manual-rank-cell"><input type="number" class="manual-rank-input" data-manual-rank="${p.id}" aria-label="Manual rank for ${escapeHtml(p.name)}" value="${manualRank ?? ''}" placeholder="—" min="1" max="999" ${editable ? '' : 'disabled'} /></td>` : ''}
 
         <td class="player-name">${escapeHtml(p.name)} ${injury}</td>
@@ -608,22 +624,6 @@ export function renderRankingsTable(
         <td>${getAdp(p, scoring)?.toFixed(1) ?? '—'}</td>
 
         ${showPredictorCol ? `<td>${avail != null ? `${avail}%` : '—'}</td>` : ''}
-
-        ${showKeepers ? `<td class="keeper-cell"><input type="checkbox" class="keeper-check" data-keeper="${p.id}" aria-label="Keeper: ${escapeHtml(p.name)}" ${isKeeper ? 'checked' : ''} ${editable ? '' : 'disabled'} /></td>` : ''}
-
-        ${showTags ? `<td class="tag-cell">
-
-          <select data-player-tag="${p.id}" aria-label="Tag for ${escapeHtml(p.name)}" ${editable ? '' : 'disabled'}>
-
-            <option value="">—</option>
-
-            ${tagOptions}
-
-          </select>
-
-          ${tagDef ? `<span class="tag-pill" style="background:${tagDef.color}">${escapeHtml(tagDef.label)}</span>` : ''}
-
-        </td>` : ''}
 
       </tr>`;
 

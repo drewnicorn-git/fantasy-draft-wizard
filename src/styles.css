@@ -185,7 +185,12 @@ body { margin: 0; min-height: 100vh; }
 
 main { flex: 1; padding: 1rem 1.25rem; min-height: 0; overflow-y: auto; }
 
-.panel { max-width: 1400px; margin: 0 auto; }
+.panel { width: 100%; max-width: 1400px; margin: 0 auto; min-width: 0; }
+
+#rankings-table {
+  width: 100%;
+  min-width: 0;
+}
 
 .filters { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
 
@@ -263,7 +268,14 @@ input[type='number'] {
   border-radius: 6px;
 }
 
-.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; -webkit-overflow-scrolling: touch; }
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  scrollbar-gutter: stable;
+}
 
 table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
 
@@ -942,6 +954,20 @@ tr.your-pick td:first-child { font-weight: 700; }
 .btn.sm { padding: 0.2rem 0.5rem; font-size: 0.75rem; }
 
 .tag-cell select { font-size: 0.75rem; max-width: 7rem; padding: 0.2rem; }
+
+.tag-col,
+.tag-cell {
+  min-width: 7rem;
+}
+
+.player-table th.tag-col,
+.player-table td.tag-cell,
+.player-table th.keeper-col,
+.player-table td.keeper-cell,
+.player-table th.col-compare,
+.player-table td.col-compare {
+  background-color: inherit;
+}
 
 tr.has-tag { box-shadow: inset 3px 0 0 var(--tag-color, var(--accent)); }
 
