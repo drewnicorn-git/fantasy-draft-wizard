@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-08-14T15:08:21.158Z",
+ "fetchedAt": "2026-08-15T13:42:32.536Z",
  "data": {
   "players": [
    {
@@ -88,7 +88,7 @@
     "name": "Geno Smith",
     "pos": "QB",
     "team": "NYJ",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 13
    },
    {
@@ -216,7 +216,7 @@
     "name": "Marcus Mariota",
     "pos": "QB",
     "team": "WAS",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 11
    },
    {
@@ -288,7 +288,7 @@
     "name": "Laquon Treadwell",
     "pos": "WR",
     "team": "IND",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 10
    },
    {
@@ -1368,6 +1368,14 @@
     "name": "Jarrett Stidham",
     "pos": "QB",
     "team": "DEN",
+    "injuryStatus": null,
+    "yearsExp": 7
+   },
+   {
+    "id": "6144",
+    "name": "Trayveon Williams",
+    "pos": "RB",
+    "team": "DET",
     "injuryStatus": null,
     "yearsExp": 7
    },
@@ -5664,7 +5672,7 @@
     "name": "Dont'e Thornton",
     "pos": "WR",
     "team": "LV",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -5776,7 +5784,7 @@
     "name": "Graham Mertz",
     "pos": "QB",
     "team": "HOU",
-    "injuryStatus": "Doubtful",
+    "injuryStatus": "Out",
     "yearsExp": 1
    },
    {
@@ -6072,7 +6080,7 @@
     "name": "Beaux Collins",
     "pos": "WR",
     "team": "NYG",
-    "injuryStatus": "IR",
+    "injuryStatus": "Questionable",
     "yearsExp": 1
    },
    {
@@ -6200,7 +6208,7 @@
     "name": "Kye Robichaux",
     "pos": "RB",
     "team": "DET",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -8008,7 +8016,7 @@
     "name": "Joshua Pitsenberger",
     "pos": "RB",
     "team": "HOU",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
