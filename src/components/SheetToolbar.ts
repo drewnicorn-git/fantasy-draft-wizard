@@ -3,7 +3,7 @@ import { reloadRankings, getSheetLocked, lockSheet, unlockSheet } from '../state
 const isProd = import.meta.env.PROD;
 const refreshLabel = isProd ? 'Reload snapshot' : 'Refresh from live APIs';
 const refreshTitle = isProd
-  ? 'Reload rankings.json from this site (updated daily by GitHub Actions)'
+  ? 'Re-download rankings.json from this site. Data refreshes daily after CI deploys to GitHub Pages.'
   : 'Dev only: fetch live ESPN, Sleeper, and Fantasy Calc data in the browser';
 
 export function renderSheetToolbar(container: HTMLElement, onChange: () => void): void {

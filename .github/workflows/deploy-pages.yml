@@ -4,6 +4,10 @@ on:
   push:
     branches: [main, master]
   workflow_dispatch:
+  # Rankings refresh commits use GITHUB_TOKEN and do not fire push workflows.
+  workflow_run:
+    workflows: [Update rankings]
+    types: [completed]
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -19,6 +23,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -61,6 +66,7 @@ jobs:
 
   deploy:
     needs: build
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
