@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-08-20T14:10:19.614Z",
+ "fetchedAt": "2026-08-21T14:06:49.256Z",
  "data": {
   "players": [
    {
@@ -472,7 +472,7 @@
     "name": "Mitchell Trubisky",
     "pos": "QB",
     "team": "TEN",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 9
    },
    {
@@ -628,14 +628,6 @@
     "yearsExp": 9
    },
    {
-    "id": "4233",
-    "name": "Zane Gonzalez",
-    "pos": "K",
-    "team": "MIA",
-    "injuryStatus": "Questionable",
-    "yearsExp": 9
-   },
-   {
     "id": "4234",
     "name": "Noah Brown",
     "pos": "WR",
@@ -764,14 +756,6 @@
     "yearsExp": 1
    },
    {
-    "id": "4854",
-    "name": "River Cracraft",
-    "pos": "WR",
-    "team": "WAS",
-    "injuryStatus": "Questionable",
-    "yearsExp": 9
-   },
-   {
     "id": "4866",
     "name": "Saquon Barkley",
     "pos": "RB",
@@ -888,7 +872,7 @@
     "name": "DJ Moore",
     "pos": "WR",
     "team": "BUF",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 8
    },
    {
@@ -1832,7 +1816,7 @@
     "name": "Patrick Taylor",
     "pos": "RB",
     "team": "SF",
-    "injuryStatus": null,
+    "injuryStatus": "IR",
     "yearsExp": 6
    },
    {
@@ -2072,7 +2056,7 @@
     "name": "Najee Harris",
     "pos": "RB",
     "team": "NYG",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 5
    },
    {
@@ -2296,7 +2280,7 @@
     "name": "Elijah Moore",
     "pos": "WR",
     "team": "PHI",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 5
    },
    {
@@ -2336,6 +2320,14 @@
     "name": "Michael Carter",
     "pos": "RB",
     "team": "TEN",
+    "injuryStatus": null,
+    "yearsExp": 5
+   },
+   {
+    "id": "7608",
+    "name": "Khalil Herbert",
+    "pos": "RB",
+    "team": "SF",
     "injuryStatus": null,
     "yearsExp": 5
    },
@@ -2480,7 +2472,7 @@
     "name": "Jack Stoll",
     "pos": "TE",
     "team": "CLE",
-    "injuryStatus": null,
+    "injuryStatus": "IR",
     "yearsExp": 5
    },
    {
@@ -2680,7 +2672,7 @@
     "name": "Khalil Shakir",
     "pos": "WR",
     "team": "BUF",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 4
    },
    {
@@ -3832,7 +3824,7 @@
     "name": "Sam LaPorta",
     "pos": "TE",
     "team": "DET",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 3
    },
    {
@@ -5052,14 +5044,6 @@
     "yearsExp": 2
    },
    {
-    "id": "12151",
-    "name": "Julian Hicks",
-    "pos": "WR",
-    "team": "SEA",
-    "injuryStatus": null,
-    "yearsExp": 2
-   },
-   {
     "id": "12154",
     "name": "Messiah Swinson",
     "pos": "TE",
@@ -6024,7 +6008,7 @@
     "name": "Luke Grimm",
     "pos": "WR",
     "team": "LAC",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "IR",
     "yearsExp": 1
    },
    {
@@ -6296,6 +6280,14 @@
     "name": "Roc Taylor",
     "pos": "WR",
     "team": "CAR",
+    "injuryStatus": null,
+    "yearsExp": 1
+   },
+   {
+    "id": "12975",
+    "name": "JJ Galbreath",
+    "pos": "TE",
+    "team": "IND",
     "injuryStatus": null,
     "yearsExp": 1
    },
@@ -6972,6 +6964,14 @@
     "yearsExp": 0
    },
    {
+    "id": "13326",
+    "name": "DT Sheffield",
+    "pos": "WR",
+    "team": "NYJ",
+    "injuryStatus": "IR",
+    "yearsExp": 0
+   },
+   {
     "id": "13328",
     "name": "Anthony Hankerson",
     "pos": "RB",
@@ -7160,7 +7160,7 @@
     "name": "Jeff Caldwell",
     "pos": "WR",
     "team": "KC",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -7184,7 +7184,7 @@
     "name": "Michael Trigg",
     "pos": "TE",
     "team": "DAL",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -8268,18 +8268,18 @@
     "yearsExp": 0
    },
    {
-    "id": "14064",
-    "name": "Roydell Williams",
-    "pos": "RB",
-    "team": "IND",
-    "injuryStatus": null,
-    "yearsExp": 0
-   },
-   {
     "id": "14067",
     "name": "Jeff Weimer",
     "pos": "WR",
     "team": "KC",
+    "injuryStatus": null,
+    "yearsExp": 0
+   },
+   {
+    "id": "14068",
+    "name": "Drew Biber",
+    "pos": "TE",
+    "team": "CLE",
     "injuryStatus": null,
     "yearsExp": 0
    },
