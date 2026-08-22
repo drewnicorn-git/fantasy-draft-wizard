@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-08-21T14:06:51.559Z",
+ "fetchedAt": "2026-08-22T13:44:00.923Z",
  "data": {
   "players": [
    {
@@ -2166,7 +2166,7 @@
     "name": "Lewis Bond",
     "team": "HOU",
     "pos": "WR",
-    "depth": 5
+    "depth": 12
    },
    {
     "name": "British Brooks",
@@ -2184,7 +2184,7 @@
     "name": "Tank Dell",
     "team": "HOU",
     "pos": "WR",
-    "depth": 8
+    "depth": 4
    },
    {
     "name": "Louis Hansen",
@@ -2193,22 +2193,16 @@
     "depth": 7
    },
    {
-    "name": "Jayden Higgins",
+    "name": "Xavier Hutchinson",
     "team": "HOU",
     "pos": "WR",
     "depth": 2
    },
    {
-    "name": "Xavier Hutchinson",
-    "team": "HOU",
-    "pos": "WR",
-    "depth": 3
-   },
-   {
     "name": "Jha'Quan Jackson",
     "team": "HOU",
     "pos": "WR",
-    "depth": 6
+    "depth": 10
    },
    {
     "name": "Brevin Jordan",
@@ -2226,7 +2220,7 @@
     "name": "Josh Kelly",
     "team": "HOU",
     "pos": "WR",
-    "depth": 9
+    "depth": 13
    },
    {
     "name": "Marlin Klein",
@@ -2262,7 +2256,7 @@
     "name": "Jaylin Noel",
     "team": "HOU",
     "pos": "WR",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Layne Pryor",
@@ -2280,7 +2274,7 @@
     "name": "Treyvhon Saunders",
     "team": "HOU",
     "pos": "WR",
-    "depth": 10
+    "depth": 14
    },
    {
     "name": "Dalton Schultz",
@@ -2292,7 +2286,7 @@
     "name": "Daniel Sobkowicz",
     "team": "HOU",
     "pos": "WR",
-    "depth": 13
+    "depth": 7
    },
    {
     "name": "Cade Stover",
@@ -2310,13 +2304,13 @@
     "name": "Justin Watson",
     "team": "HOU",
     "pos": "WR",
-    "depth": 11
+    "depth": 8
    },
    {
     "name": "Jared Wayne",
     "team": "HOU",
     "pos": "WR",
-    "depth": 12
+    "depth": 6
    },
    {
     "name": "Noah Whittington",
@@ -2328,13 +2322,13 @@
     "name": "Juwann Winfree",
     "team": "HOU",
     "pos": "WR",
-    "depth": 7
+    "depth": 11
    },
    {
     "name": "Owen Wright",
     "team": "HOU",
     "pos": "RB",
-    "depth": 7
+    "depth": 6
    },
    {
     "name": "Ka'imi Fairbairn",
@@ -2394,6 +2388,12 @@
     "team": "IND",
     "pos": "WR",
     "depth": 4
+   },
+   {
+    "name": "JJ Galbreath",
+    "team": "IND",
+    "pos": "TE",
+    "depth": 7
    },
    {
     "name": "DJ Giddens",
@@ -4382,13 +4382,13 @@
     "name": "Junior Bergen",
     "team": "NYJ",
     "pos": "WR",
-    "depth": 13
+    "depth": 12
    },
    {
     "name": "Cam Camper",
     "team": "NYJ",
     "pos": "WR",
-    "depth": 10
+    "depth": 9
    },
    {
     "name": "Brady Cook",
@@ -4436,13 +4436,13 @@
     "name": "Caullin Lacy",
     "team": "NYJ",
     "pos": "WR",
-    "depth": 9
+    "depth": 8
    },
    {
     "name": "Malik McClain",
     "team": "NYJ",
     "pos": "WR",
-    "depth": 12
+    "depth": 11
    },
    {
     "name": "Adonai Mitchell",
@@ -4460,7 +4460,7 @@
     "name": "Tim Patrick",
     "team": "NYJ",
     "pos": "WR",
-    "depth": 8
+    "depth": 7
    },
    {
     "name": "Jamaal Pritchett",
@@ -4496,7 +4496,7 @@
     "name": "Arian Smith",
     "team": "NYJ",
     "pos": "WR",
-    "depth": 11
+    "depth": 10
    },
    {
     "name": "Geno Smith",
@@ -4584,13 +4584,13 @@
     "name": "Darius Cooper",
     "team": "PHI",
     "pos": "WR",
-    "depth": 5
+    "depth": 10
    },
    {
     "name": "Britain Covey",
     "team": "PHI",
     "pos": "WR",
-    "depth": 8
+    "depth": 5
    },
    {
     "name": "Andy Dalton",
@@ -4602,7 +4602,7 @@
     "name": "Erik Ezukanma",
     "team": "PHI",
     "pos": "WR",
-    "depth": 12
+    "depth": 9
    },
    {
     "name": "Dallas Goedert",
@@ -4614,7 +4614,13 @@
     "name": "Danny Gray",
     "team": "PHI",
     "pos": "WR",
-    "depth": 9
+    "depth": 6
+   },
+   {
+    "name": "Brandon Hayes",
+    "team": "PHI",
+    "pos": "WR",
+    "depth": 12
    },
    {
     "name": "Jalen Hurts",
@@ -4710,25 +4716,19 @@
     "name": "Samori Toure",
     "team": "PHI",
     "pos": "WR",
-    "depth": 6
+    "depth": 11
    },
    {
     "name": "Quez Watkins",
     "team": "PHI",
     "pos": "WR",
-    "depth": 11
+    "depth": 8
    },
    {
     "name": "Dontayvion Wicks",
     "team": "PHI",
     "pos": "WR",
     "depth": 2
-   },
-   {
-    "name": "Johnny Wilson",
-    "team": "PHI",
-    "pos": "WR",
-    "depth": 10
    },
    {
     "name": "Jake Elliott",
@@ -5550,12 +5550,6 @@
     "team": "TEN",
     "pos": "WR",
     "depth": 5
-   },
-   {
-    "name": "Matt Lauter",
-    "team": "TEN",
-    "pos": "TE",
-    "depth": 6
    },
    {
     "name": "Will Levis",
