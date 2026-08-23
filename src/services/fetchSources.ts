@@ -68,7 +68,13 @@ const ESPN_TEAM_MAP: Record<number, string> = {
 
 export async function fetchEspnRankings(season: number): Promise<RawPlayerRow[]> {
   const url = `https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/${season}/segments/0/leaguedefaults/3?view=kona_player_info`;
-  const filter = { players: { limit: 400, sortAdp: { sortAsc: true, sortPriority: 1 } } };
+  const filter = {
+    players: {
+      limit: 500,
+      sortDraftRanks: { sortPriority: 1, sortAsc: true, value: 'PPR' },
+      filterRanksForRankTypes: { value: ['PPR'] },
+    },
+  };
   const res = await fetch(url, {
     headers: {
       'X-Fantasy-Filter': JSON.stringify(filter),
@@ -84,19 +90,33 @@ export async function fetchEspnRankings(season: number): Promise<RawPlayerRow[]>
         defaultPositionId: number;
         proTeamId: number;
         ownership?: { averageDraftPosition?: number };
+        draftRanksByRankType?: { PPR?: { rank?: number } };
       };
     }>;
   };
   if (!Array.isArray(json.players) || json.players.length < 150) {
     throw new Error(`ESPN fantasy API: too few players (${json.players?.length ?? 0})`);
   }
-  return json.players.map(({ player: p }, idx) => ({
-    name: p.fullName,
-    pos: ESPN_POSITION_MAP[p.defaultPositionId] ?? 'UNK',
-    team: ESPN_TEAM_MAP[p.proTeamId] ?? 'FA',
-    adp: p.ownership?.averageDraftPosition ?? null,
-    rank: idx + 1,
-  }));
+
+  const rows: RawPlayerRow[] = [];
+  for (const { player: p } of json.players) {
+    const rank = p.draftRanksByRankType?.PPR?.rank;
+    if (typeof rank !== 'number' || rank <= 0) continue;
+    rows.push({
+      name: p.fullName,
+      pos: ESPN_POSITION_MAP[p.defaultPositionId] ?? 'UNK',
+      team: ESPN_TEAM_MAP[p.proTeamId] ?? 'FA',
+      adp: p.ownership?.averageDraftPosition ?? null,
+      rank,
+    });
+  }
+  rows.sort((a, b) => (a.rank ?? 0) - (b.rank ?? 0));
+
+  if (rows.length < 150) {
+    throw new Error(`ESPN fantasy API: too few ranked players (${rows.length})`);
+  }
+
+  return rows;
 }
 
 export async function fetchSleeperAdp(season: number): Promise<RawPlayerRow[]> {

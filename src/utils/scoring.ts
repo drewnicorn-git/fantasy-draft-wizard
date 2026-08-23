@@ -99,7 +99,7 @@ export const POSITIONS = ['ALL', 'QB', 'RB', 'WR', 'TE', 'FLEX', 'K', 'DST'] as 
 
 export const SOURCE_LABELS: Record<SourceKey, string> = {
   fantasypros: 'FantasyPros',
-  espn: 'ESPN',
+  espn: 'ESPN PPR',
   sleeper: 'Sleeper',
   ffc: 'Fantasy Calc',
   yahoo: 'Yahoo',
