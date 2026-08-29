@@ -52,7 +52,6 @@ let draft: DraftState | null = null;
 let listenersAttached = false;
 let botTimer: ReturnType<typeof setTimeout> | null = null;
 let countdownTimer: ReturnType<typeof setInterval> | null = null;
-let pickListClickHandler: ((e: Event) => void) | null = null;
 
 function persistDraft(phase: MockDraftPhase): void {
   if (!draft) {
@@ -243,7 +242,6 @@ function returnToMockSetup(root: HTMLElement, allPlayers: Player[]): void {
   clearMockDraft();
   draft = null;
   listenersAttached = false;
-  pickListClickHandler = null;
   (root.querySelector('#draft-active') as HTMLElement).classList.add('hidden');
   (root.querySelector('#draft-summary') as HTMLElement).classList.add('hidden');
   (root.querySelector('#draft-alerts') as HTMLElement).innerHTML = '';
@@ -255,7 +253,6 @@ export function resetMockDraftModuleState(): void {
   clearTimers();
   draft = null;
   listenersAttached = false;
-  pickListClickHandler = null;
 }
 
 function clearTimers(): void {
@@ -274,12 +271,22 @@ function renderDraftBoardPanel(root: HTMLElement, allPlayers: Player[]): void {
   });
 }
 
-let panelRefreshOpts: { showPredictor?: boolean; currentPick?: number; picksUntilNext?: number } = {};
+let panelRefreshOpts: {
+  showPredictor?: boolean;
+  currentPick?: number;
+  picksUntilNext?: number;
+  onPlayerPick?: (playerId: string) => void;
+} = {};
 
 function renderPlayerTable(
   root: HTMLElement,
   allPlayers: Player[],
-  opts: { showPredictor?: boolean; currentPick?: number; picksUntilNext?: number },
+  opts: {
+    showPredictor?: boolean;
+    currentPick?: number;
+    picksUntilNext?: number;
+    onPlayerPick?: (playerId: string) => void;
+  },
 ): void {
   if (!draft) return;
   const cfg = state.draftConfig;
@@ -294,6 +301,7 @@ function renderPlayerTable(
       picksUntilNext: opts.picksUntilNext,
       draftedIds: draft.draftedIds,
       showCompare: true,
+      onPlayerPick: opts.onPlayerPick,
     });
   });
 }
@@ -301,7 +309,12 @@ function renderPlayerTable(
 function renderPlayerPanel(
   root: HTMLElement,
   allPlayers: Player[],
-  opts: { showPredictor?: boolean; currentPick?: number; picksUntilNext?: number },
+  opts: {
+    showPredictor?: boolean;
+    currentPick?: number;
+    picksUntilNext?: number;
+    onPlayerPick?: (playerId: string) => void;
+  },
 ): void {
   panelRefreshOpts = opts;
   mountPlayerSearch(root.querySelector('#pick-list-search') as HTMLElement, () => {
@@ -474,7 +487,11 @@ function scheduleBotPick(
 }
 
 function makePick(player: Player, teamIndex: number, round: number, pickInRound: number, overall: number): void {
-  if (!draft) return;
+  if (!draft || draft.finished) return;
+  const order = snakePickOrder(state.draftConfig);
+  if (draft.currentIndex >= order.length) return;
+  if (order[draft.currentIndex] !== teamIndex) return;
+  if (draft.draftedIds.has(player.id)) return;
   draft.history.push([...draft.picks]);
   draft.picks.push({
     round,
@@ -507,12 +524,13 @@ function renderUserTurn(
 
   const userRoster = getMockTeamRoster(cfg.slot - 1, allPlayers);
   const availableForAdvice = filterPlayers(allPlayers, draft.draftedIds, { uiFilters: false });
-  const advice = getDraftAdvice(draft.picks, userRoster, availableForAdvice, overall, cfg);
+  const advice = getDraftAdvice(draft.picks, userRoster, availableForAdvice, overall, cfg, { style: 'vorp' });
+  const pickPlayer = (playerId: string): void => {
+    const player = allPlayers.find((p) => p.id === playerId);
+    if (player) userPick(root, allPlayers, player, round, pickInRound, overall);
+  };
   renderDraftAdvicePanel(root.querySelector('#draft-alerts') as HTMLElement, advice, {
-    onPick: (playerId) => {
-      const player = allPlayers.find((p) => p.id === playerId);
-      if (player) userPick(root, allPlayers, player, round, pickInRound, overall);
-    },
+    onPick: pickPlayer,
   });
 
   renderDraftBoardPanel(root, allPlayers);
@@ -520,32 +538,8 @@ function renderUserTurn(
     showPredictor: true,
     currentPick: overall,
     picksUntilNext: untilNext,
+    onPlayerPick: pickPlayer,
   });
-
-  root.querySelectorAll('.pick-btn').forEach((el) => {
-    el.addEventListener('click', (e) => {
-      const id = (el as HTMLElement).dataset.id;
-      if (!id) return;
-      const player = allPlayers.find((p) => p.id === id);
-      if (!player) return;
-      e.stopPropagation();
-      userPick(root, allPlayers, player, round, pickInRound, overall);
-    });
-  });
-
-  const pickList = root.querySelector('#pick-list') as HTMLElement;
-  const tbody = pickList.querySelector('tbody');
-  if (tbody) {
-    if (pickListClickHandler) tbody.removeEventListener('click', pickListClickHandler);
-    pickListClickHandler = (e) => {
-      const tr = (e.target as HTMLElement).closest('tr[data-id]');
-      if (!tr) return;
-      const id = tr.getAttribute('data-id')!;
-      const player = allPlayers.find((p) => p.id === id);
-      if (player) userPick(root, allPlayers, player, round, pickInRound, overall);
-    };
-    tbody.addEventListener('click', pickListClickHandler);
-  }
 }
 
 function userPick(

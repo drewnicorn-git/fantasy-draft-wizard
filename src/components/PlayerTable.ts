@@ -184,6 +184,7 @@ function buildPlayerTableColgroup(options: {
   sourceCount: number;
   showDeltaCol: boolean;
   showPredictorCol: boolean;
+  showDraftCol: boolean;
 }): string {
   const widths: number[] = [80];
   if (options.showCompareCol) widths.push(46);
@@ -197,6 +198,7 @@ function buildPlayerTableColgroup(options: {
   if (options.showDeltaCol) widths.push(128);
   widths.push(54, 46, 46); // consensus, proj, adp
   if (options.showPredictorCol) widths.push(46);
+  if (options.showDraftCol) widths.push(58);
 
   const cols = widths.map((width) => `<col style="width:${width}px">`).join('');
   return `<colgroup>${cols}</colgroup>`;
@@ -506,6 +508,8 @@ export function renderRankingsTable(
 
   const showPickSpots = !showPredictorCol && !isMockDraft;
 
+  const showDraftCol = isMockDraft && !!opts.onPlayerPick;
+
   const { teams, slot, rounds } = state.draftConfig;
 
   const draftOverall = opts.draftOverall ?? 1;
@@ -571,6 +575,8 @@ export function renderRankingsTable(
       ${sortHeader('ADP', 'adp', tableSort)}
 
       ${showPredictorCol ? sortHeader('Avail%', 'avail', tableSort) : ''}
+
+      ${showDraftCol ? '<th class="draft-col">Draft</th>' : ''}
 
     </tr></thead>`;
 
@@ -681,6 +687,8 @@ export function renderRankingsTable(
 
         ${showPredictorCol ? `<td>${avail != null ? `${avail}%` : '—'}</td>` : ''}
 
+        ${showDraftCol ? `<td class="draft-cell"><button type="button" class="btn primary btn-xs mock-draft-pick-btn" data-mock-draft-pick="${escapeHtml(p.id)}" aria-label="Draft ${escapeHtml(p.name)}">Draft</button></td>` : ''}
+
       </tr>`;
 
     })
@@ -698,6 +706,7 @@ export function renderRankingsTable(
     sourceCount: sources.length,
     showDeltaCol,
     showPredictorCol,
+    showDraftCol,
   });
 
   container.innerHTML = `<div class="table-wrap player-table-wrap"><table class="player-table">${colgroup}${thead}<tbody>${rows}</tbody></table></div>`;
@@ -899,6 +908,24 @@ export function renderRankingsTable(
         if ((e.target as HTMLElement).closest('select, input')) return;
 
         opts.onPlayerPick!((row as HTMLElement).dataset.id!);
+
+      });
+
+    });
+
+  }
+
+
+
+  if (opts.mode === 'mock-draft' && opts.onPlayerPick) {
+
+    container.querySelectorAll<HTMLButtonElement>('[data-mock-draft-pick]').forEach((btn) => {
+
+      btn.addEventListener('click', (e) => {
+
+        e.stopPropagation();
+
+        opts.onPlayerPick!(btn.dataset.mockDraftPick!);
 
       });
 

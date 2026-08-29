@@ -36,25 +36,7 @@ const ARCHETYPE_DEFAULTS: Record<
   homer: { reachFactor: 1.1, adpAdherence: 0.85, homerTeams: [] },
 };
 
-/** Rotate archetypes so the mock room is not uniform. */
-const DEFAULT_ROTATION: BotArchetype[] = [
-  'sharp',
-  'balanced',
-  'early-qb',
-  'zero-rb',
-  'reachy',
-  'hero-rb',
-  'balanced',
-  'early-te',
-  'sharp',
-  'homer',
-  'balanced',
-  'reachy',
-  'zero-rb',
-  'sharp',
-];
-
-export function createBotProfile(teamIndex: number, archetype: BotArchetype = 'balanced'): BotProfile {
+export function createBotProfile(teamIndex: number, archetype: BotArchetype = 'sharp'): BotProfile {
   const defaults = ARCHETYPE_DEFAULTS[archetype];
   return {
     teamIndex,
@@ -68,12 +50,9 @@ export function createBotProfile(teamIndex: number, archetype: BotArchetype = 'b
 
 export function defaultBotProfiles(teams: number, userSlot: number): BotProfile[] {
   const profiles: BotProfile[] = [];
-  let rot = 0;
   for (let t = 0; t < teams; t++) {
     if (t === userSlot - 1) continue;
-    const archetype = DEFAULT_ROTATION[rot % DEFAULT_ROTATION.length];
-    rot++;
-    profiles.push(createBotProfile(t, archetype));
+    profiles.push(createBotProfile(t, 'sharp'));
   }
   return profiles;
 }
@@ -97,7 +76,7 @@ export function normalizeBotProfiles(
 }
 
 export function getBotProfileForTeam(profiles: BotProfile[], teamIndex: number): BotProfile {
-  return profiles.find((p) => p.teamIndex === teamIndex) ?? createBotProfile(teamIndex, 'balanced');
+  return profiles.find((p) => p.teamIndex === teamIndex) ?? createBotProfile(teamIndex, 'sharp');
 }
 
 /** Map archetype to legacy roster-need personality hook. */

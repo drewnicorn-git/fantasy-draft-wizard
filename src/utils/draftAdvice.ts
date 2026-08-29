@@ -13,7 +13,12 @@ export interface DraftAdvice {
   alerts: string[];
   recommendation: string;
   suggestedPicks: Player[];
-  vorpLine?: string;
+}
+
+export type DraftAdviceStyle = 'classic' | 'vorp';
+
+export interface DraftAdviceOptions {
+  style?: DraftAdviceStyle;
 }
 
 const RUN_POSITIONS = ['RB', 'WR', 'TE', 'QB'] as const;
@@ -273,6 +278,40 @@ export function buildDraftAlerts(
   return alerts;
 }
 
+function buildVorpRecommendation(
+  available: Player[],
+  config: DraftConfig,
+  levels: ReturnType<typeof computeReplacementLevels>,
+): string {
+  const ranked = [...available]
+    .map((p) => ({ p, vorp: playerVorp(p, levels, config.scoringSettings) }))
+    .filter((x) => x.vorp != null && x.vorp > 0)
+    .sort((a, b) => (b.vorp ?? 0) - (a.vorp ?? 0));
+
+  if (!ranked.length) return 'No VORP projection available — use consensus or ADP.';
+
+  const top = ranked[0];
+  if (ranked.length >= 2) {
+    const second = ranked[1];
+    return `Take ${top.p.name} (${formatVorp(top.vorp)}) — best VORP over ${second.p.name} (${formatVorp(second.vorp)}).`;
+  }
+  return `Take ${top.p.name} (${formatVorp(top.vorp)}) — highest VORP available.`;
+}
+
+function vorpSuggestedPicks(
+  available: Player[],
+  config: DraftConfig,
+  limit = 3,
+): Player[] {
+  const levels = computeReplacementLevels(available, config, config.scoringSettings);
+  return [...available]
+    .map((p) => ({ p, vorp: playerVorp(p, levels, config.scoringSettings) }))
+    .filter((x) => x.vorp != null && x.vorp > 0)
+    .sort((a, b) => (b.vorp ?? 0) - (a.vorp ?? 0))
+    .slice(0, limit)
+    .map((x) => x.p);
+}
+
 export function userSuggestedPicks(
   available: Player[],
   roster: Player[],
@@ -350,7 +389,9 @@ export function getDraftAdvice(
   available: Player[],
   overall: number,
   config: DraftConfig,
+  options: DraftAdviceOptions = {},
 ): DraftAdvice {
+  const style = options.style ?? 'classic';
   const projectedRankMap = projectedRankMapFor(available);
   const levels = computeReplacementLevels(available, config, config.scoringSettings);
   const criticalTarget = getCriticalTarget(
@@ -362,31 +403,27 @@ export function getDraftAdvice(
     projectedRankMap,
   );
 
-  const topVorp = [...available]
-    .map((p) => ({ p, vorp: playerVorp(p, levels, config.scoringSettings) }))
-    .filter((x) => x.vorp != null && x.vorp > 0)
-    .sort((a, b) => (b.vorp ?? 0) - (a.vorp ?? 0))
-    .slice(0, 2);
+  const recommendation =
+    style === 'vorp'
+      ? buildVorpRecommendation(available, config, levels)
+      : recommendPosition(available, overall, config, criticalTarget, projectedRankMap);
 
-  const vorpLine =
-    topVorp.length >= 2
-      ? `VORP: ${topVorp[0].p.name} (${formatVorp(topVorp[0].vorp)}) vs ${topVorp[1].p.name} (${formatVorp(topVorp[1].vorp)})`
-      : topVorp.length === 1
-        ? `Top VORP: ${topVorp[0].p.name} (${formatVorp(topVorp[0].vorp)})`
-        : undefined;
+  const suggestedPicks =
+    style === 'vorp'
+      ? vorpSuggestedPicks(available, config)
+      : userSuggestedPicks(
+          available,
+          userRoster,
+          overall,
+          config,
+          criticalTarget,
+          projectedRankMap,
+        );
 
   return {
     alerts: buildDraftAlerts(allPicks, userRoster, overall, config, criticalTarget),
-    recommendation: recommendPosition(available, overall, config, criticalTarget, projectedRankMap),
-    suggestedPicks: userSuggestedPicks(
-      available,
-      userRoster,
-      overall,
-      config,
-      criticalTarget,
-      projectedRankMap,
-    ),
-    vorpLine,
+    recommendation,
+    suggestedPicks,
   };
 }
 
@@ -415,7 +452,6 @@ export function renderDraftAdvicePanel(
   container.innerHTML = `
     <div class="draft-advice-panel">
       ${advice.recommendation ? `<div class="alert alert-info"><strong>Recommendation:</strong> ${escapeHtml(advice.recommendation)}</div>` : ''}
-      ${advice.vorpLine ? `<div class="alert muted">${escapeHtml(advice.vorpLine)}</div>` : ''}
       ${alertsHtml ? `<div class="draft-alert-list">${alertsHtml}</div>` : ''}
       ${suggestionHtml}
     </div>`;
