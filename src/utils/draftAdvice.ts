@@ -8,11 +8,21 @@ import { byeWeekConflicts, detectPositionalRun } from './analytics';
 import { computeReplacementLevels, formatVorp, playerVorp } from './vorp';
 import { picksUntilNextUserPick, roundFromOverall } from '../sim/snake';
 import { escapeHtml } from './escapeHtml';
+import { posCssClass } from './position';
+
+export interface PositionVorpPick {
+  pos: string;
+  player: Player;
+  vorp: number;
+  adp: number | null;
+}
 
 export interface DraftAdvice {
   alerts: string[];
   recommendation: string;
   suggestedPicks: Player[];
+  vorpByPosition?: PositionVorpPick[];
+  bestOverallVorp?: PositionVorpPick;
 }
 
 export type DraftAdviceStyle = 'classic' | 'vorp';
@@ -278,16 +288,45 @@ export function buildDraftAlerts(
   return alerts;
 }
 
-function buildVorpRecommendation(
+const VORP_POSITIONS = ['QB', 'RB', 'WR', 'TE'] as const;
+
+function rankPlayersByVorp(
   available: Player[],
   config: DraftConfig,
   levels: ReturnType<typeof computeReplacementLevels>,
-): string {
-  const ranked = [...available]
+): { p: Player; vorp: number }[] {
+  return [...available]
     .map((p) => ({ p, vorp: playerVorp(p, levels, config.scoringSettings) }))
-    .filter((x) => x.vorp != null && x.vorp > 0)
-    .sort((a, b) => (b.vorp ?? 0) - (a.vorp ?? 0));
+    .filter((x): x is { p: Player; vorp: number } => x.vorp != null && x.vorp > 0)
+    .sort((a, b) => b.vorp - a.vorp);
+}
 
+function buildVorpByPosition(
+  available: Player[],
+  config: DraftConfig,
+  levels: ReturnType<typeof computeReplacementLevels>,
+): PositionVorpPick[] {
+  const scoring = config.scoring;
+  const picks: PositionVorpPick[] = [];
+  for (const pos of VORP_POSITIONS) {
+    const best = available
+      .filter((p) => p.pos === pos)
+      .map((p) => ({ p, vorp: playerVorp(p, levels, config.scoringSettings) }))
+      .filter((x): x is { p: Player; vorp: number } => x.vorp != null && x.vorp > 0)
+      .sort((a, b) => b.vorp - a.vorp)[0];
+    if (best) {
+      picks.push({
+        pos,
+        player: best.p,
+        vorp: best.vorp,
+        adp: getAdp(best.p, scoring) ?? null,
+      });
+    }
+  }
+  return picks.sort((a, b) => b.vorp - a.vorp);
+}
+
+function buildVorpRecommendation(ranked: { p: Player; vorp: number }[]): string {
   if (!ranked.length) return 'No VORP projection available — use consensus or ADP.';
 
   const top = ranked[0];
@@ -298,18 +337,16 @@ function buildVorpRecommendation(
   return `Take ${top.p.name} (${formatVorp(top.vorp)}) — highest VORP available.`;
 }
 
-function vorpSuggestedPicks(
-  available: Player[],
+function toOverallVorpPick(
+  entry: { p: Player; vorp: number },
   config: DraftConfig,
-  limit = 3,
-): Player[] {
-  const levels = computeReplacementLevels(available, config, config.scoringSettings);
-  return [...available]
-    .map((p) => ({ p, vorp: playerVorp(p, levels, config.scoringSettings) }))
-    .filter((x) => x.vorp != null && x.vorp > 0)
-    .sort((a, b) => (b.vorp ?? 0) - (a.vorp ?? 0))
-    .slice(0, limit)
-    .map((x) => x.p);
+): PositionVorpPick {
+  return {
+    pos: String(entry.p.pos),
+    player: entry.p,
+    vorp: entry.vorp,
+    adp: getAdp(entry.p, config.scoring) ?? null,
+  };
 }
 
 export function userSuggestedPicks(
@@ -405,25 +442,35 @@ export function getDraftAdvice(
 
   const recommendation =
     style === 'vorp'
-      ? buildVorpRecommendation(available, config, levels)
+      ? buildVorpRecommendation(rankPlayersByVorp(available, config, levels))
       : recommendPosition(available, overall, config, criticalTarget, projectedRankMap);
 
-  const suggestedPicks =
-    style === 'vorp'
-      ? vorpSuggestedPicks(available, config)
-      : userSuggestedPicks(
-          available,
-          userRoster,
-          overall,
-          config,
-          criticalTarget,
-          projectedRankMap,
-        );
+  let vorpByPosition: PositionVorpPick[] | undefined;
+  let bestOverallVorp: PositionVorpPick | undefined;
+  let suggestedPicks: Player[];
+
+  if (style === 'vorp') {
+    vorpByPosition = buildVorpByPosition(available, config, levels);
+    const ranked = rankPlayersByVorp(available, config, levels);
+    bestOverallVorp = ranked[0] ? toOverallVorpPick(ranked[0], config) : undefined;
+    suggestedPicks = vorpByPosition.map((x) => x.player);
+  } else {
+    suggestedPicks = userSuggestedPicks(
+      available,
+      userRoster,
+      overall,
+      config,
+      criticalTarget,
+      projectedRankMap,
+    );
+  }
 
   return {
     alerts: buildDraftAlerts(allPicks, userRoster, overall, config, criticalTarget),
     recommendation,
     suggestedPicks,
+    vorpByPosition,
+    bestOverallVorp,
   };
 }
 
@@ -434,8 +481,45 @@ export function renderDraftAdvicePanel(
 ): void {
   const showSuggestions = opts.showSuggestions ?? !!opts.onPick;
   const alertsHtml = advice.alerts.map((a) => `<div class="alert">${escapeHtml(a)}</div>`).join('');
+
+  const vorpPositionHtml =
+    advice.vorpByPosition?.length
+      ? `<div class="vorp-by-position">
+          <h4>Best VORP by position</h4>
+          <p class="hint vorp-hint">Raw VORP measures value over replacement, not roster need — compare ADP across positions below.</p>
+          <div class="vorp-position-grid">
+            ${advice.vorpByPosition
+              .map((entry) => {
+                const adpLabel = entry.adp != null ? `ADP ${entry.adp.toFixed(1)}` : 'ADP —';
+                const pickBtn = opts.onPick
+                  ? `<button type="button" class="chip pick-btn vorp-pick-btn" data-id="${escapeHtml(entry.player.id)}">Draft</button>`
+                  : '';
+                return `<div class="vorp-position-card ${posCssClass(entry.pos)}">
+                  <span class="pos-badge ${posCssClass(entry.pos)}">${escapeHtml(entry.pos)}</span>
+                  <span class="vorp-player-name">${escapeHtml(entry.player.name)}</span>
+                  <span class="vorp-metrics">${formatVorp(entry.vorp)} · ${escapeHtml(adpLabel)}</span>
+                  ${pickBtn}
+                </div>`;
+              })
+              .join('')}
+          </div>
+        </div>`
+      : '';
+
+  const overallVorpHtml =
+    advice.bestOverallVorp
+      ? `<div class="alert alert-info vorp-overall">
+          <strong>Overall best VORP:</strong>
+          ${escapeHtml(advice.bestOverallVorp.player.name)}
+          (${escapeHtml(String(advice.bestOverallVorp.pos))}, ${formatVorp(advice.bestOverallVorp.vorp)}${advice.bestOverallVorp.adp != null ? `, ADP ${advice.bestOverallVorp.adp.toFixed(1)}` : ''})
+          ${opts.onPick ? `<button type="button" class="chip pick-btn vorp-pick-btn" data-id="${escapeHtml(advice.bestOverallVorp.player.id)}">Draft</button>` : ''}
+        </div>`
+      : advice.recommendation
+        ? `<div class="alert alert-info"><strong>Overall best VORP:</strong> ${escapeHtml(advice.recommendation)}</div>`
+        : '';
+
   const suggestionHtml =
-    showSuggestions && advice.suggestedPicks.length
+    showSuggestions && advice.suggestedPicks.length && !advice.vorpByPosition?.length
       ? `<div class="draft-suggestions">
           <h4>Suggested picks</h4>
           <div class="suggestion-chips">
@@ -451,7 +535,8 @@ export function renderDraftAdvicePanel(
 
   container.innerHTML = `
     <div class="draft-advice-panel">
-      ${advice.recommendation ? `<div class="alert alert-info"><strong>Recommendation:</strong> ${escapeHtml(advice.recommendation)}</div>` : ''}
+      ${vorpPositionHtml}
+      ${overallVorpHtml}
       ${alertsHtml ? `<div class="draft-alert-list">${alertsHtml}</div>` : ''}
       ${suggestionHtml}
     </div>`;

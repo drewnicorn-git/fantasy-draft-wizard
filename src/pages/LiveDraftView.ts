@@ -152,12 +152,10 @@ function renderLiveDraftAdvice(adviceEl: HTMLElement, root: HTMLElement, allPlay
   const isYou = teamIndex === cfg.slot - 1;
   const userRoster = getLiveTeamRoster(cfg.slot - 1, allPlayers);
   const available = filterPlayers(allPlayers, liveDraft.draftedIds, { uiFilters: false });
-  const advice = getDraftAdvice(liveDraft.picks, userRoster, available, overall, cfg);
+  const advice = getDraftAdvice(liveDraft.picks, userRoster, available, overall, cfg, { style: 'vorp' });
 
   if (!isYou) {
-    renderDraftAdvicePanel(adviceEl, { ...advice, recommendation: '', suggestedPicks: [] }, {
-      showSuggestions: false,
-    });
+    renderDraftAdvicePanel(adviceEl, advice, { showSuggestions: false });
     return;
   }
 
