@@ -13,6 +13,7 @@ import type {
   TagDefinition,
 } from '../data/types';
 import { DEFAULT_ROSTER_POSITIONS } from '../data/types';
+import { defaultBotProfiles } from '../sim/botProfiles';
 import { LEAGUES_STORE_VERSION } from '../state/leaguesStore';
 import { scoringSettingsFromLegacyFormat } from '../utils/leagueSettings';
 
@@ -156,6 +157,9 @@ export function buildLegacyLeagueProfile(name = 'My league'): LeagueProfile {
       rosterPositions: { ...DEFAULT_ROSTER_POSITIONS },
     },
     botPersonality: 'balanced',
+    botProfiles: defaultBotProfiles(draftConfig.teams, draftConfig.slot),
+    adpPlatform: 'consensus',
+    mockDraftSpeed: 'normal',
     selectedSources,
     customTagDefinitions,
     playerTags: readJson<Record<string, string>>('fdw-player-tags', {}),

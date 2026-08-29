@@ -1,7 +1,10 @@
-import type { BotPersonality, DraftConfig, Player } from '../data/types';
+import type { BotProfile, DraftConfig, DraftPick, Player } from '../data/types';
 import { DEFAULT_ROSTER_POSITIONS } from '../data/types';
-import { getAdp, getConsensus, getPosRank, getProjectedPoints } from '../utils/scoring';
+import { getConsensus, getPlatformAdp, getPosRank, getProjectedPoints } from '../utils/scoring';
 import { getBotRosterLimits, type BotRosterLimits } from '../utils/leagueSettings';
+import { computeReplacementLevels, playerVorp } from '../utils/vorp';
+import { detectPositionalRun } from '../utils/analytics';
+import { archetypeToPersonality } from './botProfiles';
 import { roundFromOverall } from './snake';
 
 export interface RosterCounts {
@@ -52,8 +55,9 @@ export function rosterNeedScore(
   pos: string,
   counts: RosterCounts,
   round: number,
-  personality: BotPersonality,
+  personality: ReturnType<typeof archetypeToPersonality>,
   limits: BotRosterLimits = ROSTER_LIMITS,
+  profile?: BotProfile,
 ): number {
   if (limits.K === 0 && pos === 'K') return 0;
   if (limits.DST === 0 && pos === 'DST') return 0;
@@ -74,15 +78,20 @@ export function rosterNeedScore(
   let need = 1;
 
   switch (pos) {
-    case 'QB':
-      if (round <= 2) need = limits.SUPERFLEX > 0 ? 0.75 : 0.55;
+    case 'QB': {
+      const qbTarget = profile?.qbTargetRound ?? (profile?.archetype === 'early-qb' ? 2 : undefined);
+      if (qbTarget != null && round <= qbTarget && counts.QB < maxQbSlots(limits)) {
+        need = 1.45;
+      } else if (round <= 2) need = limits.SUPERFLEX > 0 ? 0.75 : 0.55;
       else if (round <= 4) need = 1.05;
       else if (round <= 7) need = 1.3;
       else if (round <= 10) need = 1.5;
       else need = 1.85;
       break;
+    }
     case 'TE':
-      if (round <= 2) need = 0.95;
+      if (profile?.archetype === 'early-te' && round <= 5 && counts.TE < limits.TE) need = 1.35;
+      else if (round <= 2) need = 0.95;
       else if (round <= 5) need = 1.1;
       else if (round <= 8) need = 1;
       else if (round <= 11) need = 1.25;
@@ -111,7 +120,7 @@ export function rosterNeedScore(
 
 function positionalTierBoost(p: Player, teams: number, config: DraftConfig): number {
   const posRank = getPosRank(p, config.scoring);
-  const adp = getAdp(p, config.scoring) ?? getConsensus(p, config.scoring);
+  const adp = getPlatformAdp(p, config.adpPlatform ?? 'consensus', config.scoring) ?? getConsensus(p, config.scoring);
   if (posRank == null || adp == null) return 1;
 
   const adpRound = adp / teams;
@@ -131,12 +140,37 @@ function positionalTierBoost(p: Player, teams: number, config: DraftConfig): num
   return 1;
 }
 
-function reachMultiplier(adp: number, overallPick: number): number {
+function reachMultiplier(adp: number, overallPick: number, reachFactor: number): number {
   const diff = adp - overallPick;
-  if (diff > 18) return 0.5;
-  if (diff > 12) return 0.72;
-  if (diff < -18) return 1.12;
-  if (diff < -8) return 1.06;
+  let mult = 1;
+  if (diff > 18) mult = 0.5;
+  else if (diff > 12) mult = 0.72;
+  else if (diff < -18) mult = 1.12;
+  else if (diff < -8) mult = 1.06;
+  if (diff < 0) mult *= reachFactor;
+  else if (diff > 0) mult /= reachFactor;
+  return mult;
+}
+
+function adpScore(p: Player, overallPick: number, config: DraftConfig, adpAdherence: number): number {
+  const platform = config.adpPlatform ?? 'consensus';
+  const adp = getPlatformAdp(p, platform, config.scoring) ?? 999;
+  const diff = adp - overallPick;
+  const proximity = Math.exp(-Math.abs(diff) / 24);
+  const reachBonus = diff < -6 ? 1 + Math.min(0.35, (-diff / 40) * adpAdherence) : 1;
+  const waitPenalty = diff > 12 ? 0.65 : 1;
+  return proximity * reachBonus * waitPenalty * (0.65 + adpAdherence * 0.35);
+}
+
+function homerBoost(p: Player, profile: BotProfile): number {
+  const teams = profile.homerTeams ?? [];
+  if (!teams.length) return 1;
+  return teams.includes(p.team) ? 1.28 : 1;
+}
+
+function runReactionBoost(p: Player, recentPicks: DraftPick[]): number {
+  if (!['RB', 'WR', 'TE', 'QB'].includes(p.pos)) return 1;
+  if (detectPositionalRun(recentPicks, p.pos, 4, 3)) return 1.12;
   return 1;
 }
 
@@ -146,17 +180,29 @@ function playerPickScore(
   round: number,
   counts: RosterCounts,
   config: DraftConfig,
-  personality: BotPersonality,
+  profile: BotProfile,
   limits: BotRosterLimits,
+  vorpWeight: number,
+  vorp: number | null,
 ): number {
-  const projected = getProjectedPoints(p);
-  const adp = projected ?? getAdp(p, config.scoring) ?? getConsensus(p, config.scoring) ?? 999;
-  const adpScore = projected != null ? projected / 320 : Math.exp(-adp / 75);
-  const need = rosterNeedScore(p.pos, counts, round, personality, limits);
+  const personality = archetypeToPersonality(profile.archetype);
+  const need = rosterNeedScore(p.pos, counts, round, personality, limits, profile);
   const tierBoost = positionalTierBoost(p, config.teams, config);
-  const reach = reachMultiplier(adp, overallPick);
-  const noise = 0.88 + Math.random() * 0.24;
-  return adpScore * need * tierBoost * reach * noise;
+  const platform = config.adpPlatform ?? 'consensus';
+  const adp = getPlatformAdp(p, platform, config.scoring) ?? getConsensus(p, config.scoring) ?? 999;
+  const reach = reachMultiplier(adp, overallPick, profile.reachFactor);
+  const adpPart = adpScore(p, overallPick, config, profile.adpAdherence);
+
+  const projected = getProjectedPoints(p);
+  const baseValue =
+    vorp != null && vorp > 0
+      ? vorp * vorpWeight + adpPart * profile.adpAdherence
+      : projected != null
+        ? projected / 320
+        : Math.exp(-adp / 75);
+
+  const noise = profile.archetype === 'sharp' ? 1 : 0.9 + Math.random() * 0.2;
+  return baseValue * need * tierBoost * reach * homerBoost(p, profile) * noise;
 }
 
 export function botPick(
@@ -164,11 +210,14 @@ export function botPick(
   roster: Player[],
   overallPick: number,
   config: DraftConfig,
-  personality: BotPersonality,
+  profile: BotProfile,
+  recentPicks: DraftPick[] = [],
 ): Player | null {
   const { round } = roundFromOverall(overallPick, config.teams);
   const counts = countRoster(roster);
   const limits = resolveRosterLimits(config);
+  const levels = computeReplacementLevels(available, config, config.scoringSettings);
+  const vorpWeight = profile.archetype === 'sharp' ? 0.55 : 1;
 
   const pool = available.filter((p) => {
     if (p.pos === 'K') return limits.K > 0;
@@ -178,13 +227,23 @@ export function botPick(
   if (!pool.length) return available[0] ?? null;
 
   const scored = pool
-    .map((p) => ({
-      p,
-      score: playerPickScore(p, overallPick, round, counts, config, personality, limits),
-    }))
+    .map((p) => {
+      const vorp = playerVorp(p, levels, config.scoringSettings);
+      return {
+        p,
+        score:
+          playerPickScore(p, overallPick, round, counts, config, profile, limits, vorpWeight, vorp) *
+          runReactionBoost(p, recentPicks),
+      };
+    })
     .sort((a, b) => b.score - a.score);
 
-  const top = scored.slice(0, Math.min(8, scored.length));
+  if (profile.archetype === 'sharp') {
+    return scored[0]?.p ?? pool[0] ?? null;
+  }
+
+  const topN = profile.archetype === 'reachy' ? 12 : 8;
+  const top = scored.slice(0, Math.min(topN, scored.length));
   const total = top.reduce((s, x) => s + x.score, 0);
   if (total <= 0) return top[0]?.p ?? pool[0] ?? null;
 
@@ -198,11 +257,10 @@ export function botPick(
 
 export function suggestedPicks(available: Player[], scoring: DraftConfig['scoring'], limit = 3): Player[] {
   return [...available]
-    .filter((p) => getAdpOrConsensus(p, scoring) != null)
-    .sort((a, b) => getAdpOrConsensus(a, scoring)! - getAdpOrConsensus(b, scoring)!)
+    .filter((p) => getPlatformAdp(p, 'consensus', scoring) != null)
+    .sort(
+      (a, b) =>
+        (getPlatformAdp(a, 'consensus', scoring) ?? 999) - (getPlatformAdp(b, 'consensus', scoring) ?? 999),
+    )
     .slice(0, limit);
-}
-
-function getAdpOrConsensus(p: Player, scoring: DraftConfig['scoring']): number | null {
-  return getAdp(p, scoring) ?? getConsensus(p, scoring);
 }

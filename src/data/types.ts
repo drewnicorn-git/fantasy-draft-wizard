@@ -173,6 +173,30 @@ export interface FilterState {
   adpMax: number;
 }
 
+/** Host platform ADP used by mock bots for reach/wait behavior. */
+export type AdpPlatform = 'consensus' | 'espn' | 'sleeper' | 'ffc';
+
+export type BotArchetype =
+  | 'sharp'
+  | 'balanced'
+  | 'zero-rb'
+  | 'hero-rb'
+  | 'early-qb'
+  | 'early-te'
+  | 'reachy'
+  | 'homer';
+
+export interface BotProfile {
+  teamIndex: number;
+  archetype: BotArchetype;
+  reachFactor: number;
+  adpAdherence: number;
+  qbTargetRound?: number;
+  homerTeams?: string[];
+}
+
+export type MockDraftSpeed = 'instant' | 'normal' | 'slow';
+
 export interface DraftConfig {
   teams: number;
   slot: number;
@@ -182,6 +206,7 @@ export interface DraftConfig {
   scoring: ScoringFormat;
   scoringSettings?: CustomScoringRules;
   rosterPositions?: RosterPositionSettings;
+  adpPlatform?: AdpPlatform;
 }
 
 export interface DraftPick {
@@ -313,6 +338,7 @@ export interface StoredMockDraft {
   finished: boolean;
   history: DraftPick[][];
   phase: MockDraftPhase;
+  mockDraftSpeed?: MockDraftSpeed;
 }
 
 export type RankMetric = 'consensus' | 'manual' | 'adp' | SourceKey;
@@ -335,6 +361,10 @@ export interface LeagueProfile {
   rosterPositions: RosterPositionSettings;
   draftConfig: DraftConfig;
   botPersonality: BotPersonality;
+  /** Per-opponent mock draft behavior (one entry per non-user team slot). */
+  botProfiles: BotProfile[];
+  adpPlatform: AdpPlatform;
+  mockDraftSpeed: MockDraftSpeed;
   selectedSources: SourceKey[];
   /** Non-preset tag definitions only; presets are merged at read time. */
   customTagDefinitions: TagDefinition[];

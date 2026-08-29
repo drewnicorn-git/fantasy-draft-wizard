@@ -502,7 +502,7 @@ export function renderRankingsTable(
 
   const showDeltaCol = rankMetrics.length >= 2;
 
-  const showCompareCol = opts.showCompare !== false && !isMockDraft;
+  const showCompareCol = isMockDraft ? opts.showCompare === true : opts.showCompare !== false;
 
   const showPickSpots = !showPredictorCol && !isMockDraft;
 

@@ -13,6 +13,7 @@ import {
   saveScoring,
   saveScoringSettings,
   saveBotPersonality,
+  saveAdpPlatform,
   saveRosterPositions,
 } from '../utils/storage';
 import { getActiveLeague } from './leaguesStore';
@@ -225,6 +226,7 @@ function applyPersistedSettings(): void {
     scoring: league.scoring,
     scoringSettings: league.scoringSettings,
     rosterPositions: league.rosterPositions,
+    adpPlatform: league.adpPlatform ?? league.draftConfig.adpPlatform ?? 'consensus',
     slot: savedDraft ? Math.min(savedDraft.slot, savedDraft.teams) : league.draftConfig.slot,
   };
 }
@@ -270,6 +272,7 @@ export function updateDraftConfig(
     scoring: league.scoring,
     scoringSettings: league.scoringSettings,
     rosterPositions: league.rosterPositions,
+    adpPlatform: league.adpPlatform ?? state.draftConfig.adpPlatform ?? 'consensus',
   };
   saveDraftConfig({ teams, slot: clampedSlot, rounds, keepersPerTeam: keepers });
   notify();
@@ -281,10 +284,12 @@ export function applyDraftConfig(
   rounds: number,
   botPersonality?: typeof state.botPersonality,
   keepersPerTeam?: number,
+  adpPlatform?: typeof state.draftConfig.adpPlatform,
 ): void {
   const clampedSlot = Math.max(1, Math.min(slot, teams));
   const league = getActiveLeague();
   const keepers = keepersPerTeam ?? league.draftConfig.keepersPerTeam ?? 0;
+  const platform = adpPlatform ?? league.adpPlatform ?? state.draftConfig.adpPlatform ?? 'consensus';
   state.draftConfig = {
     ...state.draftConfig,
     teams,
@@ -294,11 +299,13 @@ export function applyDraftConfig(
     scoring: league.scoring,
     scoringSettings: league.scoringSettings,
     rosterPositions: league.rosterPositions,
+    adpPlatform: platform,
   };
   if (botPersonality) {
     state.botPersonality = botPersonality;
     saveBotPersonality(botPersonality);
   }
+  if (adpPlatform) saveAdpPlatform(adpPlatform);
   saveDraftConfig({ teams, slot: clampedSlot, rounds, keepersPerTeam: keepers });
 }
 

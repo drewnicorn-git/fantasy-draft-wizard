@@ -1,8 +1,11 @@
 import type {
+  AdpPlatform,
   BotPersonality,
+  BotProfile,
   DraftPick,
   InSeasonState,
   LeagueScoringSettings,
+  MockDraftSpeed,
   RosterPositionSettings,
   ScoringFormat,
   SourceKey,
@@ -242,6 +245,34 @@ export function saveScoring(scoring: ScoringFormat): void {
 
 export function saveBotPersonality(personality: BotPersonality): void {
   updateActiveLeague({ botPersonality: personality });
+}
+
+export function loadBotProfiles(): BotProfile[] {
+  return [...getActiveLeague().botProfiles];
+}
+
+export function saveBotProfiles(profiles: BotProfile[]): void {
+  updateActiveLeague({ botProfiles: profiles.map((p) => ({ ...p })) });
+}
+
+export function loadAdpPlatform(): AdpPlatform {
+  return getActiveLeague().adpPlatform ?? 'consensus';
+}
+
+export function saveAdpPlatform(platform: AdpPlatform): void {
+  const league = getActiveLeague();
+  updateActiveLeague({
+    adpPlatform: platform,
+    draftConfig: { ...league.draftConfig, adpPlatform: platform },
+  });
+}
+
+export function loadMockDraftSpeed(): MockDraftSpeed {
+  return getActiveLeague().mockDraftSpeed ?? 'normal';
+}
+
+export function saveMockDraftSpeed(speed: MockDraftSpeed): void {
+  updateActiveLeague({ mockDraftSpeed: speed });
 }
 
 export function loadDepthChartTeam(fallback: string): string {

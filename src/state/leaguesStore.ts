@@ -1,4 +1,4 @@
-import type { DraftConfig, LeagueProfile, LeaguesStore, ScoringFormat } from '../data/types';
+import type { DraftConfig, LeagueProfile, LeaguesStore, ScoringFormat, BotProfile } from '../data/types';
 import { DEFAULT_ROSTER_POSITIONS } from '../data/types';
 import {
   DEFAULT_SCORING_SETTINGS,
@@ -7,6 +7,7 @@ import {
   scoringSettingsFromLegacyFormat,
   scoringSettingsToLegacyFormat,
 } from '../utils/leagueSettings';
+import { defaultBotProfiles, normalizeBotProfiles } from '../sim/botProfiles';
 import {
   buildMigratedLeaguesStore,
   clearLegacyFlatStorage,
@@ -40,6 +41,8 @@ function newLeagueId(): string {
 export function createDefaultLeagueProfile(name = 'My league'): LeagueProfile {
   const now = new Date().toISOString();
   const id = newLeagueId();
+  const teams = DEFAULT_DRAFT_CONFIG.teams;
+  const slot = DEFAULT_DRAFT_CONFIG.slot;
   return {
     id,
     name,
@@ -54,6 +57,9 @@ export function createDefaultLeagueProfile(name = 'My league'): LeagueProfile {
       rosterPositions: { ...DEFAULT_ROSTER_POSITIONS },
     },
     botPersonality: 'balanced',
+    botProfiles: defaultBotProfiles(teams, slot),
+    adpPlatform: 'consensus',
+    mockDraftSpeed: 'normal',
     selectedSources: [],
     customTagDefinitions: [],
     playerTags: {},
@@ -113,6 +119,19 @@ function normalizeLeagueProfile(raw: Partial<LeagueProfile>, fallbackName: strin
       raw.botPersonality === 'balanced' || raw.botPersonality === 'zero-rb' || raw.botPersonality === 'hero-rb'
         ? raw.botPersonality
         : base.botPersonality,
+    botProfiles: normalizeBotProfiles(
+      Array.isArray(raw.botProfiles) ? (raw.botProfiles as BotProfile[]) : undefined,
+      draftConfig.teams,
+      draftConfig.slot,
+    ),
+    adpPlatform:
+      raw.adpPlatform === 'espn' || raw.adpPlatform === 'sleeper' || raw.adpPlatform === 'ffc' || raw.adpPlatform === 'consensus'
+        ? raw.adpPlatform
+        : base.adpPlatform,
+    mockDraftSpeed:
+      raw.mockDraftSpeed === 'instant' || raw.mockDraftSpeed === 'normal' || raw.mockDraftSpeed === 'slow'
+        ? raw.mockDraftSpeed
+        : base.mockDraftSpeed,
     selectedSources: Array.isArray(raw.selectedSources) ? [...raw.selectedSources] : base.selectedSources,
     customTagDefinitions: Array.isArray(raw.customTagDefinitions) ? [...raw.customTagDefinitions] : base.customTagDefinitions,
     playerTags: raw.playerTags && typeof raw.playerTags === 'object' ? { ...raw.playerTags } : base.playerTags,

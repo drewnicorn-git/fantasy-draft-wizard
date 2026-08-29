@@ -6,6 +6,7 @@ import { renderLeagueSettings } from './LeagueSettings';
 import { renderSheetToolbar } from './SheetToolbar';
 import { renderRankingsTable } from './PlayerTable';
 import { renderKeepersTable } from './KeepersTable';
+import { renderAdpMoversPanel } from './AdpMoversPanel';
 import { SOURCE_LABELS } from '../utils/scoring';
 import { formatPickLabel, getRemainingUserPickNumbers, getUserPickNumbers } from '../sim/snake';
 import { loadKeepers } from '../utils/storage';
@@ -34,6 +35,7 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
     <div id="rankings-tags"></div>
     <div id="rankings-filters"></div>
     <div id="rankings-meta" class="meta"></div>
+    <div id="rankings-adp-movers"></div>
     <div id="rankings-search"></div>
     <div id="rankings-table"></div>
     <div id="rankings-keepers"></div>`;
@@ -47,6 +49,7 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
   const tableEl = root.querySelector('#rankings-table') as HTMLElement;
   const keepersEl = root.querySelector('#rankings-keepers') as HTMLElement;
   const metaEl = root.querySelector('#rankings-meta') as HTMLElement;
+  const adpMoversEl = root.querySelector('#rankings-adp-movers') as HTMLElement;
 
   const refresh = (): void => {
     const draftedIds =
@@ -85,6 +88,12 @@ export function mountRankingsPanel(root: HTMLElement, options: RankingsPanelOpti
       .join(', ');
     const pickLabel = options.tableMode === 'live-draft' && draftOverall ? 'Next picks' : 'Picks';
     metaEl.textContent = `${filtered.length} available · Consensus: ${sourceLabels || 'none'} · ${state.draftConfig.teams}-team, slot ${state.draftConfig.slot} · ${pickLabel}: ${pickPreview}${picks.length > 4 ? '…' : ''}${keeperNote} · Season ${data.season}`;
+
+    if (options.tableMode !== 'live-draft') {
+      renderAdpMoversPanel(adpMoversEl);
+    } else {
+      adpMoversEl.innerHTML = '';
+    }
 
     preserveScroll(tableEl, () => {
       renderRankingsTable(tableEl, filtered, state.scoring, {

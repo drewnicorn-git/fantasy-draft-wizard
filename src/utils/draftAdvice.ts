@@ -5,6 +5,7 @@ import { getActiveLeague } from '../state/leaguesStore';
 import { buildProjectedRankMap } from '../utils/fantasyPoints';
 import { getAdp, getConsensus, getProjectedPoints, getValueRank } from './scoring';
 import { byeWeekConflicts, detectPositionalRun } from './analytics';
+import { computeReplacementLevels, formatVorp, playerVorp } from './vorp';
 import { picksUntilNextUserPick, roundFromOverall } from '../sim/snake';
 import { escapeHtml } from './escapeHtml';
 
@@ -12,6 +13,7 @@ export interface DraftAdvice {
   alerts: string[];
   recommendation: string;
   suggestedPicks: Player[];
+  vorpLine?: string;
 }
 
 const RUN_POSITIONS = ['RB', 'WR', 'TE', 'QB'] as const;
@@ -79,10 +81,13 @@ function scorePlayerForUser(
   config: DraftConfig,
   limits: BotRosterLimits,
   projectedRankMap?: Map<string, number>,
+  vorp?: number | null,
 ): number {
   const scoring = config.scoring;
   const need = rosterNeedScore(p.pos, counts, round, 'balanced', limits);
-  return pureValueScore(p, overallPick, scoring, projectedRankMap) * need;
+  const vorpScore = vorp != null && vorp > 0 ? vorp / 8 : 0;
+  const valueScore = pureValueScore(p, overallPick, scoring, projectedRankMap);
+  return (vorpScore > 0 ? vorpScore * 0.65 + valueScore * 0.35 : valueScore) * need;
 }
 
 function isStarterMissing(pos: string, counts: ReturnType<typeof countRoster>, limits: BotRosterLimits): boolean {
@@ -281,6 +286,7 @@ export function userSuggestedPicks(
   const counts = countRoster(roster);
   const scoring = config.scoring;
   const limits = resolveRosterLimits(config);
+  const levels = computeReplacementLevels(available, config, config.scoringSettings);
   const skillAvailable = available.filter((p) => {
     if (p.pos === 'K') return limits.K > 0;
     if (p.pos === 'DST') return limits.DST > 0;
@@ -302,7 +308,16 @@ export function userSuggestedPicks(
     return [...skillAvailable]
       .map((p) => ({
         p,
-        score: scorePlayerForUser(p, overallPick, round, counts, config, limits, projectedRankMap),
+        score: scorePlayerForUser(
+          p,
+          overallPick,
+          round,
+          counts,
+          config,
+          limits,
+          projectedRankMap,
+          playerVorp(p, levels, config.scoringSettings),
+        ),
       }))
       .sort((a, b) => b.score - a.score)
       .slice(0, limit)
@@ -313,7 +328,16 @@ export function userSuggestedPicks(
     .filter((p) => p.pos === criticalTarget!.pos)
     .map((p) => ({
       p,
-      score: scorePlayerForUser(p, overallPick, round, counts, config, limits, projectedRankMap),
+      score: scorePlayerForUser(
+        p,
+        overallPick,
+        round,
+        counts,
+        config,
+        limits,
+        projectedRankMap,
+        playerVorp(p, levels, config.scoringSettings),
+      ),
     }))
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
@@ -328,6 +352,7 @@ export function getDraftAdvice(
   config: DraftConfig,
 ): DraftAdvice {
   const projectedRankMap = projectedRankMapFor(available);
+  const levels = computeReplacementLevels(available, config, config.scoringSettings);
   const criticalTarget = getCriticalTarget(
     userRoster,
     available,
@@ -336,6 +361,19 @@ export function getDraftAdvice(
     allPicks,
     projectedRankMap,
   );
+
+  const topVorp = [...available]
+    .map((p) => ({ p, vorp: playerVorp(p, levels, config.scoringSettings) }))
+    .filter((x) => x.vorp != null && x.vorp > 0)
+    .sort((a, b) => (b.vorp ?? 0) - (a.vorp ?? 0))
+    .slice(0, 2);
+
+  const vorpLine =
+    topVorp.length >= 2
+      ? `VORP: ${topVorp[0].p.name} (${formatVorp(topVorp[0].vorp)}) vs ${topVorp[1].p.name} (${formatVorp(topVorp[1].vorp)})`
+      : topVorp.length === 1
+        ? `Top VORP: ${topVorp[0].p.name} (${formatVorp(topVorp[0].vorp)})`
+        : undefined;
 
   return {
     alerts: buildDraftAlerts(allPicks, userRoster, overall, config, criticalTarget),
@@ -348,6 +386,7 @@ export function getDraftAdvice(
       criticalTarget,
       projectedRankMap,
     ),
+    vorpLine,
   };
 }
 
@@ -376,6 +415,7 @@ export function renderDraftAdvicePanel(
   container.innerHTML = `
     <div class="draft-advice-panel">
       ${advice.recommendation ? `<div class="alert alert-info"><strong>Recommendation:</strong> ${escapeHtml(advice.recommendation)}</div>` : ''}
+      ${advice.vorpLine ? `<div class="alert muted">${escapeHtml(advice.vorpLine)}</div>` : ''}
       ${alertsHtml ? `<div class="draft-alert-list">${alertsHtml}</div>` : ''}
       ${suggestionHtml}
     </div>`;

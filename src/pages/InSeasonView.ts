@@ -16,6 +16,7 @@ import { clearInSeasonState, loadInSeasonState, saveInSeasonState } from '../uti
 import { formatPrevWeekDisplay, formatProjDisplay, hasInSeasonStats } from '../utils/inSeasonStats';
 import { posCssClass } from '../utils/position';
 import { escapeHtml } from '../utils/escapeHtml';
+import { mountTradeAnalyzerPanel } from '../components/TradeAnalyzerPanel';
 import { isCompareSelected, subscribeComparePlayers, toggleComparePlayer } from '../state/playerCompare';
 
 function renderTeamSelectOptions(inSeasonState: InSeasonState, selectedTeam: number): string {
@@ -215,6 +216,7 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
       </div>
 
       <div id="inseason-advice"></div>
+      <div id="inseason-trade"></div>
 
       <div class="inseason-rosters-grid">
         ${Array.from({ length: inSeasonState.config.teams }, (_, teamIndex) =>
@@ -236,6 +238,7 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
     </section>`;
 
   renderInSeasonAdvicePanel(root.querySelector('#inseason-advice') as HTMLElement, targets, alerts, startSit, dropCandidates);
+  mountTradeAnalyzerPanel(root.querySelector('#inseason-trade') as HTMLElement, myRoster, freeAgents, state.scoring);
 
   const persistAndRefresh = (next: InSeasonState): void => {
     saveInSeasonState(ensureRosterLimits(next));

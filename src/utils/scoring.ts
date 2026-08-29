@@ -1,4 +1,4 @@
-import type { Player, ScoringFormat, SourceKey, CustomScoringRules } from '../data/types';
+import type { Player, ScoringFormat, SourceKey, CustomScoringRules, AdpPlatform } from '../data/types';
 import { getActiveLeague } from '../state/leaguesStore';
 import { getPlayerProjectedPoints } from './fantasyPoints';
 import { scoringSettingsToLegacyFormat } from './leagueSettings';
@@ -47,6 +47,24 @@ export function getAdp(player: Player, scoring?: ScoringFormat): number | null {
   const rules = activeScoringRules();
   const s = scoring ?? legacyScoringFromRules(rules);
   return player.adp[s];
+}
+
+/** Platform-specific rank/ADP for mock bots (ESPN rank, Sleeper ADP, etc.). */
+export function getPlatformAdp(
+  player: Player,
+  platform: AdpPlatform,
+  scoring?: ScoringFormat,
+): number | null {
+  const rules = activeScoringRules();
+  const s = scoring ?? legacyScoringFromRules(rules);
+  if (platform === 'consensus') return getAdp(player, s) ?? getConsensus(player, s);
+  if (platform === 'sleeper' || platform === 'ffc') {
+    return player.adp[s] ?? getSourceRank(player, platform, s);
+  }
+  if (platform === 'espn') {
+    return player.ranks[s].espn ?? getAdp(player, s) ?? getConsensus(player, s);
+  }
+  return getAdp(player, s) ?? getConsensus(player, s);
 }
 
 export function getSourceRank(

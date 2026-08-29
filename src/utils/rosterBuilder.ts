@@ -205,3 +205,11 @@ export function moveLiveDraftToInSeason(
   saveInSeasonState(createInSeasonStateFromLiveDraft(picks, allPlayers, config));
   return true;
 }
+
+export function moveMockDraftToInSeason(
+  picks: DraftPick[],
+  allPlayers: Player[],
+  config: DraftConfig,
+): boolean {
+  return moveLiveDraftToInSeason(picks, allPlayers, config);
+}

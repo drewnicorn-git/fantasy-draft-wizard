@@ -1921,3 +1921,108 @@ body:has(.player-compare-open) #main {
   margin: 0.35rem 0;
 }
 
+.mock-league-summary {
+  margin: 0.75rem 0 1rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--surface2);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.bot-profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.5rem 1rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.bot-profile-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.mock-speed-label {
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.mock-speed-select {
+  font-size: 0.85rem;
+}
+
+.mock-summary-stats {
+  margin: 0.5rem 0 1rem;
+}
+
+.mock-summary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.adp-movers-panel {
+  margin: 0.75rem 0 1rem;
+  padding: 0.75rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.adp-movers-panel h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.adp-movers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.adp-movers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.adp-movers-list li {
+  padding: 0.2rem 0;
+}
+
+.trade-analyzer {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface2);
+}
+
+.trade-analyzer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+.trade-select {
+  width: 100%;
+  min-height: 8rem;
+}
+
+.trade-result {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .adp-movers-grid,
+  .trade-analyzer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
