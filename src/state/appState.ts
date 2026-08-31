@@ -2,6 +2,7 @@ import type { AppState, DepthChartsData, InjuriesData, InSeasonData, CustomScori
 import { isBlankPlayer } from '../utils/scoring';
 import { normalizeName } from '../utils/playerKeys';
 import { buildRankingsFromLiveSources, type RefreshProgress } from '../services/buildRankings';
+import { buildInSeasonFromLiveSources } from '../services/buildInSeasonData';
 import {
   loadKeepers,
   loadSelectedSources,
@@ -353,6 +354,27 @@ export async function loadInSeason(): Promise<InSeasonData | null> {
   const data = await fetchSecondaryJson<InSeasonData>('inseason.json', 'inSeason');
   inSeasonData = data;
   return inSeasonData;
+}
+
+export async function reloadInSeason(onProgress?: RefreshProgress): Promise<InSeasonData | null> {
+  const rankings = getRankings();
+  if (!rankings) {
+    onProgress?.('Rankings not loaded');
+    return null;
+  }
+  onProgress?.('Fetching live in-season projections from Sleeper…');
+  try {
+    const data = await buildInSeasonFromLiveSources(rankings.players, rankings.season, onProgress);
+    inSeasonData = data;
+    secondaryStatus.inSeason = 'loaded';
+    secondaryBannerDismissed = false;
+    notify();
+    return data;
+  } catch (err) {
+    secondaryStatus.inSeason = 'failed';
+    notify();
+    throw err;
+  }
 }
 
 export function getActiveSources(): SourceKey[] {

@@ -1,9 +1,9 @@
-import { canonicalKey } from './espn-depth.js';
-import { normalizePos } from '../utils.js';
+import { canonicalKey, normalizePos } from '../utils/playerKeys';
 
 const POSITIONS = ['QB', 'RB', 'WR', 'TE', 'K', 'DEF'] as const;
 const POS_QUERY = POSITIONS.map((p) => `position[]=${p}`).join('&');
 const MAX_WEEKLY_PROJ = 50;
+const DEFAULT_SEASON_GAMES = 17;
 
 export interface SleeperInSeasonRaw {
   sleeperId: string;
@@ -30,6 +30,12 @@ interface SleeperPlayerRecord {
   injuryStatus: string | null;
 }
 
+interface ParsedProjection {
+  pts_std: number;
+  pts_ppr: number;
+  isFallback: boolean;
+}
+
 function addStats(
   target: { pts_std?: number; pts_ppr?: number; pos_rank_std?: number; pos_rank_ppr?: number },
   source: Record<string, number | undefined>,
@@ -54,6 +60,25 @@ function isWeeklyProjectionRow(stats: Record<string, number | undefined>): boole
   return pts < MAX_WEEKLY_PROJ;
 }
 
+/** Accept true weekly rows or derive per-game projection from season-long Sleeper rows. */
+function parseProjectionRow(stats: Record<string, number | undefined>): ParsedProjection | null {
+  const ptsPpr = stats.pts_ppr ?? 0;
+  const ptsStd = stats.pts_std ?? 0;
+  if (ptsPpr <= 0 && ptsStd <= 0) return null;
+
+  if (isWeeklyProjectionRow(stats)) {
+    return { pts_std: ptsStd, pts_ppr: ptsPpr, isFallback: false };
+  }
+
+  const gp = stats.gp ?? 0;
+  const games = gp >= 10 ? gp : DEFAULT_SEASON_GAMES;
+  return {
+    pts_std: ptsStd / games,
+    pts_ppr: ptsPpr / games,
+    isFallback: true,
+  };
+}
+
 async function fetchWeeklyStats(season: number, week: number): Promise<Record<string, Record<string, number | undefined>>> {
   const url = `https://api.sleeper.app/v1/stats/nfl/regular/${season}/${week}?season_type=regular&${POS_QUERY}`;
   const res = await fetch(url, {
@@ -67,7 +92,7 @@ async function fetchWeeklyStats(season: number, week: number): Promise<Record<st
 async function fetchWeeklyProjections(
   season: number,
   week: number,
-): Promise<Map<string, { pts_std: number; pts_ppr: number }>> {
+): Promise<Map<string, ParsedProjection>> {
   const url = `https://api.sleeper.com/projections/nfl/${season}?season_type=regular&week=${week}&${POS_QUERY}`;
   const res = await fetch(url, {
     headers: { 'User-Agent': 'fantasy-draft-wizard (github.com)' },
@@ -80,13 +105,12 @@ async function fetchWeeklyProjections(
     stats?: Record<string, number | undefined>;
   }>;
 
-  const map = new Map<string, { pts_std: number; pts_ppr: number }>();
+  const map = new Map<string, ParsedProjection>();
   for (const row of json) {
-    if (!row.player_id || !row.stats || !isWeeklyProjectionRow(row.stats)) continue;
-    map.set(row.player_id, {
-      pts_std: row.stats.pts_std ?? 0,
-      pts_ppr: row.stats.pts_ppr ?? 0,
-    });
+    if (!row.player_id || !row.stats) continue;
+    const parsed = parseProjectionRow(row.stats);
+    if (!parsed) continue;
+    map.set(row.player_id, parsed);
   }
   return map;
 }
@@ -150,11 +174,11 @@ export async function fetchSleeperInSeasonStats(
     }
   }
 
-  let nextWeekProjections = new Map<string, { pts_std: number; pts_ppr: number }>();
+  let nextWeekProjections = new Map<string, ParsedProjection>();
   try {
     nextWeekProjections = await fetchWeeklyProjections(season, projectionWeek);
   } catch (err) {
-    console.warn(`  Sleeper week ${projectionWeek} projections unavailable:`, err);
+    console.warn(`Sleeper week ${projectionWeek} projections unavailable:`, err);
   }
 
   const records: SleeperInSeasonRaw[] = [];
@@ -181,9 +205,9 @@ export async function fetchSleeperInSeasonStats(
       seasonPtsPpr,
       prevWeekPtsStd: lastWeek?.pts_std ?? null,
       prevWeekPtsPpr: lastWeek?.pts_ppr ?? null,
-      projPtsStd: hasProjection ? projection!.pts_std : ppgStd,
-      projPtsPpr: hasProjection ? projection!.pts_ppr : ppgPpr,
-      projIsFallback: !hasProjection,
+      projPtsStd: hasProjection ? projection!.pts_std : ppgStd > 0 ? ppgStd : null,
+      projPtsPpr: hasProjection ? projection!.pts_ppr : ppgPpr > 0 ? ppgPpr : null,
+      projIsFallback: hasProjection ? projection!.isFallback : !hasProjection && (ppgStd > 0 || ppgPpr > 0),
       posRankStd: totals?.pos_rank_std ?? null,
       posRankPpr: totals?.pos_rank_ppr ?? null,
     });

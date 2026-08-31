@@ -399,6 +399,10 @@ export function getInSeasonTargets(
   return results;
 }
 
+function formatLineupProj(proj: number): string {
+  return proj > 0 ? proj.toFixed(1) : '—';
+}
+
 function renderStartSitPanel(startSit: StartSitAdvice): string {
   const weekLabel = startSit.projectionWeek ?? '?';
   const starterRows = startSit.starters
@@ -408,7 +412,7 @@ function renderStartSitPanel(startSit: StartSitAdvice): string {
         <td><span class="inseason-slot-badge">${escapeHtml(s.slot)}</span></td>
         <td><strong>${escapeHtml(s.player.name)}</strong>${flags}</td>
         <td><span class="pos-badge">${escapeHtml(String(s.player.pos))}</span></td>
-        <td>${s.proj.toFixed(1)}</td>
+        <td>${formatLineupProj(s.proj)}</td>
       </tr>`;
     })
     .join('');
@@ -420,7 +424,7 @@ function renderStartSitPanel(startSit: StartSitAdvice): string {
         <td><span class="inseason-slot-badge sit">Sit</span></td>
         <td>${escapeHtml(s.player.name)} <span class="hint">${escapeHtml(s.reason)}</span></td>
         <td><span class="pos-badge">${escapeHtml(String(s.player.pos))}</span></td>
-        <td>${s.proj.toFixed(1)}</td>
+        <td>${formatLineupProj(s.proj)}</td>
       </tr>`,
     )
     .join('');

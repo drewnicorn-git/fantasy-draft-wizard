@@ -1,6 +1,6 @@
-import { canonicalKey, dstTeamKey, normalizeTeam, VALID_TEAMS } from './espn-depth.js';
-import { lastNameToken, normalizePos, playerKey, type RawPlayerRow } from '../utils.js';
-import type { SleeperInSeasonRaw } from './sleeper-inseason.js';
+import { canonicalKey, lastNameToken, normalizePos } from './playerKeys';
+import { dstTeamKey, normalizeTeam, VALID_TEAMS } from './depthChart';
+import type { SleeperInSeasonRaw } from '../services/sleeperInSeason';
 
 export interface PoolMatchInput {
   id: string;
@@ -20,6 +20,10 @@ export interface SleeperRosterEntry {
 export interface InSeasonMatchIndexes {
   byKey: Map<string, SleeperRosterEntry>;
   byTeamPos: Map<string, SleeperRosterEntry[]>;
+}
+
+function playerKey(name: string, team: string, pos: string): string {
+  return `${normalizeTeam(team)}|${normalizePos(pos)}|${canonicalKey(name, pos)}`;
 }
 
 function addIndexKey(map: Map<string, SleeperRosterEntry>, key: string, entry: SleeperRosterEntry): void {
@@ -96,8 +100,4 @@ export function matchPoolPlayerToSleeper(
 
 export function statsBySleeperId(records: SleeperInSeasonRaw[]): Map<string, SleeperInSeasonRaw> {
   return new Map(records.map((r) => [r.sleeperId, r]));
-}
-
-export function poolPlayerFromRankings(p: RawPlayerRow & { id: string }): PoolMatchInput {
-  return { id: p.id, name: p.name, team: p.team, pos: p.pos };
 }

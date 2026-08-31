@@ -2,12 +2,12 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { currentDraftSeason } from './season.js';
-import { fetchSleeperInSeasonStats } from './sources/sleeper-inseason.js';
+import { fetchSleeperInSeasonStats } from '../src/services/sleeperInSeason.ts';
 import {
   buildInSeasonMatchIndexes,
   matchPoolPlayerToSleeper,
   statsBySleeperId,
-} from './sources/inseason-match.js';
+} from '../src/utils/inseasonMatch.ts';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const rankingsPath = join(root, 'data', 'rankings.json');

@@ -273,6 +273,7 @@ export interface InSeasonData {
   fetchedAt: string | null;
   currentWeek: number;
   projectionWeek: number;
+  matchStats?: { pool: number; matched: number; withStats: number; matchPct: number };
   players: Record<string, InSeasonPlayerValue>;
 }
 

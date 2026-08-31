@@ -1,5 +1,5 @@
 import type { InSeasonState, Player } from '../data/types';
-import { getInjuries, getInSeason, getRankings, setState, state } from '../state/appState';
+import { getInjuries, getInSeason, getRankings, reloadInSeason, setState, state } from '../state/appState';
 import { getTeamDisplayName } from '../components/TeamNamesEditor';
 import {
   dropPlayerFromTeam,
@@ -200,10 +200,11 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
           <p class="hint">
             Week ${inSeasonData?.currentWeek ?? '—'} · Projections for week ${inSeasonData?.projectionWeek ?? '—'}
             ${updated ? ` · Data updated ${new Date(updated).toLocaleString()}` : ''}
-            · Prev Week = last completed week actuals · Proj* = season average when weekly projection unavailable
+            · Prev Week = last completed week actuals · Proj* = weekly estimate from season projection
           </p>
         </div>
         <div class="inseason-header-actions">
+          <button type="button" id="inseason-refresh" class="btn secondary" title="Fetch live stats and projections from Sleeper">Refresh projections</button>
           <label for="inseason-my-team">My team</label>
           <select id="inseason-my-team" class="inseason-team-select">
             ${Array.from({ length: inSeasonState.config.teams }, (_, i) => {
@@ -258,6 +259,26 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
     ) {
       clearInSeasonState();
       setState({ tab: 'live' });
+    }
+  });
+
+  root.querySelector('#inseason-refresh')?.addEventListener('click', async () => {
+    const btn = root.querySelector('#inseason-refresh') as HTMLButtonElement;
+    const hint = root.querySelector('.inseason-header .hint') as HTMLElement;
+    btn.disabled = true;
+    const prevHint = hint.textContent;
+    try {
+      await reloadInSeason((msg) => {
+        hint.textContent = msg;
+      });
+      onRefresh();
+    } catch (err) {
+      hint.textContent = `Refresh failed: ${err instanceof Error ? err.message : String(err)}`;
+      setTimeout(() => {
+        hint.textContent = prevHint;
+      }, 5000);
+    } finally {
+      btn.disabled = false;
     }
   });
 
