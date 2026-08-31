@@ -239,7 +239,14 @@ export function mountInSeasonView(root: HTMLElement, onRefresh: () => void): voi
     </section>`;
 
   renderInSeasonAdvicePanel(root.querySelector('#inseason-advice') as HTMLElement, targets, alerts, startSit, dropCandidates);
-  mountTradeAnalyzerPanel(root.querySelector('#inseason-trade') as HTMLElement, myRoster, freeAgents, state.scoring);
+  mountTradeAnalyzerPanel(root.querySelector('#inseason-trade') as HTMLElement, {
+    myTeamIndex,
+    teamCount: inSeasonState.config.teams,
+    getTeamRoster: (teamIndex) => resolveRosterPlayers(inSeasonState.rosters[teamIndex] ?? [], allPlayers),
+    getTeamLabel: getTeamDisplayName,
+    waivers: freeAgents,
+    scoring: state.scoring,
+  });
 
   const persistAndRefresh = (next: InSeasonState): void => {
     saveInSeasonState(ensureRosterLimits(next));

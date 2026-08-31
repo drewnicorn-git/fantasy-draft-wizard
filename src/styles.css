@@ -2067,6 +2067,11 @@ body:has(.player-compare-open) #main {
   min-height: 8rem;
 }
 
+.trade-partner-select {
+  width: 100%;
+  margin: 0.35rem 0 0.5rem;
+}
+
 .trade-result {
   margin-top: 0.5rem;
 }
