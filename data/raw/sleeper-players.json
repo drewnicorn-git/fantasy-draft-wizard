@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-09-17T16:42:18.044Z",
+ "fetchedAt": "2026-09-18T16:11:58.984Z",
  "data": {
   "players": [
    {
@@ -512,7 +512,7 @@
     "name": "Cooper Kupp",
     "pos": "WR",
     "team": "SEA",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 9
    },
    {
@@ -560,7 +560,7 @@
     "name": "Samaje Perine",
     "pos": "RB",
     "team": "CIN",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 9
    },
    {
@@ -864,7 +864,7 @@
     "name": "DJ Moore",
     "pos": "WR",
     "team": "BUF",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 8
    },
    {
@@ -1272,7 +1272,7 @@
     "name": "Ty Johnson",
     "pos": "RB",
     "team": "BUF",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 7
    },
    {
@@ -2136,7 +2136,7 @@
     "name": "Kene Nwangwu",
     "pos": "RB",
     "team": "NYJ",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 5
    },
    {
@@ -2440,7 +2440,7 @@
     "name": "Alec Pierce",
     "pos": "WR",
     "team": "IND",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 4
    },
    {
@@ -2456,7 +2456,7 @@
     "name": "Chris Olave",
     "pos": "WR",
     "team": "NO",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 4
    },
    {
@@ -2980,6 +2980,14 @@
     "yearsExp": 3
    },
    {
+    "id": "9227",
+    "name": "Israel Abanikanda",
+    "pos": "RB",
+    "team": "DAL",
+    "injuryStatus": null,
+    "yearsExp": 3
+   },
+   {
     "id": "9228",
     "name": "Bryce Young",
     "pos": "QB",
@@ -2992,7 +3000,7 @@
     "name": "Anthony Richardson",
     "pos": "QB",
     "team": "IND",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -4264,7 +4272,7 @@
     "name": "Tyrone Tracy",
     "pos": "RB",
     "team": "NYG",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -4368,6 +4376,14 @@
     "name": "Colson Yankoff",
     "pos": "TE",
     "team": "WAS",
+    "injuryStatus": null,
+    "yearsExp": 2
+   },
+   {
+    "id": "11959",
+    "name": "Bryce Oliver",
+    "pos": "WR",
+    "team": "HOU",
     "injuryStatus": null,
     "yearsExp": 2
    },
@@ -4560,7 +4576,7 @@
     "name": "DJ Giddens",
     "pos": "RB",
     "team": "IND",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 1
    },
    {
@@ -5680,7 +5696,7 @@
     "name": "Omar Cooper",
     "pos": "WR",
     "team": "NYJ",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
@@ -6192,7 +6208,7 @@
     "name": "Skyler Bell",
     "pos": "WR",
     "team": "BUF",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
@@ -6256,7 +6272,7 @@
     "name": "Kaelon Black",
     "pos": "RB",
     "team": "SF",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -6628,14 +6644,6 @@
     "yearsExp": 0
    },
    {
-    "id": "13749",
-    "name": "Kole Wilson",
-    "pos": "WR",
-    "team": "CLE",
-    "injuryStatus": null,
-    "yearsExp": 0
-   },
-   {
     "id": "13760",
     "name": "Jaden Bradley",
     "pos": "WR",
@@ -6668,10 +6676,10 @@
     "yearsExp": 0
    },
    {
-    "id": "13816",
-    "name": "Mark Gronowski",
-    "pos": "QB",
-    "team": "HOU",
+    "id": "13805",
+    "name": "E.J. Williams",
+    "pos": "WR",
+    "team": "CAR",
     "injuryStatus": null,
     "yearsExp": 0
    },
