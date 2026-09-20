@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-09-19T15:43:19.751Z",
+ "fetchedAt": "2026-09-20T15:50:16.235Z",
  "data": {
   "players": [
    {
@@ -32,7 +32,7 @@
     "name": "Josh Johnson",
     "pos": "QB",
     "team": "CIN",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 18
    },
    {
@@ -144,7 +144,7 @@
     "name": "Case Keenum",
     "pos": "QB",
     "team": "CHI",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 14
    },
    {
@@ -1480,7 +1480,7 @@
     "name": "Tua Tagovailoa",
     "pos": "QB",
     "team": "ATL",
-    "injuryStatus": "Doubtful",
+    "injuryStatus": "Out",
     "yearsExp": 6
    },
    {
@@ -1488,7 +1488,7 @@
     "name": "Joe Burrow",
     "pos": "QB",
     "team": "CIN",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 6
    },
    {
@@ -1584,7 +1584,7 @@
     "name": "Michael Pittman",
     "pos": "WR",
     "team": "PIT",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 6
    },
    {
@@ -1960,7 +1960,7 @@
     "name": "Brevin Jordan",
     "pos": "TE",
     "team": "HOU",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 5
    },
    {
@@ -2048,7 +2048,7 @@
     "name": "Elijah Moore",
     "pos": "WR",
     "team": "PHI",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 5
    },
    {
@@ -2064,7 +2064,7 @@
     "name": "Kylen Granson",
     "pos": "TE",
     "team": "TEN",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 5
    },
    {
@@ -2456,7 +2456,7 @@
     "name": "Chris Olave",
     "pos": "WR",
     "team": "NO",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 4
    },
    {
@@ -2585,14 +2585,6 @@
     "pos": "TE",
     "team": "MIA",
     "injuryStatus": null,
-    "yearsExp": 4
-   },
-   {
-    "id": "8176",
-    "name": "Danny Gray",
-    "pos": "WR",
-    "team": "PHI",
-    "injuryStatus": "Questionable",
     "yearsExp": 4
    },
    {
@@ -3008,7 +3000,7 @@
     "name": "Tanner McKee",
     "pos": "QB",
     "team": "PHI",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 3
    },
    {
@@ -3232,7 +3224,7 @@
     "name": "Zay Flowers",
     "pos": "WR",
     "team": "BAL",
-    "injuryStatus": "Doubtful",
+    "injuryStatus": "Out",
     "yearsExp": 3
    },
    {
@@ -3448,7 +3440,7 @@
     "name": "Aidan O'Connell",
     "pos": "QB",
     "team": "LV",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 3
    },
    {
@@ -3504,7 +3496,7 @@
     "name": "Blake Grupe",
     "pos": "K",
     "team": "NYJ",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 3
    },
    {
@@ -4088,7 +4080,7 @@
     "name": "Jordan Whittington",
     "pos": "WR",
     "team": "LAR",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Doubtful",
     "yearsExp": 2
    },
    {
@@ -5696,7 +5688,7 @@
     "name": "Omar Cooper",
     "pos": "WR",
     "team": "NYJ",
-    "injuryStatus": "Out",
+    "injuryStatus": "IR",
     "yearsExp": 0
    },
    {
@@ -5808,7 +5800,7 @@
     "name": "Behren Morton",
     "pos": "QB",
     "team": "NE",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
@@ -6040,7 +6032,7 @@
     "name": "Cole Payton",
     "pos": "QB",
     "team": "PHI",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
@@ -6136,7 +6128,7 @@
     "name": "Joe Fagnano",
     "pos": "QB",
     "team": "BAL",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
@@ -6296,7 +6288,7 @@
     "name": "De'Zhaun Stribling",
     "pos": "WR",
     "team": "SF",
-    "injuryStatus": "Out",
+    "injuryStatus": "IR",
     "yearsExp": 0
    },
    {
@@ -6696,7 +6688,7 @@
     "name": "Tanner Arkin",
     "pos": "TE",
     "team": "NE",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
