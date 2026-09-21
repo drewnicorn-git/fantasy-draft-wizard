@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-09-20T15:50:23.356Z",
+ "fetchedAt": "2026-09-21T18:06:26.299Z",
  "data": {
   "players": [
    {
@@ -280,13 +280,14 @@
    {
     "name": "Chris Moore",
     "team": "BAL",
-    "pos": "WR"
+    "pos": "WR",
+    "depth": 4
    },
    {
     "name": "Elijah Sarratt",
     "team": "BAL",
     "pos": "WR",
-    "depth": 4
+    "depth": 6
    },
    {
     "name": "Durham Smythe",
@@ -304,7 +305,7 @@
     "name": "LaJohntay Wester",
     "team": "BAL",
     "pos": "WR",
-    "depth": 5
+    "depth": 7
    },
    {
     "name": "Tyler Loop",
@@ -625,6 +626,118 @@
     "depth": 1
    },
    {
+    "name": "Erick All Jr.",
+    "team": "CIN",
+    "pos": "TE",
+    "depth": 3
+   },
+   {
+    "name": "Tahj Brooks",
+    "team": "CIN",
+    "pos": "RB",
+    "depth": 3
+   },
+   {
+    "name": "Chase Brown",
+    "team": "CIN",
+    "pos": "RB",
+    "depth": 1
+   },
+   {
+    "name": "Joe Burrow",
+    "team": "CIN",
+    "pos": "QB",
+    "depth": 1
+   },
+   {
+    "name": "Ja'Marr Chase",
+    "team": "CIN",
+    "pos": "WR",
+    "depth": 1
+   },
+   {
+    "name": "Jack Endries",
+    "team": "CIN",
+    "pos": "TE",
+    "depth": 4
+   },
+   {
+    "name": "Joe Flacco",
+    "team": "CIN",
+    "pos": "QB",
+    "depth": 2
+   },
+   {
+    "name": "Mike Gesicki",
+    "team": "CIN",
+    "pos": "TE",
+    "depth": 1
+   },
+   {
+    "name": "Tee Higgins",
+    "team": "CIN",
+    "pos": "WR",
+    "depth": 2
+   },
+   {
+    "name": "Tanner Hudson",
+    "team": "CIN",
+    "pos": "TE"
+   },
+   {
+    "name": "Andrei Iosivas",
+    "team": "CIN",
+    "pos": "WR",
+    "depth": 3
+   },
+   {
+    "name": "Josh Johnson",
+    "team": "CIN",
+    "pos": "QB",
+    "depth": 3
+   },
+   {
+    "name": "Dohnte Meyers",
+    "team": "CIN",
+    "pos": "WR",
+    "depth": 5
+   },
+   {
+    "name": "Samaje Perine",
+    "team": "CIN",
+    "pos": "RB",
+    "depth": 2
+   },
+   {
+    "name": "Drew Sample",
+    "team": "CIN",
+    "pos": "TE",
+    "depth": 2
+   },
+   {
+    "name": "Ke'Shawn Williams",
+    "team": "CIN",
+    "pos": "WR",
+    "depth": 6
+   },
+   {
+    "name": "Colbie Young",
+    "team": "CIN",
+    "pos": "WR",
+    "depth": 4
+   },
+   {
+    "name": "Evan McPherson",
+    "team": "CIN",
+    "pos": "K"
+   },
+   {
+    "name": "Cincinnati Bengals",
+    "team": "CIN",
+    "pos": "DST",
+    "depth": 1
+   },
+   {
     "name": "Isaiah Bond",
     "team": "CLE",
     "pos": "WR",
@@ -634,7 +747,7 @@
     "name": "Denzel Boston",
     "team": "CLE",
     "pos": "WR",
-    "depth": 3
+    "depth": 1
    },
    {
     "name": "Michael Burton",
@@ -669,7 +782,7 @@
     "name": "Jerry Jeudy",
     "team": "CLE",
     "pos": "WR",
-    "depth": 1
+    "depth": 3
    },
    {
     "name": "Quinshon Judkins",
@@ -835,6 +948,12 @@
     "team": "DEN",
     "pos": "TE",
     "depth": 3
+   },
+   {
+    "name": "Tyler Badie",
+    "team": "DEN",
+    "pos": "RB",
+    "depth": 4
    },
    {
     "name": "Pat Bryant",
@@ -1432,7 +1551,7 @@
     "name": "Brian Thomas Jr.",
     "team": "JAC",
     "pos": "WR",
-    "depth": 1
+    "depth": 2
    },
    {
     "name": "Bhayshul Tuten",
@@ -1444,7 +1563,7 @@
     "name": "Parker Washington",
     "team": "JAC",
     "pos": "WR",
-    "depth": 2
+    "depth": 1
    },
    {
     "name": "CJ Williams",
@@ -2122,7 +2241,7 @@
     "name": "Tanner Arkin",
     "team": "NE",
     "pos": "TE",
-    "depth": 3
+    "depth": 4
    },
    {
     "name": "Efton Chism III",
@@ -2191,7 +2310,7 @@
     "name": "Cameron Latu",
     "team": "NE",
     "pos": "TE",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Drake Maye",
@@ -2379,7 +2498,7 @@
     "name": "Najee Harris",
     "team": "NYG",
     "pos": "RB",
-    "depth": 4
+    "depth": 2
    },
    {
     "name": "Theo Johnson",
@@ -2420,7 +2539,7 @@
     "name": "Devin Singletary",
     "team": "NYG",
     "pos": "RB",
-    "depth": 2
+    "depth": 3
    },
    {
     "name": "Cam Skattebo",
@@ -2432,7 +2551,7 @@
     "name": "Tyrone Tracy Jr.",
     "team": "NYG",
     "pos": "RB",
-    "depth": 3
+    "depth": 4
    },
    {
     "name": "Jameis Winston",
@@ -2697,13 +2816,13 @@
     "name": "Eli Heidenreich",
     "team": "PIT",
     "pos": "RB",
-    "depth": 3
+    "depth": 4
    },
    {
     "name": "Travis Homer",
     "team": "PIT",
     "pos": "RB",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Will Howard",
@@ -2927,7 +3046,7 @@
     "name": "George Holani",
     "team": "SEA",
     "pos": "RB",
-    "depth": 2
+    "depth": 3
    },
    {
     "name": "Tory Horton",
@@ -2997,7 +3116,7 @@
     "name": "Emanuel Wilson",
     "team": "SEA",
     "pos": "RB",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Jason Myers",
@@ -3144,7 +3263,7 @@
     "name": "Kylen Granson",
     "team": "TEN",
     "pos": "TE",
-    "depth": 3
+    "depth": 4
    },
    {
     "name": "Gunnar Helm",
@@ -3156,7 +3275,7 @@
     "name": "David Martin-Robinson",
     "team": "TEN",
     "pos": "TE",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Tony Pollard",
