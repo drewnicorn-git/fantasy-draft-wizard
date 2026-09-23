@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-09-22T16:41:54.337Z",
+ "fetchedAt": "2026-09-23T16:36:21.869Z",
  "data": {
   "players": [
    {
@@ -417,7 +417,7 @@
     "name": "Jonathon Brooks",
     "team": "CAR",
     "pos": "RB",
-    "depth": 2
+    "depth": 4
    },
    {
     "name": "Jalen Coker",
@@ -429,13 +429,13 @@
     "name": "AJ Dillon",
     "team": "CAR",
     "pos": "RB",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Mitchell Evans",
     "team": "CAR",
     "pos": "TE",
-    "depth": 2
+    "depth": 3
    },
    {
     "name": "Feleipe Franks",
@@ -501,7 +501,7 @@
     "name": "Darren Waller",
     "team": "CAR",
     "pos": "TE",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Bryce Young",
@@ -1370,25 +1370,25 @@
     "name": "Keenan Allen",
     "team": "IND",
     "pos": "WR",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Deion Burks",
     "team": "IND",
     "pos": "WR",
-    "depth": 5
+    "depth": 8
    },
    {
     "name": "Josh Downs",
     "team": "IND",
     "pos": "WR",
-    "depth": 2
+    "depth": 1
    },
    {
     "name": "Ashton Dulin",
     "team": "IND",
     "pos": "WR",
-    "depth": 8
+    "depth": 6
    },
    {
     "name": "DJ Giddens",
@@ -1429,13 +1429,19 @@
     "name": "Alec Pierce",
     "team": "IND",
     "pos": "WR",
-    "depth": 1
+    "depth": 5
    },
    {
     "name": "Anthony Richardson Sr.",
     "team": "IND",
     "pos": "QB",
     "depth": 2
+   },
+   {
+    "name": "Darius Slayton",
+    "team": "IND",
+    "pos": "WR",
+    "depth": 3
    },
    {
     "name": "Jonathan Taylor",
@@ -1447,7 +1453,7 @@
     "name": "Laquon Treadwell",
     "team": "IND",
     "pos": "WR",
-    "depth": 6
+    "depth": 4
    },
    {
     "name": "Tyler Warren",
@@ -1792,7 +1798,7 @@
     "name": "Derius Davis",
     "team": "LAC",
     "pos": "WR",
-    "depth": 6
+    "depth": 5
    },
    {
     "name": "Oronde Gadsden",
@@ -1824,12 +1830,6 @@
     "pos": "RB"
    },
    {
-    "name": "Gary Jennings",
-    "team": "LAC",
-    "pos": "WR",
-    "depth": 7
-   },
-   {
     "name": "Quentin Johnston",
     "team": "LAC",
     "pos": "WR",
@@ -1839,7 +1839,7 @@
     "name": "Charlie Kolar",
     "team": "LAC",
     "pos": "TE",
-    "depth": 2
+    "depth": 3
    },
    {
     "name": "Trey Lance",
@@ -1863,7 +1863,13 @@
     "name": "David Njoku",
     "team": "LAC",
     "pos": "TE",
-    "depth": 3
+    "depth": 4
+   },
+   {
+    "name": "Hayden Rucci",
+    "team": "LAC",
+    "pos": "TE",
+    "depth": 2
    },
    {
     "name": "Brenen Thompson",
@@ -1898,7 +1904,7 @@
     "name": "Davis Allen",
     "team": "LAR",
     "pos": "TE",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Tutu Atwell",
@@ -1928,13 +1934,13 @@
     "name": "Terrance Ferguson",
     "team": "LAR",
     "pos": "TE",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Tyler Higbee",
     "team": "LAR",
     "pos": "TE",
-    "depth": 2
+    "depth": 4
    },
    {
     "name": "Max Klare",
@@ -2145,13 +2151,13 @@
     "name": "Demond Claiborne",
     "team": "MIN",
     "pos": "RB",
-    "depth": 2
+    "depth": 3
    },
    {
     "name": "DeeJay Dallas",
     "team": "MIN",
     "pos": "RB",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Tai Felton",
@@ -2355,7 +2361,7 @@
     "name": "Barion Brown",
     "team": "NO",
     "pos": "WR",
-    "depth": 3
+    "depth": 4
    },
    {
     "name": "Oscar Delp",
@@ -2397,7 +2403,7 @@
     "name": "Bryce Lance",
     "team": "NO",
     "pos": "WR",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Kendre Miller",
@@ -2466,14 +2472,13 @@
    {
     "name": "Braxton Berrios",
     "team": "NYG",
-    "pos": "WR",
-    "depth": 6
+    "pos": "WR"
    },
    {
     "name": "Jaxson Dart",
     "team": "NYG",
     "pos": "QB",
-    "depth": 1
+    "depth": 2
    },
    {
     "name": "Thomas Fidone II",
@@ -2550,7 +2555,7 @@
     "name": "Jameis Winston",
     "team": "NYG",
     "pos": "QB",
-    "depth": 2
+    "depth": 1
    },
    {
     "name": "Dominic Zvada",
@@ -2593,6 +2598,11 @@
     "depth": 2
    },
    {
+    "name": "Will Levis",
+    "team": "NYJ",
+    "pos": "QB"
+   },
+   {
     "name": "Adonai Mitchell",
     "team": "NYJ",
     "pos": "WR",
@@ -2614,13 +2624,13 @@
     "name": "Kenyon Sadiq",
     "team": "NYJ",
     "pos": "TE",
-    "depth": 2
+    "depth": 1
    },
    {
     "name": "Arian Smith",
     "team": "NYJ",
     "pos": "WR",
-    "depth": 4
+    "depth": 5
    },
    {
     "name": "Geno Smith",
@@ -2632,7 +2642,7 @@
     "name": "Mason Taylor",
     "team": "NYJ",
     "pos": "TE",
-    "depth": 1
+    "depth": 2
    },
    {
     "name": "Isaiah Williams",
@@ -3350,7 +3360,7 @@
     "name": "Treylon Burks",
     "team": "WAS",
     "pos": "WR",
-    "depth": 7
+    "depth": 6
    },
    {
     "name": "Jacory Croskey-Merritt",
@@ -3380,7 +3390,7 @@
     "name": "Jaylin Lane",
     "team": "WAS",
     "pos": "WR",
-    "depth": 6
+    "depth": 7
    },
    {
     "name": "Marcus Mariota",

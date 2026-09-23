@@ -1,39 +1,15 @@
 {
  "season": 2026,
- "fetchedAt": "2026-09-22T16:41:52.060Z",
+ "fetchedAt": "2026-09-23T16:36:14.345Z",
  "data": {
   "players": [
-   {
-    "name": "Nick Muse",
-    "team": "",
-    "pos": "TE",
-    "status": "Questionable",
-    "summary": "Muse (shoulder) was a limited participant in Monday's estimated practice, Tori McElhaney of the Falcons' official site reports.",
-    "updatedAt": "2026-09-21T23:21Z"
-   },
-   {
-    "name": "Tua Tagovailoa",
-    "team": "",
-    "pos": "QB",
-    "status": "Out",
-    "summary": "Tagovailoa (ankle) was estimated as a limited participant in Monday's walk-through practice, Marc Raimondi of ESPN.com reports.",
-    "updatedAt": "2026-09-21T21:08Z"
-   },
-   {
-    "name": "Brian Robinson Jr.",
-    "team": "",
-    "pos": "RB",
-    "status": "Questionable",
-    "summary": "Robinson was listed as a limited participant in Monday's walkthrough practice due to an ankle injury, Marc Raimondi of ESPN.com reports.",
-    "updatedAt": "2026-09-21T21:05Z"
-   },
    {
     "name": "Zay Flowers",
     "team": "",
     "pos": "WR",
-    "status": "Out",
-    "summary": "Ravens head coach Jesse Minter said Monday that Flowers (hamstring) has a \"good shot\" to play Week 3 in Dallas, Ryan Mink of the Ravens' official site reports.",
-    "updatedAt": "2026-09-21T19:49Z"
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T20:56Z"
    },
    {
     "name": "Ja'Kobi Lane",
@@ -47,9 +23,9 @@
     "name": "Ty Johnson",
     "team": "",
     "pos": "RB",
-    "status": "Out",
-    "summary": "out",
-    "updatedAt": "2026-09-21T18:07Z"
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T20:56Z"
    },
    {
     "name": "DJ Moore",
@@ -63,9 +39,17 @@
     "name": "Jonathon Brooks",
     "team": "",
     "pos": "RB",
-    "status": "Doubtful",
-    "summary": "Brooks is considered week-to-week while he receives further medical opinions on the groin injury he sustained in Sunday's 34-3 win over the Falcons, Tom Pelissero of Netflix reports.",
-    "updatedAt": "2026-09-21T20:47Z"
+    "status": "Injured Reserve",
+    "summary": "The Panthers placed Brooks (core) on injured reserve Wednesday, Darin Gantt of the team's official site reports.",
+    "updatedAt": "2026-09-23T13:48Z"
+   },
+   {
+    "name": "Tyson Bagent",
+    "team": "",
+    "pos": "QB",
+    "status": "Questionable",
+    "summary": "Bagent was diagnosed with a concussion and placed in the five-step protocol Tuesday, Ian Rapoport of NFL Network reports.",
+    "updatedAt": "2026-09-22T18:18Z"
    },
    {
     "name": "Caleb Williams",
@@ -84,28 +68,20 @@
     "updatedAt": "2026-09-15T19:33Z"
    },
    {
-    "name": "Dillon Gabriel",
-    "team": "",
-    "pos": "QB",
-    "status": "Injured Reserve",
-    "summary": "ir",
-    "updatedAt": "2026-09-08T20:42Z"
-   },
-   {
     "name": "Marvin Mims Jr.",
     "team": "",
     "pos": "WR",
-    "status": "Out",
-    "summary": "out",
-    "updatedAt": "2026-09-21T18:51Z"
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T20:56Z"
    },
    {
     "name": "RJ Harvey",
     "team": "",
     "pos": "RB",
-    "status": "Out",
-    "summary": "out",
-    "updatedAt": "2026-09-21T18:51Z"
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T20:56Z"
    },
    {
     "name": "J.K. Dobbins",
@@ -116,100 +92,60 @@
     "updatedAt": "2026-09-21T17:00Z"
    },
    {
-    "name": "Caleb Lohner",
-    "team": "",
-    "pos": "TE",
-    "status": "Injured Reserve",
-    "summary": "Lohner (lower body) was placed on injured reserve by the Broncos on Sunday with a designation to return, Aric DiLalla of the team's official website reports.",
-    "updatedAt": "2026-08-31T16:50Z"
-   },
-   {
     "name": "Jayden Reed",
     "team": "",
     "pos": "WR",
-    "status": "Questionable",
-    "summary": "The Packers listed Reed (back) as a non-participant on Monday's estimated practice report, Tom Silverstein of the Milwaukee Journal Sentinel reports.",
-    "updatedAt": "2026-09-21T21:30Z"
+    "status": "Doubtful",
+    "summary": "Packers head coach Matt LaFleur said Tuesday that Reed has returned to Green Bay to undergo further testing and consultations with doctors for his neck injury, Ryan Wood of USA Today. The wide receiver remains without a timeline for a return.",
+    "updatedAt": "2026-09-22T22:16Z"
    },
    {
     "name": "Nico Collins",
     "team": "",
     "pos": "WR",
-    "status": "Out",
-    "summary": "out",
-    "updatedAt": "2026-09-21T18:29Z"
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T20:56Z"
    },
    {
     "name": "Alec Pierce",
     "team": "",
     "pos": "WR",
-    "status": "Doubtful",
-    "summary": "Pierce will try to rehab his injured left heel without surgery and is expected to miss several weeks before potentially returning around midseason if all goes well, Ian Rapoport of NFL Network reports.",
-    "updatedAt": "2026-09-22T01:03Z"
-   },
-   {
-    "name": "DJ Giddens",
-    "team": "",
-    "pos": "RB",
     "status": "Out",
-    "summary": "out",
-    "updatedAt": "2026-09-21T19:15Z"
+    "summary": "Colts head coach Shane Steichen said Wednesday that Pierce (heel) will be placed on injured reserve and is without a timeline for a return, Kevin Bowen of 107.5 The Fan Indianapolis reports.",
+    "updatedAt": "2026-09-23T15:37Z"
    },
    {
     "name": "Ashton Dulin",
     "team": "",
     "pos": "WR",
-    "status": "Out",
-    "summary": "out",
-    "updatedAt": "2026-09-21T19:15Z"
-   },
-   {
-    "name": "Carson Towt",
-    "team": "",
-    "pos": "TE",
-    "status": "Injured Reserve",
-    "summary": "ir",
-    "updatedAt": "2026-09-08T20:42Z"
-   },
-   {
-    "name": "Sean McKeon",
-    "team": "",
-    "pos": "TE",
     "status": "Questionable",
     "summary": "questionable",
-    "updatedAt": "2026-09-08T20:42Z"
+    "updatedAt": "2026-09-22T20:56Z"
    },
    {
-    "name": "D.J. Montgomery",
+    "name": "DJ Giddens",
     "team": "",
-    "pos": "WR",
-    "status": "Injured Reserve",
-    "summary": "Montgomery (abdomen) was placed on injured reserve by the Colts on Sunday, JJ Stankevitz of the team's official website reports.",
-    "updatedAt": "2026-08-31T17:16Z"
-   },
-   {
-    "name": "Jimmy Holiday",
-    "team": "",
-    "pos": "WR",
-    "status": "Injured Reserve",
-    "summary": "Holiday (undisclosed) was placed on injured reserve by the Chiefs on Sunday.",
-    "updatedAt": "2026-08-31T17:40Z"
-   },
-   {
-    "name": "Brock Bowers",
-    "team": "",
-    "pos": "TE",
-    "status": "Out",
-    "summary": "Raiders head coach Klint Kubiak said that Bowers (knee) will practice this week and is gearing up to play Sunday against the Saints, Levi Edwards of the team's official site reports.",
-    "updatedAt": "2026-09-21T20:04Z"
+    "pos": "RB",
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T20:56Z"
    },
    {
     "name": "Aidan O'Connell",
     "team": "",
     "pos": "QB",
-    "status": "Out",
-    "summary": "out",
-    "updatedAt": "2026-09-21T18:52Z"
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T20:56Z"
+   },
+   {
+    "name": "Brock Bowers",
+    "team": "",
+    "pos": "TE",
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T20:56Z"
    },
    {
     "name": "Dareke Young",
@@ -224,8 +160,8 @@
     "team": "",
     "pos": "TE",
     "status": "Out",
-    "summary": "Head coach Jim Harbaugh said Monday that Kolar will go on injured reserve due to a forearm injury he sustained during Sunday's 26-14 loss to the Raiders, Kris Rhim of ESPN.com reports.",
-    "updatedAt": "2026-09-21T21:48Z"
+    "summary": "Kolar plans to undergo surgery to repair a broken forearm and is hoping to return from injured reserve when first eligible for the Chargers' Week 8 game against the Rams, Jeremy Fowler of ESPN.com reports.",
+    "updatedAt": "2026-09-22T21:50Z"
    },
    {
     "name": "David Njoku",
@@ -236,18 +172,18 @@
     "updatedAt": "2026-09-21T21:46Z"
    },
    {
-    "name": "KeAndre Lambert-Smith",
+    "name": "Jordan Whittington",
     "team": "",
     "pos": "WR",
-    "status": "Injured Reserve",
-    "summary": "The Chargers placed Lambert-Smith (hamstring) on injured reserve Tuesday.",
-    "updatedAt": "2026-09-15T23:20Z"
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T21:00Z"
    },
    {
     "name": "Puka Nacua",
     "team": "",
     "pos": "WR",
-    "status": "Out",
+    "status": "Questionable",
     "summary": "Rams head coach Sean McVay acknowledged Tuesday that he's uncertain if Nacua (groin) will be available for Sunday's game against the Broncos, Gary Klein of the Los Angeles Times reports. \"I'm not sure what his status is as far as this next coming week,\" McVay said of Nacua. \"I'm hopeful that he'll play.... If he's ready to go, great. If not, then we'll continue to roll.\"",
     "updatedAt": "2026-09-22T15:38Z"
    },
@@ -258,30 +194,6 @@
     "status": "Questionable",
     "summary": "Rivers has been ruled out for the remainder of Monday's game against the Giants due to a calf injury.",
     "updatedAt": "2026-09-22T02:16Z"
-   },
-   {
-    "name": "Ty Simpson",
-    "team": "",
-    "pos": "QB",
-    "status": "Out",
-    "summary": "Simpson (coach's decision) is inactive but will serve as the Rams' emergency third quarterback for Monday's game against the Giants.",
-    "updatedAt": "2026-09-21T23:03Z"
-   },
-   {
-    "name": "Jordan Whittington",
-    "team": "",
-    "pos": "WR",
-    "status": "Out",
-    "summary": "Whittington (quadriceps) is inactive for Monday's game against the Giants.",
-    "updatedAt": "2026-09-21T22:59Z"
-   },
-   {
-    "name": "CJ Daniels",
-    "team": "",
-    "pos": "WR",
-    "status": "Out",
-    "summary": "inactive",
-    "updatedAt": "2026-09-21T22:56Z"
    },
    {
     "name": "Jaylen Wright",
@@ -303,9 +215,9 @@
     "name": "Jauan Jennings",
     "team": "",
     "pos": "WR",
-    "status": "Out",
-    "summary": "out",
-    "updatedAt": "2026-09-21T18:23Z"
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T20:56Z"
    },
    {
     "name": "Jordan Mason",
@@ -327,9 +239,9 @@
     "name": "Jaxson Dart",
     "team": "",
     "pos": "QB",
-    "status": "Doubtful",
-    "summary": "Dart is believed to have suffered a sprained MCL in his left knee during Monday's 28-6 loss to the Rams, Ian Rapoport of NFL Network reports.",
-    "updatedAt": "2026-09-22T03:19Z"
+    "status": "Out",
+    "summary": "Dart is expected to undergo knee surgery that will end his 2026 season but lead to a full recovery heading into 2027, Ian Rapoport and Mike Garafolo of NFL Network report.",
+    "updatedAt": "2026-09-23T16:04Z"
    },
    {
     "name": "Malik Nabers",
@@ -340,44 +252,28 @@
     "updatedAt": "2026-09-22T00:58Z"
    },
    {
-    "name": "Thomas Fidone II",
-    "team": "",
-    "pos": "TE",
-    "status": "Out",
-    "summary": "inactive",
-    "updatedAt": "2026-09-21T22:59Z"
-   },
-   {
     "name": "Arian Smith",
     "team": "",
     "pos": "WR",
-    "status": "Questionable",
-    "summary": "questionable",
-    "updatedAt": "2026-09-22T16:10Z"
-   },
-   {
-    "name": "Kene Nwangwu",
-    "team": "",
-    "pos": "RB",
-    "status": "Out",
-    "summary": "out",
-    "updatedAt": "2026-09-21T18:41Z"
+    "status": "Injured Reserve",
+    "summary": "The Jets placed Smith (knee) on injured reserve Tuesday.",
+    "updatedAt": "2026-09-22T23:48Z"
    },
    {
     "name": "Mason Taylor",
     "team": "",
     "pos": "TE",
-    "status": "Questionable",
-    "summary": "Taylor (thumb) is questionable to return to Sunday's game against the Packers, Zack Rosenblatt of The Athletic reports.",
-    "updatedAt": "2026-09-20T20:36Z"
+    "status": "Doubtful",
+    "summary": "Taylor (thumb) is considered week-to-week and will likely miss Sunday's game against the Lions, Ian Rapoport of NFL Network reports.",
+    "updatedAt": "2026-09-22T22:08Z"
    },
    {
-    "name": "Omar Cooper Jr.",
+    "name": "Kene Nwangwu",
     "team": "",
-    "pos": "WR",
-    "status": "Injured Reserve",
-    "summary": "The Jets are expected to place Cooper (ankle) on injured reserve, Ian Rapoport of NFL Network reports.",
-    "updatedAt": "2026-09-19T16:24Z"
+    "pos": "RB",
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T20:56Z"
    },
    {
     "name": "Dallas Goedert",
@@ -396,28 +292,20 @@
     "updatedAt": "2026-09-20T17:24Z"
    },
    {
-    "name": "Eli Stowers",
-    "team": "",
-    "pos": "TE",
-    "status": "Injured Reserve",
-    "summary": "The Eagles placed Stowers (quadriceps/hamstring) on injured reserve Saturday.",
-    "updatedAt": "2026-09-12T20:06Z"
-   },
-   {
     "name": "Michael Pittman Jr.",
     "team": "",
     "pos": "WR",
-    "status": "Out",
-    "summary": "Steelers head coach Mike McCarthy said Monday that Pittman's foot injury is not related to the one he dealt with during training camp and the preseason, Nick Farabaugh of PennLive.com reports.",
-    "updatedAt": "2026-09-21T19:26Z"
+    "status": "Questionable",
+    "summary": "Steelers head coach Mike McCarthy said Pittman (foot) will practice Wednesday and is likely to be a limited participant, Brooke Pryor of ESPN.com reports.",
+    "updatedAt": "2026-09-23T15:50Z"
    },
    {
     "name": "Rico Dowdle",
     "team": "",
     "pos": "RB",
     "status": "Questionable",
-    "summary": "Dowdle has been ruled out for the remainder of Sunday's game against the Patriots, Brooke Pryor of ESPN.com reports. He finished with seven carries for 22 yards and two catches for 22 yards on two targets.",
-    "updatedAt": "2026-09-20T19:32Z"
+    "summary": "Dowdle is considered day-to-day after undergoing testing on his toe injury Tuesday, Ian Rapoport of NFL Network reports.",
+    "updatedAt": "2026-09-22T21:43Z"
    },
    {
     "name": "Demarcus Robinson",
@@ -452,12 +340,12 @@
     "updatedAt": "2026-09-19T21:14Z"
    },
    {
-    "name": "Jake Tonges",
+    "name": "Sam Darnold",
     "team": "",
-    "pos": "TE",
-    "status": "Injured Reserve",
-    "summary": "Tonges (knee) requires surgery for an MCL tear and is done for the season, Cam Inman reports.",
-    "updatedAt": "2026-09-16T20:04Z"
+    "pos": "QB",
+    "status": "Questionable",
+    "summary": "Darnold (glute) will practice Wednesday, according to Ian Rapoport of NFL Network.",
+    "updatedAt": "2026-09-22T23:30Z"
    },
    {
     "name": "Jadarian Price",
@@ -468,14 +356,6 @@
     "updatedAt": "2026-09-21T17:38Z"
    },
    {
-    "name": "Sam Darnold",
-    "team": "",
-    "pos": "QB",
-    "status": "Out",
-    "summary": "Darnold (glute) is ahead of schedule in his recovery and has a chance to practice ahead of Seattle's Week 3 road game against the Commanders, head coach Mike Macdonald said after Sunday's 31-7 victory over the Cardinals, Curtis Crabtree of Fox 13 Seattle reports.",
-    "updatedAt": "2026-09-21T00:25Z"
-   },
-   {
     "name": "Zach Charbonnet",
     "team": "",
     "pos": "RB",
@@ -484,12 +364,12 @@
     "updatedAt": "2026-09-18T20:50Z"
    },
    {
-    "name": "David Sills V",
+    "name": "Chig Okonkwo",
     "team": "",
-    "pos": "WR",
-    "status": "Injured Reserve",
-    "summary": "Sills (undisclosed) was placed on injured reserve by the Buccaneers on Sunday with a designation to return, Scott Smith of the team's official website reports.",
-    "updatedAt": "2026-08-31T21:46Z"
+    "pos": "TE",
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-09-22T20:56Z"
    },
    {
     "name": "Jayden Daniels",
@@ -498,14 +378,6 @@
     "status": "Doubtful",
     "summary": "Daniels (elbow) underwent imaging Monday and will consult with multiple experts over the next few days, Ian Rapoport of NFL Network reports.",
     "updatedAt": "2026-09-21T19:15Z"
-   },
-   {
-    "name": "Chig Okonkwo",
-    "team": "",
-    "pos": "TE",
-    "status": "Out",
-    "summary": "out",
-    "updatedAt": "2026-09-21T19:02Z"
    }
   ]
  }
