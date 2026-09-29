@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-09-28T19:30:29.187Z",
+ "fetchedAt": "2026-09-29T17:57:28.980Z",
  "data": {
   "players": [
    {
@@ -888,7 +888,7 @@
     "name": "Josh Allen",
     "pos": "QB",
     "team": "BUF",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 8
    },
    {
@@ -2080,7 +2080,7 @@
     "name": "Tylan Wallace",
     "pos": "WR",
     "team": "CLE",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 5
    },
    {
@@ -2868,6 +2868,14 @@
     "yearsExp": 4
    },
    {
+    "id": "8500",
+    "name": "John FitzPatrick",
+    "pos": "TE",
+    "team": "CLE",
+    "injuryStatus": null,
+    "yearsExp": 4
+   },
+   {
     "id": "8523",
     "name": "Nick Muse",
     "pos": "TE",
@@ -3008,7 +3016,7 @@
     "name": "De'Von Achane",
     "pos": "RB",
     "team": "MIA",
-    "injuryStatus": "Out",
+    "injuryStatus": "IR",
     "yearsExp": 3
    },
    {
@@ -3040,7 +3048,7 @@
     "name": "Tanner McKee",
     "pos": "QB",
     "team": "PHI",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 3
    },
    {
@@ -3113,6 +3121,14 @@
     "pos": "WR",
     "team": "LV",
     "injuryStatus": "IR",
+    "yearsExp": 3
+   },
+   {
+    "id": "9490",
+    "name": "Tyler Scott",
+    "pos": "WR",
+    "team": "LV",
+    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -3316,14 +3332,6 @@
     "yearsExp": 3
    },
    {
-    "id": "10215",
-    "name": "Jake Haener",
-    "pos": "QB",
-    "team": "NYG",
-    "injuryStatus": null,
-    "yearsExp": 3
-   },
-   {
     "id": "10218",
     "name": "Xavier Hutchinson",
     "pos": "WR",
@@ -3345,14 +3353,6 @@
     "pos": "TE",
     "team": "IND",
     "injuryStatus": "IR",
-    "yearsExp": 3
-   },
-   {
-    "id": "10221",
-    "name": "Ronnie Bell",
-    "pos": "WR",
-    "team": "LV",
-    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -3551,7 +3551,7 @@
     "id": "11068",
     "name": "Mitchell Tinsley",
     "pos": "WR",
-    "team": "HOU",
+    "team": "CIN",
     "injuryStatus": null,
     "yearsExp": 3
    },
@@ -4112,7 +4112,7 @@
     "name": "Jalen McMillan",
     "pos": "WR",
     "team": "TB",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 2
    },
    {
@@ -6096,7 +6096,7 @@
     "name": "Cole Payton",
     "pos": "QB",
     "team": "PHI",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
@@ -6432,6 +6432,14 @@
     "name": "Seydou Traore",
     "pos": "TE",
     "team": "MIA",
+    "injuryStatus": null,
+    "yearsExp": 0
+   },
+   {
+    "id": "13431",
+    "name": "Miles Kitselman",
+    "pos": "TE",
+    "team": "DET",
     "injuryStatus": null,
     "yearsExp": 0
    },
@@ -6782,6 +6790,14 @@
    {
     "id": "13861",
     "name": "Daniel Sobkowicz",
+    "pos": "WR",
+    "team": "HOU",
+    "injuryStatus": null,
+    "yearsExp": 0
+   },
+   {
+    "id": "13862",
+    "name": "Treyvhon Saunders",
     "pos": "WR",
     "team": "HOU",
     "injuryStatus": null,
