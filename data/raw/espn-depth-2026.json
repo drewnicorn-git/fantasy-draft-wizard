@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-10-01T18:18:19.429Z",
+ "fetchedAt": "2026-10-02T17:43:55.976Z",
  "data": {
   "players": [
    {
@@ -1946,7 +1946,7 @@
     "name": "Tutu Atwell",
     "team": "LAR",
     "pos": "WR",
-    "depth": 7
+    "depth": 5
    },
    {
     "name": "Stetson Bennett IV",
@@ -1970,7 +1970,7 @@
     "name": "CJ Daniels",
     "team": "LAR",
     "pos": "WR",
-    "depth": 5
+    "depth": 6
    },
    {
     "name": "Terrance Ferguson",
@@ -2017,8 +2017,7 @@
    {
     "name": "Xavier Smith",
     "team": "LAR",
-    "pos": "WR",
-    "depth": 6
+    "pos": "WR"
    },
    {
     "name": "Matthew Stafford",
@@ -2379,13 +2378,14 @@
    {
     "name": "Kevin Austin Jr.",
     "team": "NO",
-    "pos": "WR"
+    "pos": "WR",
+    "depth": 4
    },
    {
     "name": "Barion Brown",
     "team": "NO",
     "pos": "WR",
-    "depth": 4
+    "depth": 6
    },
    {
     "name": "Oscar Delp",
@@ -2397,13 +2397,7 @@
     "name": "CJ Donaldson",
     "team": "NO",
     "pos": "RB",
-    "depth": 4
-   },
-   {
-    "name": "Travis Etienne Jr.",
-    "team": "NO",
-    "pos": "RB",
-    "depth": 1
+    "depth": 3
    },
    {
     "name": "Noah Fant",
@@ -2421,7 +2415,7 @@
     "name": "Alvin Kamara",
     "team": "NO",
     "pos": "RB",
-    "depth": 2
+    "depth": 1
    },
    {
     "name": "Bryce Lance",
@@ -2433,7 +2427,7 @@
     "name": "Kendre Miller",
     "team": "NO",
     "pos": "RB",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Jalen Moreno-Cropper",
@@ -2860,7 +2854,7 @@
     "name": "Eli Heidenreich",
     "team": "PIT",
     "pos": "RB",
-    "depth": 4
+    "depth": 5
    },
    {
     "name": "Travis Homer",
@@ -2883,7 +2877,8 @@
    {
     "name": "Lew Nichols",
     "team": "PIT",
-    "pos": "RB"
+    "pos": "RB",
+    "depth": 4
    },
    {
     "name": "Riley Nowakowski",
@@ -2968,6 +2963,12 @@
     "depth": 2
    },
    {
+    "name": "Brandin Cooks",
+    "team": "SF",
+    "pos": "WR",
+    "depth": 3
+   },
+   {
     "name": "Jacob Cowing",
     "team": "SF",
     "pos": "WR",
@@ -2984,12 +2985,6 @@
     "team": "SF",
     "pos": "TE",
     "depth": 2
-   },
-   {
-    "name": "KhaDarel Hodge",
-    "team": "SF",
-    "pos": "WR",
-    "depth": 3
    },
    {
     "name": "Jordan James",
