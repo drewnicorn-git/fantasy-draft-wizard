@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-10-02T17:43:55.976Z",
+ "fetchedAt": "2026-10-03T16:02:39.910Z",
  "data": {
   "players": [
    {
@@ -536,7 +536,7 @@
     "name": "Tyson Bagent",
     "team": "CHI",
     "pos": "QB",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Luther Burden III",
@@ -559,7 +559,7 @@
     "name": "Case Keenum",
     "team": "CHI",
     "pos": "QB",
-    "depth": 2
+    "depth": 3
    },
    {
     "name": "Cole Kmet",
@@ -1004,12 +1004,6 @@
     "depth": 2
    },
    {
-    "name": "Lil'Jordan Humphrey",
-    "team": "DEN",
-    "pos": "WR",
-    "depth": 6
-   },
-   {
     "name": "Kolbe Katsis",
     "team": "DEN",
     "pos": "WR"
@@ -1278,12 +1272,6 @@
     "depth": 3
    },
    {
-    "name": "British Brooks",
-    "team": "HOU",
-    "pos": "RB",
-    "depth": 3
-   },
-   {
     "name": "Nico Collins",
     "team": "HOU",
     "pos": "WR",
@@ -1341,7 +1329,7 @@
     "name": "Dare Ogunbowale",
     "team": "HOU",
     "pos": "RB",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Dalton Schultz",
@@ -1394,7 +1382,7 @@
     "name": "Deion Burks",
     "team": "IND",
     "pos": "WR",
-    "depth": 8
+    "depth": 9
    },
    {
     "name": "Josh Downs",
@@ -1406,7 +1394,7 @@
     "name": "Ashton Dulin",
     "team": "IND",
     "pos": "WR",
-    "depth": 6
+    "depth": 7
    },
    {
     "name": "DJ Giddens",
@@ -1477,7 +1465,8 @@
    {
     "name": "Nick Westbrook-Ikhine",
     "team": "IND",
-    "pos": "WR"
+    "pos": "WR",
+    "depth": 8
    },
    {
     "name": "Spencer Shrader",
@@ -1940,13 +1929,18 @@
     "name": "Davis Allen",
     "team": "LAR",
     "pos": "TE",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Tutu Atwell",
     "team": "LAR",
     "pos": "WR",
     "depth": 5
+   },
+   {
+    "name": "Alex Bachman",
+    "team": "LAR",
+    "pos": "WR"
    },
    {
     "name": "Stetson Bennett IV",
@@ -1973,22 +1967,16 @@
     "depth": 6
    },
    {
-    "name": "Terrance Ferguson",
-    "team": "LAR",
-    "pos": "TE",
-    "depth": 2
-   },
-   {
     "name": "Tyler Higbee",
     "team": "LAR",
     "pos": "TE",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Max Klare",
     "team": "LAR",
     "pos": "TE",
-    "depth": 5
+    "depth": 4
    },
    {
     "name": "Konata Mumpfield",
@@ -2013,11 +2001,6 @@
     "team": "LAR",
     "pos": "QB",
     "depth": 3
-   },
-   {
-    "name": "Xavier Smith",
-    "team": "LAR",
-    "pos": "WR"
    },
    {
     "name": "Matthew Stafford",
@@ -2854,7 +2837,7 @@
     "name": "Eli Heidenreich",
     "team": "PIT",
     "pos": "RB",
-    "depth": 5
+    "depth": 4
    },
    {
     "name": "Travis Homer",
@@ -2877,8 +2860,7 @@
    {
     "name": "Lew Nichols",
     "team": "PIT",
-    "pos": "RB",
-    "depth": 4
+    "pos": "RB"
    },
    {
     "name": "Riley Nowakowski",
