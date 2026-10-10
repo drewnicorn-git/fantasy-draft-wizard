@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-10-09T18:13:37.703Z",
+ "fetchedAt": "2026-10-10T17:12:49.219Z",
  "data": {
   "players": [
    {
@@ -955,12 +955,6 @@
     "depth": 4
    },
    {
-    "name": "Pat Bryant",
-    "team": "DEN",
-    "pos": "WR",
-    "depth": 3
-   },
-   {
     "name": "J.K. Dobbins",
     "team": "DEN",
     "pos": "RB",
@@ -982,13 +976,19 @@
     "name": "Troy Franklin",
     "team": "DEN",
     "pos": "WR",
-    "depth": 5
+    "depth": 3
    },
    {
     "name": "RJ Harvey",
     "team": "DEN",
     "pos": "RB",
     "depth": 2
+   },
+   {
+    "name": "Lil'Jordan Humphrey",
+    "team": "DEN",
+    "pos": "WR",
+    "depth": 5
    },
    {
     "name": "Kolbe Katsis",
@@ -1381,7 +1381,7 @@
     "name": "Deion Burks",
     "team": "IND",
     "pos": "WR",
-    "depth": 6
+    "depth": 7
    },
    {
     "name": "Josh Downs",
@@ -1441,7 +1441,7 @@
     "name": "Darius Slayton",
     "team": "IND",
     "pos": "WR",
-    "depth": 8
+    "depth": 9
    },
    {
     "name": "Jonathan Taylor",
@@ -1464,7 +1464,8 @@
    {
     "name": "Nick Westbrook-Ikhine",
     "team": "IND",
-    "pos": "WR"
+    "pos": "WR",
+    "depth": 8
    },
    {
     "name": "Spencer Shrader",
@@ -2143,6 +2144,11 @@
     "depth": 2
    },
    {
+    "name": "Kaytron Allen",
+    "team": "MIN",
+    "pos": "RB"
+   },
+   {
     "name": "Gavin Bartholomew",
     "team": "MIN",
     "pos": "TE",
@@ -2694,7 +2700,7 @@
     "name": "Tank Bigsby",
     "team": "PHI",
     "pos": "RB",
-    "depth": 4
+    "depth": 5
    },
    {
     "name": "Hollywood Brown",
@@ -2713,12 +2719,6 @@
     "team": "PHI",
     "pos": "WR",
     "depth": 5
-   },
-   {
-    "name": "Andy Dalton",
-    "team": "PHI",
-    "pos": "QB",
-    "depth": 3
    },
    {
     "name": "Josiah Deguara",
@@ -2776,7 +2776,7 @@
     "name": "Cole Payton",
     "team": "PHI",
     "pos": "QB",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Dameon Pierce",
@@ -2795,6 +2795,12 @@
     "team": "PHI",
     "pos": "WR",
     "depth": 1
+   },
+   {
+    "name": "Carson Steele",
+    "team": "PHI",
+    "pos": "RB",
+    "depth": 4
    },
    {
     "name": "Dontayvion Wicks",
@@ -3246,8 +3252,7 @@
    {
     "name": "Easton Stick",
     "team": "TB",
-    "pos": "QB",
-    "depth": 3
+    "pos": "QB"
    },
    {
     "name": "Sean Tucker",
