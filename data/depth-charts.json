@@ -1,7 +1,7 @@
 {
  "season": 2026,
- "builtAt": "2026-10-10T17:12:49.575Z",
- "fetchedAt": "2026-10-10T17:12:49.219Z",
+ "builtAt": "2026-10-11T17:35:29.921Z",
+ "fetchedAt": "2026-10-11T17:35:29.525Z",
  "teams": {
   "ARI": {
    "RB": [
@@ -16,12 +16,12 @@
    ],
    "WR": [
     "Michael Wilson",
-    "Marvin Harrison Jr.",
     "Kendrick Bourne",
     "Jalen Brooks",
-    "Reggie Virgil",
     "Simi Fehoko",
-    "Devin Duvernay"
+    "Marvin Harrison Jr.",
+    "Devin Duvernay",
+    "Reggie Virgil"
    ],
    "TE": [
     "Trey McBride",
@@ -161,7 +161,8 @@
    "RB": [
     "D'Andre Swift",
     "Kyle Monangai",
-    "Roschon Johnson"
+    "Roschon Johnson",
+    "Zavier Scott"
    ],
    "TE": [
     "Colston Loveland",
@@ -309,19 +310,18 @@
    ]
   },
   "GB": {
-   "RB": [
-    "MarShawn Lloyd",
-    "Kaleb Johnson",
-    "Chris Brooks",
-    "Pierre Strong Jr.",
-    "Josh Jacobs"
-   ],
    "WR": [
     "Christian Watson",
     "Matthew Golden",
     "Skyy Moore",
     "Bo Melton",
     "J. Michael Sturdivant"
+   ],
+   "RB": [
+    "MarShawn Lloyd",
+    "Kaleb Johnson",
+    "Pierre Strong Jr.",
+    "Josh Jacobs"
    ],
    "TE": [
     "Tucker Kraft",
@@ -345,11 +345,6 @@
     "Jaylin Noel",
     "Jared Wayne"
    ],
-   "QB": [
-    "C.J. Stroud",
-    "Davis Mills",
-    "Mark Gronowski"
-   ],
    "TE": [
     "Dalton Schultz",
     "Foster Moreau",
@@ -361,6 +356,10 @@
     "David Montgomery",
     "Woody Marks",
     "Dare Ogunbowale"
+   ],
+   "QB": [
+    "C.J. Stroud",
+    "Davis Mills"
    ],
    "DST": [
     "Houston Texans"
@@ -460,7 +459,8 @@
     "Jalen Nailor",
     "Cody White",
     "Dareke Young",
-    "Malik Benson"
+    "Malik Benson",
+    "Deven Thompkins"
    ],
    "TE": [
     "Brock Bowers",
@@ -475,7 +475,8 @@
    "RB": [
     "Ashton Jeanty",
     "Mike Washington Jr.",
-    "Dylan Laube"
+    "Dylan Laube",
+    "Roman Hemby"
    ],
    "DST": [
     "Las Vegas Raiders"
@@ -487,6 +488,7 @@
     "Quentin Johnston",
     "Tre' Harris",
     "Brenen Thompson",
+    "Theo Wease Jr.",
     "Marquez Valdes-Scantling",
     "Derius Davis"
    ],
@@ -502,7 +504,6 @@
    ],
    "QB": [
     "Justin Herbert",
-    "Trey Lance",
     "DJ Uiagalelei"
    ],
    "DST": [
@@ -540,6 +541,12 @@
    ]
   },
   "MIA": {
+   "RB": [
+    "Ollie Gordon II",
+    "Jaylen Wright",
+    "Kaytron Allen",
+    "Carlos Washington Jr."
+   ],
    "WR": [
     "Malik Washington",
     "Caleb Douglas",
@@ -548,20 +555,15 @@
     "Jalen Tolbert",
     "Ryan Miller"
    ],
-   "QB": [
-    "Malik Willis",
-    "Kyle McCord",
-    "Brady Cook"
-   ],
    "TE": [
     "Greg Dulcich",
     "Will Kacmarek",
     "Seydou Traore",
     "Justin Joly"
    ],
-   "RB": [
-    "Ollie Gordon II",
-    "Jaylen Wright"
+   "QB": [
+    "Malik Willis",
+    "Kyle McCord"
    ],
    "DST": [
     "Miami Dolphins"
@@ -573,11 +575,14 @@
     "Jordan Addison",
     "Jauan Jennings",
     "Tai Felton",
-    "Myles Price"
+    "Odell Beckham Jr.",
+    "Myles Price",
+    "Jeshaun Jones"
    ],
    "TE": [
     "T.J. Hockenson",
-    "Gavin Bartholomew"
+    "Gavin Bartholomew",
+    "Ben Yurosek"
    ],
    "QB": [
     "Kyler Murray",
@@ -603,7 +608,6 @@
    "WR": [
     "Romeo Doubs",
     "DeMario Douglas",
-    "Mack Hollins",
     "Efton Chism III",
     "Kyle Williams"
    ],
@@ -626,8 +630,8 @@
     "Chris Olave",
     "Devaughn Vele",
     "Bryce Lance",
-    "Kevin Austin Jr.",
-    "Barion Brown"
+    "Barion Brown",
+    "Cedric Tillman"
    ],
    "TE": [
     "Juwan Johnson",
@@ -650,17 +654,18 @@
    ]
   },
   "NYG": {
+   "WR": [
+    "Malik Nabers",
+    "Malachi Fields",
+    "Darnell Mooney",
+    "Charlie Jones",
+    "Dalen Cambre"
+   ],
    "TE": [
     "Isaiah Likely",
     "Theo Johnson",
     "Chris Manhertz",
     "Thomas Fidone II"
-   ],
-   "WR": [
-    "Malik Nabers",
-    "Malachi Fields",
-    "Darnell Mooney",
-    "Charlie Jones"
    ],
    "QB": [
     "Jameis Winston",
@@ -692,8 +697,7 @@
     "Garrett Wilson",
     "Adonai Mitchell",
     "Isaiah Williams",
-    "Malik McClain",
-    "Jamaal Pritchett"
+    "Malik McClain"
    ],
    "TE": [
     "Kenyon Sadiq",
@@ -725,6 +729,7 @@
    "TE": [
     "Dallas Goedert",
     "Johnny Mundt",
+    "Zach Ertz",
     "E.J. Jenkins"
    ],
    "QB": [
@@ -745,17 +750,18 @@
    ],
    "WR": [
     "DK Metcalf",
-    "Michael Pittman Jr.",
     "Roman Wilson",
     "Germie Bernard",
     "Ben Skowronek",
-    "Kaden Wetjen"
+    "Kaden Wetjen",
+    "Brandon Smith"
    ],
    "RB": [
     "Jaylen Warren",
     "Rico Dowdle",
     "Travis Homer",
-    "Eli Heidenreich"
+    "Eli Heidenreich",
+    "Lew Nichols"
    ],
    "TE": [
     "Darnell Washington",
@@ -783,7 +789,8 @@
    "TE": [
     "George Kittle",
     "Luke Farrell",
-    "Brayden Willis"
+    "Brayden Willis",
+    "Jack Stoll"
    ],
    "QB": [
     "Brock Purdy",
@@ -868,8 +875,9 @@
    "RB": [
     "Tony Pollard",
     "Tyjae Spears",
-    "Nicholas Singleton",
     "Julius Chestnut",
+    "Kalel Mullings",
+    "Nicholas Singleton",
     "Michael Carter"
    ],
    "QB": [
@@ -892,8 +900,9 @@
     "Stefon Diggs",
     "Antonio Williams",
     "Treylon Burks",
-    "Jaylin Lane",
+    "Van Jefferson",
     "Dyami Brown",
+    "Jaylin Lane",
     "Luke McCaffrey"
    ],
    "RB": [
