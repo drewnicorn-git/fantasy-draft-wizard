@@ -1,7 +1,7 @@
 {
  "season": 2026,
- "builtAt": "2026-10-16T16:25:35.605Z",
- "fetchedAt": "2026-10-16T16:25:35.185Z",
+ "builtAt": "2026-10-17T15:20:32.561Z",
+ "fetchedAt": "2026-10-17T15:20:32.102Z",
  "sources": [
   "fantasypros",
   "espn",
@@ -307,7 +307,7 @@
    },
    "adp": {
     "std": 9.2,
-    "ppr": 5.3
+    "ppr": 6.7
    },
    "posRank": {
     "std": 3,
@@ -511,7 +511,7 @@
    },
    "adp": {
     "std": 3.8,
-    "ppr": 7.1
+    "ppr": 6.9
    },
    "posRank": {
     "std": 3,
@@ -715,7 +715,7 @@
    },
    "adp": {
     "std": 18.5,
-    "ppr": 11.9
+    "ppr": 12.1
    },
    "posRank": {
     "std": 6,
@@ -892,72 +892,6 @@
    }
   },
   {
-   "id": "drake london|WR",
-   "name": "Drake London",
-   "team": "ATL",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": 1,
-   "bye": 11,
-   "tier": 2,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 14
-    },
-    "ppr": {
-     "fantasypros": 11,
-     "espn": 18,
-     "sleeper": 20
-    }
-   },
-   "consensus": {
-    "std": 14,
-    "ppr": 16
-   },
-   "adp": {
-    "std": 19.1,
-    "ppr": 20.9
-   },
-   "posRank": {
-    "std": 8,
-    "ppr": 7
-   },
-   "rankStdDev": 3.43,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 6,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 90,
-    "recYd": 1156,
-    "recTd": 7,
-    "recTwoPt": 1,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 160.2,
-    "ptsPpr": 250.2,
-    "ptsHalfPpr": 205.2
-   }
-  },
-  {
    "id": "aj brown|WR",
    "name": "A.J. Brown",
    "team": "NE",
@@ -975,13 +909,13 @@
     "ppr": {
      "fantasypros": 12,
      "espn": 20,
-     "sleeper": 18,
+     "sleeper": 17,
      "ffc": 16
     }
    },
    "consensus": {
     "std": 15,
-    "ppr": 17
+    "ppr": 16
    },
    "adp": {
     "std": 33.2,
@@ -1026,6 +960,72 @@
    }
   },
   {
+   "id": "drake london|WR",
+   "name": "Drake London",
+   "team": "ATL",
+   "pos": "WR",
+   "teamVerified": true,
+   "depth": 1,
+   "bye": 11,
+   "tier": 2,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 14
+    },
+    "ppr": {
+     "fantasypros": 11,
+     "espn": 18,
+     "sleeper": 21
+    }
+   },
+   "consensus": {
+    "std": 14,
+    "ppr": 17
+   },
+   "adp": {
+    "std": 19.1,
+    "ppr": 20.9
+   },
+   "posRank": {
+    "std": 8,
+    "ppr": 7
+   },
+   "rankStdDev": 3.43,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 6,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 90,
+    "recYd": 1156,
+    "recTd": 7,
+    "recTwoPt": 1,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 160.2,
+    "ptsPpr": 250.2,
+    "ptsHalfPpr": 205.2
+   }
+  },
+  {
    "id": "saquon barkley|RB",
    "name": "Saquon Barkley",
    "team": "PHI",
@@ -1034,7 +1034,7 @@
    "depth": 1,
    "bye": 10,
    "tier": 4,
-   "injuryStatus": "Questionable",
+   "injuryStatus": "Out",
    "ranks": {
     "std": {
      "fantasypros": 16,
@@ -1256,7 +1256,7 @@
    },
    "adp": {
     "std": 26.7,
-    "ppr": 23.7
+    "ppr": 24.3
    },
    "posRank": {
     "std": 7,
@@ -1381,17 +1381,17 @@
     "ppr": {
      "fantasypros": 40,
      "espn": 16,
-     "sleeper": 17,
+     "sleeper": 18,
      "ffc": 12
     }
    },
    "consensus": {
     "std": 9,
-    "ppr": 21
+    "ppr": 22
    },
    "adp": {
     "std": 7.4,
-    "ppr": 17.6
+    "ppr": 18.4
    },
    "posRank": {
     "std": 6,
@@ -1440,7 +1440,7 @@
    "depth": 1,
    "bye": 5,
    "tier": 3,
-   "injuryStatus": "Questionable",
+   "injuryStatus": "Out",
    "ranks": {
     "std": {
      "fantasypros": 24
@@ -1526,7 +1526,7 @@
    },
    "adp": {
     "std": 21.7,
-    "ppr": 25.5
+    "ppr": 25.4
    },
    "posRank": {
     "std": 2,
@@ -1730,7 +1730,7 @@
    },
    "adp": {
     "std": 31.2,
-    "ppr": 29.9
+    "ppr": 30.1
    },
    "posRank": {
     "std": 12,
@@ -1788,7 +1788,7 @@
     "ppr": {
      "fantasypros": 26,
      "espn": 26,
-     "sleeper": 21,
+     "sleeper": 20,
      "ffc": 27
     }
    },
@@ -1798,7 +1798,7 @@
    },
    "adp": {
     "std": 15,
-    "ppr": 21.3
+    "ppr": 20.7
    },
    "posRank": {
     "std": 1,
@@ -1847,7 +1847,7 @@
    "depth": 1,
    "bye": 10,
    "tier": 4,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 31,
@@ -1915,7 +1915,7 @@
    "depth": 1,
    "bye": 14,
    "tier": 5,
-   "injuryStatus": "Questionable",
+   "injuryStatus": "Out",
    "ranks": {
     "std": {
      "fantasypros": 42,
@@ -1924,7 +1924,7 @@
     "ppr": {
      "fantasypros": 37,
      "espn": 19,
-     "sleeper": 28
+     "sleeper": 27
     }
    },
    "consensus": {
@@ -1933,7 +1933,7 @@
    },
    "adp": {
     "std": 15.2,
-    "ppr": 28.6
+    "ppr": 27.4
    },
    "posRank": {
     "std": 17,
@@ -1991,7 +1991,7 @@
     "ppr": {
      "fantasypros": 34,
      "espn": 33,
-     "sleeper": 27,
+     "sleeper": 28,
      "ffc": 24
     }
    },
@@ -2389,7 +2389,7 @@
    "depth": 1,
    "bye": 13,
    "tier": 4,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 30,
@@ -2533,7 +2533,7 @@
     "ppr": {
      "fantasypros": 41,
      "espn": 30,
-     "sleeper": 34
+     "sleeper": 35
     }
    },
    "consensus": {
@@ -2591,7 +2591,7 @@
    "depth": 1,
    "bye": 7,
    "tier": 4,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 45,
@@ -2600,7 +2600,7 @@
     "ppr": {
      "fantasypros": 33,
      "espn": 41,
-     "sleeper": 35,
+     "sleeper": 34,
      "ffc": 35
     }
    },
@@ -2610,7 +2610,7 @@
    },
    "adp": {
     "std": 46.8,
-    "ppr": 35.5
+    "ppr": 34.5
    },
    "posRank": {
     "std": 21,
@@ -2659,7 +2659,7 @@
    "depth": 1,
    "bye": 13,
    "tier": 4,
-   "injuryStatus": "Questionable",
+   "injuryStatus": "Out",
    "ranks": {
     "std": {
      "fantasypros": 28
@@ -2990,74 +2990,6 @@
    }
   },
   {
-   "id": "terry mclaurin|WR",
-   "name": "Terry McLaurin",
-   "team": "WAS",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": 1,
-   "bye": 7,
-   "tier": 5,
-   "injuryStatus": "Questionable",
-   "ranks": {
-    "std": {
-     "fantasypros": 44,
-     "ffc": 40
-    },
-    "ppr": {
-     "fantasypros": 43,
-     "espn": 51,
-     "sleeper": 55,
-     "ffc": 40
-    }
-   },
-   "consensus": {
-    "std": 42,
-    "ppr": 47
-   },
-   "adp": {
-    "std": 55.6,
-    "ppr": 55.4
-   },
-   "posRank": {
-    "std": 20,
-    "ppr": 22
-   },
-   "rankStdDev": 6.26,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 7,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 74,
-    "recYd": 1031,
-    "recTd": 6,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 139.8,
-    "ptsPpr": 213.8,
-    "ptsHalfPpr": 176.8
-   }
-  },
-  {
    "id": "drake maye|QB",
    "name": "Drake Maye",
    "team": "NE",
@@ -3192,6 +3124,74 @@
    }
   },
   {
+   "id": "terry mclaurin|WR",
+   "name": "Terry McLaurin",
+   "team": "WAS",
+   "pos": "WR",
+   "teamVerified": true,
+   "depth": 1,
+   "bye": 7,
+   "tier": 5,
+   "injuryStatus": "Questionable",
+   "ranks": {
+    "std": {
+     "fantasypros": 44,
+     "ffc": 40
+    },
+    "ppr": {
+     "fantasypros": 43,
+     "espn": 51,
+     "sleeper": 56,
+     "ffc": 40
+    }
+   },
+   "consensus": {
+    "std": 42,
+    "ppr": 48
+   },
+   "adp": {
+    "std": 55.6,
+    "ppr": 55.4
+   },
+   "posRank": {
+    "std": 20,
+    "ppr": 22
+   },
+   "rankStdDev": 6.26,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 7,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 74,
+    "recYd": 1031,
+    "recTd": 6,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 139.8,
+    "ptsPpr": 213.8,
+    "ptsHalfPpr": 176.8
+   }
+  },
+  {
    "id": "dandre swift|RB",
    "name": "D'Andre Swift",
    "team": "CHI",
@@ -3219,7 +3219,7 @@
    },
    "adp": {
     "std": 47.1,
-    "ppr": 49.3
+    "ppr": 48.7
    },
    "posRank": {
     "std": 21,
@@ -3277,7 +3277,7 @@
     "ppr": {
      "fantasypros": 60,
      "espn": 40,
-     "sleeper": 53,
+     "sleeper": 54,
      "ffc": 41
     }
    },
@@ -3287,7 +3287,7 @@
    },
    "adp": {
     "std": 44.8,
-    "ppr": 53.1
+    "ppr": 54.9
    },
    "posRank": {
     "std": 20,
@@ -3413,7 +3413,7 @@
     "ppr": {
      "fantasypros": 55,
      "espn": 52,
-     "sleeper": 54,
+     "sleeper": 53,
      "ffc": 38
     }
    },
@@ -3490,7 +3490,7 @@
    },
    "adp": {
     "std": 52.6,
-    "ppr": 59
+    "ppr": 59.9
    },
    "posRank": {
     "std": 23,
@@ -3607,7 +3607,7 @@
    "depth": 1,
    "bye": 13,
    "tier": 6,
-   "injuryStatus": null,
+   "injuryStatus": "Questionable",
    "ranks": {
     "std": {
      "fantasypros": 64,
@@ -3735,6 +3735,73 @@
    }
   },
   {
+   "id": "luther burden|WR",
+   "name": "Luther Burden III",
+   "team": "CHI",
+   "pos": "WR",
+   "teamVerified": true,
+   "depth": 2,
+   "bye": 10,
+   "tier": 5,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 58,
+     "ffc": 52
+    },
+    "ppr": {
+     "fantasypros": 47,
+     "espn": 64,
+     "sleeper": 55
+    }
+   },
+   "consensus": {
+    "std": 55,
+    "ppr": 55
+   },
+   "adp": {
+    "std": 39.7,
+    "ppr": 55.3
+   },
+   "posRank": {
+    "std": 27,
+    "ppr": 23
+   },
+   "rankStdDev": 8.89,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 61,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 72,
+    "recYd": 889,
+    "recTd": 7,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 137,
+    "ptsPpr": 209,
+    "ptsHalfPpr": 173
+   }
+  },
+  {
    "id": "mike evans|WR",
    "name": "Mike Evans",
    "team": "SF",
@@ -3800,73 +3867,6 @@
     "ptsStd": 152.2,
     "ptsPpr": 222.2,
     "ptsHalfPpr": 187.2
-   }
-  },
-  {
-   "id": "luther burden|WR",
-   "name": "Luther Burden III",
-   "team": "CHI",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": 2,
-   "bye": 10,
-   "tier": 5,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 58,
-     "ffc": 52
-    },
-    "ppr": {
-     "fantasypros": 47,
-     "espn": 64,
-     "sleeper": 56
-    }
-   },
-   "consensus": {
-    "std": 55,
-    "ppr": 56
-   },
-   "adp": {
-    "std": 39.7,
-    "ppr": 56.7
-   },
-   "posRank": {
-    "std": 27,
-    "ppr": 23
-   },
-   "rankStdDev": 8.89,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 61,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 72,
-    "recYd": 889,
-    "recTd": 7,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 137,
-    "ptsPpr": 209,
-    "ptsHalfPpr": 173
    }
   },
   {
@@ -4100,7 +4100,7 @@
    },
    "adp": {
     "std": 64.2,
-    "ppr": 66
+    "ppr": 66.9
    },
    "posRank": {
     "std": 24,
@@ -4168,7 +4168,7 @@
    },
    "adp": {
     "std": 69.4,
-    "ppr": 58.2
+    "ppr": 58.1
    },
    "posRank": {
     "std": 6,
@@ -4235,7 +4235,7 @@
    },
    "adp": {
     "std": 39.4,
-    "ppr": 59.2
+    "ppr": 60.8
    },
    "posRank": {
     "std": 24,
@@ -4361,7 +4361,7 @@
     "ppr": {
      "fantasypros": 67,
      "espn": 69,
-     "sleeper": 76,
+     "sleeper": 77,
      "ffc": 54
     }
    },
@@ -4506,7 +4506,7 @@
    },
    "adp": {
     "std": 51.9,
-    "ppr": 70.2
+    "ppr": 69.8
    },
    "posRank": {
     "std": 28,
@@ -4555,7 +4555,7 @@
    "depth": 1,
    "bye": 9,
    "tier": 7,
-   "injuryStatus": null,
+   "injuryStatus": "Questionable",
    "ranks": {
     "std": {
      "fantasypros": 76,
@@ -4574,7 +4574,7 @@
    },
    "adp": {
     "std": 73.3,
-    "ppr": 75.7
+    "ppr": 75.6
    },
    "posRank": {
     "std": 34,
@@ -4642,7 +4642,7 @@
    },
    "adp": {
     "std": 20.2,
-    "ppr": 51.3
+    "ppr": 51.2
    },
    "posRank": {
     "std": 14,
@@ -4710,7 +4710,7 @@
    },
    "adp": {
     "std": 71.9,
-    "ppr": 80.8
+    "ppr": 80.7
    },
    "posRank": {
     "std": 35,
@@ -4768,7 +4768,7 @@
     "ppr": {
      "fantasypros": 80,
      "espn": 87,
-     "sleeper": 71,
+     "sleeper": 72,
      "ffc": 53
     }
    },
@@ -4778,7 +4778,7 @@
    },
    "adp": {
     "std": 74.4,
-    "ppr": 71.2
+    "ppr": 72.8
    },
    "posRank": {
     "std": 36,
@@ -4844,7 +4844,7 @@
    },
    "adp": {
     "std": 62.6,
-    "ppr": 73.5
+    "ppr": 73.4
    },
    "posRank": {
     "std": 7,
@@ -5037,13 +5037,13 @@
     "ppr": {
      "fantasypros": 65,
      "espn": 104,
-     "sleeper": 72,
+     "sleeper": 71,
      "ffc": 65
     }
    },
    "consensus": {
     "std": 75,
-    "ppr": 77
+    "ppr": 76
    },
    "adp": {
     "std": 91.7,
@@ -5181,7 +5181,7 @@
    },
    "adp": {
     "std": 57.5,
-    "ppr": 77.7
+    "ppr": 78.3
    },
    "posRank": {
     "std": 29,
@@ -5238,7 +5238,7 @@
     "ppr": {
      "fantasypros": 76,
      "espn": 85,
-     "sleeper": 77
+     "sleeper": 76
     }
    },
    "consensus": {
@@ -5247,7 +5247,7 @@
    },
    "adp": {
     "std": 97.7,
-    "ppr": 77.5
+    "ppr": 76.5
    },
    "posRank": {
     "std": 10,
@@ -5518,7 +5518,7 @@
    },
    "adp": {
     "std": 75.2,
-    "ppr": 88.4
+    "ppr": 88.3
    },
    "posRank": {
     "std": 41,
@@ -5654,7 +5654,7 @@
    },
    "adp": {
     "std": 93.6,
-    "ppr": 95.9
+    "ppr": 96.1
    },
    "posRank": {
     "std": 30,
@@ -5722,7 +5722,7 @@
    },
    "adp": {
     "std": 66.3,
-    "ppr": 81.4
+    "ppr": 81.3
    },
    "posRank": {
     "std": 30,
@@ -5771,7 +5771,7 @@
    "depth": 2,
    "bye": 9,
    "tier": 7,
-   "injuryStatus": null,
+   "injuryStatus": "Questionable",
    "ranks": {
     "std": {
      "fantasypros": 82
@@ -5789,7 +5789,7 @@
    },
    "adp": {
     "std": 65.2,
-    "ppr": 86.4
+    "ppr": 86.3
    },
    "posRank": {
     "std": 31,
@@ -5855,7 +5855,7 @@
    },
    "adp": {
     "std": 99.2,
-    "ppr": 79.9
+    "ppr": 79.8
    },
    "posRank": {
     "std": 9,
@@ -5991,7 +5991,7 @@
    },
    "adp": {
     "std": 94.6,
-    "ppr": 101.4
+    "ppr": 102.6
    },
    "posRank": {
     "std": 9,
@@ -6193,7 +6193,7 @@
    },
    "adp": {
     "std": 56.4,
-    "ppr": 82.3
+    "ppr": 82.2
    },
    "posRank": {
     "std": 35,
@@ -6260,7 +6260,7 @@
    },
    "adp": {
     "std": 68.3,
-    "ppr": 91.3
+    "ppr": 90.7
    },
    "posRank": {
     "std": 32,
@@ -6318,7 +6318,7 @@
     "ppr": {
      "fantasypros": 98,
      "espn": 90,
-     "sleeper": 111,
+     "sleeper": 112,
      "ffc": 83
     }
    },
@@ -6328,7 +6328,7 @@
    },
    "adp": {
     "std": 86.1,
-    "ppr": 111.8
+    "ppr": 111.7
    },
    "posRank": {
     "std": 39,
@@ -6395,7 +6395,7 @@
    },
    "adp": {
     "std": 143.7,
-    "ppr": 98.4
+    "ppr": 97.6
    },
    "posRank": {
     "std": 41,
@@ -6436,74 +6436,6 @@
    }
   },
   {
-   "id": "jordan addison|WR",
-   "name": "Jordan Addison",
-   "team": "MIN",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": 2,
-   "bye": 6,
-   "tier": 8,
-   "injuryStatus": "Out",
-   "ranks": {
-    "std": {
-     "fantasypros": 94,
-     "ffc": 69
-    },
-    "ppr": {
-     "fantasypros": 105,
-     "espn": 127,
-     "sleeper": 101,
-     "ffc": 78
-    }
-   },
-   "consensus": {
-    "std": 82,
-    "ppr": 103
-   },
-   "adp": {
-    "std": 98.9,
-    "ppr": 101.3
-   },
-   "posRank": {
-    "std": 40,
-    "ppr": 46
-   },
-   "rankStdDev": 12.07,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 22,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 60,
-    "recYd": 795,
-    "recTd": 5,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 111.7,
-    "ptsPpr": 171.7,
-    "ptsHalfPpr": 141.7
-   }
-  },
-  {
    "id": "travis kelce|TE",
    "name": "Travis Kelce",
    "team": "KC",
@@ -6521,12 +6453,12 @@
     "ppr": {
      "fantasypros": 96,
      "espn": 122,
-     "sleeper": 90
+     "sleeper": 89
     }
    },
    "consensus": {
     "std": 107,
-    "ppr": 103
+    "ppr": 102
    },
    "adp": {
     "std": 106.1,
@@ -6588,13 +6520,13 @@
     "ppr": {
      "fantasypros": 91,
      "espn": 128,
-     "sleeper": 114,
+     "sleeper": 113,
      "ffc": 77
     }
    },
    "consensus": {
     "std": 103,
-    "ppr": 103
+    "ppr": 102
    },
    "adp": {
     "std": 111.1,
@@ -6639,6 +6571,74 @@
    }
   },
   {
+   "id": "jordan addison|WR",
+   "name": "Jordan Addison",
+   "team": "MIN",
+   "pos": "WR",
+   "teamVerified": true,
+   "depth": 2,
+   "bye": 6,
+   "tier": 8,
+   "injuryStatus": "Out",
+   "ranks": {
+    "std": {
+     "fantasypros": 94,
+     "ffc": 69
+    },
+    "ppr": {
+     "fantasypros": 105,
+     "espn": 127,
+     "sleeper": 101,
+     "ffc": 78
+    }
+   },
+   "consensus": {
+    "std": 82,
+    "ppr": 103
+   },
+   "adp": {
+    "std": 98.9,
+    "ppr": 101.2
+   },
+   "posRank": {
+    "std": 40,
+    "ppr": 46
+   },
+   "rankStdDev": 12.07,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 22,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 60,
+    "recYd": 795,
+    "recTd": 5,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 111.7,
+    "ptsPpr": 171.7,
+    "ptsHalfPpr": 141.7
+   }
+  },
+  {
    "id": "jakobi meyers|WR",
    "name": "Jakobi Meyers",
    "team": "JAC",
@@ -6665,7 +6665,7 @@
    },
    "adp": {
     "std": 77.2,
-    "ppr": 129.2
+    "ppr": 129.1
    },
    "posRank": {
     "std": 44,
@@ -6714,7 +6714,7 @@
    "depth": 2,
    "bye": 7,
    "tier": 7,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 88,
@@ -6723,7 +6723,7 @@
     "ppr": {
      "fantasypros": 97,
      "espn": 143,
-     "sleeper": 112,
+     "sleeper": 111,
      "ffc": 76
     }
    },
@@ -6733,7 +6733,7 @@
    },
    "adp": {
     "std": 110.1,
-    "ppr": 112.9
+    "ppr": 111.2
    },
    "posRank": {
     "std": 37,
@@ -6869,7 +6869,7 @@
    },
    "adp": {
     "std": 118.6,
-    "ppr": 108
+    "ppr": 108.9
    },
    "posRank": {
     "std": 45,
@@ -6937,7 +6937,7 @@
    },
    "adp": {
     "std": 84.7,
-    "ppr": 127.8
+    "ppr": 127.7
    },
    "posRank": {
     "std": 40,
@@ -6986,7 +6986,7 @@
    "depth": 2,
    "bye": 10,
    "tier": 8,
-   "injuryStatus": "Questionable",
+   "injuryStatus": "Out",
    "ranks": {
     "std": {
      "fantasypros": 89
@@ -7003,7 +7003,7 @@
    },
    "adp": {
     "std": 61.2,
-    "ppr": 107.3
+    "ppr": 107.2
    },
    "posRank": {
     "std": 34,
@@ -7137,7 +7137,7 @@
    },
    "adp": {
     "std": 113.5,
-    "ppr": 93.2
+    "ppr": 93.1
    },
    "posRank": {
     "std": 42,
@@ -7397,7 +7397,7 @@
     "ppr": {
      "fantasypros": 116,
      "espn": 129,
-     "sleeper": 120,
+     "sleeper": 119,
      "ffc": 95
     }
    },
@@ -7407,7 +7407,7 @@
    },
    "adp": {
     "std": 93.6,
-    "ppr": 119.9
+    "ppr": 118.2
    },
    "posRank": {
     "std": 12,
@@ -7541,7 +7541,7 @@
    },
    "adp": {
     "std": 81.1,
-    "ppr": 87.2
+    "ppr": 87.1
    },
    "posRank": {
     "std": 10,
@@ -7667,7 +7667,7 @@
     "ppr": {
      "fantasypros": 177,
      "espn": 107,
-     "sleeper": 104,
+     "sleeper": 105,
      "ffc": 84
     }
    },
@@ -7802,7 +7802,7 @@
     "ppr": {
      "fantasypros": 123,
      "espn": 142,
-     "sleeper": 105,
+     "sleeper": 104,
      "ffc": 111
     }
    },
@@ -7812,7 +7812,7 @@
    },
    "adp": {
     "std": 113.2,
-    "ppr": 105.8
+    "ppr": 104.2
    },
    "posRank": {
     "std": 14,
@@ -7929,7 +7929,7 @@
    "depth": 2,
    "bye": 7,
    "tier": 8,
-   "injuryStatus": null,
+   "injuryStatus": "Questionable",
    "ranks": {
     "std": {
      "fantasypros": 106,
@@ -7938,7 +7938,7 @@
     "ppr": {
      "fantasypros": 107,
      "espn": 119,
-     "sleeper": 140
+     "sleeper": 139
     }
    },
    "consensus": {
@@ -7947,7 +7947,7 @@
    },
    "adp": {
     "std": 124.8,
-    "ppr": 140.4
+    "ppr": 139.6
    },
    "posRank": {
     "std": 38,
@@ -8005,7 +8005,7 @@
     "ppr": {
      "fantasypros": 108,
      "espn": 159,
-     "sleeper": 132,
+     "sleeper": 131,
      "ffc": 89
     }
    },
@@ -8015,7 +8015,7 @@
    },
    "adp": {
     "std": 132.9,
-    "ppr": 131.4
+    "ppr": 131.3
    },
    "posRank": {
     "std": 16,
@@ -8129,7 +8129,7 @@
    "team": "NE",
    "pos": "WR",
    "teamVerified": true,
-   "depth": 1,
+   "depth": 2,
    "bye": 11,
    "tier": 8,
    "injuryStatus": null,
@@ -8140,7 +8140,7 @@
     "ppr": {
      "fantasypros": 128,
      "espn": 151,
-     "sleeper": 133,
+     "sleeper": 132,
      "ffc": 88
     }
    },
@@ -8150,7 +8150,7 @@
    },
    "adp": {
     "std": 116.6,
-    "ppr": 133.9
+    "ppr": 132.1
    },
    "posRank": {
     "std": 50,
@@ -8284,7 +8284,7 @@
    },
    "adp": {
     "std": 158.4,
-    "ppr": 125.9
+    "ppr": 126
    },
    "posRank": {
     "std": 52,
@@ -8333,7 +8333,7 @@
    "depth": 2,
    "bye": 11,
    "tier": 8,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 137,
@@ -8342,7 +8342,7 @@
     "ppr": {
      "fantasypros": 129,
      "espn": 165,
-     "sleeper": 119,
+     "sleeper": 120,
      "ffc": 98
     }
    },
@@ -8352,7 +8352,7 @@
    },
    "adp": {
     "std": 129.3,
-    "ppr": 119.4
+    "ppr": 120.6
    },
    "posRank": {
     "std": 55,
@@ -8410,17 +8410,17 @@
     "ppr": {
      "fantasypros": 113,
      "espn": 149,
-     "sleeper": 149,
+     "sleeper": 150,
      "ffc": 106
     }
    },
    "consensus": {
     "std": 113,
-    "ppr": 129
+    "ppr": 130
    },
    "adp": {
     "std": 154.5,
-    "ppr": 149.6
+    "ppr": 150.4
    },
    "posRank": {
     "std": 17,
@@ -8487,7 +8487,7 @@
    },
    "adp": {
     "std": 131.8,
-    "ppr": 146.3
+    "ppr": 146.2
    },
    "posRank": {
     "std": 51,
@@ -8536,7 +8536,7 @@
    "depth": 1,
    "bye": 10,
    "tier": 8,
-   "injuryStatus": "Doubtful",
+   "injuryStatus": "Out",
    "ranks": {
     "std": {
      "fantasypros": 118,
@@ -8555,7 +8555,7 @@
    },
    "adp": {
     "std": 143.6,
-    "ppr": 143.6
+    "ppr": 144.4
    },
    "posRank": {
     "std": 18,
@@ -8622,7 +8622,7 @@
    },
    "adp": {
     "std": 138.4,
-    "ppr": 130.9
+    "ppr": 130.8
    },
    "posRank": {
     "std": 64,
@@ -8814,7 +8814,7 @@
     "ppr": {
      "fantasypros": 143,
      "espn": 170,
-     "sleeper": 150,
+     "sleeper": 149,
      "ffc": 110
     }
    },
@@ -8824,7 +8824,7 @@
    },
    "adp": {
     "std": 100.9,
-    "ppr": 149.8
+    "ppr": 149.7
    },
    "posRank": {
     "std": 46,
@@ -8892,7 +8892,7 @@
    },
    "adp": {
     "std": 110.1,
-    "ppr": 85
+    "ppr": 85.9
    },
    "posRank": {
     "std": 4,
@@ -8959,7 +8959,7 @@
    },
    "adp": {
     "std": 104.9,
-    "ppr": 147.8
+    "ppr": 146.3
    },
    "posRank": {
     "std": 45,
@@ -9016,7 +9016,7 @@
     "ppr": {
      "fantasypros": 164,
      "espn": 234,
-     "sleeper": 113,
+     "sleeper": 114,
      "ffc": 72
     }
    },
@@ -9026,7 +9026,7 @@
    },
    "adp": {
     "std": 128.2,
-    "ppr": 113.1
+    "ppr": 114.9
    },
    "posRank": {
     "std": 2,
@@ -9092,7 +9092,7 @@
    },
    "adp": {
     "std": 147.5,
-    "ppr": 181.3
+    "ppr": 181.1
    },
    "posRank": {
     "std": 20,
@@ -9290,7 +9290,7 @@
    },
    "adp": {
     "std": 89.4,
-    "ppr": 143.2
+    "ppr": 143.1
    },
    "posRank": {
     "std": 44,
@@ -9348,7 +9348,7 @@
     "ppr": {
      "fantasypros": 178,
      "espn": 255,
-     "sleeper": 89,
+     "sleeper": 90,
      "ffc": 100
     }
    },
@@ -9358,7 +9358,7 @@
    },
    "adp": {
     "std": 109.5,
-    "ppr": 89.5
+    "ppr": 90.5
    },
    "posRank": {
     "std": 1,
@@ -9491,7 +9491,7 @@
    },
    "adp": {
     "std": 213.9,
-    "ppr": 137.3
+    "ppr": 138.7
    },
    "posRank": {
     "std": 72,
@@ -9557,7 +9557,7 @@
    },
    "adp": {
     "std": 91.9,
-    "ppr": 141.9
+    "ppr": 141.8
    },
    "posRank": {
     "std": 16,
@@ -9823,7 +9823,7 @@
    },
    "adp": {
     "std": 102.6,
-    "ppr": 175.1
+    "ppr": 175
    },
    "posRank": {
     "std": 19,
@@ -9889,7 +9889,7 @@
    },
    "adp": {
     "std": 117.5,
-    "ppr": 164.8
+    "ppr": 164.7
    },
    "posRank": {
     "std": 54,
@@ -10079,17 +10079,17 @@
     "ppr": {
      "fantasypros": 179,
      "espn": 235,
-     "sleeper": 154,
+     "sleeper": 153,
      "ffc": 114
     }
    },
    "consensus": {
     "std": 150,
-    "ppr": 171
+    "ppr": 170
    },
    "adp": {
     "std": 178.4,
-    "ppr": 154.4
+    "ppr": 153.7
    },
    "posRank": {
     "std": 8,
@@ -10156,7 +10156,7 @@
    },
    "adp": {
     "std": 187.5,
-    "ppr": 202.4
+    "ppr": 202.2
    },
    "posRank": {
     "std": 62,
@@ -10222,7 +10222,7 @@
    },
    "adp": {
     "std": 148.2,
-    "ppr": 183.4
+    "ppr": 183.3
    },
    "posRank": {
     "std": 51,
@@ -10337,7 +10337,7 @@
    "depth": 1,
    "bye": 11,
    "tier": 9,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 162
@@ -10354,7 +10354,7 @@
    },
    "adp": {
     "std": 153.3,
-    "ppr": 169.8
+    "ppr": 169.6
    },
    "posRank": {
     "std": 60,
@@ -10419,7 +10419,7 @@
    },
    "adp": {
     "std": 169,
-    "ppr": 154.97
+    "ppr": 155.23
    },
    "posRank": {
     "std": 63,
@@ -10576,7 +10576,7 @@
     "ppr": {
      "fantasypros": 160,
      "espn": 203,
-     "sleeper": 174
+     "sleeper": 173
     }
    },
    "consensus": {
@@ -10585,7 +10585,7 @@
    },
    "adp": {
     "std": 80.1,
-    "ppr": 173.5
+    "ppr": 173.4
    },
    "posRank": {
     "std": 49,
@@ -10784,7 +10784,7 @@
    },
    "adp": {
     "std": 125,
-    "ppr": 123.1
+    "ppr": 123
    },
    "posRank": {
     "std": 5,
@@ -10842,7 +10842,7 @@
     "ppr": {
      "fantasypros": 149,
      "espn": 208,
-     "sleeper": 188
+     "sleeper": 189
     }
    },
    "consensus": {
@@ -10975,7 +10975,7 @@
     "ppr": {
      "fantasypros": 218,
      "espn": 197,
-     "sleeper": 139
+     "sleeper": 140
     }
    },
    "consensus": {
@@ -11030,7 +11030,7 @@
    "team": "PHI",
    "pos": "RB",
    "teamVerified": true,
-   "depth": 5,
+   "depth": 4,
    "bye": 10,
    "tier": 9,
    "injuryStatus": "IR",
@@ -11050,7 +11050,7 @@
    },
    "adp": {
     "std": 146.5,
-    "ppr": 182.8
+    "ppr": 181.2
    },
    "posRank": {
     "std": 48,
@@ -11116,7 +11116,7 @@
    },
    "adp": {
     "std": 145.5,
-    "ppr": 136.2
+    "ppr": 136.1
    },
    "posRank": {
     "std": 9,
@@ -11182,7 +11182,7 @@
    },
    "adp": {
     "std": 129.2,
-    "ppr": 118.3
+    "ppr": 118.2
    },
    "posRank": {
     "std": 3,
@@ -11447,7 +11447,7 @@
    },
    "adp": {
     "std": 186.8,
-    "ppr": 190.6
+    "ppr": 190.5
    },
    "posRank": {
     "std": 80,
@@ -11513,7 +11513,7 @@
    },
    "adp": {
     "std": 156.5,
-    "ppr": 128.1
+    "ppr": 128
    },
    "posRank": {
     "std": 2,
@@ -11579,7 +11579,7 @@
    },
    "adp": {
     "std": 168.4,
-    "ppr": 161.8
+    "ppr": 162.2
    },
    "posRank": {
     "std": 22,
@@ -11636,16 +11636,16 @@
     "ppr": {
      "fantasypros": 147,
      "espn": 288,
-     "sleeper": 161
+     "sleeper": 160
     }
    },
    "consensus": {
     "std": 145,
-    "ppr": 199
+    "ppr": 198
    },
    "adp": {
     "std": 103.7,
-    "ppr": 161.7
+    "ppr": 160.4
    },
    "posRank": {
     "std": 17,
@@ -11711,7 +11711,7 @@
    },
    "adp": {
     "std": 108.5,
-    "ppr": 172.9
+    "ppr": 172.8
    },
    "posRank": {
     "std": 22,
@@ -11760,7 +11760,7 @@
    "depth": 2,
    "bye": 13,
    "tier": 10,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 193
@@ -11818,72 +11818,6 @@
    }
   },
   {
-   "id": "cam little|K",
-   "name": "Cam Little",
-   "team": "JAC",
-   "pos": "K",
-   "teamVerified": true,
-   "depth": null,
-   "bye": 7,
-   "tier": 10,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 194
-    },
-    "ppr": {
-     "fantasypros": 195,
-     "espn": 275,
-     "sleeper": 131
-    }
-   },
-   "consensus": {
-    "std": 194,
-    "ppr": 200
-   },
-   "adp": {
-    "std": 153.4,
-    "ppr": 131.2
-   },
-   "posRank": {
-    "std": 4,
-    "ppr": 4
-   },
-   "rankStdDev": 11.18,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": 8,
-    "fgm50Plus": 8,
-    "fgmiss40_49": 1,
-    "fgmiss50Plus": 3,
-    "xpm": 42,
-    "xpmiss": 2,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 112,
-    "ptsPpr": 112,
-    "ptsHalfPpr": 112
-   }
-  },
-  {
    "id": "braelon allen|RB",
    "name": "Braelon Allen",
    "team": "NYJ",
@@ -11909,7 +11843,7 @@
    },
    "adp": {
     "std": 134.7,
-    "ppr": 209.3
+    "ppr": 209.9
    },
    "posRank": {
     "std": 55,
@@ -11947,6 +11881,72 @@
     "ptsStd": 42.2,
     "ptsPpr": 52.2,
     "ptsHalfPpr": 47.2
+   }
+  },
+  {
+   "id": "cam little|K",
+   "name": "Cam Little",
+   "team": "JAC",
+   "pos": "K",
+   "teamVerified": true,
+   "depth": null,
+   "bye": 7,
+   "tier": 10,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 194
+    },
+    "ppr": {
+     "fantasypros": 195,
+     "espn": 275,
+     "sleeper": 133
+    }
+   },
+   "consensus": {
+    "std": 194,
+    "ppr": 201
+   },
+   "adp": {
+    "std": 153.4,
+    "ppr": 132.7
+   },
+   "posRank": {
+    "std": 4,
+    "ppr": 4
+   },
+   "rankStdDev": 11.18,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": 8,
+    "fgm50Plus": 8,
+    "fgmiss40_49": 1,
+    "fgmiss50Plus": 3,
+    "xpm": 42,
+    "xpmiss": 2,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 112,
+    "ptsPpr": 112,
+    "ptsHalfPpr": 112
    }
   },
   {
@@ -12174,7 +12174,7 @@
    },
    "adp": {
     "std": 166.3,
-    "ppr": 199.8
+    "ppr": 199.5
    },
    "posRank": {
     "std": 23,
@@ -12372,7 +12372,7 @@
    },
    "adp": {
     "std": 141.1,
-    "ppr": 203.6
+    "ppr": 204.3
    },
    "posRank": {
     "std": 24,
@@ -12413,6 +12413,72 @@
    }
   },
   {
+   "id": "ray davis|RB",
+   "name": "Ray Davis",
+   "team": "BUF",
+   "pos": "RB",
+   "teamVerified": true,
+   "depth": 3,
+   "bye": 7,
+   "tier": 10,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 185
+    },
+    "ppr": {
+     "fantasypros": 188,
+     "espn": 231,
+     "sleeper": 228
+    }
+   },
+   "consensus": {
+    "std": 185,
+    "ppr": 216
+   },
+   "adp": {
+    "std": 167.3,
+    "ppr": 223.5
+   },
+   "posRank": {
+    "std": 60,
+    "ppr": 58
+   },
+   "rankStdDev": 35.1,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 313,
+    "rushTd": 3,
+    "rushTwoPt": null,
+    "rec": 9,
+    "recYd": 68,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 56.1,
+    "ptsPpr": 65.1,
+    "ptsHalfPpr": 60.6
+   }
+  },
+  {
    "id": "dalton schultz|TE",
    "name": "Dalton Schultz",
    "team": "HOU",
@@ -12438,7 +12504,7 @@
    },
    "adp": {
     "std": 97.6,
-    "ppr": 178.6
+    "ppr": 178.5
    },
    "posRank": {
     "std": 23,
@@ -12561,7 +12627,7 @@
     "ppr": {
      "fantasypros": 145,
      "espn": 318,
-     "sleeper": 189
+     "sleeper": 188
     }
    },
    "consensus": {
@@ -12570,7 +12636,7 @@
    },
    "adp": {
     "std": 136.9,
-    "ppr": 189.7
+    "ppr": 188.4
    },
    "posRank": {
     "std": 20,
@@ -12611,72 +12677,6 @@
    }
   },
   {
-   "id": "ray davis|RB",
-   "name": "Ray Davis",
-   "team": "BUF",
-   "pos": "RB",
-   "teamVerified": true,
-   "depth": 3,
-   "bye": 7,
-   "tier": 10,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 185
-    },
-    "ppr": {
-     "fantasypros": 188,
-     "espn": 231,
-     "sleeper": 231
-    }
-   },
-   "consensus": {
-    "std": 185,
-    "ppr": 217
-   },
-   "adp": {
-    "std": 167.3,
-    "ppr": 224.5
-   },
-   "posRank": {
-    "std": 60,
-    "ppr": 58
-   },
-   "rankStdDev": 35.1,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 313,
-    "rushTd": 3,
-    "rushTwoPt": null,
-    "rec": 9,
-    "recYd": 68,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 56.1,
-    "ptsPpr": 65.1,
-    "ptsHalfPpr": 60.6
-   }
-  },
-  {
    "id": "kaelon black|RB",
    "name": "Kaelon Black",
    "team": "SF",
@@ -12693,7 +12693,7 @@
     "ppr": {
      "fantasypros": 289,
      "espn": 292,
-     "sleeper": 173,
+     "sleeper": 174,
      "ffc": 116
     }
    },
@@ -12703,7 +12703,7 @@
    },
    "adp": {
     "std": 269,
-    "ppr": 173.4
+    "ppr": 174.5
    },
    "posRank": {
     "std": 79,
@@ -12769,7 +12769,7 @@
    },
    "adp": {
     "std": 150.9,
-    "ppr": 191.9
+    "ppr": 192.1
    },
    "posRank": {
     "std": 61,
@@ -12826,7 +12826,7 @@
     "ppr": {
      "fantasypros": 209,
      "espn": 268,
-     "sleeper": 186
+     "sleeper": 185
     }
    },
    "consensus": {
@@ -12876,72 +12876,6 @@
    }
   },
   {
-   "id": "tyrone tracy|RB",
-   "name": "Tyrone Tracy Jr.",
-   "team": "NYG",
-   "pos": "RB",
-   "teamVerified": true,
-   "depth": 3,
-   "bye": 8,
-   "tier": 9,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 127
-    },
-    "ppr": {
-     "fantasypros": 131,
-     "espn": 351,
-     "sleeper": 185
-    }
-   },
-   "consensus": {
-    "std": 127,
-    "ppr": 222
-   },
-   "adp": {
-    "std": 109.5,
-    "ppr": 185.3
-   },
-   "posRank": {
-    "std": 43,
-    "ppr": 42
-   },
-   "rankStdDev": 11.41,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 528,
-    "rushTd": 3,
-    "rushTwoPt": null,
-    "rec": 21,
-    "recYd": 155,
-    "recTd": 1,
-    "recTwoPt": null,
-    "fumLost": 1,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 90.3,
-    "ptsPpr": 111.3,
-    "ptsHalfPpr": 100.8
-   }
-  },
-  {
    "id": "tyler loop|K",
    "name": "Tyler Loop",
    "team": "BAL",
@@ -12967,7 +12901,7 @@
    },
    "adp": {
     "std": 150.4,
-    "ppr": 177.4
+    "ppr": 177.3
    },
    "posRank": {
     "std": 7,
@@ -13008,6 +12942,72 @@
    }
   },
   {
+   "id": "tyrone tracy|RB",
+   "name": "Tyrone Tracy Jr.",
+   "team": "NYG",
+   "pos": "RB",
+   "teamVerified": true,
+   "depth": 3,
+   "bye": 8,
+   "tier": 9,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 127
+    },
+    "ppr": {
+     "fantasypros": 131,
+     "espn": 351,
+     "sleeper": 186
+    }
+   },
+   "consensus": {
+    "std": 127,
+    "ppr": 223
+   },
+   "adp": {
+    "std": 109.5,
+    "ppr": 186.7
+   },
+   "posRank": {
+    "std": 43,
+    "ppr": 42
+   },
+   "rankStdDev": 11.41,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 528,
+    "rushTd": 3,
+    "rushTwoPt": null,
+    "rec": 21,
+    "recYd": 155,
+    "recTd": 1,
+    "recTwoPt": null,
+    "fumLost": 1,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 90.3,
+    "ptsPpr": 111.3,
+    "ptsHalfPpr": 100.8
+   }
+  },
+  {
    "id": "harrison butker|K",
    "name": "Harrison Butker",
    "team": "KC",
@@ -13024,7 +13024,7 @@
     "ppr": {
      "fantasypros": 242,
      "espn": 272,
-     "sleeper": 160
+     "sleeper": 161
     }
    },
    "consensus": {
@@ -13033,7 +13033,7 @@
    },
    "adp": {
     "std": 155.2,
-    "ppr": 160.5
+    "ppr": 160.4
    },
    "posRank": {
     "std": 14,
@@ -13099,7 +13099,7 @@
    },
    "adp": {
     "std": 183.2,
-    "ppr": 220.2
+    "ppr": 220.9
    },
    "posRank": {
     "std": 13,
@@ -13157,7 +13157,7 @@
     "ppr": {
      "fantasypros": 183,
      "espn": 311,
-     "sleeper": 196
+     "sleeper": 195
     }
    },
    "consensus": {
@@ -13166,7 +13166,7 @@
    },
    "adp": {
     "std": 164.2,
-    "ppr": 196.4
+    "ppr": 195.7
    },
    "posRank": {
     "std": 66,
@@ -13232,7 +13232,7 @@
    },
    "adp": {
     "std": 228,
-    "ppr": 176.3
+    "ppr": 176.2
    },
    "posRank": {
     "std": 81,
@@ -13299,7 +13299,7 @@
    },
    "adp": {
     "std": 204.9,
-    "ppr": 205.9
+    "ppr": 205.8
    },
    "posRank": {
     "std": 103,
@@ -13513,7 +13513,7 @@
    "depth": 2,
    "bye": 13,
    "tier": 11,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 202,
@@ -13646,7 +13646,7 @@
    "depth": 3,
    "bye": 7,
    "tier": 10,
-   "injuryStatus": "Doubtful",
+   "injuryStatus": "Out",
    "ranks": {
     "std": {
      "fantasypros": 172
@@ -13720,7 +13720,7 @@
     "ppr": {
      "fantasypros": 215,
      "espn": 281,
-     "sleeper": 226
+     "sleeper": 227
     }
    },
    "consensus": {
@@ -13729,7 +13729,7 @@
    },
    "adp": {
     "std": 190.3,
-    "ppr": 221.7
+    "ppr": 222.2
    },
    "posRank": {
     "std": 9,
@@ -13767,68 +13767,6 @@
     "ptsStd": 100,
     "ptsPpr": 100,
     "ptsHalfPpr": 100
-   }
-  },
-  {
-   "id": "ben vansumeren|RB",
-   "name": "Ben VanSumeren",
-   "team": "KC",
-   "pos": "RB",
-   "teamVerified": true,
-   "depth": null,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 241
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 241
-   },
-   "adp": {
-    "std": null,
-    "ppr": 227.5
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
    }
   },
   {
@@ -13922,7 +13860,7 @@
    },
    "adp": {
     "std": 83.1,
-    "ppr": 152.1
+    "ppr": 152
    },
    "posRank": {
     "std": 18,
@@ -14094,6 +14032,68 @@
    }
   },
   {
+   "id": "ben vansumeren|RB",
+   "name": "Ben VanSumeren",
+   "team": "KC",
+   "pos": "RB",
+   "teamVerified": true,
+   "depth": null,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 243
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 243
+   },
+   "adp": {
+    "std": null,
+    "ppr": 228.5
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
+   }
+  },
+  {
    "id": "will reichard|K",
    "name": "Will Reichard",
    "team": "MIN",
@@ -14119,7 +14119,7 @@
    },
    "adp": {
     "std": 174,
-    "ppr": 170.5
+    "ppr": 170.4
    },
    "posRank": {
     "std": 17,
@@ -14177,7 +14177,7 @@
     "ppr": {
      "fantasypros": 221,
      "espn": 325,
-     "sleeper": 195
+     "sleeper": 196
     }
    },
    "consensus": {
@@ -14186,7 +14186,7 @@
    },
    "adp": {
     "std": 206.4,
-    "ppr": 195
+    "ppr": 195.9
    },
    "posRank": {
     "std": 84,
@@ -14243,7 +14243,7 @@
     "ppr": {
      "fantasypros": 245,
      "espn": 343,
-     "sleeper": 153
+     "sleeper": 154
     }
    },
    "consensus": {
@@ -14318,7 +14318,7 @@
    },
    "adp": {
     "std": 329,
-    "ppr": 197.5
+    "ppr": 198.4
    },
    "posRank": {
     "std": 115,
@@ -14384,7 +14384,7 @@
    },
    "adp": {
     "std": 112.5,
-    "ppr": 203.2
+    "ppr": 202.9
    },
    "posRank": {
     "std": 61,
@@ -14442,7 +14442,7 @@
     "ppr": {
      "fantasypros": 181,
      "espn": 210,
-     "sleeper": 359
+     "sleeper": 360
     }
    },
    "consensus": {
@@ -14650,7 +14650,7 @@
    },
    "adp": {
     "std": 208.4,
-    "ppr": 213.1
+    "ppr": 213.7
    },
    "posRank": {
     "std": 17,
@@ -14773,16 +14773,16 @@
     "ppr": {
      "fantasypros": 180,
      "espn": 428,
-     "sleeper": 156
+     "sleeper": 155
     }
    },
    "consensus": {
     "std": 179,
-    "ppr": 255
+    "ppr": 254
    },
    "adp": {
     "std": 154.4,
-    "ppr": 155.8
+    "ppr": 155.7
    },
    "posRank": {
     "std": 6,
@@ -14848,7 +14848,7 @@
    },
    "adp": {
     "std": 207.4,
-    "ppr": 179.4
+    "ppr": 179.3
    },
    "posRank": {
     "std": 8,
@@ -14914,7 +14914,7 @@
    },
    "adp": {
     "std": 168.3,
-    "ppr": 159.3
+    "ppr": 159.2
    },
    "posRank": {
     "std": 109,
@@ -15037,7 +15037,7 @@
     "ppr": {
      "fantasypros": 186,
      "espn": 313,
-     "sleeper": 283
+     "sleeper": 284
     }
    },
    "consensus": {
@@ -15351,6 +15351,39 @@
    }
   },
   {
+   "id": "darius slayton|WR",
+   "name": "Darius Slayton",
+   "team": "NYG",
+   "pos": "WR",
+   "teamVerified": false,
+   "depth": null,
+   "bye": 8,
+   "tier": 12,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 268
+    },
+    "ppr": {
+     "fantasypros": 268
+    }
+   },
+   "consensus": {
+    "std": 268,
+    "ppr": 268
+   },
+   "adp": {
+    "std": 268,
+    "ppr": 268
+   },
+   "posRank": {
+    "std": 94,
+    "ppr": 97
+   },
+   "rankStdDev": 35.52,
+   "projections": null
+  },
+  {
    "id": "devaughn vele|WR",
    "name": "Devaughn Vele",
    "team": "NO",
@@ -15367,12 +15400,12 @@
     "ppr": {
      "fantasypros": 281,
      "espn": 229,
-     "sleeper": 296
+     "sleeper": 295
     }
    },
    "consensus": {
     "std": 287,
-    "ppr": 269
+    "ppr": 268
    },
    "adp": {
     "std": 208.6,
@@ -15631,12 +15664,12 @@
     "ppr": {
      "fantasypros": 229,
      "espn": 304,
-     "sleeper": 297
+     "sleeper": 296
     }
    },
    "consensus": {
     "std": 224,
-    "ppr": 277
+    "ppr": 276
    },
    "adp": {
     "std": 224,
@@ -16616,12 +16649,12 @@
     "ppr": {
      "fantasypros": 244,
      "espn": 417,
-     "sleeper": 228
+     "sleeper": 229
     }
    },
    "consensus": {
     "std": 239,
-    "ppr": 296
+    "ppr": 297
    },
    "adp": {
     "std": 130.6,
@@ -16977,7 +17010,7 @@
     },
     "ppr": {
      "fantasypros": 249,
-     "sleeper": 354
+     "sleeper": 355
     }
    },
    "consensus": {
@@ -17237,7 +17270,7 @@
     "ppr": {
      "fantasypros": 238,
      "espn": 395,
-     "sleeper": 285
+     "sleeper": 286
     }
    },
    "consensus": {
@@ -17443,7 +17476,7 @@
    },
    "adp": {
     "std": 262,
-    "ppr": 169.81
+    "ppr": 169.8
    },
    "posRank": {
     "std": 75,
@@ -17534,7 +17567,7 @@
     "ppr": {
      "fantasypros": 239,
      "espn": 397,
-     "sleeper": 295
+     "sleeper": 293
     }
    },
    "consensus": {
@@ -17600,7 +17633,7 @@
     "ppr": {
      "fantasypros": 202,
      "espn": 409,
-     "sleeper": 346
+     "sleeper": 347
     }
    },
    "consensus": {
@@ -17804,7 +17837,7 @@
    },
    "adp": {
     "std": 220,
-    "ppr": 215.9
+    "ppr": 216.1
    },
    "posRank": {
     "std": 16,
@@ -17927,7 +17960,7 @@
     "ppr": {
      "fantasypros": 271,
      "espn": 464,
-     "sleeper": 230
+     "sleeper": 231
     }
    },
    "consensus": {
@@ -17993,7 +18026,7 @@
     "ppr": {
      "fantasypros": 282,
      "espn": 446,
-     "sleeper": 242
+     "sleeper": 241
     }
    },
    "consensus": {
@@ -18266,7 +18299,7 @@
    },
    "adp": {
     "std": 362,
-    "ppr": 179.4
+    "ppr": 180.6
    },
    "posRank": {
     "std": 126,
@@ -18505,7 +18538,7 @@
    "depth": 2,
    "bye": 8,
    "tier": 12,
-   "injuryStatus": "Questionable",
+   "injuryStatus": "Out",
    "ranks": {
     "std": {
      "fantasypros": 265
@@ -18711,7 +18744,7 @@
     "ppr": {
      "fantasypros": 325,
      "espn": 451,
-     "sleeper": 229
+     "sleeper": 230
     }
    },
    "consensus": {
@@ -18876,7 +18909,7 @@
     "ppr": {
      "fantasypros": 276,
      "espn": 520,
-     "sleeper": 243
+     "sleeper": 242
     }
    },
    "consensus": {
@@ -18926,68 +18959,6 @@
    }
   },
   {
-   "id": "jamari thrash|WR",
-   "name": "Jamari Thrash",
-   "team": "LV",
-   "pos": "WR",
-   "teamVerified": false,
-   "depth": null,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 348
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 348
-   },
-   "adp": {
-    "std": null,
-    "ppr": 249.7
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
-   }
-  },
-  {
    "id": "CHI|DST",
    "name": "Chicago Bears",
    "team": "CHI",
@@ -19013,7 +18984,7 @@
    },
    "adp": {
     "std": 204.4,
-    "ppr": 217.7
+    "ppr": 216.4
    },
    "posRank": {
     "std": 21,
@@ -19128,7 +19099,7 @@
    "depth": 1,
    "bye": 11,
    "tier": 11,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 246
@@ -19136,12 +19107,12 @@
     "ppr": {
      "fantasypros": 250,
      "espn": 448,
-     "sleeper": 353
+     "sleeper": 354
     }
    },
    "consensus": {
     "std": 246,
-    "ppr": 350
+    "ppr": 351
    },
    "adp": {
     "std": 135.7,
@@ -19183,6 +19154,68 @@
     "ptsStd": 47.3,
     "ptsPpr": 76.3,
     "ptsHalfPpr": 61.8
+   }
+  },
+  {
+   "id": "jamari thrash|WR",
+   "name": "Jamari Thrash",
+   "team": "LV",
+   "pos": "WR",
+   "teamVerified": false,
+   "depth": null,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 351
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 351
+   },
+   "adp": {
+    "std": null,
+    "ppr": 250.7
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
    }
   },
   {
@@ -19494,7 +19527,7 @@
     "ppr": {
      "fantasypros": 258,
      "espn": 492,
-     "sleeper": 360
+     "sleeper": 361
     }
    },
    "consensus": {
@@ -19626,7 +19659,7 @@
     "ppr": {
      "fantasypros": 333,
      "espn": 515,
-     "sleeper": 286
+     "sleeper": 287
     }
    },
    "consensus": {
@@ -20093,7 +20126,7 @@
    },
    "adp": {
     "std": 353,
-    "ppr": 169.9
+    "ppr": 169.95
    },
    "posRank": {
     "std": 104,
@@ -20191,7 +20224,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.95
+    "ppr": 169.98
    },
    "posRank": {
     "std": null,
@@ -20216,7 +20249,7 @@
     },
     "ppr": {
      "fantasypros": 470,
-     "sleeper": 347
+     "sleeper": 348
     }
    },
    "consensus": {
@@ -20278,12 +20311,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 413
+     "sleeper": 412
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 413
+    "ppr": 412
    },
    "adp": {
     "std": null,
@@ -20476,12 +20509,12 @@
     "ppr": {
      "fantasypros": 378,
      "espn": 512,
-     "sleeper": 414
+     "sleeper": 413
     }
    },
    "consensus": {
     "std": 383,
-    "ppr": 435
+    "ppr": 434
    },
    "adp": {
     "std": 266,
@@ -20606,7 +20639,7 @@
     "ppr": {
      "fantasypros": 465,
      "espn": 410,
-     "sleeper": 437
+     "sleeper": 436
     }
    },
    "consensus": {
@@ -21185,12 +21218,12 @@
     "std": {},
     "ppr": {
      "espn": 526,
-     "sleeper": 418
+     "sleeper": 419
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 472
+    "ppr": 473
    },
    "adp": {
     "std": 269,
@@ -21448,7 +21481,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.83
+    "ppr": 169.85
    },
    "posRank": {
     "std": null,
@@ -21672,12 +21705,12 @@
     "ppr": {
      "fantasypros": 401,
      "espn": 507,
-     "sleeper": 581
+     "sleeper": 582
     }
    },
    "consensus": {
     "std": 392,
-    "ppr": 496
+    "ppr": 497
    },
    "adp": {
     "std": 324,
@@ -21793,7 +21826,7 @@
    "team": "NE",
    "pos": "WR",
    "teamVerified": true,
-   "depth": 4,
+   "depth": 6,
    "bye": 11,
    "tier": 12,
    "injuryStatus": null,
@@ -21804,7 +21837,7 @@
     "ppr": {
      "fantasypros": 297,
      "espn": 980,
-     "sleeper": 227
+     "sleeper": 226
     }
    },
    "consensus": {
@@ -22000,16 +22033,16 @@
     },
     "ppr": {
      "fantasypros": 471,
-     "sleeper": 574
+     "sleeper": 576
     }
    },
    "consensus": {
     "std": 450,
-    "ppr": 523
+    "ppr": 524
    },
    "adp": {
     "std": 450,
-    "ppr": 347.5
+    "ppr": 348.5
    },
    "posRank": {
     "std": 129,
@@ -22047,6 +22080,71 @@
     "ptsStd": null,
     "ptsPpr": null,
     "ptsHalfPpr": null
+   }
+  },
+  {
+   "id": "dameon pierce|RB",
+   "name": "Dameon Pierce",
+   "team": "PHI",
+   "pos": "RB",
+   "teamVerified": true,
+   "depth": 2,
+   "bye": 10,
+   "tier": 14,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 396
+    },
+    "ppr": {
+     "fantasypros": 398,
+     "sleeper": 660
+    }
+   },
+   "consensus": {
+    "std": 396,
+    "ppr": 529
+   },
+   "adp": {
+    "std": 396,
+    "ppr": 383.6
+   },
+   "posRank": {
+    "std": 110,
+    "ppr": 111
+   },
+   "rankStdDev": 26.13,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 27,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 1,
+    "recYd": 6,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 3.3,
+    "ptsPpr": 4.3,
+    "ptsHalfPpr": 3.8
    }
   },
   {
@@ -22382,16 +22480,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 590
+     "sleeper": 592
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 590
+    "ppr": 592
    },
    "adp": {
     "std": null,
-    "ppr": 353.7
+    "ppr": 354.3
    },
    "posRank": {
     "std": null,
@@ -22556,76 +22654,11 @@
    }
   },
   {
-   "id": "dameon pierce|RB",
-   "name": "Dameon Pierce",
-   "team": "PHI",
-   "pos": "RB",
+   "id": "deven thompkins|WR",
+   "name": "Deven Thompkins",
+   "team": "LV",
+   "pos": "WR",
    "teamVerified": true,
-   "depth": 3,
-   "bye": 10,
-   "tier": 14,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 396
-    },
-    "ppr": {
-     "fantasypros": 398,
-     "sleeper": 968
-    }
-   },
-   "consensus": {
-    "std": 396,
-    "ppr": 683
-   },
-   "adp": {
-    "std": 396,
-    "ppr": 488.3
-   },
-   "posRank": {
-    "std": 110,
-    "ppr": 111
-   },
-   "rankStdDev": 26.13,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 27,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 1,
-    "recYd": 6,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 3.3,
-    "ptsPpr": 4.3,
-    "ptsHalfPpr": 3.8
-   }
-  },
-  {
-   "id": "john fitzpatrick|TE",
-   "name": "John FitzPatrick",
-   "team": "CLE",
-   "pos": "TE",
-   "teamVerified": false,
    "depth": null,
    "bye": null,
    "tier": null,
@@ -22633,16 +22666,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 683
+     "sleeper": 686
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 683
+    "ppr": 686
    },
    "adp": {
     "std": null,
-    "ppr": 394.5
+    "ppr": 395.4
    },
    "posRank": {
     "std": null,
@@ -22683,11 +22716,11 @@
    }
   },
   {
-   "id": "deven thompkins|WR",
-   "name": "Deven Thompkins",
-   "team": "LV",
-   "pos": "WR",
-   "teamVerified": true,
+   "id": "john fitzpatrick|TE",
+   "name": "John FitzPatrick",
+   "team": "CLE",
+   "pos": "TE",
+   "teamVerified": false,
    "depth": null,
    "bye": null,
    "tier": null,
@@ -22704,7 +22737,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 395.4
+    "ppr": 395.5
    },
    "posRank": {
     "std": null,
@@ -22869,6 +22902,40 @@
    }
   },
   {
+   "id": "kyle juszczyk|RB",
+   "name": "Kyle Juszczyk",
+   "team": "SF",
+   "pos": "RB",
+   "teamVerified": true,
+   "depth": null,
+   "bye": 8,
+   "tier": 14,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 397
+    },
+    "ppr": {
+     "fantasypros": 391,
+     "espn": 1002
+    }
+   },
+   "consensus": {
+    "std": 397,
+    "ppr": 697
+   },
+   "adp": {
+    "std": 397,
+    "ppr": 169.71
+   },
+   "posRank": {
+    "std": 111,
+    "ppr": 110
+   },
+   "rankStdDev": 54.55,
+   "projections": null
+  },
+  {
    "id": "lenny krieg|K",
    "name": "Lenny Krieg",
    "team": "GB",
@@ -22881,16 +22948,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 693
+     "sleeper": 697
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 693
+    "ppr": 697
    },
    "adp": {
     "std": null,
-    "ppr": 398.1
+    "ppr": 398.9
    },
    "posRank": {
     "std": null,
@@ -22931,40 +22998,6 @@
    }
   },
   {
-   "id": "kyle juszczyk|RB",
-   "name": "Kyle Juszczyk",
-   "team": "SF",
-   "pos": "RB",
-   "teamVerified": true,
-   "depth": null,
-   "bye": 8,
-   "tier": 14,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 397
-    },
-    "ppr": {
-     "fantasypros": 391,
-     "espn": 1002
-    }
-   },
-   "consensus": {
-    "std": 397,
-    "ppr": 697
-   },
-   "adp": {
-    "std": 397,
-    "ppr": 169.65
-   },
-   "posRank": {
-    "std": 111,
-    "ppr": 110
-   },
-   "rankStdDev": 54.55,
-   "projections": null
-  },
-  {
    "id": "deandre thompkins|WR",
    "name": "DeAndre Thompkins",
    "team": "GB",
@@ -22977,16 +23010,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 699
+     "sleeper": 700
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 699
+    "ppr": 700
    },
    "adp": {
     "std": null,
-    "ppr": 400.8
+    "ppr": 401.8
    },
    "posRank": {
     "std": null,
@@ -23101,16 +23134,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 709
+     "sleeper": 710
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 709
+    "ppr": 710
    },
    "adp": {
     "std": null,
-    "ppr": 405
+    "ppr": 406
    },
    "posRank": {
     "std": null,
@@ -23556,7 +23589,7 @@
    },
    "adp": {
     "std": 442,
-    "ppr": 169.83
+    "ppr": 169.89
    },
    "posRank": {
     "std": 125,
@@ -23640,16 +23673,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 773
+     "sleeper": 775
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 773
+    "ppr": 775
    },
    "adp": {
     "std": null,
-    "ppr": 429.1
+    "ppr": 430.1
    },
    "posRank": {
     "std": null,
@@ -23705,7 +23738,7 @@
     },
     "ppr": {
      "fantasypros": 482,
-     "sleeper": 1106
+     "sleeper": 1105
     }
    },
    "consensus": {
@@ -23767,16 +23800,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 795
+     "sleeper": 800
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 795
+    "ppr": 800
    },
    "adp": {
     "std": null,
-    "ppr": 437.6
+    "ppr": 439.4
    },
    "posRank": {
     "std": null,
@@ -24030,7 +24063,7 @@
    },
    "adp": {
     "std": 457,
-    "ppr": 169.99
+    "ppr": 170.02
    },
    "posRank": {
     "std": 154,
@@ -24056,7 +24089,7 @@
     "ppr": {
      "fantasypros": 458,
      "espn": 348,
-     "sleeper": 1690
+     "sleeper": 1691
     }
    },
    "consensus": {
@@ -24118,12 +24151,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 840
+     "sleeper": 841
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 840
+    "ppr": 841
    },
    "adp": {
     "std": null,
@@ -24180,12 +24213,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 846
+     "sleeper": 845
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 846
+    "ppr": 845
    },
    "adp": {
     "std": null,
@@ -24242,16 +24275,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 854
+     "sleeper": 851
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 854
+    "ppr": 851
    },
    "adp": {
     "std": null,
-    "ppr": 454.9
+    "ppr": 454.1
    },
    "posRank": {
     "std": null,
@@ -24304,12 +24337,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 860
+     "sleeper": 859
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 860
+    "ppr": 859
    },
    "adp": {
     "std": null,
@@ -24351,68 +24384,6 @@
     "ptsStd": null,
     "ptsPpr": null,
     "ptsHalfPpr": null
-   }
-  },
-  {
-   "id": "brevin jordan|TE",
-   "name": "Brevin Jordan",
-   "team": "HOU",
-   "pos": "TE",
-   "teamVerified": true,
-   "depth": 4,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 868
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 868
-   },
-   "adp": {
-    "std": null,
-    "ppr": 458.7
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 4,
-    "recYd": 21,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 2.1,
-    "ptsPpr": 6.1,
-    "ptsHalfPpr": 4.1
    }
   },
   {
@@ -24479,6 +24450,68 @@
     "ptsStd": 7.4,
     "ptsPpr": 15.4,
     "ptsHalfPpr": 11.4
+   }
+  },
+  {
+   "id": "brevin jordan|TE",
+   "name": "Brevin Jordan",
+   "team": "HOU",
+   "pos": "TE",
+   "teamVerified": true,
+   "depth": 4,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 873
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 873
+   },
+   "adp": {
+    "std": null,
+    "ppr": 459.7
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 4,
+    "recYd": 21,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 2.1,
+    "ptsPpr": 6.1,
+    "ptsHalfPpr": 4.1
    }
   },
   {
@@ -24618,12 +24651,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 905
+     "sleeper": 906
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 905
+    "ppr": 906
    },
    "adp": {
     "std": null,
@@ -24680,12 +24713,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 920
+     "sleeper": 919
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 920
+    "ppr": 919
    },
    "adp": {
     "std": null,
@@ -24925,7 +24958,7 @@
    "depth": 3,
    "bye": null,
    "tier": null,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {},
     "ppr": {
@@ -24991,12 +25024,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 956
+     "sleeper": 955
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 956
+    "ppr": 955
    },
    "adp": {
     "std": null,
@@ -25054,16 +25087,16 @@
     "std": {},
     "ppr": {
      "espn": 1256,
-     "sleeper": 675
+     "sleeper": 677
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 966
+    "ppr": 967
    },
    "adp": {
     "std": null,
-    "ppr": 389.8
+    "ppr": 390.8
    },
    "posRank": {
     "std": null,
@@ -25116,12 +25149,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 973
+     "sleeper": 974
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 973
+    "ppr": 974
    },
    "adp": {
     "std": null,
@@ -25174,7 +25207,7 @@
    "depth": 2,
    "bye": 10,
    "tier": 10,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 214
@@ -25182,7 +25215,7 @@
     "ppr": {
      "fantasypros": 198,
      "espn": 228,
-     "sleeper": 2501
+     "sleeper": 2502
     }
    },
    "consensus": {
@@ -25191,7 +25224,7 @@
    },
    "adp": {
     "std": 214,
-    "ppr": 166.58
+    "ppr": 166.41
    },
    "posRank": {
     "std": 78,
@@ -25558,7 +25591,7 @@
     "ppr": {
      "fantasypros": 279,
      "espn": 199,
-     "sleeper": 2573
+     "sleeper": 2574
     }
    },
    "consensus": {
@@ -25623,12 +25656,12 @@
     },
     "ppr": {
      "fantasypros": 435,
-     "sleeper": 1602
+     "sleeper": 1601
     }
    },
    "consensus": {
     "std": 481,
-    "ppr": 1019
+    "ppr": 1018
    },
    "adp": {
     "std": 481,
@@ -25939,16 +25972,16 @@
     "ppr": {
      "fantasypros": 246,
      "espn": 289,
-     "sleeper": 2553
+     "sleeper": 2554
     }
    },
    "consensus": {
     "std": 254,
-    "ppr": 1029
+    "ppr": 1030
    },
    "adp": {
     "std": 254,
-    "ppr": 168.91
+    "ppr": 168.8
    },
    "posRank": {
     "std": 72,
@@ -26070,12 +26103,12 @@
     "ppr": {
      "fantasypros": 267,
      "espn": 338,
-     "sleeper": 2519
+     "sleeper": 2520
     }
    },
    "consensus": {
     "std": 255,
-    "ppr": 1041
+    "ppr": 1042
    },
    "adp": {
     "std": 255,
@@ -26128,7 +26161,7 @@
    "depth": 2,
    "bye": 7,
    "tier": 12,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 267
@@ -26136,7 +26169,7 @@
     "ppr": {
      "fantasypros": 261,
      "espn": 323,
-     "sleeper": 2551
+     "sleeper": 2552
     }
    },
    "consensus": {
@@ -26145,7 +26178,7 @@
    },
    "adp": {
     "std": 267,
-    "ppr": 169.52
+    "ppr": 169.48
    },
    "posRank": {
     "std": 78,
@@ -26253,7 +26286,7 @@
    "team": "NE",
    "pos": "WR",
    "teamVerified": true,
-   "depth": 2,
+   "depth": 3,
    "bye": 11,
    "tier": 13,
    "injuryStatus": null,
@@ -26264,16 +26297,16 @@
     "ppr": {
      "fantasypros": 345,
      "espn": 336,
-     "sleeper": 2500
+     "sleeper": 2501
     }
    },
    "consensus": {
     "std": 347,
-    "ppr": 1060
+    "ppr": 1061
    },
    "adp": {
     "std": 347,
-    "ppr": 169.21
+    "ppr": 169.23
    },
    "posRank": {
     "std": 122,
@@ -26314,72 +26347,6 @@
    }
   },
   {
-   "id": "jahan dotson|WR",
-   "name": "Jahan Dotson",
-   "team": "ATL",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": 2,
-   "bye": 11,
-   "tier": 13,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 336
-    },
-    "ppr": {
-     "fantasypros": 332,
-     "espn": 331,
-     "sleeper": 2524
-    }
-   },
-   "consensus": {
-    "std": 336,
-    "ppr": 1062
-   },
-   "adp": {
-    "std": 336,
-    "ppr": 169.68
-   },
-   "posRank": {
-    "std": 119,
-    "ppr": 118
-   },
-   "rankStdDev": 39.33,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 16,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 26,
-    "recYd": 316,
-    "recTd": 2,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 45.2,
-    "ptsPpr": 71.2,
-    "ptsHalfPpr": 58.2
-   }
-  },
-  {
    "id": "jalen tolbert|WR",
    "name": "Jalen Tolbert",
    "team": "MIA",
@@ -26396,7 +26363,7 @@
     "ppr": {
      "fantasypros": 330,
      "espn": 333,
-     "sleeper": 2525
+     "sleeper": 2526
     }
    },
    "consensus": {
@@ -26405,7 +26372,7 @@
    },
    "adp": {
     "std": 334,
-    "ppr": 169.92
+    "ppr": 169.91
    },
    "posRank": {
     "std": 117,
@@ -26446,6 +26413,72 @@
    }
   },
   {
+   "id": "jahan dotson|WR",
+   "name": "Jahan Dotson",
+   "team": "ATL",
+   "pos": "WR",
+   "teamVerified": true,
+   "depth": 2,
+   "bye": 11,
+   "tier": 13,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 336
+    },
+    "ppr": {
+     "fantasypros": 332,
+     "espn": 331,
+     "sleeper": 2525
+    }
+   },
+   "consensus": {
+    "std": 336,
+    "ppr": 1063
+   },
+   "adp": {
+    "std": 336,
+    "ppr": 169.72
+   },
+   "posRank": {
+    "std": 119,
+    "ppr": 118
+   },
+   "rankStdDev": 39.33,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 16,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 26,
+    "recYd": 316,
+    "recTd": 2,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 45.2,
+    "ptsPpr": 71.2,
+    "ptsHalfPpr": 58.2
+   }
+  },
+  {
    "id": "graham mertz|QB",
    "name": "Graham Mertz",
    "team": "HOU",
@@ -26458,12 +26491,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1064
+     "sleeper": 1063
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1064
+    "ppr": 1063
    },
    "adp": {
     "std": null,
@@ -26533,7 +26566,7 @@
    },
    "adp": {
     "std": 235,
-    "ppr": 169.46
+    "ppr": 169.48
    },
    "posRank": {
     "std": 29,
@@ -26599,7 +26632,7 @@
    },
    "adp": {
     "std": 229,
-    "ppr": 142.84
+    "ppr": 141.43
    },
    "posRank": {
     "std": 67,
@@ -26653,12 +26686,12 @@
     "std": {},
     "ppr": {
      "espn": 461,
-     "sleeper": 1685
+     "sleeper": 1687
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1073
+    "ppr": 1074
    },
    "adp": {
     "std": null,
@@ -26715,12 +26748,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1075
+     "sleeper": 1076
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1075
+    "ppr": 1076
    },
    "adp": {
     "std": null,
@@ -26781,16 +26814,16 @@
     "ppr": {
      "fantasypros": 243,
      "espn": 416,
-     "sleeper": 2576
+     "sleeper": 2577
     }
    },
    "consensus": {
     "std": 251,
-    "ppr": 1078
+    "ppr": 1079
    },
    "adp": {
     "std": 251,
-    "ppr": 169.59
+    "ppr": 169.6
    },
    "posRank": {
     "std": 32,
@@ -26847,7 +26880,7 @@
     "ppr": {
      "fantasypros": 285,
      "espn": 391,
-     "sleeper": 2578
+     "sleeper": 2579
     }
    },
    "consensus": {
@@ -26856,7 +26889,7 @@
    },
    "adp": {
     "std": 293,
-    "ppr": 168.23
+    "ppr": 168.52
    },
    "posRank": {
     "std": 33,
@@ -26913,7 +26946,7 @@
     "ppr": {
      "fantasypros": 340,
      "espn": 421,
-     "sleeper": 2502
+     "sleeper": 2503
     }
    },
    "consensus": {
@@ -26922,7 +26955,7 @@
    },
    "adp": {
     "std": 340,
-    "ppr": 169.07
+    "ppr": 169.27
    },
    "posRank": {
     "std": 44,
@@ -26988,7 +27021,7 @@
    },
    "adp": {
     "std": 299,
-    "ppr": 169.94
+    "ppr": 169.95
    },
    "posRank": {
     "std": 87,
@@ -27054,7 +27087,7 @@
    },
    "adp": {
     "std": 247,
-    "ppr": 169.83
+    "ppr": 169.82
    },
    "posRank": {
     "std": 69,
@@ -27120,7 +27153,7 @@
    },
    "adp": {
     "std": 301,
-    "ppr": 169.93
+    "ppr": 169.91
    },
    "posRank": {
     "std": 89,
@@ -27177,7 +27210,7 @@
     "ppr": {
      "fantasypros": 320,
      "espn": 450,
-     "sleeper": 2503
+     "sleeper": 2504
     }
    },
    "consensus": {
@@ -27186,7 +27219,7 @@
    },
    "adp": {
     "std": 319,
-    "ppr": 168.15
+    "ppr": 168.16
    },
    "posRank": {
     "std": 39,
@@ -27252,7 +27285,7 @@
    },
    "adp": {
     "std": 284,
-    "ppr": 169.86
+    "ppr": 169.83
    },
    "posRank": {
     "std": 100,
@@ -27371,7 +27404,7 @@
     "ppr": {
      "fantasypros": 299,
      "espn": 419,
-     "sleeper": 2564
+     "sleeper": 2565
     }
    },
    "consensus": {
@@ -27380,7 +27413,7 @@
    },
    "adp": {
     "std": 292,
-    "ppr": 168.18
+    "ppr": 168.25
    },
    "posRank": {
     "std": 37,
@@ -27446,7 +27479,7 @@
    },
    "adp": {
     "std": 259,
-    "ppr": 169.89
+    "ppr": 169.91
    },
    "posRank": {
     "std": 74,
@@ -27512,7 +27545,7 @@
    },
    "adp": {
     "std": 266,
-    "ppr": 169.84
+    "ppr": 169.83
    },
    "posRank": {
     "std": 77,
@@ -27615,49 +27648,45 @@
    }
   },
   {
-   "id": "mack hollins|WR",
-   "name": "Mack Hollins",
+   "id": "jeremiah webb|WR",
+   "name": "Jeremiah Webb",
    "team": "NE",
    "pos": "WR",
    "teamVerified": false,
    "depth": null,
-   "bye": 11,
-   "tier": 12,
+   "bye": null,
+   "tier": null,
    "injuryStatus": "IR",
    "ranks": {
-    "std": {
-     "fantasypros": 297
-    },
+    "std": {},
     "ppr": {
-     "fantasypros": 295,
-     "espn": 422,
-     "sleeper": 2572
+     "sleeper": 1096
     }
    },
    "consensus": {
-    "std": 297,
+    "std": null,
     "ppr": 1096
    },
    "adp": {
-    "std": 297,
-    "ppr": 169.83
+    "std": null,
+    "ppr": 531.1
    },
    "posRank": {
-    "std": 105,
-    "ppr": 104
+    "std": null,
+    "ppr": null
    },
-   "rankStdDev": 44.09,
+   "rankStdDev": null,
    "projections": {
     "passYd": null,
     "passTd": null,
     "passInt": null,
     "passTwoPt": null,
-    "rushYd": 6,
+    "rushYd": null,
     "rushTd": null,
     "rushTwoPt": null,
-    "rec": 20,
-    "recYd": 250,
-    "recTd": 2,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
     "recTwoPt": null,
     "fumLost": null,
     "fgm40_49": null,
@@ -27675,9 +27704,9 @@
     "stTd": null,
     "blkKick": null,
     "safety": null,
-    "ptsStd": 37.6,
-    "ptsPpr": 57.6,
-    "ptsHalfPpr": 47.6
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
    }
   },
   {
@@ -27706,7 +27735,7 @@
    },
    "adp": {
     "std": 257,
-    "ppr": 169.67
+    "ppr": 169.68
    },
    "posRank": {
     "std": 73,
@@ -27747,6 +27776,72 @@
    }
   },
   {
+   "id": "mack hollins|WR",
+   "name": "Mack Hollins",
+   "team": "NE",
+   "pos": "WR",
+   "teamVerified": false,
+   "depth": null,
+   "bye": 11,
+   "tier": 12,
+   "injuryStatus": "IR",
+   "ranks": {
+    "std": {
+     "fantasypros": 297
+    },
+    "ppr": {
+     "fantasypros": 295,
+     "espn": 422,
+     "sleeper": 2573
+    }
+   },
+   "consensus": {
+    "std": 297,
+    "ppr": 1097
+   },
+   "adp": {
+    "std": 297,
+    "ppr": 169.85
+   },
+   "posRank": {
+    "std": 105,
+    "ppr": 104
+   },
+   "rankStdDev": 44.09,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 6,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 20,
+    "recYd": 250,
+    "recTd": 2,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 37.6,
+    "ptsPpr": 57.6,
+    "ptsHalfPpr": 47.6
+   }
+  },
+  {
    "id": "kavontae turpin|WR",
    "name": "KaVontae Turpin",
    "team": "DAL",
@@ -27763,7 +27858,7 @@
     "ppr": {
      "fantasypros": 393,
      "espn": 394,
-     "sleeper": 2507
+     "sleeper": 2508
     }
    },
    "consensus": {
@@ -27772,7 +27867,7 @@
    },
    "adp": {
     "std": 382,
-    "ppr": 169.37
+    "ppr": 169.34
    },
    "posRank": {
     "std": 134,
@@ -27810,68 +27905,6 @@
     "ptsStd": 50.5,
     "ptsPpr": 71.5,
     "ptsHalfPpr": 61
-   }
-  },
-  {
-   "id": "jeremiah webb|WR",
-   "name": "Jeremiah Webb",
-   "team": "NE",
-   "pos": "WR",
-   "teamVerified": false,
-   "depth": null,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": "IR",
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 1098
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 1098
-   },
-   "adp": {
-    "std": null,
-    "ppr": 531.9
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
    }
   },
   {
@@ -28087,7 +28120,7 @@
    },
    "adp": {
     "std": 264,
-    "ppr": 169.97
+    "ppr": 169.96
    },
    "posRank": {
     "std": 76,
@@ -28144,16 +28177,16 @@
     "ppr": {
      "fantasypros": 343,
      "espn": 470,
-     "sleeper": 2527
+     "sleeper": 2528
     }
    },
    "consensus": {
     "std": 341,
-    "ppr": 1113
+    "ppr": 1114
    },
    "adp": {
     "std": 341,
-    "ppr": 169.6
+    "ppr": 169.62
    },
    "posRank": {
     "std": 45,
@@ -28210,16 +28243,16 @@
     "ppr": {
      "fantasypros": 347,
      "espn": 458,
-     "sleeper": 2538
+     "sleeper": 2539
     }
    },
    "consensus": {
     "std": 350,
-    "ppr": 1114
+    "ppr": 1115
    },
    "adp": {
     "std": 350,
-    "ppr": 169.56
+    "ppr": 169.64
    },
    "posRank": {
     "std": 37,
@@ -28276,7 +28309,7 @@
     "ppr": {
      "fantasypros": 358,
      "espn": 454,
-     "sleeper": 2533
+     "sleeper": 2534
     }
    },
    "consensus": {
@@ -28285,7 +28318,7 @@
    },
    "adp": {
     "std": 364,
-    "ppr": 169.64
+    "ppr": 169.66
    },
    "posRank": {
     "std": 39,
@@ -28351,7 +28384,7 @@
    },
    "adp": {
     "std": 285,
-    "ppr": 169.87
+    "ppr": 169.82
    },
    "posRank": {
     "std": 84,
@@ -28408,7 +28441,7 @@
     "ppr": {
      "fantasypros": 362,
      "espn": 480,
-     "sleeper": 2505
+     "sleeper": 2506
     }
    },
    "consensus": {
@@ -28417,7 +28450,7 @@
    },
    "adp": {
     "std": 370,
-    "ppr": 169.91
+    "ppr": 169.92
    },
    "posRank": {
     "std": 40,
@@ -28483,7 +28516,7 @@
    },
    "adp": {
     "std": 314,
-    "ppr": 169.87
+    "ppr": 169.86
    },
    "posRank": {
     "std": 94,
@@ -28524,81 +28557,15 @@
    }
   },
   {
-   "id": "cole kmet|TE",
-   "name": "Cole Kmet",
-   "team": "CHI",
-   "pos": "TE",
-   "teamVerified": true,
-   "depth": 2,
-   "bye": 10,
-   "tier": 13,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 342
-    },
-    "ppr": {
-     "fantasypros": 346,
-     "espn": 467,
-     "sleeper": 2545
-    }
-   },
-   "consensus": {
-    "std": 342,
-    "ppr": 1119
-   },
-   "adp": {
-    "std": 342,
-    "ppr": 169.6
-   },
-   "posRank": {
-    "std": 46,
-    "ppr": 46
-   },
-   "rankStdDev": 28.48,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 34,
-    "recYd": 337,
-    "recTd": 2,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 45.7,
-    "ptsPpr": 79.7,
-    "ptsHalfPpr": 62.7
-   }
-  },
-  {
    "id": "will shipley|RB",
    "name": "Will Shipley",
    "team": "PHI",
    "pos": "RB",
-   "teamVerified": true,
-   "depth": 2,
+   "teamVerified": false,
+   "depth": null,
    "bye": 10,
    "tier": 13,
-   "injuryStatus": "Doubtful",
+   "injuryStatus": "IR",
    "ranks": {
     "std": {
      "fantasypros": 323
@@ -28615,7 +28582,7 @@
    },
    "adp": {
     "std": 323,
-    "ppr": 169.65
+    "ppr": 169.76
    },
    "posRank": {
     "std": 99,
@@ -28656,6 +28623,72 @@
    }
   },
   {
+   "id": "cole kmet|TE",
+   "name": "Cole Kmet",
+   "team": "CHI",
+   "pos": "TE",
+   "teamVerified": true,
+   "depth": 2,
+   "bye": 10,
+   "tier": 13,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 342
+    },
+    "ppr": {
+     "fantasypros": 346,
+     "espn": 467,
+     "sleeper": 2546
+    }
+   },
+   "consensus": {
+    "std": 342,
+    "ppr": 1120
+   },
+   "adp": {
+    "std": 342,
+    "ppr": 169.64
+   },
+   "posRank": {
+    "std": 46,
+    "ppr": 46
+   },
+   "rankStdDev": 28.48,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 34,
+    "recYd": 337,
+    "recTd": 2,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 45.7,
+    "ptsPpr": 79.7,
+    "ptsHalfPpr": 62.7
+   }
+  },
+  {
    "id": "adam randall|RB",
    "name": "Adam Randall",
    "team": "BAL",
@@ -28681,7 +28714,7 @@
    },
    "adp": {
     "std": 296,
-    "ppr": 169.95
+    "ppr": 169.97
    },
    "posRank": {
     "std": 86,
@@ -28738,7 +28771,7 @@
     "ppr": {
      "fantasypros": 353,
      "espn": 462,
-     "sleeper": 2557
+     "sleeper": 2558
     }
    },
    "consensus": {
@@ -28747,7 +28780,7 @@
    },
    "adp": {
     "std": 348,
-    "ppr": 169.22
+    "ppr": 169.25
    },
    "posRank": {
     "std": 47,
@@ -28796,7 +28829,7 @@
    "depth": 2,
    "bye": null,
    "tier": 14,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 406
@@ -28804,7 +28837,7 @@
     "ppr": {
      "fantasypros": 411,
      "espn": 374,
-     "sleeper": 2587
+     "sleeper": 2588
     }
    },
    "consensus": {
@@ -28813,7 +28846,7 @@
    },
    "adp": {
     "std": 406,
-    "ppr": 168.99
+    "ppr": 168.98
    },
    "posRank": {
     "std": 56,
@@ -28879,7 +28912,7 @@
    },
    "adp": {
     "std": 381,
-    "ppr": 169.98
+    "ppr": 169.97
    },
    "posRank": {
     "std": 133,
@@ -29010,7 +29043,7 @@
    },
    "adp": {
     "std": 295,
-    "ppr": 165.06
+    "ppr": 165.46
    },
    "posRank": {
     "std": 34,
@@ -29067,7 +29100,7 @@
     "ppr": {
      "fantasypros": 335,
      "espn": 472,
-     "sleeper": 2582
+     "sleeper": 2583
     }
    },
    "consensus": {
@@ -29076,7 +29109,7 @@
    },
    "adp": {
     "std": 330,
-    "ppr": 168.9
+    "ppr": 168.78
    },
    "posRank": {
     "std": 40,
@@ -29142,7 +29175,7 @@
    },
    "adp": {
     "std": 365,
-    "ppr": 169.75
+    "ppr": 169.81
    },
    "posRank": {
     "std": 127,
@@ -29208,7 +29241,7 @@
    },
    "adp": {
     "std": 317,
-    "ppr": 169.91
+    "ppr": 169.93
    },
    "posRank": {
     "std": 110,
@@ -29265,16 +29298,16 @@
     "ppr": {
      "fantasypros": 390,
      "espn": 518,
-     "sleeper": 2498
+     "sleeper": 2499
     }
    },
    "consensus": {
     "std": 391,
-    "ppr": 1135
+    "ppr": 1136
    },
    "adp": {
     "std": 391,
-    "ppr": 169.3
+    "ppr": 169.28
    },
    "posRank": {
     "std": 28,
@@ -29390,12 +29423,12 @@
     "std": {},
     "ppr": {
      "espn": 1182,
-     "sleeper": 1105
+     "sleeper": 1104
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1144
+    "ppr": 1143
    },
    "adp": {
     "std": null,
@@ -29465,7 +29498,7 @@
    },
    "adp": {
     "std": 355,
-    "ppr": 169.9
+    "ppr": 169.91
    },
    "posRank": {
     "std": 38,
@@ -29531,7 +29564,7 @@
    },
    "adp": {
     "std": 332,
-    "ppr": 169.74
+    "ppr": 169.81
    },
    "posRank": {
     "std": 42,
@@ -29597,7 +29630,7 @@
    },
    "adp": {
     "std": 368,
-    "ppr": 169.8
+    "ppr": 169.83
    },
    "posRank": {
     "std": 49,
@@ -29716,16 +29749,16 @@
     "ppr": {
      "fantasypros": 410,
      "espn": 490,
-     "sleeper": 2563
+     "sleeper": 2564
     }
    },
    "consensus": {
     "std": 409,
-    "ppr": 1154
+    "ppr": 1155
    },
    "adp": {
     "std": 409,
-    "ppr": 169.74
+    "ppr": 169.73
    },
    "posRank": {
     "std": 30,
@@ -29848,7 +29881,7 @@
     "ppr": {
      "fantasypros": 450,
      "espn": 475,
-     "sleeper": 2552
+     "sleeper": 2553
     }
    },
    "consensus": {
@@ -29857,7 +29890,7 @@
    },
    "adp": {
     "std": 478,
-    "ppr": 169.87
+    "ppr": 169.88
    },
    "posRank": {
     "std": 69,
@@ -29979,7 +30012,7 @@
     "ppr": {
      "fantasypros": 406,
      "espn": 484,
-     "sleeper": 2589
+     "sleeper": 2590
     }
    },
    "consensus": {
@@ -29988,7 +30021,7 @@
    },
    "adp": {
     "std": 423,
-    "ppr": 169.92
+    "ppr": 169.94
    },
    "posRank": {
     "std": 43,
@@ -30045,7 +30078,7 @@
     "ppr": {
      "fantasypros": 417,
      "espn": 478,
-     "sleeper": 2590
+     "sleeper": 2591
     }
    },
    "consensus": {
@@ -30054,7 +30087,7 @@
    },
    "adp": {
     "std": 443,
-    "ppr": 169.16
+    "ppr": 169.19
    },
    "posRank": {
     "std": 45,
@@ -30116,7 +30149,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.95
+    "ppr": 170
    },
    "posRank": {
     "std": null,
@@ -30151,7 +30184,7 @@
    },
    "adp": {
     "std": 337,
-    "ppr": 169.82
+    "ppr": 169.83
    },
    "posRank": {
     "std": 43,
@@ -30217,7 +30250,7 @@
    },
    "adp": {
     "std": 421,
-    "ppr": 169.87
+    "ppr": 169.88
    },
    "posRank": {
     "std": 118,
@@ -30270,12 +30303,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1166
+     "sleeper": 1165
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1166
+    "ppr": 1165
    },
    "adp": {
     "std": null,
@@ -30345,7 +30378,7 @@
    },
    "adp": {
     "std": 422,
-    "ppr": 169.81
+    "ppr": 169.85
    },
    "posRank": {
     "std": 119,
@@ -30399,7 +30432,7 @@
     "std": {},
     "ppr": {
      "espn": 1146,
-     "sleeper": 1204
+     "sleeper": 1203
     }
    },
    "consensus": {
@@ -30586,7 +30619,7 @@
     "std": {},
     "ppr": {
      "espn": 481,
-     "sleeper": 1881
+     "sleeper": 1880
     }
    },
    "consensus": {
@@ -30723,7 +30756,7 @@
    },
    "adp": {
     "std": 430,
-    "ppr": 169.98
+    "ppr": 169.99
    },
    "posRank": {
     "std": 121,
@@ -30851,7 +30884,7 @@
    },
    "adp": {
     "std": 388,
-    "ppr": 169.5
+    "ppr": 169.42
    },
    "posRank": {
     "std": 24,
@@ -31037,7 +31070,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.96
+    "ppr": 170.01
    },
    "posRank": {
     "std": null,
@@ -31068,7 +31101,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.96
+    "ppr": 170
    },
    "posRank": {
     "std": null,
@@ -31413,7 +31446,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.84
+    "ppr": 169.88
    },
    "posRank": {
     "std": null,
@@ -31623,7 +31656,7 @@
     "ppr": {
      "fantasypros": 500,
      "espn": 1105,
-     "sleeper": 2137
+     "sleeper": 2136
     }
    },
    "consensus": {
@@ -31946,7 +31979,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.95
+    "ppr": 169.99
    },
    "posRank": {
     "std": null,
@@ -31961,7 +31994,7 @@
    "team": "NYJ",
    "pos": "WR",
    "teamVerified": true,
-   "depth": 6,
+   "depth": 7,
    "bye": null,
    "tier": null,
    "injuryStatus": null,
@@ -32039,7 +32072,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.94
+    "ppr": 169.99
    },
    "posRank": {
     "std": null,
@@ -32190,7 +32223,7 @@
     "std": {},
     "ppr": {
      "espn": 1307,
-     "sleeper": 1252
+     "sleeper": 1253
     }
    },
    "consensus": {
@@ -32199,7 +32232,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 575.9
+    "ppr": 576.1
    },
    "posRank": {
     "std": null,
@@ -32320,16 +32353,16 @@
     "ppr": {
      "fantasypros": 344,
      "espn": 982,
-     "sleeper": 2530
+     "sleeper": 2531
     }
    },
    "consensus": {
     "std": 343,
-    "ppr": 1285
+    "ppr": 1286
    },
    "adp": {
     "std": 343,
-    "ppr": 169.76
+    "ppr": 169.79
    },
    "posRank": {
     "std": 120,
@@ -32451,7 +32484,7 @@
     "ppr": {
      "fantasypros": 348,
      "espn": 1000,
-     "sleeper": 2522
+     "sleeper": 2523
     }
    },
    "consensus": {
@@ -32460,7 +32493,7 @@
    },
    "adp": {
     "std": 349,
-    "ppr": 169.93
+    "ppr": 169.96
    },
    "posRank": {
     "std": 123,
@@ -32633,7 +32666,7 @@
    "depth": 6,
    "bye": 10,
    "tier": 12,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 294
@@ -32641,7 +32674,7 @@
     "ppr": {
      "fantasypros": 291,
      "espn": 1047,
-     "sleeper": 2559
+     "sleeper": 2560
     }
    },
    "consensus": {
@@ -32650,7 +32683,7 @@
    },
    "adp": {
     "std": 294,
-    "ppr": 169.87
+    "ppr": 169.89
    },
    "posRank": {
     "std": 104,
@@ -32691,72 +32724,6 @@
    }
   },
   {
-   "id": "kendrick bourne|WR",
-   "name": "Kendrick Bourne",
-   "team": "ARI",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": 2,
-   "bye": 14,
-   "tier": 13,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 356
-    },
-    "ppr": {
-     "fantasypros": 351,
-     "espn": 983,
-     "sleeper": 2568
-    }
-   },
-   "consensus": {
-    "std": 356,
-    "ppr": 1301
-   },
-   "adp": {
-    "std": 356,
-    "ppr": 169.68
-   },
-   "posRank": {
-    "std": 124,
-    "ppr": 124
-   },
-   "rankStdDev": 62.12,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 31,
-    "recYd": 344,
-    "recTd": 2,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 46.4,
-    "ptsPpr": 77.4,
-    "ptsHalfPpr": 61.9
-   }
-  },
-  {
    "id": "gardner minshew|QB",
    "name": "Gardner Minshew II",
    "team": "ARI",
@@ -32773,12 +32740,12 @@
     "ppr": {
      "fantasypros": 490,
      "espn": 1276,
-     "sleeper": 2136
+     "sleeper": 2135
     }
    },
    "consensus": {
     "std": 504,
-    "ppr": 1301
+    "ppr": 1300
    },
    "adp": {
     "std": 504,
@@ -32820,6 +32787,72 @@
     "ptsStd": 27.96,
     "ptsPpr": 27.96,
     "ptsHalfPpr": 27.96
+   }
+  },
+  {
+   "id": "kendrick bourne|WR",
+   "name": "Kendrick Bourne",
+   "team": "ARI",
+   "pos": "WR",
+   "teamVerified": true,
+   "depth": 2,
+   "bye": 14,
+   "tier": 13,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 356
+    },
+    "ppr": {
+     "fantasypros": 351,
+     "espn": 983,
+     "sleeper": 2569
+    }
+   },
+   "consensus": {
+    "std": 356,
+    "ppr": 1301
+   },
+   "adp": {
+    "std": 356,
+    "ppr": 169.69
+   },
+   "posRank": {
+    "std": 124,
+    "ppr": 124
+   },
+   "rankStdDev": 62.12,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 31,
+    "recYd": 344,
+    "recTd": 2,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 46.4,
+    "ptsPpr": 77.4,
+    "ptsHalfPpr": 61.9
    }
   },
   {
@@ -33144,7 +33177,7 @@
    "depth": 1,
    "bye": 5,
    "tier": 14,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 404
@@ -33152,12 +33185,12 @@
     "ppr": {
      "fantasypros": 397,
      "espn": 1005,
-     "sleeper": 2529
+     "sleeper": 2530
     }
    },
    "consensus": {
     "std": 404,
-    "ppr": 1310
+    "ppr": 1311
    },
    "adp": {
     "std": 404,
@@ -33199,72 +33232,6 @@
     "ptsStd": 18.8,
     "ptsPpr": 31.8,
     "ptsHalfPpr": 25.3
-   }
-  },
-  {
-   "id": "dyami brown|WR",
-   "name": "Dyami Brown",
-   "team": "WAS",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": 6,
-   "bye": 7,
-   "tier": 14,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 408
-    },
-    "ppr": {
-     "fantasypros": 409,
-     "espn": 991,
-     "sleeper": 2534
-    }
-   },
-   "consensus": {
-    "std": 408,
-    "ppr": 1311
-   },
-   "adp": {
-    "std": 408,
-    "ppr": 169.94
-   },
-   "posRank": {
-    "std": 141,
-    "ppr": 142
-   },
-   "rankStdDev": 46.74,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 6,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 2,
-    "recYd": 23,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 2.9,
-    "ptsPpr": 4.9,
-    "ptsHalfPpr": 3.9
    }
   },
   {
@@ -33346,7 +33313,7 @@
     "std": {},
     "ppr": {
      "fantasypros": 477,
-     "sleeper": 2144
+     "sleeper": 2145
     }
    },
    "consensus": {
@@ -33362,6 +33329,69 @@
     "ppr": 139
    },
    "rankStdDev": 36,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
+   }
+  },
+  {
+   "id": "carsen ryan|TE",
+   "name": "Carsen Ryan",
+   "team": "CLE",
+   "pos": "TE",
+   "teamVerified": true,
+   "depth": 3,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "espn": 1261,
+     "sleeper": 1361
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 1311
+   },
+   "adp": {
+    "std": null,
+    "ppr": 599.9
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
    "projections": {
     "passYd": null,
     "passTd": null,
@@ -33412,7 +33442,7 @@
     "ppr": {
      "fantasypros": 338,
      "espn": 1051,
-     "sleeper": 2547
+     "sleeper": 2548
     }
    },
    "consensus": {
@@ -33421,7 +33451,7 @@
    },
    "adp": {
     "std": 344,
-    "ppr": 169.85
+    "ppr": 169.9
    },
    "posRank": {
     "std": 121,
@@ -33462,45 +33492,48 @@
    }
   },
   {
-   "id": "carsen ryan|TE",
-   "name": "Carsen Ryan",
-   "team": "CLE",
-   "pos": "TE",
+   "id": "dyami brown|WR",
+   "name": "Dyami Brown",
+   "team": "WAS",
+   "pos": "WR",
    "teamVerified": true,
-   "depth": 3,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": "Questionable",
+   "depth": 6,
+   "bye": 7,
+   "tier": 14,
+   "injuryStatus": null,
    "ranks": {
-    "std": {},
+    "std": {
+     "fantasypros": 408
+    },
     "ppr": {
-     "espn": 1261,
-     "sleeper": 1362
+     "fantasypros": 409,
+     "espn": 991,
+     "sleeper": 2535
     }
    },
    "consensus": {
-    "std": null,
+    "std": 408,
     "ppr": 1312
    },
    "adp": {
-    "std": null,
-    "ppr": 599.9
+    "std": 408,
+    "ppr": 169.94
    },
    "posRank": {
-    "std": null,
-    "ppr": null
+    "std": 141,
+    "ppr": 142
    },
-   "rankStdDev": null,
+   "rankStdDev": 46.74,
    "projections": {
     "passYd": null,
     "passTd": null,
     "passInt": null,
     "passTwoPt": null,
-    "rushYd": null,
+    "rushYd": 6,
     "rushTd": null,
     "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
+    "rec": 2,
+    "recYd": 23,
     "recTd": null,
     "recTwoPt": null,
     "fumLost": null,
@@ -33519,9 +33552,9 @@
     "stTd": null,
     "blkKick": null,
     "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
+    "ptsStd": 2.9,
+    "ptsPpr": 4.9,
+    "ptsHalfPpr": 3.9
    }
   },
   {
@@ -33541,7 +33574,7 @@
     "ppr": {
      "fantasypros": 383,
      "espn": 984,
-     "sleeper": 2580
+     "sleeper": 2581
     }
    },
    "consensus": {
@@ -33550,7 +33583,7 @@
    },
    "adp": {
     "std": 386,
-    "ppr": 169.68
+    "ppr": 169.78
    },
    "posRank": {
     "std": 135,
@@ -33669,7 +33702,7 @@
     "ppr": {
      "fantasypros": 374,
      "espn": 1022,
-     "sleeper": 2558
+     "sleeper": 2559
     }
    },
    "consensus": {
@@ -33678,7 +33711,7 @@
    },
    "adp": {
     "std": 377,
-    "ppr": 169.92
+    "ppr": 169.93
    },
    "posRank": {
     "std": 51,
@@ -33735,7 +33768,7 @@
     "ppr": {
      "fantasypros": 504,
      "espn": 1139,
-     "sleeper": 2311
+     "sleeper": 2310
     }
    },
    "consensus": {
@@ -33798,7 +33831,7 @@
     "std": {},
     "ppr": {
      "fantasypros": 503,
-     "sleeper": 2135
+     "sleeper": 2134
     }
    },
    "consensus": {
@@ -33848,72 +33881,6 @@
    }
   },
   {
-   "id": "john bates|TE",
-   "name": "John Bates",
-   "team": "WAS",
-   "pos": "TE",
-   "teamVerified": true,
-   "depth": 3,
-   "bye": 7,
-   "tier": 14,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 395
-    },
-    "ppr": {
-     "fantasypros": 387,
-     "espn": 1046,
-     "sleeper": 2528
-    }
-   },
-   "consensus": {
-    "std": 395,
-    "ppr": 1320
-   },
-   "adp": {
-    "std": 395,
-    "ppr": 169.93
-   },
-   "posRank": {
-    "std": 53,
-    "ppr": 53
-   },
-   "rankStdDev": 43.01,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 13,
-    "recYd": 128,
-    "recTd": 1,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 18.8,
-    "ptsPpr": 31.8,
-    "ptsHalfPpr": 25.3
-   }
-  },
-  {
    "id": "skyler bell|WR",
    "name": "Skyler Bell",
    "team": "BUF",
@@ -33939,7 +33906,7 @@
    },
    "adp": {
     "std": 305,
-    "ppr": 169.8
+    "ppr": 169.86
    },
    "posRank": {
     "std": 106,
@@ -33980,6 +33947,72 @@
    }
   },
   {
+   "id": "john bates|TE",
+   "name": "John Bates",
+   "team": "WAS",
+   "pos": "TE",
+   "teamVerified": true,
+   "depth": 3,
+   "bye": 7,
+   "tier": 14,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 395
+    },
+    "ppr": {
+     "fantasypros": 387,
+     "espn": 1046,
+     "sleeper": 2529
+    }
+   },
+   "consensus": {
+    "std": 395,
+    "ppr": 1321
+   },
+   "adp": {
+    "std": 395,
+    "ppr": 169.94
+   },
+   "posRank": {
+    "std": 53,
+    "ppr": 53
+   },
+   "rankStdDev": 43.01,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 13,
+    "recYd": 128,
+    "recTd": 1,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 18.8,
+    "ptsPpr": 31.8,
+    "ptsHalfPpr": 25.3
+   }
+  },
+  {
    "id": "tutu atwell|WR",
    "name": "Tutu Atwell",
    "team": "LAR",
@@ -33996,7 +34029,7 @@
     "ppr": {
      "fantasypros": 376,
      "espn": 1059,
-     "sleeper": 2536
+     "sleeper": 2537
     }
    },
    "consensus": {
@@ -34005,7 +34038,7 @@
    },
    "adp": {
     "std": 374,
-    "ppr": 169.7
+    "ppr": 169.72
    },
    "posRank": {
     "std": 131,
@@ -34071,7 +34104,7 @@
    },
    "adp": {
     "std": 367,
-    "ppr": 169.96
+    "ppr": 169.97
    },
    "posRank": {
     "std": 129,
@@ -34109,72 +34142,6 @@
     "ptsStd": 23.7,
     "ptsPpr": 38.7,
     "ptsHalfPpr": 31.2
-   }
-  },
-  {
-   "id": "charlie kolar|TE",
-   "name": "Charlie Kolar",
-   "team": "LAC",
-   "pos": "TE",
-   "teamVerified": true,
-   "depth": 1,
-   "bye": 7,
-   "tier": 15,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 433
-    },
-    "ppr": {
-     "fantasypros": 442,
-     "espn": 1032,
-     "sleeper": 2523
-    }
-   },
-   "consensus": {
-    "std": 433,
-    "ppr": 1332
-   },
-   "adp": {
-    "std": 433,
-    "ppr": 169.96
-   },
-   "posRank": {
-    "std": 63,
-    "ppr": 62
-   },
-   "rankStdDev": 40.66,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 2,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 16,
-    "recYd": 162,
-    "recTd": 1,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 22.4,
-    "ptsPpr": 38.4,
-    "ptsHalfPpr": 30.4
    }
   },
   {
@@ -34266,7 +34233,7 @@
    },
    "adp": {
     "std": 306,
-    "ppr": 169.88
+    "ppr": 169.91
    },
    "posRank": {
     "std": 107,
@@ -34307,6 +34274,72 @@
    }
   },
   {
+   "id": "charlie kolar|TE",
+   "name": "Charlie Kolar",
+   "team": "LAC",
+   "pos": "TE",
+   "teamVerified": true,
+   "depth": 1,
+   "bye": 7,
+   "tier": 15,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 433
+    },
+    "ppr": {
+     "fantasypros": 442,
+     "espn": 1032,
+     "sleeper": 2524
+    }
+   },
+   "consensus": {
+    "std": 433,
+    "ppr": 1333
+   },
+   "adp": {
+    "std": 433,
+    "ppr": 169.98
+   },
+   "posRank": {
+    "std": 63,
+    "ppr": 62
+   },
+   "rankStdDev": 40.66,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 2,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 16,
+    "recYd": 162,
+    "recTd": 1,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 22.4,
+    "ptsPpr": 38.4,
+    "ptsHalfPpr": 30.4
+   }
+  },
+  {
    "id": "tyler goodson|RB",
    "name": "Tyler Goodson",
    "team": "DAL",
@@ -34322,7 +34355,7 @@
     },
     "ppr": {
      "fantasypros": 449,
-     "sleeper": 2217
+     "sleeper": 2216
     }
    },
    "consensus": {
@@ -34397,7 +34430,7 @@
    },
    "adp": {
     "std": 448,
-    "ppr": 168.72
+    "ppr": 168.8
    },
    "posRank": {
     "std": 150,
@@ -34446,7 +34479,7 @@
    "depth": 4,
    "bye": 13,
    "tier": 14,
-   "injuryStatus": "Questionable",
+   "injuryStatus": "Out",
    "ranks": {
     "std": {
      "fantasypros": 413
@@ -34454,7 +34487,7 @@
     "ppr": {
      "fantasypros": 420,
      "espn": 1054,
-     "sleeper": 2546
+     "sleeper": 2547
     }
    },
    "consensus": {
@@ -34463,7 +34496,7 @@
    },
    "adp": {
     "std": 413,
-    "ppr": 169.95
+    "ppr": 169.97
    },
    "posRank": {
     "std": 142,
@@ -34520,7 +34553,7 @@
     "ppr": {
      "fantasypros": 429,
      "espn": 1017,
-     "sleeper": 2574
+     "sleeper": 2575
     }
    },
    "consensus": {
@@ -34529,7 +34562,7 @@
    },
    "adp": {
     "std": 419,
-    "ppr": 169.79
+    "ppr": 169.78
    },
    "posRank": {
     "std": 58,
@@ -34710,7 +34743,7 @@
     "ppr": {
      "fantasypros": 453,
      "espn": 1025,
-     "sleeper": 2554
+     "sleeper": 2555
     }
    },
    "consensus": {
@@ -34719,7 +34752,7 @@
    },
    "adp": {
     "std": 469,
-    "ppr": 169.95
+    "ppr": 169.94
    },
    "posRank": {
     "std": 67,
@@ -34901,16 +34934,16 @@
     "ppr": {
      "fantasypros": 440,
      "espn": 1087,
-     "sleeper": 2515
+     "sleeper": 2516
     }
    },
    "consensus": {
     "std": 460,
-    "ppr": 1347
+    "ppr": 1348
    },
    "adp": {
     "std": 460,
-    "ppr": 169.94
+    "ppr": 169.97
    },
    "posRank": {
     "std": 65,
@@ -34976,7 +35009,7 @@
    },
    "adp": {
     "std": 405,
-    "ppr": 169.86
+    "ppr": 169.88
    },
    "posRank": {
     "std": 139,
@@ -35042,7 +35075,7 @@
    },
    "adp": {
     "std": 436,
-    "ppr": 169.95
+    "ppr": 169.97
    },
    "posRank": {
     "std": 146,
@@ -35108,7 +35141,7 @@
    },
    "adp": {
     "std": 289,
-    "ppr": 169.97
+    "ppr": 170
    },
    "posRank": {
     "std": 36,
@@ -35240,7 +35273,7 @@
    },
    "adp": {
     "std": 366,
-    "ppr": 169.98
+    "ppr": 169.99
    },
    "posRank": {
     "std": 128,
@@ -35306,7 +35339,7 @@
    },
    "adp": {
     "std": 402,
-    "ppr": 169.72
+    "ppr": 169.74
    },
    "posRank": {
     "std": 138,
@@ -35359,12 +35392,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1361
+     "sleeper": 1360
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1361
+    "ppr": 1360
    },
    "adp": {
     "std": null,
@@ -35423,12 +35456,12 @@
     "ppr": {
      "fantasypros": 511,
      "espn": 1234,
-     "sleeper": 2345
+     "sleeper": 2346
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1363
+    "ppr": 1364
    },
    "adp": {
     "std": null,
@@ -35498,7 +35531,7 @@
    },
    "adp": {
     "std": 379,
-    "ppr": 169.95
+    "ppr": 169.96
    },
    "posRank": {
     "std": 132,
@@ -35627,7 +35660,7 @@
    },
    "adp": {
     "std": 324,
-    "ppr": 169.82
+    "ppr": 169.85
    },
    "posRank": {
     "std": 112,
@@ -35693,7 +35726,7 @@
    },
    "adp": {
     "std": 455,
-    "ppr": 169.87
+    "ppr": 169.9
    },
    "posRank": {
     "std": 152,
@@ -35759,7 +35792,7 @@
    },
    "adp": {
     "std": 328,
-    "ppr": 169.88
+    "ppr": 169.92
    },
    "posRank": {
     "std": 114,
@@ -35812,12 +35845,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1372
+     "sleeper": 1373
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1372
+    "ppr": 1373
    },
    "adp": {
     "std": null,
@@ -35887,7 +35920,7 @@
    },
    "adp": {
     "std": 335,
-    "ppr": 169.78
+    "ppr": 169.8
    },
    "posRank": {
     "std": 118,
@@ -35998,7 +36031,7 @@
    "depth": 3,
    "bye": 11,
    "tier": 16,
-   "injuryStatus": "Questionable",
+   "injuryStatus": "Out",
    "ranks": {
     "std": {},
     "ppr": {
@@ -36078,7 +36111,7 @@
    },
    "adp": {
     "std": 322,
-    "ppr": 169.83
+    "ppr": 169.91
    },
    "posRank": {
     "std": 111,
@@ -36127,7 +36160,7 @@
    "depth": 3,
    "bye": null,
    "tier": null,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {},
     "ppr": {
@@ -36269,7 +36302,7 @@
    },
    "adp": {
     "std": 486,
-    "ppr": 169.88
+    "ppr": 169.89
    },
    "posRank": {
     "std": 72,
@@ -36335,7 +36368,7 @@
    },
    "adp": {
     "std": 400,
-    "ppr": 169.94
+    "ppr": 169.95
    },
    "posRank": {
     "std": 54,
@@ -36373,6 +36406,68 @@
     "ptsStd": 16.5,
     "ptsPpr": 27.5,
     "ptsHalfPpr": 22
+   }
+  },
+  {
+   "id": "ahmani marshall|RB",
+   "name": "Ahmani Marshall",
+   "team": "CAR",
+   "pos": "RB",
+   "teamVerified": false,
+   "depth": null,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 1389
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 1389
+   },
+   "adp": {
+    "std": null,
+    "ppr": 605.4
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
    }
   },
   {
@@ -36439,68 +36534,6 @@
    }
   },
   {
-   "id": "ahmani marshall|RB",
-   "name": "Ahmani Marshall",
-   "team": "CAR",
-   "pos": "RB",
-   "teamVerified": false,
-   "depth": null,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 1390
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 1390
-   },
-   "adp": {
-    "std": null,
-    "ppr": 605.4
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
-   }
-  },
-  {
    "id": "demarcus robinson|WR",
    "name": "Demarcus Robinson",
    "team": "SF",
@@ -36517,16 +36550,16 @@
     "ppr": {
      "fantasypros": 462,
      "espn": 1137,
-     "sleeper": 2581
+     "sleeper": 2582
     }
    },
    "consensus": {
     "std": 462,
-    "ppr": 1393
+    "ppr": 1394
    },
    "adp": {
     "std": 462,
-    "ppr": 169.88
+    "ppr": 169.9
    },
    "posRank": {
     "std": 156,
@@ -36657,7 +36690,7 @@
    },
    "adp": {
     "std": 407,
-    "ppr": 169.78
+    "ppr": 169.82
    },
    "posRank": {
     "std": 140,
@@ -36713,7 +36746,7 @@
     },
     "ppr": {
      "fantasypros": 441,
-     "sleeper": 2352
+     "sleeper": 2353
     }
    },
    "consensus": {
@@ -36911,7 +36944,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.93
+    "ppr": 169.96
    },
    "posRank": {
     "std": null,
@@ -36952,71 +36985,6 @@
    }
   },
   {
-   "id": "darius slayton|WR",
-   "name": "Darius Slayton",
-   "team": "IND",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": null,
-   "bye": 8,
-   "tier": 12,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 268
-    },
-    "ppr": {
-     "fantasypros": 268,
-     "sleeper": 2548
-    }
-   },
-   "consensus": {
-    "std": 268,
-    "ppr": 1408
-   },
-   "adp": {
-    "std": 268,
-    "ppr": 1408
-   },
-   "posRank": {
-    "std": 94,
-    "ppr": 97
-   },
-   "rankStdDev": 35.52,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 26,
-    "recYd": 383,
-    "recTd": 2,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 50.3,
-    "ptsPpr": 76.3,
-    "ptsHalfPpr": 63.3
-   }
-  },
-  {
    "id": "roman wilson|WR",
    "name": "Roman Wilson",
    "team": "PIT",
@@ -37042,7 +37010,7 @@
    },
    "adp": {
     "std": 480,
-    "ppr": 169.15
+    "ppr": 169.33
    },
    "posRank": {
     "std": 166,
@@ -37350,16 +37318,16 @@
     },
     "ppr": {
      "fantasypros": 296,
-     "sleeper": 2550
+     "sleeper": 2551
     }
    },
    "consensus": {
     "std": 286,
-    "ppr": 1423
+    "ppr": 1424
    },
    "adp": {
     "std": 286,
-    "ppr": 1423
+    "ppr": 1424
    },
    "posRank": {
     "std": 85,
@@ -37408,7 +37376,7 @@
    "depth": 2,
    "bye": 7,
    "tier": 16,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {
      "fantasypros": 482
@@ -37425,7 +37393,7 @@
    },
    "adp": {
     "std": 482,
-    "ppr": 169.95
+    "ppr": 169.96
    },
    "posRank": {
     "std": 70,
@@ -37668,7 +37636,7 @@
     "ppr": {
      "fantasypros": 489,
      "espn": 1269,
-     "sleeper": 2540
+     "sleeper": 2541
     }
    },
    "consensus": {
@@ -37677,7 +37645,7 @@
    },
    "adp": {
     "std": 508,
-    "ppr": 169.9
+    "ppr": 169.96
    },
    "posRank": {
     "std": 148,
@@ -37743,7 +37711,7 @@
    },
    "adp": {
     "std": 431,
-    "ppr": 169.97
+    "ppr": 170
    },
    "posRank": {
     "std": 62,
@@ -37784,69 +37752,6 @@
    }
   },
   {
-   "id": "blake whiteheart|TE",
-   "name": "Blake Whiteheart",
-   "team": "CLE",
-   "pos": "TE",
-   "teamVerified": true,
-   "depth": 2,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "espn": 1169,
-     "sleeper": 1703
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 1436
-   },
-   "adp": {
-    "std": null,
-    "ppr": 645.3
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 2,
-    "recYd": 24,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 2.4,
-    "ptsPpr": 4.4,
-    "ptsHalfPpr": 3.4
-   }
-  },
-  {
    "id": "jahdae walker|WR",
    "name": "Jahdae Walker",
    "team": "CHI",
@@ -37872,7 +37777,7 @@
    },
    "adp": {
     "std": 437,
-    "ppr": 169.86
+    "ppr": 169.91
    },
    "posRank": {
     "std": 147,
@@ -37910,6 +37815,69 @@
     "ptsStd": 16.9,
     "ptsPpr": 25.9,
     "ptsHalfPpr": 21.4
+   }
+  },
+  {
+   "id": "blake whiteheart|TE",
+   "name": "Blake Whiteheart",
+   "team": "CLE",
+   "pos": "TE",
+   "teamVerified": true,
+   "depth": 2,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "espn": 1169,
+     "sleeper": 1711
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 1440
+   },
+   "adp": {
+    "std": null,
+    "ppr": 646.3
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 2,
+    "recYd": 24,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 2.4,
+    "ptsPpr": 4.4,
+    "ptsHalfPpr": 3.4
    }
   },
   {
@@ -38058,7 +38026,7 @@
     },
     "ppr": {
      "fantasypros": 373,
-     "sleeper": 2520
+     "sleeper": 2521
     }
    },
    "consensus": {
@@ -38193,7 +38161,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.9
+    "ppr": 169.95
    },
    "posRank": {
     "std": null,
@@ -38246,12 +38214,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1452
+     "sleeper": 1453
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1452
+    "ppr": 1453
    },
    "adp": {
     "std": null,
@@ -38321,7 +38289,7 @@
    },
    "adp": {
     "std": 432,
-    "ppr": 169.93
+    "ppr": 169.97
    },
    "posRank": {
     "std": 44,
@@ -38374,12 +38342,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1459
+     "sleeper": 1458
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1459
+    "ppr": 1458
    },
    "adp": {
     "std": null,
@@ -38449,7 +38417,7 @@
    },
    "adp": {
     "std": 501,
-    "ppr": 169.97
+    "ppr": 170.01
    },
    "posRank": {
     "std": 48,
@@ -38578,7 +38546,7 @@
    },
    "adp": {
     "std": 503,
-    "ppr": 169.97
+    "ppr": 169.99
    },
    "posRank": {
     "std": 172,
@@ -38644,7 +38612,7 @@
    },
    "adp": {
     "std": 505,
-    "ppr": 169.86
+    "ppr": 169.92
    },
    "posRank": {
     "std": 50,
@@ -38685,70 +38653,6 @@
    }
   },
   {
-   "id": "jacob cowing|WR",
-   "name": "Jacob Cowing",
-   "team": "SF",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": 4,
-   "bye": 8,
-   "tier": 16,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "fantasypros": 513,
-     "espn": 1205,
-     "sleeper": 2676
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 1465
-   },
-   "adp": {
-    "std": null,
-    "ppr": 169.74
-   },
-   "posRank": {
-    "std": null,
-    "ppr": 171
-   },
-   "rankStdDev": 34.5,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 1,
-    "recYd": 7,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 0.7,
-    "ptsPpr": 1.7,
-    "ptsHalfPpr": 1.2
-   }
-  },
-  {
    "id": "michael wortham|WR",
    "name": "Michael Wortham",
    "team": "JAC",
@@ -38761,12 +38665,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1465
+     "sleeper": 1464
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1465
+    "ppr": 1464
    },
    "adp": {
     "std": null,
@@ -38811,6 +38715,70 @@
    }
   },
   {
+   "id": "jacob cowing|WR",
+   "name": "Jacob Cowing",
+   "team": "SF",
+   "pos": "WR",
+   "teamVerified": true,
+   "depth": 4,
+   "bye": 8,
+   "tier": 16,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "fantasypros": 513,
+     "espn": 1205,
+     "sleeper": 2676
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 1465
+   },
+   "adp": {
+    "std": null,
+    "ppr": 169.79
+   },
+   "posRank": {
+    "std": null,
+    "ppr": 171
+   },
+   "rankStdDev": 34.5,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 1,
+    "recYd": 7,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 0.7,
+    "ptsPpr": 1.7,
+    "ptsHalfPpr": 1.2
+   }
+  },
+  {
    "id": "nick westbrook ikhine|WR",
    "name": "Nick Westbrook-Ikhine",
    "team": "IND",
@@ -38826,7 +38794,7 @@
     },
     "ppr": {
      "fantasypros": 392,
-     "sleeper": 2539
+     "sleeper": 2540
     }
    },
    "consensus": {
@@ -39000,71 +38968,6 @@
    }
   },
   {
-   "id": "austin ekeler|RB",
-   "name": "Austin Ekeler",
-   "team": "WAS",
-   "pos": "RB",
-   "teamVerified": true,
-   "depth": 3,
-   "bye": null,
-   "tier": 14,
-   "injuryStatus": "Questionable",
-   "ranks": {
-    "std": {
-     "fantasypros": 375
-    },
-    "ppr": {
-     "fantasypros": 385,
-     "sleeper": 2567
-    }
-   },
-   "consensus": {
-    "std": 375,
-    "ppr": 1476
-   },
-   "adp": {
-    "std": 375,
-    "ppr": 1476
-   },
-   "posRank": {
-    "std": 108,
-    "ppr": 109
-   },
-   "rankStdDev": 52.57,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 41,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 3,
-    "recYd": 22,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 6.3,
-    "ptsPpr": 9.3,
-    "ptsHalfPpr": 7.8
-   }
-  },
-  {
    "id": "tyler badie|RB",
    "name": "Tyler Badie",
    "team": "DEN",
@@ -39078,7 +38981,7 @@
     "std": {},
     "ppr": {
      "espn": 435,
-     "sleeper": 2516
+     "sleeper": 2517
     }
    },
    "consensus": {
@@ -39087,7 +38990,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.93
+    "ppr": 169.95
    },
    "posRank": {
     "std": null,
@@ -39128,12 +39031,77 @@
    }
   },
   {
+   "id": "austin ekeler|RB",
+   "name": "Austin Ekeler",
+   "team": "WAS",
+   "pos": "RB",
+   "teamVerified": true,
+   "depth": 3,
+   "bye": null,
+   "tier": 14,
+   "injuryStatus": "Questionable",
+   "ranks": {
+    "std": {
+     "fantasypros": 375
+    },
+    "ppr": {
+     "fantasypros": 385,
+     "sleeper": 2568
+    }
+   },
+   "consensus": {
+    "std": 375,
+    "ppr": 1477
+   },
+   "adp": {
+    "std": 375,
+    "ppr": 1477
+   },
+   "posRank": {
+    "std": 108,
+    "ppr": 109
+   },
+   "rankStdDev": 52.57,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 41,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 3,
+    "recYd": 22,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 6.3,
+    "ptsPpr": 9.3,
+    "ptsHalfPpr": 7.8
+   }
+  },
+  {
    "id": "trevor etienne|RB",
    "name": "Trevor Etienne",
    "team": "CAR",
    "pos": "RB",
-   "teamVerified": false,
-   "depth": null,
+   "teamVerified": true,
+   "depth": 3,
    "bye": 5,
    "tier": 12,
    "injuryStatus": "IR",
@@ -39400,7 +39368,7 @@
     },
     "ppr": {
      "fantasypros": 459,
-     "sleeper": 2518
+     "sleeper": 2519
     }
    },
    "consensus": {
@@ -39447,71 +39415,6 @@
     "ptsStd": 4.1,
     "ptsPpr": 7.1,
     "ptsHalfPpr": 5.6
-   }
-  },
-  {
-   "id": "greg dortch|WR",
-   "name": "Greg Dortch",
-   "team": "BUF",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": 6,
-   "bye": 6,
-   "tier": 15,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 438
-    },
-    "ppr": {
-     "fantasypros": 425,
-     "sleeper": 2555
-    }
-   },
-   "consensus": {
-    "std": 438,
-    "ppr": 1490
-   },
-   "adp": {
-    "std": 438,
-    "ppr": 1490
-   },
-   "posRank": {
-    "std": 148,
-    "ppr": 144
-   },
-   "rankStdDev": 40.95,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": 16,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 21,
-    "recYd": 215,
-    "recTd": 1,
-    "recTwoPt": null,
-    "fumLost": 1,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 27.1,
-    "ptsPpr": 48.1,
-    "ptsHalfPpr": 37.6
    }
   },
   {
@@ -39577,6 +39480,71 @@
     "ptsStd": 5.2,
     "ptsPpr": 6.2,
     "ptsHalfPpr": 5.7
+   }
+  },
+  {
+   "id": "greg dortch|WR",
+   "name": "Greg Dortch",
+   "team": "BUF",
+   "pos": "WR",
+   "teamVerified": true,
+   "depth": 6,
+   "bye": 6,
+   "tier": 15,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 438
+    },
+    "ppr": {
+     "fantasypros": 425,
+     "sleeper": 2556
+    }
+   },
+   "consensus": {
+    "std": 438,
+    "ppr": 1491
+   },
+   "adp": {
+    "std": 438,
+    "ppr": 1491
+   },
+   "posRank": {
+    "std": 148,
+    "ppr": 144
+   },
+   "rankStdDev": 40.95,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": 16,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 21,
+    "recYd": 215,
+    "recTd": 1,
+    "recTwoPt": null,
+    "fumLost": 1,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 27.1,
+    "ptsPpr": 48.1,
+    "ptsHalfPpr": 37.6
    }
   },
   {
@@ -39658,16 +39626,16 @@
     "std": {},
     "ppr": {
      "espn": 488,
-     "sleeper": 2504
+     "sleeper": 2505
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1496
+    "ppr": 1497
    },
    "adp": {
     "std": null,
-    "ppr": 169.85
+    "ppr": 169.89
    },
    "posRank": {
     "std": null,
@@ -39723,7 +39691,7 @@
     },
     "ppr": {
      "fantasypros": 424,
-     "sleeper": 2571
+     "sleeper": 2572
     }
    },
    "consensus": {
@@ -40295,7 +40263,7 @@
    "depth": 3,
    "bye": null,
    "tier": null,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {},
     "ppr": {
@@ -40363,7 +40331,7 @@
     "std": {},
     "ppr": {
      "espn": 482,
-     "sleeper": 2549
+     "sleeper": 2550
     }
    },
    "consensus": {
@@ -40372,7 +40340,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.95
+    "ppr": 169.99
    },
    "posRank": {
     "std": null,
@@ -40620,7 +40588,7 @@
     },
     "ppr": {
      "fantasypros": 494,
-     "sleeper": 2561
+     "sleeper": 2562
     }
    },
    "consensus": {
@@ -40683,7 +40651,7 @@
     "std": {},
     "ppr": {
      "fantasypros": 505,
-     "sleeper": 2562
+     "sleeper": 2563
     }
    },
    "consensus": {
@@ -40985,68 +40953,6 @@
    }
   },
   {
-   "id": "jake briningstool|TE",
-   "name": "Jake Briningstool",
-   "team": "KC",
-   "pos": "TE",
-   "teamVerified": true,
-   "depth": 3,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 1543
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 1543
-   },
-   "adp": {
-    "std": null,
-    "ppr": 629.2
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
-   }
-  },
-  {
    "id": "cj daniels|WR",
    "name": "CJ Daniels",
    "team": "LAR",
@@ -41112,12 +41018,74 @@
    }
   },
   {
+   "id": "jake briningstool|TE",
+   "name": "Jake Briningstool",
+   "team": "KC",
+   "pos": "TE",
+   "teamVerified": true,
+   "depth": 3,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 1544
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 1544
+   },
+   "adp": {
+    "std": null,
+    "ppr": 629.2
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
+   }
+  },
+  {
    "id": "joe milton|QB",
    "name": "Joe Milton III",
-   "team": "DAL",
+   "team": "PHI",
    "pos": "QB",
-   "teamVerified": false,
-   "depth": null,
+   "teamVerified": true,
+   "depth": 4,
    "bye": 14,
    "tier": 14,
    "injuryStatus": null,
@@ -41182,7 +41150,7 @@
    "team": "PHI",
    "pos": "RB",
    "teamVerified": true,
-   "depth": 4,
+   "depth": 3,
    "bye": null,
    "tier": null,
    "injuryStatus": null,
@@ -41378,12 +41346,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1564
+     "sleeper": 1565
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1564
+    "ppr": 1565
    },
    "adp": {
     "std": null,
@@ -41505,12 +41473,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1571
+     "sleeper": 1570
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1571
+    "ppr": 1570
    },
    "adp": {
     "std": null,
@@ -41567,12 +41535,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1574
+     "sleeper": 1573
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1574
+    "ppr": 1573
    },
    "adp": {
     "std": null,
@@ -41810,68 +41778,6 @@
    }
   },
   {
-   "id": "jordan moore|WR",
-   "name": "Jordan Moore",
-   "team": "CIN",
-   "pos": "WR",
-   "teamVerified": false,
-   "depth": null,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 1585
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 1585
-   },
-   "adp": {
-    "std": null,
-    "ppr": 634.3
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
-   }
-  },
-  {
    "id": "seydou traore|TE",
    "name": "Seydou Traore",
    "team": "MIA",
@@ -41935,28 +41841,28 @@
    }
   },
   {
-   "id": "chris blair|WR",
-   "name": "Chris Blair",
-   "team": "ATL",
+   "id": "jordan moore|WR",
+   "name": "Jordan Moore",
+   "team": "CIN",
    "pos": "WR",
-   "teamVerified": true,
-   "depth": 5,
+   "teamVerified": false,
+   "depth": null,
    "bye": null,
    "tier": null,
    "injuryStatus": null,
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1587
+     "sleeper": 1586
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1587
+    "ppr": 1586
    },
    "adp": {
     "std": null,
-    "ppr": 634.5
+    "ppr": 634.3
    },
    "posRank": {
     "std": null,
@@ -42019,7 +41925,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.76
+    "ppr": 169.8
    },
    "posRank": {
     "std": null,
@@ -42060,6 +41966,68 @@
    }
   },
   {
+   "id": "chris blair|WR",
+   "name": "Chris Blair",
+   "team": "ATL",
+   "pos": "WR",
+   "teamVerified": true,
+   "depth": 5,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 1588
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 1588
+   },
+   "adp": {
+    "std": null,
+    "ppr": 634.5
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
+   }
+  },
+  {
    "id": "tyson bagent|QB",
    "name": "Tyson Bagent",
    "team": "CHI",
@@ -42082,7 +42050,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.79
+    "ppr": 169.85
    },
    "posRank": {
     "std": null,
@@ -42120,6 +42088,68 @@
     "ptsStd": 12.5,
     "ptsPpr": 12.5,
     "ptsHalfPpr": 12.5
+   }
+  },
+  {
+   "id": "keshawn williams|WR",
+   "name": "Ke'Shawn Williams",
+   "team": "CIN",
+   "pos": "WR",
+   "teamVerified": false,
+   "depth": null,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 1603
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 1603
+   },
+   "adp": {
+    "std": null,
+    "ppr": 636
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
    }
   },
   {
@@ -42186,68 +42216,6 @@
    }
   },
   {
-   "id": "keshawn williams|WR",
-   "name": "Ke'Shawn Williams",
-   "team": "CIN",
-   "pos": "WR",
-   "teamVerified": false,
-   "depth": null,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 1604
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 1604
-   },
-   "adp": {
-    "std": null,
-    "ppr": 636
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
-   }
-  },
-  {
    "id": "brady russell|RB",
    "name": "Brady Russell",
    "team": "SEA",
@@ -42260,12 +42228,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1606
+     "sleeper": 1605
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1606
+    "ppr": 1605
    },
    "adp": {
     "std": null,
@@ -42323,12 +42291,12 @@
     "std": {},
     "ppr": {
      "espn": 1264,
-     "sleeper": 1965
+     "sleeper": 1964
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1615
+    "ppr": 1614
    },
    "adp": {
     "std": null,
@@ -42385,12 +42353,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1619
+     "sleeper": 1620
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1619
+    "ppr": 1620
    },
    "adp": {
     "std": null,
@@ -42572,7 +42540,7 @@
     "std": {},
     "ppr": {
      "espn": 1300,
-     "sleeper": 1997
+     "sleeper": 1998
     }
    },
    "consensus": {
@@ -42696,12 +42664,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1654
+     "sleeper": 1653
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1654
+    "ppr": 1653
    },
    "adp": {
     "std": null,
@@ -42821,7 +42789,7 @@
     "std": {},
     "ppr": {
      "espn": 1255,
-     "sleeper": 2070
+     "sleeper": 2071
     }
    },
    "consensus": {
@@ -43058,6 +43026,69 @@
    }
   },
   {
+   "id": "brycen tremayne|WR",
+   "name": "Brycen Tremayne",
+   "team": "CAR",
+   "pos": "WR",
+   "teamVerified": true,
+   "depth": 3,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "espn": 1267,
+     "sleeper": 2099
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 1683
+   },
+   "adp": {
+    "std": null,
+    "ppr": 675.5
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 8,
+    "recYd": 56,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 5.6,
+    "ptsPpr": 13.6,
+    "ptsHalfPpr": 9.6
+   }
+  },
+  {
    "id": "cameron ross|WR",
    "name": "Cameron Ross",
    "team": "DEN",
@@ -43117,69 +43148,6 @@
     "ptsStd": null,
     "ptsPpr": null,
     "ptsHalfPpr": null
-   }
-  },
-  {
-   "id": "brycen tremayne|WR",
-   "name": "Brycen Tremayne",
-   "team": "CAR",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": 3,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "espn": 1267,
-     "sleeper": 2100
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 1684
-   },
-   "adp": {
-    "std": null,
-    "ppr": 675.5
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 8,
-    "recYd": 56,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 5.6,
-    "ptsPpr": 13.6,
-    "ptsHalfPpr": 9.6
    }
   },
   {
@@ -43748,7 +43716,7 @@
    "team": "SEA",
    "pos": "WR",
    "teamVerified": true,
-   "depth": 6,
+   "depth": 5,
    "bye": null,
    "tier": null,
    "injuryStatus": "Out",
@@ -43817,12 +43785,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1737
+     "sleeper": 1736
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1737
+    "ppr": 1736
    },
    "adp": {
     "std": null,
@@ -43941,12 +43909,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1769
+     "sleeper": 1768
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1769
+    "ppr": 1768
    },
    "adp": {
     "std": null,
@@ -44120,11 +44088,11 @@
    "name": "Tom Kennedy",
    "team": "DET",
    "pos": "WR",
-   "teamVerified": true,
-   "depth": 5,
+   "teamVerified": false,
+   "depth": null,
    "bye": null,
    "tier": null,
-   "injuryStatus": "Out",
+   "injuryStatus": "IR",
    "ranks": {
     "std": {},
     "ppr": {
@@ -44315,12 +44283,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1797
+     "sleeper": 1796
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1797
+    "ppr": 1796
    },
    "adp": {
     "std": null,
@@ -44378,12 +44346,12 @@
     "std": {},
     "ppr": {
      "espn": 1210,
-     "sleeper": 2399
+     "sleeper": 2398
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1805
+    "ppr": 1804
    },
    "adp": {
     "std": null,
@@ -44441,12 +44409,12 @@
     "std": {},
     "ppr": {
      "espn": 1268,
-     "sleeper": 2344
+     "sleeper": 2345
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1806
+    "ppr": 1807
    },
    "adp": {
     "std": null,
@@ -44504,7 +44472,7 @@
     "std": {},
     "ppr": {
      "espn": 1094,
-     "sleeper": 2521
+     "sleeper": 2522
     }
    },
    "consensus": {
@@ -44513,7 +44481,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.94
+    "ppr": 169.97
    },
    "posRank": {
     "std": null,
@@ -44816,12 +44784,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1818
+     "sleeper": 1817
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1818
+    "ppr": 1817
    },
    "adp": {
     "std": null,
@@ -44888,68 +44856,6 @@
    "adp": {
     "std": null,
     "ppr": 655.9
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
-   }
-  },
-  {
-   "id": "eli pancol|WR",
-   "name": "Eli Pancol",
-   "team": "IND",
-   "pos": "WR",
-   "teamVerified": false,
-   "depth": null,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 1831
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 1831
-   },
-   "adp": {
-    "std": null,
-    "ppr": 656
    },
    "posRank": {
     "std": null,
@@ -45240,6 +45146,68 @@
    }
   },
   {
+   "id": "eli pancol|WR",
+   "name": "Eli Pancol",
+   "team": "IND",
+   "pos": "WR",
+   "teamVerified": false,
+   "depth": null,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 1847
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 1847
+   },
+   "adp": {
+    "std": null,
+    "ppr": 657
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
+   }
+  },
+  {
    "id": "austin trammell|WR",
    "name": "Austin Trammell",
    "team": "JAC",
@@ -45252,12 +45220,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1857
+     "sleeper": 1858
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1857
+    "ppr": 1858
    },
    "adp": {
     "std": null,
@@ -45324,7 +45292,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.99
+    "ppr": 170
    },
    "posRank": {
     "std": null,
@@ -45378,12 +45346,12 @@
     "std": {},
     "ppr": {
      "espn": 1253,
-     "sleeper": 2475
+     "sleeper": 2476
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1864
+    "ppr": 1865
    },
    "adp": {
     "std": null,
@@ -45433,7 +45401,7 @@
    "team": "NYJ",
    "pos": "WR",
    "teamVerified": true,
-   "depth": 4,
+   "depth": 6,
    "bye": null,
    "tier": null,
    "injuryStatus": null,
@@ -45450,7 +45418,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.9
+    "ppr": 169.95
    },
    "posRank": {
     "std": null,
@@ -45566,7 +45534,7 @@
     "std": {},
     "ppr": {
      "espn": 1232,
-     "sleeper": 2511
+     "sleeper": 2512
     }
    },
    "consensus": {
@@ -45575,7 +45543,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.96
+    "ppr": 169.99
    },
    "posRank": {
     "std": null,
@@ -45616,68 +45584,6 @@
    }
   },
   {
-   "id": "brenden bates|TE",
-   "name": "Brenden Bates",
-   "team": "JAC",
-   "pos": "TE",
-   "teamVerified": false,
-   "depth": null,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 1874
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 1874
-   },
-   "adp": {
-    "std": null,
-    "ppr": 659
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
-   }
-  },
-  {
    "id": "drew ogletree|TE",
    "name": "Drew Ogletree",
    "team": "IND",
@@ -45691,12 +45597,12 @@
     "std": {},
     "ppr": {
      "espn": 1240,
-     "sleeper": 2510
+     "sleeper": 2511
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1875
+    "ppr": 1876
    },
    "adp": {
     "std": null,
@@ -45754,7 +45660,7 @@
     "std": {},
     "ppr": {
      "espn": 1223,
-     "sleeper": 2532
+     "sleeper": 2533
     }
    },
    "consensus": {
@@ -45763,7 +45669,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.96
+    "ppr": 169.99
    },
    "posRank": {
     "std": null,
@@ -45816,12 +45722,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1889
+     "sleeper": 1888
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1889
+    "ppr": 1888
    },
    "adp": {
     "std": null,
@@ -45863,6 +45769,68 @@
     "ptsStd": 12.04,
     "ptsPpr": 12.04,
     "ptsHalfPpr": 12.04
+   }
+  },
+  {
+   "id": "brenden bates|TE",
+   "name": "Brenden Bates",
+   "team": "JAC",
+   "pos": "TE",
+   "teamVerified": false,
+   "depth": null,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 1890
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 1890
+   },
+   "adp": {
+    "std": null,
+    "ppr": 660
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
    }
   },
   {
@@ -45950,7 +45918,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.94
+    "ppr": 169.96
    },
    "posRank": {
     "std": null,
@@ -46004,7 +45972,7 @@
     "std": {},
     "ppr": {
      "espn": 1244,
-     "sleeper": 2541
+     "sleeper": 2542
     }
    },
    "consensus": {
@@ -46013,7 +45981,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.63
+    "ppr": 169.69
    },
    "posRank": {
     "std": null,
@@ -46067,7 +46035,7 @@
     "std": {},
     "ppr": {
      "espn": 1254,
-     "sleeper": 2535
+     "sleeper": 2536
     }
    },
    "consensus": {
@@ -46076,7 +46044,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.95
+    "ppr": 169.99
    },
    "posRank": {
     "std": null,
@@ -46449,7 +46417,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.96
+    "ppr": 169.98
    },
    "posRank": {
     "std": null,
@@ -46512,7 +46480,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.85
+    "ppr": 169.87
    },
    "posRank": {
     "std": null,
@@ -46566,7 +46534,7 @@
     "std": {},
     "ppr": {
      "espn": 1270,
-     "sleeper": 2579
+     "sleeper": 2580
     }
    },
    "consensus": {
@@ -46575,7 +46543,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.91
+    "ppr": 169.97
    },
    "posRank": {
     "std": null,
@@ -46621,7 +46589,7 @@
    "team": "NE",
    "pos": "WR",
    "teamVerified": true,
-   "depth": 3,
+   "depth": 4,
    "bye": null,
    "tier": null,
    "injuryStatus": null,
@@ -46638,7 +46606,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.45
+    "ppr": 169.51
    },
    "posRank": {
     "std": null,
@@ -46691,12 +46659,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1932
+     "sleeper": 1933
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1932
+    "ppr": 1933
    },
    "adp": {
     "std": null,
@@ -46749,7 +46717,7 @@
    "depth": 2,
    "bye": null,
    "tier": null,
-   "injuryStatus": "Questionable",
+   "injuryStatus": "Out",
    "ranks": {
     "std": {},
     "ppr": {
@@ -46763,7 +46731,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.87
+    "ppr": 169.91
    },
    "posRank": {
     "std": null,
@@ -46816,12 +46784,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1936
+     "sleeper": 1937
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1936
+    "ppr": 1937
    },
    "adp": {
     "std": null,
@@ -46950,7 +46918,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.25
+    "ppr": 169.29
    },
    "posRank": {
     "std": null,
@@ -47127,12 +47095,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1946
+     "sleeper": 1945
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1946
+    "ppr": 1945
    },
    "adp": {
     "std": null,
@@ -47199,7 +47167,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.92
+    "ppr": 169.96
    },
    "posRank": {
     "std": null,
@@ -47262,7 +47230,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.78
+    "ppr": 169.8
    },
    "posRank": {
     "std": null,
@@ -47315,12 +47283,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1953
+     "sleeper": 1952
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1953
+    "ppr": 1952
    },
    "adp": {
     "std": null,
@@ -47427,68 +47395,6 @@
    }
   },
   {
-   "id": "temarrick hemingway|TE",
-   "name": "Temarrick Hemingway",
-   "team": "WAS",
-   "pos": "TE",
-   "teamVerified": false,
-   "depth": null,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 1961
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 1961
-   },
-   "adp": {
-    "std": null,
-    "ppr": 665.3
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
-   }
-  },
-  {
    "id": "spencer rattler|QB",
    "name": "Spencer Rattler",
    "team": "NO",
@@ -47511,7 +47417,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.98
+    "ppr": 169.99
    },
    "posRank": {
     "std": null,
@@ -47564,12 +47470,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1974
+     "sleeper": 1973
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1974
+    "ppr": 1973
    },
    "adp": {
     "std": null,
@@ -47626,12 +47532,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1976
+     "sleeper": 1975
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1976
+    "ppr": 1975
    },
    "adp": {
     "std": null,
@@ -47690,12 +47596,12 @@
      "fantasypros": 487
     },
     "ppr": {
-     "sleeper": 1978
+     "sleeper": 1977
     }
    },
    "consensus": {
     "std": 487,
-    "ppr": 1978
+    "ppr": 1977
    },
    "adp": {
     "std": 487,
@@ -47752,12 +47658,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 1979
+     "sleeper": 1978
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 1979
+    "ppr": 1978
    },
    "adp": {
     "std": null,
@@ -47811,6 +47717,68 @@
    "bye": null,
    "tier": null,
    "injuryStatus": "Out",
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 1979
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 1979
+   },
+   "adp": {
+    "std": null,
+    "ppr": 666.3
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
+   }
+  },
+  {
+   "id": "temarrick hemingway|TE",
+   "name": "Temarrick Hemingway",
+   "team": "WAS",
+   "pos": "TE",
+   "teamVerified": false,
+   "depth": null,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
    "ranks": {
     "std": {},
     "ppr": {
@@ -47948,7 +47916,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 169.98
+    "ppr": 170
    },
    "posRank": {
     "std": null,
@@ -48245,7 +48213,7 @@
    "depth": 5,
    "bye": null,
    "tier": null,
-   "injuryStatus": "Questionable",
+   "injuryStatus": null,
    "ranks": {
     "std": {},
     "ppr": {
@@ -48311,12 +48279,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2033
+     "sleeper": 2032
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2033
+    "ppr": 2032
    },
    "adp": {
     "std": null,
@@ -48373,12 +48341,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2034
+     "sleeper": 2033
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2034
+    "ppr": 2033
    },
    "adp": {
     "std": null,
@@ -48621,12 +48589,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2068
+     "sleeper": 2069
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2068
+    "ppr": 2069
    },
    "adp": {
     "std": null,
@@ -48683,12 +48651,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2091
+     "sleeper": 2092
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2091
+    "ppr": 2092
    },
    "adp": {
     "std": null,
@@ -48745,16 +48713,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2096
+     "sleeper": 2107
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2096
+    "ppr": 2107
    },
    "adp": {
     "std": null,
-    "ppr": 675
+    "ppr": 676
    },
    "posRank": {
     "std": null,
@@ -49055,12 +49023,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2128
+     "sleeper": 2127
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2128
+    "ppr": 2127
    },
    "adp": {
     "std": null,
@@ -49117,74 +49085,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2130
+     "sleeper": 2129
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2130
-   },
-   "adp": {
-    "std": null,
-    "ppr": 677.3
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
-   }
-  },
-  {
-   "id": "tre watson|TE",
-   "name": "Tre Watson",
-   "team": "MIA",
-   "pos": "TE",
-   "teamVerified": false,
-   "depth": null,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 2131
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 2131
+    "ppr": 2129
    },
    "adp": {
     "std": null,
@@ -49241,16 +49147,78 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2138
+     "sleeper": 2137
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2138
+    "ppr": 2137
    },
    "adp": {
     "std": null,
     "ppr": 677.8
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
+   }
+  },
+  {
+   "id": "tre watson|TE",
+   "name": "Tre Watson",
+   "team": "MIA",
+   "pos": "TE",
+   "teamVerified": false,
+   "depth": null,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 2144
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 2144
+   },
+   "adp": {
+    "std": null,
+    "ppr": 678.3
    },
    "posRank": {
     "std": null,
@@ -49303,12 +49271,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2145
+     "sleeper": 2146
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2145
+    "ppr": 2146
    },
    "adp": {
     "std": null,
@@ -49365,12 +49333,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2155
+     "sleeper": 2156
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2155
+    "ppr": 2156
    },
    "adp": {
     "std": null,
@@ -49427,12 +49395,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2156
+     "sleeper": 2157
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2156
+    "ppr": 2157
    },
    "adp": {
     "std": null,
@@ -49489,12 +49457,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2184
+     "sleeper": 2183
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2184
+    "ppr": 2183
    },
    "adp": {
     "std": null,
@@ -49623,68 +49591,6 @@
    "adp": {
     "std": null,
     "ppr": 682
-   },
-   "posRank": {
-    "std": null,
-    "ppr": null
-   },
-   "rankStdDev": null,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": null,
-    "recYd": null,
-    "recTd": null,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": null,
-    "ptsPpr": null,
-    "ptsHalfPpr": null
-   }
-  },
-  {
-   "id": "aaron bailey|QB",
-   "name": "Aaron Bailey",
-   "team": "BAL",
-   "pos": "QB",
-   "teamVerified": false,
-   "depth": null,
-   "bye": null,
-   "tier": null,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {},
-    "ppr": {
-     "sleeper": 2192
-    }
-   },
-   "consensus": {
-    "std": null,
-    "ppr": 2192
-   },
-   "adp": {
-    "std": null,
-    "ppr": 682.3
    },
    "posRank": {
     "std": null,
@@ -49911,6 +49817,68 @@
    }
   },
   {
+   "id": "aaron bailey|QB",
+   "name": "Aaron Bailey",
+   "team": "BAL",
+   "pos": "QB",
+   "teamVerified": false,
+   "depth": null,
+   "bye": null,
+   "tier": null,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {},
+    "ppr": {
+     "sleeper": 2212
+    }
+   },
+   "consensus": {
+    "std": null,
+    "ppr": 2212
+   },
+   "adp": {
+    "std": null,
+    "ppr": 683.3
+   },
+   "posRank": {
+    "std": null,
+    "ppr": null
+   },
+   "rankStdDev": null,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": null,
+    "recYd": null,
+    "recTd": null,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": null,
+    "ptsPpr": null,
+    "ptsHalfPpr": null
+   }
+  },
+  {
    "id": "tip reiman|TE",
    "name": "Tip Reiman",
    "team": "ARI",
@@ -49923,12 +49891,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2215
+     "sleeper": 2214
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2215
+    "ppr": 2214
    },
    "adp": {
     "std": null,
@@ -49985,12 +49953,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2220
+     "sleeper": 2219
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2220
+    "ppr": 2219
    },
    "adp": {
     "std": null,
@@ -50667,12 +50635,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2294
+     "sleeper": 2293
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2294
+    "ppr": 2293
    },
    "adp": {
     "std": null,
@@ -50729,12 +50697,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2300
+     "sleeper": 2299
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2300
+    "ppr": 2299
    },
    "adp": {
     "std": null,
@@ -50791,12 +50759,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2303
+     "sleeper": 2302
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2303
+    "ppr": 2302
    },
    "adp": {
     "std": null,
@@ -51103,12 +51071,12 @@
      "fantasypros": 496
     },
     "ppr": {
-     "sleeper": 2349
+     "sleeper": 2350
     }
    },
    "consensus": {
     "std": 496,
-    "ppr": 2349
+    "ppr": 2350
    },
    "adp": {
     "std": 496,
@@ -51165,12 +51133,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2355
+     "sleeper": 2356
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2355
+    "ppr": 2356
    },
    "adp": {
     "std": null,
@@ -51475,12 +51443,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2393
+     "sleeper": 2392
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2393
+    "ppr": 2392
    },
    "adp": {
     "std": null,
@@ -51537,12 +51505,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2397
+     "sleeper": 2396
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2397
+    "ppr": 2396
    },
    "adp": {
     "std": null,
@@ -51599,12 +51567,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2405
+     "sleeper": 2404
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2405
+    "ppr": 2404
    },
    "adp": {
     "std": null,
@@ -51661,12 +51629,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2407
+     "sleeper": 2406
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2407
+    "ppr": 2406
    },
    "adp": {
     "std": 322,
@@ -51785,12 +51753,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2435
+     "sleeper": 2434
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2435
+    "ppr": 2434
    },
    "adp": {
     "std": null,
@@ -51832,6 +51800,70 @@
     "ptsStd": null,
     "ptsPpr": null,
     "ptsHalfPpr": null
+   }
+  },
+  {
+   "id": "brandin cooks|WR",
+   "name": "Brandin Cooks",
+   "team": "SF",
+   "pos": "WR",
+   "teamVerified": true,
+   "depth": 3,
+   "bye": null,
+   "tier": 15,
+   "injuryStatus": null,
+   "ranks": {
+    "std": {
+     "fantasypros": 466
+    },
+    "ppr": {
+     "sleeper": 2435
+    }
+   },
+   "consensus": {
+    "std": 466,
+    "ppr": 2435
+   },
+   "adp": {
+    "std": 466,
+    "ppr": 697.8
+   },
+   "posRank": {
+    "std": 159,
+    "ppr": null
+   },
+   "rankStdDev": 25,
+   "projections": {
+    "passYd": null,
+    "passTd": null,
+    "passInt": null,
+    "passTwoPt": null,
+    "rushYd": null,
+    "rushTd": null,
+    "rushTwoPt": null,
+    "rec": 10,
+    "recYd": 128,
+    "recTd": 1,
+    "recTwoPt": null,
+    "fumLost": null,
+    "fgm40_49": null,
+    "fgm50Plus": null,
+    "fgmiss40_49": null,
+    "fgmiss50Plus": null,
+    "xpm": null,
+    "xpmiss": null,
+    "sacks": null,
+    "interceptions": null,
+    "fumRec": null,
+    "defTd": null,
+    "defKrTd": null,
+    "defPrTd": null,
+    "stTd": null,
+    "blkKick": null,
+    "safety": null,
+    "ptsStd": 18.8,
+    "ptsPpr": 28.8,
+    "ptsHalfPpr": 23.8
    }
   },
   {
@@ -52021,9 +52053,9 @@
    }
   },
   {
-   "id": "amar johnson|RB",
-   "name": "Amar Johnson",
-   "team": "LAC",
+   "id": "ito smith|RB",
+   "name": "Ito Smith",
+   "team": "DAL",
    "pos": "RB",
    "teamVerified": false,
    "depth": null,
@@ -52033,16 +52065,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2468
+     "sleeper": 2462
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2468
+    "ppr": 2462
    },
    "adp": {
     "std": null,
-    "ppr": 699.5
+    "ppr": 699.4
    },
    "posRank": {
     "std": null,
@@ -52083,9 +52115,9 @@
    }
   },
   {
-   "id": "ito smith|RB",
-   "name": "Ito Smith",
-   "team": "DAL",
+   "id": "amar johnson|RB",
+   "name": "Amar Johnson",
+   "team": "LAC",
    "pos": "RB",
    "teamVerified": false,
    "depth": null,
@@ -52104,7 +52136,7 @@
    },
    "adp": {
     "std": null,
-    "ppr": 699.6
+    "ppr": 699.5
    },
    "posRank": {
     "std": null,
@@ -52157,12 +52189,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2480
+     "sleeper": 2481
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2480
+    "ppr": 2481
    },
    "adp": {
     "std": null,
@@ -52219,12 +52251,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2486
+     "sleeper": 2487
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2486
+    "ppr": 2487
    },
    "adp": {
     "std": null,
@@ -52281,12 +52313,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2488
+     "sleeper": 2489
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2488
+    "ppr": 2489
    },
    "adp": {
     "std": null,
@@ -52343,12 +52375,12 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2492
+     "sleeper": 2493
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2492
+    "ppr": 2493
    },
    "adp": {
     "std": null,
@@ -52405,16 +52437,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2499
+     "sleeper": 2500
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2499
+    "ppr": 2500
    },
    "adp": {
     "std": null,
-    "ppr": 2499
+    "ppr": 2500
    },
    "posRank": {
     "std": null,
@@ -52467,16 +52499,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2506
+     "sleeper": 2507
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2506
+    "ppr": 2507
    },
    "adp": {
     "std": null,
-    "ppr": 2506
+    "ppr": 2507
    },
    "posRank": {
     "std": null,
@@ -52529,16 +52561,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2509
+     "sleeper": 2510
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2509
+    "ppr": 2510
    },
    "adp": {
     "std": null,
-    "ppr": 2509
+    "ppr": 2510
    },
    "posRank": {
     "std": null,
@@ -52591,16 +52623,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2513
+     "sleeper": 2514
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2513
+    "ppr": 2514
    },
    "adp": {
     "std": null,
-    "ppr": 2513
+    "ppr": 2514
    },
    "posRank": {
     "std": null,
@@ -52653,16 +52685,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2514
+     "sleeper": 2515
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2514
+    "ppr": 2515
    },
    "adp": {
     "std": null,
-    "ppr": 2514
+    "ppr": 2515
    },
    "posRank": {
     "std": null,
@@ -52717,16 +52749,16 @@
      "fantasypros": 465
     },
     "ppr": {
-     "sleeper": 2517
+     "sleeper": 2518
     }
    },
    "consensus": {
     "std": 465,
-    "ppr": 2517
+    "ppr": 2518
    },
    "adp": {
     "std": 465,
-    "ppr": 2517
+    "ppr": 2518
    },
    "posRank": {
     "std": 158,
@@ -52779,16 +52811,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2537
+     "sleeper": 2538
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2537
+    "ppr": 2538
    },
    "adp": {
     "std": null,
-    "ppr": 2537
+    "ppr": 2538
    },
    "posRank": {
     "std": null,
@@ -52841,16 +52873,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2544
+     "sleeper": 2545
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2544
+    "ppr": 2545
    },
    "adp": {
     "std": null,
-    "ppr": 2544
+    "ppr": 2545
    },
    "posRank": {
     "std": null,
@@ -52905,16 +52937,16 @@
      "fantasypros": 489
     },
     "ppr": {
-     "sleeper": 2556
+     "sleeper": 2557
     }
    },
    "consensus": {
     "std": 489,
-    "ppr": 2556
+    "ppr": 2557
    },
    "adp": {
     "std": 489,
-    "ppr": 2556
+    "ppr": 2557
    },
    "posRank": {
     "std": 168,
@@ -52967,16 +52999,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2565
+     "sleeper": 2566
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2565
+    "ppr": 2566
    },
    "adp": {
     "std": null,
-    "ppr": 2565
+    "ppr": 2566
    },
    "posRank": {
     "std": null,
@@ -53029,16 +53061,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2566
+     "sleeper": 2567
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2566
+    "ppr": 2567
    },
    "adp": {
     "std": null,
-    "ppr": 2566
+    "ppr": 2567
    },
    "posRank": {
     "std": null,
@@ -53091,16 +53123,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2583
+     "sleeper": 2584
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2583
+    "ppr": 2584
    },
    "adp": {
     "std": null,
-    "ppr": 2583
+    "ppr": 2584
    },
    "posRank": {
     "std": null,
@@ -53153,16 +53185,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2584
+     "sleeper": 2585
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2584
+    "ppr": 2585
    },
    "adp": {
     "std": null,
-    "ppr": 2584
+    "ppr": 2585
    },
    "posRank": {
     "std": null,
@@ -53215,16 +53247,16 @@
    "ranks": {
     "std": {},
     "ppr": {
-     "sleeper": 2585
+     "sleeper": 2586
     }
    },
    "consensus": {
     "std": null,
-    "ppr": 2585
+    "ppr": 2586
    },
    "adp": {
     "std": null,
-    "ppr": 2585
+    "ppr": 2586
    },
    "posRank": {
     "std": null,
@@ -53262,70 +53294,6 @@
     "ptsStd": 0.8,
     "ptsPpr": 1.8,
     "ptsHalfPpr": 1.3
-   }
-  },
-  {
-   "id": "brandin cooks|WR",
-   "name": "Brandin Cooks",
-   "team": "SF",
-   "pos": "WR",
-   "teamVerified": true,
-   "depth": 3,
-   "bye": null,
-   "tier": 15,
-   "injuryStatus": null,
-   "ranks": {
-    "std": {
-     "fantasypros": 466
-    },
-    "ppr": {
-     "sleeper": 2591
-    }
-   },
-   "consensus": {
-    "std": 466,
-    "ppr": 2591
-   },
-   "adp": {
-    "std": 466,
-    "ppr": 2591
-   },
-   "posRank": {
-    "std": 159,
-    "ppr": null
-   },
-   "rankStdDev": 25,
-   "projections": {
-    "passYd": null,
-    "passTd": null,
-    "passInt": null,
-    "passTwoPt": null,
-    "rushYd": null,
-    "rushTd": null,
-    "rushTwoPt": null,
-    "rec": 10,
-    "recYd": 128,
-    "recTd": 1,
-    "recTwoPt": null,
-    "fumLost": null,
-    "fgm40_49": null,
-    "fgm50Plus": null,
-    "fgmiss40_49": null,
-    "fgmiss50Plus": null,
-    "xpm": null,
-    "xpmiss": null,
-    "sacks": null,
-    "interceptions": null,
-    "fumRec": null,
-    "defTd": null,
-    "defKrTd": null,
-    "defPrTd": null,
-    "stTd": null,
-    "blkKick": null,
-    "safety": null,
-    "ptsStd": 18.8,
-    "ptsPpr": 28.8,
-    "ptsHalfPpr": 23.8
    }
   },
   {
