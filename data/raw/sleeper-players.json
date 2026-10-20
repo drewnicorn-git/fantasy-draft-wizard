@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-10-19T18:36:03.221Z",
+ "fetchedAt": "2026-10-20T16:40:29.372Z",
  "data": {
   "players": [
    {
@@ -208,7 +208,7 @@
     "name": "Davante Adams",
     "pos": "WR",
     "team": "LAR",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 12
    },
    {
@@ -224,7 +224,7 @@
     "name": "Mike Evans",
     "pos": "WR",
     "team": "SF",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 12
    },
    {
@@ -264,7 +264,7 @@
     "name": "Stefon Diggs",
     "pos": "WR",
     "team": "WAS",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 11
    },
    {
@@ -648,7 +648,7 @@
     "name": "Jeremy McNichols",
     "pos": "RB",
     "team": "WAS",
-    "injuryStatus": "IR",
+    "injuryStatus": null,
     "yearsExp": 9
    },
    {
@@ -972,6 +972,14 @@
     "yearsExp": 8
    },
    {
+    "id": "5086",
+    "name": "Marquez Valdes-Scantling",
+    "pos": "WR",
+    "team": "PIT",
+    "injuryStatus": null,
+    "yearsExp": 8
+   },
+   {
     "id": "5095",
     "name": "Daniel Carlson",
     "pos": "K",
@@ -1160,7 +1168,7 @@
     "name": "A.J. Brown",
     "pos": "WR",
     "team": "NE",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 7
    },
    {
@@ -1200,7 +1208,7 @@
     "name": "Terry McLaurin",
     "pos": "WR",
     "team": "WAS",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 7
    },
    {
@@ -1464,14 +1472,6 @@
     "name": "Joey Slye",
     "pos": "K",
     "team": "TEN",
-    "injuryStatus": null,
-    "yearsExp": 7
-   },
-   {
-    "id": "6529",
-    "name": "Chris Myarick",
-    "pos": "TE",
-    "team": "LV",
     "injuryStatus": null,
     "yearsExp": 7
    },
@@ -1924,14 +1924,6 @@
     "yearsExp": 5
    },
    {
-    "id": "7528",
-    "name": "Najee Harris",
-    "pos": "RB",
-    "team": "NYG",
-    "injuryStatus": null,
-    "yearsExp": 5
-   },
-   {
     "id": "7531",
     "name": "Feleipe Franks",
     "pos": "TE",
@@ -2284,14 +2276,6 @@
     "yearsExp": 5
    },
    {
-    "id": "7922",
-    "name": "Riley Patterson",
-    "pos": "K",
-    "team": "MIA",
-    "injuryStatus": null,
-    "yearsExp": 5
-   },
-   {
     "id": "7933",
     "name": "Alex Kessman",
     "pos": "K",
@@ -2408,7 +2392,7 @@
     "name": "Romeo Doubs",
     "pos": "WR",
     "team": "NE",
-    "injuryStatus": "Out",
+    "injuryStatus": "IR",
     "yearsExp": 4
    },
    {
@@ -3548,6 +3532,14 @@
     "yearsExp": 3
    },
    {
+    "id": "10937",
+    "name": "Jake Moody",
+    "pos": "K",
+    "team": "BAL",
+    "injuryStatus": null,
+    "yearsExp": 3
+   },
+   {
     "id": "10955",
     "name": "Chad Ryland",
     "pos": "K",
@@ -3584,7 +3576,7 @@
     "name": "Blake Grupe",
     "pos": "K",
     "team": "LAR",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "IR",
     "yearsExp": 3
    },
    {
@@ -3776,6 +3768,14 @@
     "name": "Owen Wright",
     "pos": "RB",
     "team": "LV",
+    "injuryStatus": null,
+    "yearsExp": 3
+   },
+   {
+    "id": "11421",
+    "name": "Ryan Miller",
+    "pos": "WR",
+    "team": "NE",
     "injuryStatus": null,
     "yearsExp": 3
    },
@@ -4720,7 +4720,7 @@
     "name": "Kurtis Rourke",
     "pos": "QB",
     "team": "SF",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 1
    },
    {
@@ -5032,7 +5032,7 @@
     "name": "Elijah Arroyo",
     "pos": "TE",
     "team": "SEA",
-    "injuryStatus": "Doubtful",
+    "injuryStatus": "Out",
     "yearsExp": 1
    },
    {
@@ -5096,7 +5096,7 @@
     "name": "Jacory Croskey-Merritt",
     "pos": "RB",
     "team": "WAS",
-    "injuryStatus": "Out",
+    "injuryStatus": "IR",
     "yearsExp": 1
    },
    {
@@ -6044,6 +6044,14 @@
     "yearsExp": 0
    },
    {
+    "id": "13312",
+    "name": "Josh Kattus",
+    "pos": "TE",
+    "team": "CIN",
+    "injuryStatus": null,
+    "yearsExp": 0
+   },
+   {
     "id": "13313",
     "name": "Emmanuel Henderson",
     "pos": "WR",
@@ -6868,14 +6876,6 @@
     "yearsExp": 0
    },
    {
-    "id": "13852",
-    "name": "Dontae McMillan",
-    "pos": "RB",
-    "team": "SEA",
-    "injuryStatus": null,
-    "yearsExp": 0
-   },
-   {
     "id": "13879",
     "name": "Jameson Geers",
     "pos": "TE",
@@ -6976,14 +6976,6 @@
     "name": "DJ Herman",
     "pos": "RB",
     "team": "MIA",
-    "injuryStatus": null,
-    "yearsExp": 0
-   },
-   {
-    "id": "14058",
-    "name": "Malick Meiga",
-    "pos": "WR",
-    "team": "SEA",
     "injuryStatus": null,
     "yearsExp": 0
    },
