@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-10-20T16:40:31.873Z",
+ "fetchedAt": "2026-10-21T16:58:57.526Z",
  "data": {
   "players": [
    {
@@ -516,7 +516,8 @@
    {
     "name": "Anthony Tyus III",
     "team": "CAR",
-    "pos": "RB"
+    "pos": "RB",
+    "depth": 4
    },
    {
     "name": "Darren Waller",
@@ -1171,13 +1172,13 @@
     "name": "Josh Jacobs",
     "team": "GB",
     "pos": "RB",
-    "depth": 4
+    "depth": 1
    },
    {
     "name": "Kaleb Johnson",
     "team": "GB",
     "pos": "RB",
-    "depth": 3
+    "depth": 4
    },
    {
     "name": "Tucker Kraft",
@@ -1189,7 +1190,7 @@
     "name": "MarShawn Lloyd",
     "team": "GB",
     "pos": "RB",
-    "depth": 1
+    "depth": 2
    },
    {
     "name": "Jordan Love",
@@ -1224,7 +1225,7 @@
     "name": "Pierre Strong Jr.",
     "team": "GB",
     "pos": "RB",
-    "depth": 2
+    "depth": 3
    },
    {
     "name": "J. Michael Sturdivant",
@@ -1951,12 +1952,6 @@
     "depth": 1
    },
    {
-    "name": "Davante Adams",
-    "team": "LAR",
-    "pos": "WR",
-    "depth": 5
-   },
-   {
     "name": "Davis Allen",
     "team": "LAR",
     "pos": "TE",
@@ -2051,6 +2046,11 @@
     "team": "LAR",
     "pos": "RB",
     "depth": 1
+   },
+   {
+    "name": "Brandon McManus",
+    "team": "LAR",
+    "pos": "K"
    },
    {
     "name": "Los Angeles Rams",
@@ -2157,11 +2157,6 @@
     "team": "MIA",
     "pos": "RB",
     "depth": 2
-   },
-   {
-    "name": "Riley Patterson",
-    "team": "MIA",
-    "pos": "K"
    },
    {
     "name": "Miami Dolphins",
@@ -2513,11 +2508,6 @@
     "depth": 3
    },
    {
-    "name": "Najee Harris",
-    "team": "NYG",
-    "pos": "RB"
-   },
-   {
     "name": "Theo Johnson",
     "team": "NYG",
     "pos": "TE",
@@ -2545,7 +2535,7 @@
     "name": "J.J. McCarthy",
     "team": "NYG",
     "pos": "QB",
-    "depth": 2
+    "depth": 1
    },
    {
     "name": "Darnell Mooney",
@@ -2586,7 +2576,7 @@
     "name": "Jameis Winston",
     "team": "NYG",
     "pos": "QB",
-    "depth": 1
+    "depth": 2
    },
    {
     "name": "Dominic Zvada",
@@ -2725,13 +2715,7 @@
     "name": "Tank Bigsby",
     "team": "PHI",
     "pos": "RB",
-    "depth": 5
-   },
-   {
-    "name": "Jaydon Blue",
-    "team": "PHI",
-    "pos": "RB",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Hollywood Brown",
@@ -2815,12 +2799,6 @@
     "team": "PHI",
     "pos": "WR",
     "depth": 1
-   },
-   {
-    "name": "Carson Steele",
-    "team": "PHI",
-    "pos": "RB",
-    "depth": 3
    },
    {
     "name": "Dontayvion Wicks",
@@ -2965,7 +2943,7 @@
     "name": "Brandon Aiyuk",
     "team": "SF",
     "pos": "WR",
-    "depth": 9
+    "depth": 6
    },
    {
     "name": "Kaelon Black",
@@ -2983,7 +2961,7 @@
     "name": "Jacob Cowing",
     "team": "SF",
     "pos": "WR",
-    "depth": 4
+    "depth": 7
    },
    {
     "name": "Mike Evans",
@@ -3018,7 +2996,7 @@
     "name": "Christian Kirk",
     "team": "SF",
     "pos": "WR",
-    "depth": 5
+    "depth": 9
    },
    {
     "name": "George Kittle",
@@ -3058,14 +3036,13 @@
    {
     "name": "Malik Turner",
     "team": "SF",
-    "pos": "WR",
-    "depth": 10
+    "pos": "WR"
    },
    {
     "name": "Jordan Watkins",
     "team": "SF",
     "pos": "WR",
-    "depth": 7
+    "depth": 4
    },
    {
     "name": "Brayden Willis",
@@ -3434,13 +3411,13 @@
     "name": "Dyami Brown",
     "team": "WAS",
     "pos": "WR",
-    "depth": 6
+    "depth": 4
    },
    {
     "name": "Treylon Burks",
     "team": "WAS",
     "pos": "WR",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Jacory Croskey-Merritt",
@@ -3458,7 +3435,7 @@
     "name": "Stefon Diggs",
     "team": "WAS",
     "pos": "WR",
-    "depth": 2
+    "depth": 1
    },
    {
     "name": "Austin Ekeler",
@@ -3493,13 +3470,13 @@
     "name": "Luke McCaffrey",
     "team": "WAS",
     "pos": "WR",
-    "depth": 7
+    "depth": 6
    },
    {
     "name": "Terry McLaurin",
     "team": "WAS",
     "pos": "WR",
-    "depth": 1
+    "depth": 7
    },
    {
     "name": "Chig Okonkwo",
@@ -3528,7 +3505,7 @@
     "name": "Antonio Williams",
     "team": "WAS",
     "pos": "WR",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Colson Yankoff",
