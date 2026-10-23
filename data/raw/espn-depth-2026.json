@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-10-22T16:58:11.412Z",
+ "fetchedAt": "2026-10-23T16:50:12.293Z",
  "data": {
   "players": [
    {
@@ -20,11 +20,6 @@
     "team": "ARI",
     "pos": "WR",
     "depth": 2
-   },
-   {
-    "name": "Shawn Bowman",
-    "team": "ARI",
-    "pos": "TE"
    },
    {
     "name": "Jacoby Brissett",
@@ -614,7 +609,8 @@
    {
     "name": "Zavier Scott",
     "team": "CHI",
-    "pos": "RB"
+    "pos": "RB",
+    "depth": 4
    },
    {
     "name": "D'Andre Swift",
@@ -1067,6 +1063,12 @@
     "team": "DEN",
     "pos": "DST",
     "depth": 1
+   },
+   {
+    "name": "DeAndre Carter",
+    "team": "DET",
+    "pos": "WR",
+    "depth": 6
    },
    {
     "name": "Tyler Conklin",
@@ -2746,12 +2748,6 @@
     "depth": 1
    },
    {
-    "name": "E.J. Jenkins",
-    "team": "PHI",
-    "pos": "TE",
-    "depth": 3
-   },
-   {
     "name": "Makai Lemon",
     "team": "PHI",
     "pos": "WR",
@@ -3061,16 +3057,16 @@
     "depth": 1
    },
    {
-    "name": "Elijah Arroyo",
-    "team": "SEA",
-    "pos": "TE",
-    "depth": 4
-   },
-   {
     "name": "AJ Barner",
     "team": "SEA",
     "pos": "TE",
     "depth": 1
+   },
+   {
+    "name": "Zach Charbonnet",
+    "team": "SEA",
+    "pos": "RB",
+    "depth": 2
    },
    {
     "name": "Irv Charles",
@@ -3093,13 +3089,13 @@
     "name": "Robert Henry Jr.",
     "team": "SEA",
     "pos": "RB",
-    "depth": 4
+    "depth": 5
    },
    {
     "name": "George Holani",
     "team": "SEA",
     "pos": "RB",
-    "depth": 2
+    "depth": 3
    },
    {
     "name": "Tory Horton",
@@ -3111,7 +3107,7 @@
     "name": "Velus Jones Jr.",
     "team": "SEA",
     "pos": "RB",
-    "depth": 3
+    "depth": 4
    },
    {
     "name": "Nick Kallerup",
@@ -3229,7 +3225,7 @@
     "name": "Kameron Johnson",
     "team": "TB",
     "pos": "WR",
-    "depth": 6
+    "depth": 7
    },
    {
     "name": "Tez Johnson",
