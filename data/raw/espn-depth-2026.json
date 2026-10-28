@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-10-27T17:49:18.628Z",
+ "fetchedAt": "2026-10-28T18:13:04.435Z",
  "data": {
   "players": [
    {
@@ -56,6 +56,11 @@
     "team": "ARI",
     "pos": "RB",
     "depth": 4
+   },
+   {
+    "name": "Zay Jones",
+    "team": "ARI",
+    "pos": "WR"
    },
    {
     "name": "Bam Knight",
@@ -607,6 +612,12 @@
     "depth": 2
    },
    {
+    "name": "Zavier Scott",
+    "team": "CHI",
+    "pos": "RB",
+    "depth": 4
+   },
+   {
     "name": "D'Andre Swift",
     "team": "CHI",
     "pos": "RB",
@@ -642,12 +653,6 @@
     "depth": 1
    },
    {
-    "name": "Erick All Jr.",
-    "team": "CIN",
-    "pos": "TE",
-    "depth": 3
-   },
-   {
     "name": "Tahj Brooks",
     "team": "CIN",
     "pos": "RB",
@@ -675,7 +680,7 @@
     "name": "Jack Endries",
     "team": "CIN",
     "pos": "TE",
-    "depth": 5
+    "depth": 4
    },
    {
     "name": "Joe Flacco",
@@ -688,6 +693,12 @@
     "team": "CIN",
     "pos": "TE",
     "depth": 1
+   },
+   {
+    "name": "Cam Grandy",
+    "team": "CIN",
+    "pos": "TE",
+    "depth": 3
    },
    {
     "name": "Tee Higgins",
@@ -860,12 +871,6 @@
     "depth": 6
    },
    {
-    "name": "Emari Demercado",
-    "team": "DAL",
-    "pos": "RB",
-    "depth": 3
-   },
-   {
     "name": "Jake Ferguson",
     "team": "DAL",
     "pos": "TE",
@@ -969,13 +974,13 @@
     "name": "Jonah Coleman",
     "team": "DEN",
     "pos": "RB",
-    "depth": 1
+    "depth": 2
    },
    {
     "name": "J.K. Dobbins",
     "team": "DEN",
     "pos": "RB",
-    "depth": 3
+    "depth": 1
    },
    {
     "name": "Sam Ehlinger",
@@ -999,7 +1004,7 @@
     "name": "RJ Harvey",
     "team": "DEN",
     "pos": "RB",
-    "depth": 2
+    "depth": 3
    },
    {
     "name": "Lil'Jordan Humphrey",
@@ -1612,123 +1617,6 @@
     "depth": 1
    },
    {
-    "name": "Cyrus Allen",
-    "team": "KC",
-    "pos": "WR",
-    "depth": 4
-   },
-   {
-    "name": "Andrew Armstrong",
-    "team": "KC",
-    "pos": "WR",
-    "depth": 8
-   },
-   {
-    "name": "Jake Briningstool",
-    "team": "KC",
-    "pos": "TE",
-    "depth": 3
-   },
-   {
-    "name": "Justin Fields",
-    "team": "KC",
-    "pos": "QB",
-    "depth": 2
-   },
-   {
-    "name": "Noah Gray",
-    "team": "KC",
-    "pos": "TE",
-    "depth": 2
-   },
-   {
-    "name": "Emmett Johnson",
-    "team": "KC",
-    "pos": "RB",
-    "depth": 2
-   },
-   {
-    "name": "Travis Kelce",
-    "team": "KC",
-    "pos": "TE",
-    "depth": 1
-   },
-   {
-    "name": "Patrick Mahomes",
-    "team": "KC",
-    "pos": "QB",
-    "depth": 1
-   },
-   {
-    "name": "Garrett Nussmeier",
-    "team": "KC",
-    "pos": "QB",
-    "depth": 3
-   },
-   {
-    "name": "Jaydn Ott",
-    "team": "KC",
-    "pos": "RB",
-    "depth": 3
-   },
-   {
-    "name": "Nikko Remigio",
-    "team": "KC",
-    "pos": "WR",
-    "depth": 6
-   },
-   {
-    "name": "Rashee Rice",
-    "team": "KC",
-    "pos": "WR",
-    "depth": 1
-   },
-   {
-    "name": "Jalen Royals",
-    "team": "KC",
-    "pos": "WR",
-    "depth": 3
-   },
-   {
-    "name": "Ben VanSumeren",
-    "team": "KC",
-    "pos": "RB"
-   },
-   {
-    "name": "Kenneth Walker III",
-    "team": "KC",
-    "pos": "RB",
-    "depth": 1
-   },
-   {
-    "name": "Justin Watson",
-    "team": "KC",
-    "pos": "WR"
-   },
-   {
-    "name": "Jared Wiley",
-    "team": "KC",
-    "pos": "TE",
-    "depth": 4
-   },
-   {
-    "name": "Xavier Worthy",
-    "team": "KC",
-    "pos": "WR",
-    "depth": 2
-   },
-   {
-    "name": "Harrison Butker",
-    "team": "KC",
-    "pos": "K"
-   },
-   {
-    "name": "Kansas City Chiefs",
-    "team": "KC",
-    "pos": "DST",
-    "depth": 1
-   },
-   {
     "name": "Malik Benson",
     "team": "LV",
     "pos": "WR",
@@ -1809,6 +1697,12 @@
     "pos": "WR"
    },
    {
+    "name": "Dont'e Thornton Jr.",
+    "team": "LV",
+    "pos": "WR",
+    "depth": 4
+   },
+   {
     "name": "Tre Tucker",
     "team": "LV",
     "pos": "WR",
@@ -1830,7 +1724,7 @@
     "name": "Dareke Young",
     "team": "LV",
     "pos": "WR",
-    "depth": 4
+    "depth": 7
    },
    {
     "name": "Matt Gay",
@@ -2492,6 +2386,12 @@
     "pos": "WR"
    },
    {
+    "name": "Greg Desrosiers Jr.",
+    "team": "NYG",
+    "pos": "RB",
+    "depth": 3
+   },
+   {
     "name": "Thomas Fidone II",
     "team": "NYG",
     "pos": "TE",
@@ -2565,7 +2465,7 @@
     "name": "Devin Singletary",
     "team": "NYG",
     "pos": "RB",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Cam Skattebo",
@@ -2577,7 +2477,7 @@
     "name": "Tyrone Tracy Jr.",
     "team": "NYG",
     "pos": "RB",
-    "depth": 2
+    "depth": 4
    },
    {
     "name": "Jameis Winston",
@@ -3053,11 +2953,6 @@
     "pos": "TE"
    },
    {
-    "name": "Malik Turner",
-    "team": "SF",
-    "pos": "WR"
-   },
-   {
     "name": "Jordan Watkins",
     "team": "SF",
     "pos": "WR",
@@ -3103,11 +2998,6 @@
     "team": "SEA",
     "pos": "QB",
     "depth": 1
-   },
-   {
-    "name": "Montorie Foster Jr.",
-    "team": "SEA",
-    "pos": "WR"
    },
    {
     "name": "Robert Henry Jr.",
@@ -3262,6 +3152,11 @@
     "team": "TB",
     "pos": "TE",
     "depth": 3
+   },
+   {
+    "name": "Barika Kpeenu",
+    "team": "TB",
+    "pos": "RB"
    },
    {
     "name": "Baker Mayfield",
@@ -3470,7 +3365,8 @@
    {
     "name": "Van Jefferson",
     "team": "WAS",
-    "pos": "WR"
+    "pos": "WR",
+    "depth": 8
    },
    {
     "name": "Athan Kaliakmanis",
@@ -3482,7 +3378,7 @@
     "name": "Jaylin Lane",
     "team": "WAS",
     "pos": "WR",
-    "depth": 5
+    "depth": 7
    },
    {
     "name": "Marcus Mariota",
@@ -3500,7 +3396,7 @@
     "name": "Terry McLaurin",
     "team": "WAS",
     "pos": "WR",
-    "depth": 7
+    "depth": 5
    },
    {
     "name": "Chig Okonkwo",
