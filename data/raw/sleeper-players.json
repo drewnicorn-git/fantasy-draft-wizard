@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-11-02T21:36:36.972Z",
+ "fetchedAt": "2026-11-03T19:20:34.509Z",
  "data": {
   "players": [
    {
@@ -40,7 +40,7 @@
     "name": "Matthew Stafford",
     "pos": "QB",
     "team": "LAR",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 17
    },
    {
@@ -168,7 +168,7 @@
     "name": "Case Keenum",
     "pos": "QB",
     "team": "CHI",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 14
    },
    {
@@ -1184,7 +1184,7 @@
     "name": "Drew Lock",
     "pos": "QB",
     "team": "SEA",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 7
    },
    {
@@ -1264,7 +1264,7 @@
     "name": "Jakobi Meyers",
     "pos": "WR",
     "team": "JAX",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 7
    },
    {
@@ -1312,7 +1312,7 @@
     "name": "Justice Hill",
     "pos": "RB",
     "team": "BAL",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 7
    },
    {
@@ -3376,7 +3376,7 @@
     "name": "Chris Rodriguez Jr.",
     "pos": "RB",
     "team": "JAX",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 3
    },
    {
@@ -4004,14 +4004,6 @@
     "yearsExp": 2
    },
    {
-    "id": "11579",
-    "name": "Audric Estime",
-    "pos": "RB",
-    "team": "CLE",
-    "injuryStatus": "Out",
-    "yearsExp": 2
-   },
-   {
     "id": "11581",
     "name": "MarShawn Lloyd",
     "pos": "RB",
@@ -4327,7 +4319,7 @@
     "id": "11648",
     "name": "Kedon Slovis",
     "pos": "QB",
-    "team": "GB",
+    "team": "BAL",
     "injuryStatus": null,
     "yearsExp": 2
    },
@@ -4816,7 +4808,7 @@
     "name": "Bhayshul Tuten",
     "pos": "RB",
     "team": "JAX",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 1
    },
    {
@@ -5260,6 +5252,14 @@
     "yearsExp": 1
    },
    {
+    "id": "12688",
+    "name": "Cam Miller",
+    "pos": "QB",
+    "team": "GB",
+    "injuryStatus": null,
+    "yearsExp": 1
+   },
+   {
     "id": "12699",
     "name": "LaJohntay Wester",
     "pos": "WR",
@@ -5288,7 +5288,7 @@
     "name": "Tyler Loop",
     "pos": "K",
     "team": "BAL",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 1
    },
    {
@@ -6096,7 +6096,7 @@
     "name": "Dean Connors",
     "pos": "RB",
     "team": "LAR",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -6457,14 +6457,6 @@
     "pos": "WR",
     "team": "SF",
     "injuryStatus": "IR",
-    "yearsExp": 0
-   },
-   {
-    "id": "13418",
-    "name": "Robert Henry Jr.",
-    "pos": "RB",
-    "team": "SEA",
-    "injuryStatus": null,
     "yearsExp": 0
    },
    {
