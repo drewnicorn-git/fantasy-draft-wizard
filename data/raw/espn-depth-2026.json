@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-11-03T19:20:36.920Z",
+ "fetchedAt": "2026-11-04T19:37:10.031Z",
  "data": {
   "players": [
    {
@@ -16,12 +16,6 @@
     "depth": 2
    },
    {
-    "name": "Kendrick Bourne",
-    "team": "ARI",
-    "pos": "WR",
-    "depth": 5
-   },
-   {
     "name": "Jacoby Brissett",
     "team": "ARI",
     "pos": "QB",
@@ -31,13 +25,13 @@
     "name": "Jalen Brooks",
     "team": "ARI",
     "pos": "WR",
-    "depth": 6
+    "depth": 5
    },
    {
     "name": "Devin Duvernay",
     "team": "ARI",
     "pos": "WR",
-    "depth": 4
+    "depth": 6
    },
    {
     "name": "Simi Fehoko",
@@ -64,12 +58,6 @@
     "depth": 2
    },
    {
-    "name": "Jeremiyah Love",
-    "team": "ARI",
-    "pos": "RB",
-    "depth": 5
-   },
-   {
     "name": "Trey McBride",
     "team": "ARI",
     "pos": "TE",
@@ -94,15 +82,16 @@
     "depth": 2
    },
    {
+    "name": "Harrison Wallace III",
+    "team": "ARI",
+    "pos": "WR",
+    "depth": 4
+   },
+   {
     "name": "Michael Wilson",
     "team": "ARI",
     "pos": "WR",
     "depth": 1
-   },
-   {
-    "name": "Kenny Yeboah",
-    "team": "ARI",
-    "pos": "TE"
    },
    {
     "name": "Chad Ryland",
@@ -249,7 +238,7 @@
     "name": "Joe Fagnano",
     "team": "BAL",
     "pos": "QB",
-    "depth": 2
+    "depth": 1
    },
    {
     "name": "Zay Flowers",
@@ -279,13 +268,13 @@
     "name": "Tyler Huntley",
     "team": "BAL",
     "pos": "QB",
-    "depth": 1
+    "depth": 4
    },
    {
     "name": "Lamar Jackson",
     "team": "BAL",
     "pos": "QB",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Ja'Kobi Lane",
@@ -298,6 +287,12 @@
     "team": "BAL",
     "pos": "WR",
     "depth": 6
+   },
+   {
+    "name": "Kedon Slovis",
+    "team": "BAL",
+    "pos": "QB",
+    "depth": 2
    },
    {
     "name": "Nick Vannett",
@@ -316,11 +311,6 @@
     "team": "BAL",
     "pos": "WR",
     "depth": 5
-   },
-   {
-    "name": "Tyler Loop",
-    "team": "BAL",
-    "pos": "K"
    },
    {
     "name": "Baltimore Ravens",
@@ -562,8 +552,7 @@
    {
     "name": "Stephen Carlson",
     "team": "CHI",
-    "pos": "TE",
-    "depth": 3
+    "pos": "TE"
    },
    {
     "name": "Kaden Davis",
@@ -788,11 +777,6 @@
     "depth": 5
    },
    {
-    "name": "Audric Estime",
-    "team": "CLE",
-    "pos": "RB"
-   },
-   {
     "name": "Harold Fannin Jr.",
     "team": "CLE",
     "pos": "TE",
@@ -831,7 +815,8 @@
    {
     "name": "Carsen Ryan",
     "team": "CLE",
-    "pos": "TE"
+    "pos": "TE",
+    "depth": 3
    },
    {
     "name": "Dylan Sampson",
@@ -1998,22 +1983,10 @@
     "depth": 3
    },
    {
-    "name": "Alex Bachman",
-    "team": "LAR",
-    "pos": "WR",
-    "depth": 7
-   },
-   {
     "name": "Stetson Bennett IV",
     "team": "LAR",
     "pos": "QB",
     "depth": 2
-   },
-   {
-    "name": "Dean Connors",
-    "team": "LAR",
-    "pos": "RB",
-    "depth": 3
    },
    {
     "name": "Blake Corum",
@@ -2025,7 +1998,7 @@
     "name": "CJ Daniels",
     "team": "LAR",
     "pos": "WR",
-    "depth": 6
+    "depth": 5
    },
    {
     "name": "Tyler Higbee",
@@ -2452,6 +2425,12 @@
     "depth": 3
    },
    {
+    "name": "Audric Estime",
+    "team": "NO",
+    "pos": "RB",
+    "depth": 4
+   },
+   {
     "name": "Noah Fant",
     "team": "NO",
     "pos": "TE",
@@ -2526,11 +2505,6 @@
     "team": "NO",
     "pos": "QB",
     "depth": 3
-   },
-   {
-    "name": "Daniel Carlson",
-    "team": "NO",
-    "pos": "K"
    },
    {
     "name": "New Orleans Saints",
@@ -2833,13 +2807,13 @@
     "name": "Tanner McKee",
     "team": "PHI",
     "pos": "QB",
-    "depth": 1
+    "depth": 2
    },
    {
     "name": "Joe Milton",
     "team": "PHI",
     "pos": "QB",
-    "depth": 2
+    "depth": 1
    },
    {
     "name": "Elijah Mitchell",
@@ -3155,7 +3129,7 @@
     "name": "Irv Charles",
     "team": "SEA",
     "pos": "WR",
-    "depth": 7
+    "depth": 5
    },
    {
     "name": "Sam Darnold",
@@ -3166,13 +3140,7 @@
    {
     "name": "Montorie Foster Jr.",
     "team": "SEA",
-    "pos": "WR",
-    "depth": 6
-   },
-   {
-    "name": "Robert Henry Jr.",
-    "team": "SEA",
-    "pos": "RB"
+    "pos": "WR"
    },
    {
     "name": "George Holani",
@@ -3535,6 +3503,12 @@
     "team": "WAS",
     "pos": "RB",
     "depth": 2
+   },
+   {
+    "name": "Robert Henry Jr.",
+    "team": "WAS",
+    "pos": "RB",
+    "depth": 3
    },
    {
     "name": "Van Jefferson",
