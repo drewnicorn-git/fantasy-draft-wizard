@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-11-05T19:46:00.375Z",
+ "fetchedAt": "2026-11-06T19:09:52.519Z",
  "data": {
   "players": [
    {
@@ -14,11 +14,6 @@
     "team": "ARI",
     "pos": "QB",
     "depth": 2
-   },
-   {
-    "name": "Jacoby Brissett",
-    "team": "ARI",
-    "pos": "QB"
    },
    {
     "name": "Jalen Brooks",
@@ -223,6 +218,12 @@
     "depth": 2
    },
    {
+    "name": "Jacoby Brissett",
+    "team": "BAL",
+    "pos": "QB",
+    "depth": 1
+   },
+   {
     "name": "Josh Cuevas",
     "team": "BAL",
     "pos": "TE",
@@ -232,7 +233,7 @@
     "name": "Joe Fagnano",
     "team": "BAL",
     "pos": "QB",
-    "depth": 1
+    "depth": 2
    },
    {
     "name": "Zay Flowers",
@@ -259,21 +260,15 @@
     "depth": 2
    },
    {
-    "name": "Tyler Huntley",
-    "team": "BAL",
-    "pos": "QB",
-    "depth": 5
-   },
-   {
-    "name": "Lamar Jackson",
-    "team": "BAL",
-    "pos": "QB",
-    "depth": 4
-   },
-   {
     "name": "Ja'Kobi Lane",
     "team": "BAL",
     "pos": "WR",
+    "depth": 3
+   },
+   {
+    "name": "Austin Reed",
+    "team": "BAL",
+    "pos": "QB",
     "depth": 3
    },
    {
@@ -286,7 +281,7 @@
     "name": "Kedon Slovis",
     "team": "BAL",
     "pos": "QB",
-    "depth": 2
+    "depth": 4
    },
    {
     "name": "Nick Vannett",
@@ -305,6 +300,11 @@
     "team": "BAL",
     "pos": "WR",
     "depth": 5
+   },
+   {
+    "name": "Jake Moody",
+    "team": "BAL",
+    "pos": "K"
    },
    {
     "name": "Baltimore Ravens",
@@ -602,12 +602,6 @@
     "depth": 2
    },
    {
-    "name": "Zavier Scott",
-    "team": "CHI",
-    "pos": "RB",
-    "depth": 4
-   },
-   {
     "name": "D'Andre Swift",
     "team": "CHI",
     "pos": "RB",
@@ -805,12 +799,6 @@
     "name": "Jaleel McLaughlin",
     "team": "CLE",
     "pos": "RB",
-    "depth": 3
-   },
-   {
-    "name": "Carsen Ryan",
-    "team": "CLE",
-    "pos": "TE",
     "depth": 3
    },
    {
@@ -1727,7 +1715,7 @@
     "name": "Malik Benson",
     "team": "LV",
     "pos": "WR",
-    "depth": 6
+    "depth": 7
    },
    {
     "name": "Brock Bowers",
@@ -1793,12 +1781,6 @@
     "depth": 3
    },
    {
-    "name": "Carter Runyon",
-    "team": "LV",
-    "pos": "TE",
-    "depth": 4
-   },
-   {
     "name": "Ian Thomas",
     "team": "LV",
     "pos": "TE",
@@ -1828,10 +1810,16 @@
     "depth": 2
    },
    {
-    "name": "Dareke Young",
+    "name": "Cody White",
     "team": "LV",
     "pos": "WR",
     "depth": 5
+   },
+   {
+    "name": "Dareke Young",
+    "team": "LV",
+    "pos": "WR",
+    "depth": 6
    },
    {
     "name": "Matt Gay",
@@ -2038,6 +2026,11 @@
     "team": "LAR",
     "pos": "RB",
     "depth": 1
+   },
+   {
+    "name": "Joshua Karty",
+    "team": "LAR",
+    "pos": "K"
    },
    {
     "name": "Brandon McManus",
@@ -2499,12 +2492,6 @@
     "team": "NYG",
     "pos": "WR",
     "depth": 2
-   },
-   {
-    "name": "Jake Haener",
-    "team": "NYG",
-    "pos": "QB",
-    "depth": 3
    },
    {
     "name": "Jalin Hyatt",
