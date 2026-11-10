@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-11-09T22:10:19.930Z",
+ "fetchedAt": "2026-11-10T19:32:02.960Z",
  "data": {
   "players": [
    {
@@ -31,7 +31,7 @@
     "id": "260",
     "name": "Josh Johnson",
     "pos": "QB",
-    "team": "CIN",
+    "team": "ARI",
     "injuryStatus": null,
     "yearsExp": 18
    },
@@ -42,14 +42,6 @@
     "team": "LAR",
     "injuryStatus": null,
     "yearsExp": 17
-   },
-   {
-    "id": "650",
-    "name": "Nick Folk",
-    "pos": "K",
-    "team": "ATL",
-    "injuryStatus": null,
-    "yearsExp": 19
    },
    {
     "id": "812",
@@ -127,7 +119,7 @@
     "id": "1479",
     "name": "Keenan Allen",
     "pos": "WR",
-    "team": "IND",
+    "team": "SF",
     "injuryStatus": null,
     "yearsExp": 13
    },
@@ -1840,7 +1832,7 @@
     "name": "Darnell Mooney",
     "pos": "WR",
     "team": "NYG",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 6
    },
    {
@@ -2216,7 +2208,7 @@
     "name": "Joshua Palmer",
     "pos": "WR",
     "team": "BUF",
-    "injuryStatus": "Out",
+    "injuryStatus": "IR",
     "yearsExp": 5
    },
    {
@@ -2768,7 +2760,7 @@
     "name": "Tyler Goodson",
     "pos": "RB",
     "team": "DAL",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 4
    },
    {
@@ -2784,7 +2776,7 @@
     "name": "Chig Okonkwo",
     "pos": "TE",
     "team": "WAS",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 4
    },
    {
@@ -2992,6 +2984,14 @@
     "name": "Brandon Johnson",
     "pos": "WR",
     "team": "PIT",
+    "injuryStatus": null,
+    "yearsExp": 4
+   },
+   {
+    "id": "8799",
+    "name": "Zaire Mitchell-Paden",
+    "pos": "TE",
+    "team": "CLE",
     "injuryStatus": null,
     "yearsExp": 4
    },
@@ -3440,7 +3440,7 @@
     "name": "Charlie Jones",
     "pos": "WR",
     "team": "NYG",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 3
    },
    {
@@ -3543,7 +3543,7 @@
     "id": "10937",
     "name": "Jake Moody",
     "pos": "K",
-    "team": "BAL",
+    "team": "ATL",
     "injuryStatus": null,
     "yearsExp": 3
    },
@@ -4192,7 +4192,7 @@
     "name": "Jordan Whittington",
     "pos": "WR",
     "team": "LAR",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 2
    },
    {
@@ -4496,7 +4496,7 @@
     "name": "Colson Yankoff",
     "pos": "TE",
     "team": "WAS",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 2
    },
    {
@@ -5556,14 +5556,6 @@
     "yearsExp": 1
    },
    {
-    "id": "12938",
-    "name": "Jackson Meeks",
-    "pos": "TE",
-    "team": "DET",
-    "injuryStatus": "Out",
-    "yearsExp": 1
-   },
-   {
     "id": "12939",
     "name": "Anthony Tyus III",
     "pos": "RB",
@@ -6264,7 +6256,7 @@
     "name": "Demond Claiborne",
     "pos": "RB",
     "team": "MIN",
-    "injuryStatus": "Out",
+    "injuryStatus": "IR",
     "yearsExp": 0
    },
    {
@@ -6352,7 +6344,7 @@
     "name": "Skyler Bell",
     "pos": "WR",
     "team": "BUF",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
@@ -6519,7 +6511,7 @@
     "id": "13428",
     "name": "Joey Aguilar",
     "pos": "QB",
-    "team": "JAX",
+    "team": "ARI",
     "injuryStatus": null,
     "yearsExp": 0
    },
@@ -6840,14 +6832,6 @@
     "name": "Malik McClain",
     "pos": "WR",
     "team": "NYJ",
-    "injuryStatus": null,
-    "yearsExp": 0
-   },
-   {
-    "id": "13827",
-    "name": "Tanner Arkin",
-    "pos": "TE",
-    "team": "NE",
     "injuryStatus": null,
     "yearsExp": 0
    },
