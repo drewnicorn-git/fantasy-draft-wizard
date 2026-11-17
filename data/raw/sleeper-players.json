@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-11-16T21:51:19.120Z",
+ "fetchedAt": "2026-11-17T20:41:57.596Z",
  "data": {
   "players": [
    {
@@ -520,7 +520,7 @@
     "name": "David Njoku",
     "pos": "TE",
     "team": "LAC",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 9
    },
    {
@@ -672,14 +672,6 @@
     "name": "Harrison Butker",
     "pos": "K",
     "team": "KC",
-    "injuryStatus": null,
-    "yearsExp": 9
-   },
-   {
-    "id": "4233",
-    "name": "Zane Gonzalez",
-    "pos": "K",
-    "team": "MIA",
     "injuryStatus": null,
     "yearsExp": 9
    },
@@ -1330,6 +1322,14 @@
     "team": "PIT",
     "injuryStatus": null,
     "yearsExp": 3
+   },
+   {
+    "id": "6037",
+    "name": "Brett Rypien",
+    "pos": "QB",
+    "team": "LV",
+    "injuryStatus": null,
+    "yearsExp": 7
    },
    {
     "id": "6039",
@@ -2932,6 +2932,14 @@
     "yearsExp": 4
    },
    {
+    "id": "8500",
+    "name": "John FitzPatrick",
+    "pos": "TE",
+    "team": "KC",
+    "injuryStatus": null,
+    "yearsExp": 4
+   },
+   {
     "id": "8523",
     "name": "Nick Muse",
     "pos": "TE",
@@ -3452,14 +3460,6 @@
     "yearsExp": 3
    },
    {
-    "id": "10228",
-    "name": "Charlie Jones",
-    "pos": "WR",
-    "team": "NYG",
-    "injuryStatus": null,
-    "yearsExp": 3
-   },
-   {
     "id": "10229",
     "name": "Rashee Rice",
     "pos": "WR",
@@ -3759,7 +3759,15 @@
     "id": "11306",
     "name": "Xavier Gipson",
     "pos": "WR",
-    "team": "PHI",
+    "team": "NYG",
+    "injuryStatus": null,
+    "yearsExp": 3
+   },
+   {
+    "id": "11311",
+    "name": "Jason Brownlee",
+    "pos": "WR",
+    "team": "TEN",
     "injuryStatus": null,
     "yearsExp": 3
    },
@@ -4344,7 +4352,7 @@
     "name": "Kedon Slovis",
     "pos": "QB",
     "team": "BAL",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 2
    },
    {
@@ -4416,7 +4424,7 @@
     "name": "Anthony Gould",
     "pos": "WR",
     "team": "IND",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 2
    },
    {
@@ -4636,6 +4644,14 @@
     "yearsExp": 2
    },
    {
+    "id": "12389",
+    "name": "Hayden Rucci",
+    "pos": "TE",
+    "team": "PHI",
+    "injuryStatus": null,
+    "yearsExp": 2
+   },
+   {
     "id": "12412",
     "name": "Terrell Jennings",
     "pos": "RB",
@@ -4649,6 +4665,14 @@
     "pos": "RB",
     "team": "KC",
     "injuryStatus": "IR",
+    "yearsExp": 1
+   },
+   {
+    "id": "12457",
+    "name": "Jaydon Blue",
+    "pos": "RB",
+    "team": "PHI",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -4840,7 +4864,7 @@
     "name": "Oronde Gadsden",
     "pos": "TE",
     "team": "LAC",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 1
    },
    {
@@ -5612,14 +5636,6 @@
     "yearsExp": 1
    },
    {
-    "id": "13011",
-    "name": "Brennan Presley",
-    "pos": "WR",
-    "team": "LAR",
-    "injuryStatus": null,
-    "yearsExp": 1
-   },
-   {
     "id": "13013",
     "name": "Mark Redman",
     "pos": "TE",
@@ -5784,7 +5800,7 @@
     "name": "Elijah Sarratt",
     "pos": "WR",
     "team": "BAL",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
@@ -6312,7 +6328,7 @@
     "name": "Brenen Thompson",
     "pos": "WR",
     "team": "LAC",
-    "injuryStatus": "Doubtful",
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
@@ -6808,6 +6824,14 @@
     "name": "J. Michael Sturdivant",
     "pos": "WR",
     "team": "GB",
+    "injuryStatus": null,
+    "yearsExp": 0
+   },
+   {
+    "id": "13778",
+    "name": "EJ Smith",
+    "pos": "RB",
+    "team": "KC",
     "injuryStatus": null,
     "yearsExp": 0
    },
