@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-11-17T20:42:00.991Z",
+ "fetchedAt": "2026-11-18T20:16:26.584Z",
  "data": {
   "players": [
    {
@@ -230,7 +230,7 @@
     "name": "Rasheen Ali",
     "team": "BAL",
     "pos": "RB",
-    "depth": 3
+    "depth": 4
    },
    {
     "name": "Mark Andrews",
@@ -295,14 +295,13 @@
    {
     "name": "Chris Moore",
     "team": "BAL",
-    "pos": "WR",
-    "depth": 7
+    "pos": "WR"
    },
    {
     "name": "Elijah Sarratt",
     "team": "BAL",
     "pos": "WR",
-    "depth": 5
+    "depth": 6
    },
    {
     "name": "Kedon Slovis",
@@ -313,8 +312,7 @@
    {
     "name": "Nick Vannett",
     "team": "BAL",
-    "pos": "TE",
-    "depth": 4
+    "pos": "TE"
    },
    {
     "name": "Devontez Walker",
@@ -326,7 +324,7 @@
     "name": "LaJohntay Wester",
     "team": "BAL",
     "pos": "WR",
-    "depth": 6
+    "depth": 5
    },
    {
     "name": "Riley Patterson",
@@ -355,7 +353,7 @@
     "name": "Skyler Bell",
     "team": "BUF",
     "pos": "WR",
-    "depth": 4
+    "depth": 6
    },
    {
     "name": "Shane Buechele",
@@ -384,7 +382,7 @@
     "name": "Greg Dortch",
     "team": "BUF",
     "pos": "WR",
-    "depth": 6
+    "depth": 7
    },
    {
     "name": "Jackson Hawes",
@@ -826,12 +824,6 @@
     "name": "Zaire Mitchell-Paden",
     "team": "CLE",
     "pos": "TE"
-   },
-   {
-    "name": "Carsen Ryan",
-    "team": "CLE",
-    "pos": "TE",
-    "depth": 3
    },
    {
     "name": "Dylan Sampson",
@@ -2014,7 +2006,7 @@
     "name": "Tutu Atwell",
     "team": "LAR",
     "pos": "WR",
-    "depth": 2
+    "depth": 3
    },
    {
     "name": "Stetson Bennett IV",
@@ -2032,7 +2024,7 @@
     "name": "CJ Daniels",
     "team": "LAR",
     "pos": "WR",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Tyler Higbee",
@@ -2131,7 +2123,8 @@
    {
     "name": "Brady Cook",
     "team": "MIA",
-    "pos": "QB"
+    "pos": "QB",
+    "depth": 2
    },
    {
     "name": "Caleb Douglas",
@@ -2286,7 +2279,8 @@
    {
     "name": "Jeshaun Jones",
     "team": "MIN",
-    "pos": "WR"
+    "pos": "WR",
+    "depth": 6
    },
    {
     "name": "Aaron Jones Sr.",
@@ -2375,11 +2369,6 @@
     "team": "NE",
     "pos": "WR",
     "depth": 2
-   },
-   {
-    "name": "Jalen Hurd",
-    "team": "NE",
-    "pos": "WR"
    },
    {
     "name": "Corey Kiner",
@@ -2798,7 +2787,13 @@
     "name": "Tank Bigsby",
     "team": "PHI",
     "pos": "RB",
-    "depth": 3
+    "depth": 4
+   },
+   {
+    "name": "Jaydon Blue",
+    "team": "PHI",
+    "pos": "RB",
+    "depth": 2
    },
    {
     "name": "Grant Calcaterra",
@@ -3372,7 +3367,7 @@
     "name": "Elic Ayomanor",
     "team": "TEN",
     "pos": "WR",
-    "depth": 3
+    "depth": 2
    },
    {
     "name": "Daniel Bellinger",
@@ -3390,7 +3385,7 @@
     "name": "Chimere Dike",
     "team": "TEN",
     "pos": "WR",
-    "depth": 4
+    "depth": 3
    },
    {
     "name": "Kylen Granson",
@@ -3429,19 +3424,14 @@
    {
     "name": "Xavier Restrepo",
     "team": "TEN",
-    "pos": "WR"
+    "pos": "WR",
+    "depth": 4
    },
    {
     "name": "Calvin Ridley",
     "team": "TEN",
     "pos": "WR",
     "depth": 5
-   },
-   {
-    "name": "Wan'Dale Robinson",
-    "team": "TEN",
-    "pos": "WR",
-    "depth": 2
    },
    {
     "name": "Nicholas Singleton",
@@ -3500,12 +3490,6 @@
     "team": "WAS",
     "pos": "WR",
     "depth": 3
-   },
-   {
-    "name": "Jacory Croskey-Merritt",
-    "team": "WAS",
-    "pos": "RB",
-    "depth": 4
    },
    {
     "name": "Jayden Daniels",
