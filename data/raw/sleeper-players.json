@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-11-19T20:20:07.693Z",
+ "fetchedAt": "2026-11-20T19:52:21.741Z",
  "data": {
   "players": [
    {
@@ -944,7 +944,7 @@
     "name": "Ian Thomas",
     "pos": "TE",
     "team": "LV",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 8
    },
    {
@@ -1128,7 +1128,7 @@
     "name": "T.J. Hockenson",
     "pos": "TE",
     "team": "MIN",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 7
    },
    {
@@ -1804,6 +1804,14 @@
     "yearsExp": 6
    },
    {
+    "id": "7050",
+    "name": "Josiah Deguara",
+    "pos": "TE",
+    "team": "LAC",
+    "injuryStatus": null,
+    "yearsExp": 6
+   },
+   {
     "id": "7066",
     "name": "K.J. Osborn",
     "pos": "WR",
@@ -1904,7 +1912,7 @@
     "name": "DeVonta Smith",
     "pos": "WR",
     "team": "PHI",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 5
    },
    {
@@ -2284,14 +2292,6 @@
     "yearsExp": 5
    },
    {
-    "id": "7865",
-    "name": "Brandon Smith",
-    "pos": "WR",
-    "team": "PIT",
-    "injuryStatus": null,
-    "yearsExp": 5
-   },
-   {
     "id": "7891",
     "name": "Brock Wright",
     "pos": "TE",
@@ -2396,14 +2396,6 @@
     "yearsExp": 4
    },
    {
-    "id": "8116",
-    "name": "Pierre Strong Jr.",
-    "pos": "RB",
-    "team": "GB",
-    "injuryStatus": "Out",
-    "yearsExp": 4
-   },
-   {
     "id": "8117",
     "name": "Jalen Tolbert",
     "pos": "WR",
@@ -2480,7 +2472,7 @@
     "name": "Isaiah Likely",
     "pos": "TE",
     "team": "NYG",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 4
    },
    {
@@ -3248,7 +3240,7 @@
     "name": "Kayshon Boutte",
     "pos": "WR",
     "team": "HOU",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 3
    },
    {
@@ -3520,7 +3512,7 @@
     "name": "Dalton Kincaid",
     "pos": "TE",
     "team": "BUF",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Doubtful",
     "yearsExp": 3
    },
    {
@@ -3568,7 +3560,7 @@
     "name": "Luke Schoonmaker",
     "pos": "TE",
     "team": "DAL",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 3
    },
    {
@@ -4168,7 +4160,7 @@
     "name": "Isaiah Williams",
     "pos": "WR",
     "team": "NYJ",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 2
    },
    {
@@ -4440,7 +4432,7 @@
     "name": "Anthony Gould",
     "pos": "WR",
     "team": "IND",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -4520,7 +4512,7 @@
     "name": "Jeshaun Jones",
     "pos": "WR",
     "team": "MIN",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -4528,7 +4520,7 @@
     "name": "Colson Yankoff",
     "pos": "TE",
     "team": "WAS",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -4696,7 +4688,7 @@
     "name": "Jordan James",
     "pos": "RB",
     "team": "SF",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 1
    },
    {
@@ -4712,7 +4704,7 @@
     "name": "Riley Leonard",
     "pos": "QB",
     "team": "IND",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 1
    },
    {
@@ -5856,7 +5848,7 @@
     "name": "Carson Beck",
     "pos": "QB",
     "team": "ARI",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -5888,7 +5880,7 @@
     "name": "Omar Cooper Jr.",
     "pos": "WR",
     "team": "NYJ",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
@@ -5920,7 +5912,7 @@
     "name": "Jordyn Tyson",
     "pos": "WR",
     "team": "NO",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6448,7 +6440,7 @@
     "name": "Zavion Thomas",
     "pos": "WR",
     "team": "CHI",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -6552,7 +6544,7 @@
     "name": "Seth McGowan",
     "pos": "RB",
     "team": "IND",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 0
    },
    {
@@ -6757,7 +6749,7 @@
    },
    {
     "id": "13603",
-    "name": "Gregory Desrosiers",
+    "name": "Gregory Desrosiers Jr.",
     "pos": "RB",
     "team": "NYG",
     "injuryStatus": null,
