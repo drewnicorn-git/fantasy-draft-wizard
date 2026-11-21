@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-11-20T19:52:21.741Z",
+ "fetchedAt": "2026-11-21T18:57:41.899Z",
  "data": {
   "players": [
    {
@@ -96,7 +96,7 @@
     "name": "Geno Smith",
     "pos": "QB",
     "team": "NYJ",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 13
    },
    {
@@ -944,7 +944,7 @@
     "name": "Ian Thomas",
     "pos": "TE",
     "team": "LV",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 8
    },
    {
@@ -1188,14 +1188,6 @@
     "yearsExp": 7
    },
    {
-    "id": "5870",
-    "name": "Daniel Jones",
-    "pos": "QB",
-    "team": "IND",
-    "injuryStatus": null,
-    "yearsExp": 7
-   },
-   {
     "id": "5872",
     "name": "Deebo Samuel Sr.",
     "pos": "WR",
@@ -1248,7 +1240,7 @@
     "name": "Jakobi Meyers",
     "pos": "WR",
     "team": "JAX",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 7
    },
    {
@@ -1920,7 +1912,7 @@
     "name": "Jaylen Waddle",
     "pos": "WR",
     "team": "DEN",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 5
    },
    {
@@ -1993,14 +1985,6 @@
     "pos": "TE",
     "team": "ATL",
     "injuryStatus": null,
-    "yearsExp": 5
-   },
-   {
-    "id": "7559",
-    "name": "Ihmir Smith-Marsette",
-    "pos": "WR",
-    "team": "CAR",
-    "injuryStatus": "Out",
     "yearsExp": 5
    },
    {
@@ -2472,7 +2456,7 @@
     "name": "Isaiah Likely",
     "pos": "TE",
     "team": "NYG",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 4
    },
    {
@@ -2496,7 +2480,7 @@
     "name": "Treylon Burks",
     "pos": "WR",
     "team": "WAS",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 4
    },
    {
@@ -2504,7 +2488,7 @@
     "name": "Rachaad White",
     "pos": "RB",
     "team": "WAS",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 4
    },
    {
@@ -2600,7 +2584,7 @@
     "name": "Kenneth Walker III",
     "pos": "RB",
     "team": "KC",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 4
    },
    {
@@ -2904,7 +2888,7 @@
     "name": "Britain Covey",
     "pos": "WR",
     "team": "PHI",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 4
    },
    {
@@ -3160,7 +3144,7 @@
     "name": "Dontayvion Wicks",
     "pos": "WR",
     "team": "PHI",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 3
    },
    {
@@ -3256,7 +3240,7 @@
     "name": "Tyjae Spears",
     "pos": "RB",
     "team": "TEN",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "IR",
     "yearsExp": 3
    },
    {
@@ -3400,7 +3384,7 @@
     "name": "Chris Rodriguez Jr.",
     "pos": "RB",
     "team": "JAX",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -3440,7 +3424,7 @@
     "name": "Jonathan Mingo",
     "pos": "WR",
     "team": "DAL",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 3
    },
    {
@@ -3600,7 +3584,7 @@
     "name": "Jared Wayne",
     "pos": "WR",
     "team": "MIA",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Out",
     "yearsExp": 3
    },
    {
@@ -4008,7 +3992,7 @@
     "name": "Ray Davis",
     "pos": "RB",
     "team": "BUF",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -4840,7 +4824,7 @@
     "name": "Bhayshul Tuten",
     "pos": "RB",
     "team": "JAX",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -5216,7 +5200,7 @@
     "name": "LeQuint Allen Jr.",
     "pos": "RB",
     "team": "JAX",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -6000,7 +5984,7 @@
     "name": "Caleb Douglas",
     "pos": "WR",
     "team": "MIA",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6096,7 +6080,7 @@
     "name": "Chris Bell",
     "pos": "WR",
     "team": "MIA",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6352,7 +6336,7 @@
     "name": "Brenen Thompson",
     "pos": "WR",
     "team": "LAC",
-    "injuryStatus": "Questionable",
+    "injuryStatus": "Doubtful",
     "yearsExp": 0
    },
    {
