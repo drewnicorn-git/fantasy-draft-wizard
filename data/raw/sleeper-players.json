@@ -1,6 +1,6 @@
 {
  "season": 2026,
- "fetchedAt": "2026-11-24T22:11:56.705Z",
+ "fetchedAt": "2026-11-25T21:28:24.061Z",
  "data": {
   "players": [
    {
@@ -64,7 +64,7 @@
     "name": "Andy Dalton",
     "pos": "QB",
     "team": "ATL",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 15
    },
    {
@@ -160,7 +160,7 @@
     "name": "Case Keenum",
     "pos": "QB",
     "team": "CHI",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 14
    },
    {
@@ -220,11 +220,19 @@
     "yearsExp": 12
    },
    {
+    "id": "2197",
+    "name": "Brandin Cooks",
+    "pos": "WR",
+    "team": "SF",
+    "injuryStatus": null,
+    "yearsExp": 12
+   },
+   {
     "id": "2216",
     "name": "Mike Evans",
     "pos": "WR",
     "team": "SF",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 12
    },
    {
@@ -264,7 +272,7 @@
     "name": "Stefon Diggs",
     "pos": "WR",
     "team": "WAS",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 11
    },
    {
@@ -416,7 +424,7 @@
     "name": "Demarcus Robinson",
     "pos": "WR",
     "team": "SF",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 10
    },
    {
@@ -512,7 +520,7 @@
     "name": "David Njoku",
     "pos": "TE",
     "team": "LAC",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 9
    },
    {
@@ -748,14 +756,6 @@
     "yearsExp": 1
    },
    {
-    "id": "4574",
-    "name": "Cooper Rush",
-    "pos": "QB",
-    "team": "TB",
-    "injuryStatus": null,
-    "yearsExp": 9
-   },
-   {
     "id": "4602",
     "name": "Robert Tonyan",
     "pos": "TE",
@@ -800,7 +800,7 @@
     "name": "Saquon Barkley",
     "pos": "RB",
     "team": "PHI",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 8
    },
    {
@@ -880,7 +880,7 @@
     "name": "Sam Darnold",
     "pos": "QB",
     "team": "SEA",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 8
    },
    {
@@ -912,7 +912,7 @@
     "name": "DJ Moore",
     "pos": "WR",
     "team": "BUF",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 8
    },
    {
@@ -976,7 +976,7 @@
     "name": "Dallas Goedert",
     "pos": "TE",
     "team": "PHI",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 8
    },
    {
@@ -1144,7 +1144,7 @@
     "name": "Kyler Murray",
     "pos": "QB",
     "team": "MIN",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 7
    },
    {
@@ -1152,7 +1152,7 @@
     "name": "Josh Jacobs",
     "pos": "RB",
     "team": "GB",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 7
    },
    {
@@ -1176,7 +1176,7 @@
     "name": "A.J. Brown",
     "pos": "WR",
     "team": "NE",
-    "injuryStatus": "Out",
+    "injuryStatus": "Doubtful",
     "yearsExp": 7
    },
    {
@@ -1224,7 +1224,7 @@
     "name": "Lil'Jordan Humphrey",
     "pos": "WR",
     "team": "DEN",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 7
    },
    {
@@ -1232,7 +1232,7 @@
     "name": "Jakobi Meyers",
     "pos": "WR",
     "team": "JAX",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 7
    },
    {
@@ -1400,7 +1400,7 @@
     "name": "Easton Stick",
     "pos": "QB",
     "team": "TB",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 7
    },
    {
@@ -1500,14 +1500,6 @@
     "yearsExp": 7
    },
    {
-    "id": "6659",
-    "name": "Craig Reynolds",
-    "pos": "RB",
-    "team": "WAS",
-    "injuryStatus": null,
-    "yearsExp": 7
-   },
-   {
     "id": "6677",
     "name": "Joe Forson",
     "pos": "WR",
@@ -1596,6 +1588,14 @@
     "yearsExp": 6
    },
    {
+    "id": "6803",
+    "name": "Brandon Aiyuk",
+    "pos": "WR",
+    "team": "WAS",
+    "injuryStatus": null,
+    "yearsExp": 6
+   },
+   {
     "id": "6804",
     "name": "Jordan Love",
     "pos": "QB",
@@ -1608,7 +1608,7 @@
     "name": "J.K. Dobbins",
     "pos": "RB",
     "team": "DEN",
-    "injuryStatus": null,
+    "injuryStatus": "Out",
     "yearsExp": 6
    },
    {
@@ -1640,7 +1640,7 @@
     "name": "AJ Dillon",
     "pos": "RB",
     "team": "CAR",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 6
    },
    {
@@ -1784,14 +1784,6 @@
     "name": "Jauan Jennings",
     "pos": "WR",
     "team": "MIN",
-    "injuryStatus": null,
-    "yearsExp": 6
-   },
-   {
-    "id": "7050",
-    "name": "Josiah Deguara",
-    "pos": "TE",
-    "team": "LAC",
     "injuryStatus": null,
     "yearsExp": 6
    },
@@ -1952,7 +1944,7 @@
     "name": "Zach Wilson",
     "pos": "QB",
     "team": "NO",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 5
    },
    {
@@ -2016,7 +2008,7 @@
     "name": "Brevin Jordan",
     "pos": "TE",
     "team": "HOU",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 5
    },
    {
@@ -2040,7 +2032,7 @@
     "name": "Sam Ehlinger",
     "pos": "QB",
     "team": "DEN",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 5
    },
    {
@@ -2368,7 +2360,7 @@
     "name": "Drake London",
     "pos": "WR",
     "team": "ATL",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 4
    },
    {
@@ -2464,7 +2456,7 @@
     "name": "Isaiah Likely",
     "pos": "TE",
     "team": "NYG",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 4
    },
    {
@@ -2584,7 +2576,7 @@
     "name": "Kyren Williams",
     "pos": "RB",
     "team": "LAR",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 4
    },
    {
@@ -2696,7 +2688,7 @@
     "name": "Brock Purdy",
     "pos": "QB",
     "team": "SF",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 4
    },
    {
@@ -2720,6 +2712,14 @@
     "name": "Ronnie Rivers",
     "pos": "RB",
     "team": "LAR",
+    "injuryStatus": null,
+    "yearsExp": 4
+   },
+   {
+    "id": "8200",
+    "name": "Kevin Austin Jr.",
+    "pos": "WR",
+    "team": "NO",
     "injuryStatus": null,
     "yearsExp": 4
    },
@@ -2784,7 +2784,7 @@
     "name": "Jelani Woods",
     "pos": "TE",
     "team": "NYJ",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 4
    },
    {
@@ -2920,7 +2920,7 @@
     "name": "Drew Ogletree",
     "pos": "TE",
     "team": "IND",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 4
    },
    {
@@ -3104,7 +3104,7 @@
     "name": "Tanner McKee",
     "pos": "QB",
     "team": "PHI",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -3296,7 +3296,7 @@
     "name": "Jordan Addison",
     "pos": "WR",
     "team": "MIN",
-    "injuryStatus": "Out",
+    "injuryStatus": "Doubtful",
     "yearsExp": 3
    },
    {
@@ -3400,7 +3400,7 @@
     "name": "Will Mallory",
     "pos": "TE",
     "team": "IND",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 3
    },
    {
@@ -3512,7 +3512,7 @@
     "name": "Dalton Kincaid",
     "pos": "TE",
     "team": "BUF",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 3
    },
    {
@@ -3536,7 +3536,7 @@
     "name": "Sam LaPorta",
     "pos": "TE",
     "team": "DET",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -3600,7 +3600,7 @@
     "name": "Jared Wayne",
     "pos": "WR",
     "team": "MIA",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 3
    },
    {
@@ -3609,6 +3609,14 @@
     "pos": "K",
     "team": "LAR",
     "injuryStatus": "IR",
+    "yearsExp": 3
+   },
+   {
+    "id": "11065",
+    "name": "Adrian Martinez",
+    "pos": "QB",
+    "team": "SEA",
+    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -3690,6 +3698,14 @@
     "team": "DET",
     "injuryStatus": null,
     "yearsExp": 3
+   },
+   {
+    "id": "11245",
+    "name": "Patrick Murtagh",
+    "pos": "TE",
+    "team": "NO",
+    "injuryStatus": null,
+    "yearsExp": 2
    },
    {
     "id": "11256",
@@ -3840,7 +3856,7 @@
     "name": "Emanuel Wilson",
     "pos": "RB",
     "team": "SEA",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 3
    },
    {
@@ -4024,7 +4040,7 @@
     "name": "Will Shipley",
     "pos": "RB",
     "team": "PHI",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -4032,7 +4048,7 @@
     "name": "Audric Estime",
     "pos": "RB",
     "team": "NO",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -4136,7 +4152,7 @@
     "name": "Ja'Tavion Sanders",
     "pos": "TE",
     "team": "CAR",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -4152,7 +4168,7 @@
     "name": "Brock Bowers",
     "pos": "TE",
     "team": "LV",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 2
    },
    {
@@ -4160,7 +4176,7 @@
     "name": "Isaiah Williams",
     "pos": "WR",
     "team": "NYJ",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 2
    },
    {
@@ -4248,7 +4264,7 @@
     "name": "Marvin Harrison Jr.",
     "pos": "WR",
     "team": "HOU",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 2
    },
    {
@@ -4344,7 +4360,7 @@
     "name": "Jalen Coker",
     "pos": "WR",
     "team": "CAR",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -4440,7 +4456,7 @@
     "name": "Cam Little",
     "pos": "K",
     "team": "JAX",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -4532,6 +4548,14 @@
     "yearsExp": 2
    },
    {
+    "id": "12036",
+    "name": "Ian Wheeler",
+    "pos": "RB",
+    "team": "LAC",
+    "injuryStatus": null,
+    "yearsExp": 2
+   },
+   {
     "id": "12045",
     "name": "Jack Westover",
     "pos": "TE",
@@ -4552,7 +4576,7 @@
     "name": "Cam Grandy",
     "pos": "TE",
     "team": "CIN",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 2
    },
    {
@@ -4688,7 +4712,7 @@
     "name": "Riley Leonard",
     "pos": "QB",
     "team": "IND",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -4720,7 +4744,7 @@
     "name": "Woody Marks",
     "pos": "RB",
     "team": "HOU",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 1
    },
    {
@@ -4744,7 +4768,7 @@
     "name": "Kurtis Rourke",
     "pos": "QB",
     "team": "SF",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -4800,7 +4824,7 @@
     "name": "Dillon Gabriel",
     "pos": "QB",
     "team": "CLE",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -4992,7 +5016,7 @@
     "name": "Will Howard",
     "pos": "QB",
     "team": "PIT",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -5088,7 +5112,7 @@
     "name": "Tetairoa McMillan",
     "pos": "WR",
     "team": "CAR",
-    "injuryStatus": null,
+    "injuryStatus": "Questionable",
     "yearsExp": 1
    },
    {
@@ -5176,7 +5200,7 @@
     "name": "Dont'e Thornton Jr.",
     "pos": "WR",
     "team": "LV",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -5256,7 +5280,7 @@
     "name": "KeAndre Lambert-Smith",
     "pos": "WR",
     "team": "LAC",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -5264,14 +5288,6 @@
     "name": "Cam Miller",
     "pos": "QB",
     "team": "GB",
-    "injuryStatus": null,
-    "yearsExp": 1
-   },
-   {
-    "id": "12699",
-    "name": "LaJohntay Wester",
-    "pos": "WR",
-    "team": "BAL",
     "injuryStatus": null,
     "yearsExp": 1
    },
@@ -5312,7 +5328,7 @@
     "name": "Thomas Fidone II",
     "pos": "TE",
     "team": "NYG",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -5392,7 +5408,7 @@
     "name": "Max Brosmer",
     "pos": "QB",
     "team": "MIN",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 1
    },
    {
@@ -5456,14 +5472,6 @@
     "name": "Josh Kelly",
     "pos": "WR",
     "team": "HOU",
-    "injuryStatus": null,
-    "yearsExp": 1
-   },
-   {
-    "id": "12860",
-    "name": "Theo Wease Jr.",
-    "pos": "WR",
-    "team": "LAC",
     "injuryStatus": null,
     "yearsExp": 1
    },
@@ -5808,7 +5816,7 @@
     "name": "Elijah Sarratt",
     "pos": "WR",
     "team": "BAL",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -5832,7 +5840,7 @@
     "name": "Carson Beck",
     "pos": "QB",
     "team": "ARI",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -5856,7 +5864,7 @@
     "name": "Ty Simpson",
     "pos": "QB",
     "team": "LAR",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -5864,7 +5872,7 @@
     "name": "Omar Cooper Jr.",
     "pos": "WR",
     "team": "NYJ",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -5936,7 +5944,7 @@
     "name": "Nicholas Singleton",
     "pos": "RB",
     "team": "TEN",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -5944,7 +5952,7 @@
     "name": "Drew Allar",
     "pos": "QB",
     "team": "PIT",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -5976,7 +5984,7 @@
     "name": "Behren Morton",
     "pos": "QB",
     "team": "NE",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6024,7 +6032,7 @@
     "name": "Adam Randall",
     "pos": "RB",
     "team": "BAL",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6048,7 +6056,7 @@
     "name": "Taylen Green",
     "pos": "QB",
     "team": "CLE",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6072,7 +6080,7 @@
     "name": "Chris Bell",
     "pos": "WR",
     "team": "MIA",
-    "injuryStatus": "Questionable",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6136,7 +6144,7 @@
     "name": "Zachariah Branch",
     "pos": "WR",
     "team": "ATL",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -6176,7 +6184,7 @@
     "name": "Malik Benson",
     "pos": "WR",
     "team": "LV",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6200,7 +6208,7 @@
     "name": "Cole Payton",
     "pos": "QB",
     "team": "PHI",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6320,7 +6328,7 @@
     "name": "Brenen Thompson",
     "pos": "WR",
     "team": "LAC",
-    "injuryStatus": "Out",
+    "injuryStatus": "Questionable",
     "yearsExp": 0
    },
    {
@@ -6344,7 +6352,7 @@
     "name": "Justin Joly",
     "pos": "TE",
     "team": "MIA",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6360,7 +6368,7 @@
     "name": "Skyler Bell",
     "pos": "WR",
     "team": "BUF",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6376,7 +6384,7 @@
     "name": "Garrett Nussmeier",
     "pos": "QB",
     "team": "KC",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6440,7 +6448,7 @@
     "name": "Haynes King",
     "pos": "QB",
     "team": "CAR",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6464,7 +6472,7 @@
     "name": "Robert Henry Jr.",
     "pos": "RB",
     "team": "WAS",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6504,7 +6512,7 @@
     "name": "Eli Heidenreich",
     "pos": "RB",
     "team": "PIT",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6616,7 +6624,7 @@
     "name": "Kaden Wetjen",
     "pos": "WR",
     "team": "PIT",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6656,7 +6664,7 @@
     "name": "CJ Williams",
     "pos": "WR",
     "team": "JAX",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6664,7 +6672,7 @@
     "name": "Athan Kaliakmanis",
     "pos": "QB",
     "team": "WAS",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6672,7 +6680,7 @@
     "name": "Dallen Bentley",
     "pos": "TE",
     "team": "DEN",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6712,7 +6720,7 @@
     "name": "Jack Strand",
     "pos": "QB",
     "team": "ATL",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6720,7 +6728,7 @@
     "name": "Gregory Desrosiers Jr.",
     "pos": "RB",
     "team": "NYG",
-    "injuryStatus": "Out",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
@@ -6884,6 +6892,14 @@
     "yearsExp": 0
    },
    {
+    "id": "13861",
+    "name": "Daniel Sobkowicz",
+    "pos": "WR",
+    "team": "HOU",
+    "injuryStatus": null,
+    "yearsExp": 0
+   },
+   {
     "id": "13870",
     "name": "Quentin Moore",
     "pos": "TE",
@@ -6897,6 +6913,14 @@
     "pos": "WR",
     "team": "MIN",
     "injuryStatus": "Out",
+    "yearsExp": 0
+   },
+   {
+    "id": "13904",
+    "name": "Jacob De Jesus",
+    "pos": "WR",
+    "team": "SEA",
+    "injuryStatus": null,
     "yearsExp": 0
    },
    {
