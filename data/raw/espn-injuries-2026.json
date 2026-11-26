@@ -1,8 +1,24 @@
 {
  "season": 2026,
- "fetchedAt": "2026-11-25T21:28:24.883Z",
+ "fetchedAt": "2026-11-26T21:16:14.895Z",
  "data": {
   "players": [
+   {
+    "name": "Hunter Long",
+    "team": "",
+    "pos": "TE",
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-11-26T20:30Z"
+   },
+   {
+    "name": "Carson Beck",
+    "team": "",
+    "pos": "QB",
+    "status": "Questionable",
+    "summary": "Beck (back) was listed as a non-participant on Thursday's injury report, Darren Urban of the Cardinals' official site reports.",
+    "updatedAt": "2026-11-26T20:11Z"
+   },
    {
     "name": "Jeremiyah Love",
     "team": "",
@@ -12,20 +28,36 @@
     "updatedAt": "2026-11-25T19:50Z"
    },
    {
-    "name": "Carson Beck",
+    "name": "Jahan Dotson",
     "team": "",
-    "pos": "QB",
+    "pos": "WR",
     "status": "Questionable",
-    "summary": "Head coach Mike LaFleur said Beck (back) won't practice Wednesday, Darren Urban of the Cardinals' official site reports.",
-    "updatedAt": "2026-11-25T19:21Z"
+    "summary": "Dotson (hamstring) did not participate in Thursday's practice, Tori McElhaney of the Falcons' official site reports.",
+    "updatedAt": "2026-11-26T18:35Z"
    },
    {
     "name": "Zachariah Branch",
     "team": "",
     "pos": "WR",
     "status": "Questionable",
-    "summary": "Branch (hamstring) went through warmups during the media-viewing portion of Monday's unofficial practice session, Daniel Flick of The Atlanta Journal-Constitution reports.",
-    "updatedAt": "2026-11-24T23:21Z"
+    "summary": "Branch (hamstring) didn't participate in Wednesday's practice, Will McFadden of the Falcons' official site reports.",
+    "updatedAt": "2026-11-25T22:30Z"
+   },
+   {
+    "name": "Rashod Bateman",
+    "team": "",
+    "pos": "WR",
+    "status": "Questionable",
+    "summary": "Bateman (groin) was limited in Wednesday's practice.",
+    "updatedAt": "2026-11-25T23:42Z"
+   },
+   {
+    "name": "Zay Flowers",
+    "team": "",
+    "pos": "WR",
+    "status": "Questionable",
+    "summary": "Flowers (ankle) was listed as a limited participant in Wednesday's practice.",
+    "updatedAt": "2026-11-25T23:25Z"
    },
    {
     "name": "Derrick Henry",
@@ -44,12 +76,36 @@
     "updatedAt": "2026-11-25T18:53Z"
    },
    {
+    "name": "Jonathon Brooks",
+    "team": "",
+    "pos": "RB",
+    "status": "Injured Reserve",
+    "summary": "Head coach Dave Canales suggested Wednesday that a decision on Brooks (core) being activated from injured reserve before his 21-day window expires next week will hinge on the Panthers having a role available to him, Mike Kaye of ESPN.com reports.",
+    "updatedAt": "2026-11-25T22:54Z"
+   },
+   {
     "name": "Tetairoa McMillan",
     "team": "",
     "pos": "WR",
     "status": "Questionable",
     "summary": "Head coach Dave Canales said Wednesday that the Panthers are \"optimistic\" that McMillan (foot) will play Monday in Tampa Bay, Mike Kaye of ESPN.com reports.",
     "updatedAt": "2026-11-25T20:18Z"
+   },
+   {
+    "name": "Colston Loveland",
+    "team": "",
+    "pos": "TE",
+    "status": "Out",
+    "summary": "Loveland (knee) has been ruled out from returning to Thursday's game in Detroit.",
+    "updatedAt": "2026-11-26T18:45Z"
+   },
+   {
+    "name": "Case Keenum",
+    "team": "",
+    "pos": "QB",
+    "status": "Out",
+    "summary": "Keenum (coach's decision) is inactive and tabbed as the Bears' emergency third quarterback Thursday in Detroit.",
+    "updatedAt": "2026-11-26T16:53Z"
    },
    {
     "name": "Roschon Johnson",
@@ -68,36 +124,60 @@
     "updatedAt": "2026-11-23T22:36Z"
    },
    {
-    "name": "Denzel Boston",
+    "name": "Blake Whiteheart",
     "team": "",
-    "pos": "WR",
+    "pos": "TE",
     "status": "Questionable",
-    "summary": "Boston (toe) wasn't spotted at Wednesday's practice, Daniel Oyefusi of ESPN reports.",
-    "updatedAt": "2026-11-25T18:16Z"
+    "summary": "Whiteheart (hip) was a limited participant in Wednesday's practice, Ryan McFadden of ESPN.com reports.",
+    "updatedAt": "2026-11-26T02:00Z"
    },
    {
     "name": "Raheim Sanders",
     "team": "",
     "pos": "RB",
     "status": "Injured Reserve",
-    "summary": "The Browns designated Sanders (hip) for return from injured reserve Tuesday.",
-    "updatedAt": "2026-11-24T15:58Z"
+    "summary": "Sanders (hip) was a limited participant in Wednesday's practice, Ryan McFadden of ESPN.com reports.",
+    "updatedAt": "2026-11-26T01:48Z"
+   },
+   {
+    "name": "Harold Fannin Jr.",
+    "team": "",
+    "pos": "TE",
+    "status": "Questionable",
+    "summary": "Fannin (groin) was listed as a limited participant in Wednesday's practice, Ryan McFadden of ESPN reports.",
+    "updatedAt": "2026-11-25T22:30Z"
+   },
+   {
+    "name": "Denzel Boston",
+    "team": "",
+    "pos": "WR",
+    "status": "Questionable",
+    "summary": "Boston wasn't spotted at Wednesday's practice, Daniel Oyefusi of ESPN reports.",
+    "updatedAt": "2026-11-25T18:16Z"
    },
    {
     "name": "Jake Ferguson",
     "team": "",
     "pos": "TE",
     "status": "Out",
-    "summary": "The Cowboys ruled Ferguson (knee/ankle) out for Thursday's game against the Eagles, Patrik Walker of the team's official site reports.",
-    "updatedAt": "2026-11-25T19:14Z"
+    "summary": "inactive",
+    "updatedAt": "2026-11-26T20:13Z"
    },
    {
     "name": "Jonathan Mingo",
     "team": "",
     "pos": "WR",
     "status": "Out",
-    "summary": "Mingo (ankle) did not participate in practice Tuesday.",
-    "updatedAt": "2026-11-24T22:36Z"
+    "summary": "Mingo (ankle) has been ruled out for Thursday's game against the Eagles.",
+    "updatedAt": "2026-11-26T00:36Z"
+   },
+   {
+    "name": "J.K. Dobbins",
+    "team": "",
+    "pos": "RB",
+    "status": "Suspension",
+    "summary": "The Broncos placed Dobbins on the reserve/suspended list Wednesday, Zac Stevens of TheDNVR.com reports.",
+    "updatedAt": "2026-11-25T22:13Z"
    },
    {
     "name": "Tyler Badie",
@@ -108,36 +188,20 @@
     "updatedAt": "2026-11-24T23:07Z"
    },
    {
-    "name": "J.K. Dobbins",
-    "team": "",
-    "pos": "RB",
-    "status": "Out",
-    "summary": "Broncos head coach Sean Payton announced Tuesday that Dobbins has been suspended one game for conduct detrimental to the team, Chris Tomasson of The Denver Gazette reports.",
-    "updatedAt": "2026-11-24T21:57Z"
-   },
-   {
-    "name": "Skyy Moore",
+    "name": "Christian Watson",
     "team": "",
     "pos": "WR",
     "status": "Questionable",
-    "summary": "Moore (ankle) is listed as questionable for Wednesday night's game against the Rams, Wes Hodkiewicz of the Packers' official site reports.",
-    "updatedAt": "2026-11-24T20:48Z"
-   },
-   {
-    "name": "Bo Melton",
-    "team": "",
-    "pos": "WR",
-    "status": "Questionable",
-    "summary": "Melton (thigh) is listed as questionable for Wednesday night's game against the Rams, Wes Hodkiewicz of the Packers' official site reports.",
-    "updatedAt": "2026-11-24T20:40Z"
+    "summary": "Watson (concussion) has been ruled out for the rest of Wednesday's game against the Rams.",
+    "updatedAt": "2026-11-26T03:09Z"
    },
    {
     "name": "Josh Jacobs",
     "team": "",
     "pos": "RB",
-    "status": "Questionable",
-    "summary": "The Packers list Jacobs (finger) as questionable for Wednesday's game against the Rams, Wes Hodkiewicz of the team's official site reports.",
-    "updatedAt": "2026-11-24T18:19Z"
+    "status": "Out",
+    "summary": "Jacobs (finger) is listed as inactive Wednesday at the Rams, Tom Pelissero of Netflix reports.",
+    "updatedAt": "2026-11-25T23:53Z"
    },
    {
     "name": "Luke Musgrave",
@@ -148,20 +212,28 @@
     "updatedAt": "2026-11-22T14:06Z"
    },
    {
+    "name": "Kayshon Boutte",
+    "team": "",
+    "pos": "WR",
+    "status": "Questionable",
+    "summary": "Boutte (hip) didn't participate in Wednesday's practice.",
+    "updatedAt": "2026-11-25T23:50Z"
+   },
+   {
     "name": "Marvin Harrison Jr.",
     "team": "",
     "pos": "WR",
     "status": "Questionable",
-    "summary": "Harrison (hamstring) was at practice Wednesday, Jonathan M. Alexander of the Houston Chronicle  reports.",
-    "updatedAt": "2026-11-25T19:07Z"
+    "summary": "Harrison (hamstring) was listed as a limited participant in Wednesday's practice.",
+    "updatedAt": "2026-11-25T23:34Z"
    },
    {
     "name": "Woody Marks",
     "team": "",
     "pos": "RB",
     "status": "Questionable",
-    "summary": "Marks (concussion) was on the practice field Wednesday, Jonathan M. Alexander of the Houston Chronicle  reports.",
-    "updatedAt": "2026-11-25T19:00Z"
+    "summary": "Marks (concussion) was listed as a full participant in Wednesday's practice.",
+    "updatedAt": "2026-11-25T23:16Z"
    },
    {
     "name": "Brevin Jordan",
@@ -170,22 +242,6 @@
     "status": "Questionable",
     "summary": "questionable",
     "updatedAt": "2026-11-24T12:39Z"
-   },
-   {
-    "name": "Kayshon Boutte",
-    "team": "",
-    "pos": "WR",
-    "status": "Questionable",
-    "summary": "Boutte's hip injury he suffered in Thursday night's win over the Colts doesn't appear to be serious, Aaron Wilson of KPRC 2 Houston reports.",
-    "updatedAt": "2026-11-20T16:18Z"
-   },
-   {
-    "name": "Drew Ogletree",
-    "team": "",
-    "pos": "TE",
-    "status": "Questionable",
-    "summary": "questionable",
-    "updatedAt": "2026-11-25T20:44Z"
    },
    {
     "name": "Alec Pierce",
@@ -216,16 +272,24 @@
     "team": "",
     "pos": "RB",
     "status": "Questionable",
-    "summary": "Tuten (ankle) wasn't spotted at Wednesday's practice,  Demetrius Harvey of the Florida Times Union reports.",
-    "updatedAt": "2026-11-25T17:05Z"
+    "summary": "Tuten (ankle/foot) didn't practice Thursday, Ryan O'Halloran of The Florida Times-Union reports.",
+    "updatedAt": "2026-11-26T20:35Z"
+   },
+   {
+    "name": "Parker Washington",
+    "team": "",
+    "pos": "WR",
+    "status": "Questionable",
+    "summary": "Washington (shoulder) was listed as a limited participant in Thursday's practice, Ryan O'Halloran of The Florida Times-Union reports.",
+    "updatedAt": "2026-11-26T20:29Z"
    },
    {
     "name": "Jakobi Meyers",
     "team": "",
     "pos": "WR",
     "status": "Questionable",
-    "summary": "Meyers was spotted working off to the side during Wednesday's practice, Demetrius Harvey of The Florida Times-Union reports.",
-    "updatedAt": "2026-11-25T17:02Z"
+    "summary": "Meyers was a limited participant in Wednesday's practice due to an ankle injury.",
+    "updatedAt": "2026-11-25T21:19Z"
    },
    {
     "name": "Noah Gray",
@@ -256,72 +320,72 @@
     "team": "",
     "pos": "TE",
     "status": "Questionable",
-    "summary": "Bowers (ankle/quadriceps) was on the field for Wednesday's practice, Ryan McFadden of ESPN.com reports.",
-    "updatedAt": "2026-11-25T19:51Z"
-   },
-   {
-    "name": "Dareke Young",
-    "team": "",
-    "pos": "WR",
-    "status": "Questionable",
-    "summary": "Young (stinger) is questionable to return to Sunday's contest against Denver.",
-    "updatedAt": "2026-11-22T22:53Z"
+    "summary": "Bowers (ankle) was on the field for Thursday's practice, Ryan McFadden of ESPN.com reports.",
+    "updatedAt": "2026-11-26T19:32Z"
    },
    {
     "name": "Justin Herbert",
     "team": "",
     "pos": "QB",
     "status": "Questionable",
-    "summary": "Chargers coach Jim Harbaugh said that Herbert (concussion) won't practice Wednesday, Noah Furtado of The Athletic reports.",
-    "updatedAt": "2026-11-25T20:27Z"
+    "summary": "Herbert (concussion) was officially deemed a non-participant  in Thursday's practice.",
+    "updatedAt": "2026-11-26T21:00Z"
    },
    {
     "name": "Brenen Thompson",
     "team": "",
     "pos": "WR",
     "status": "Questionable",
-    "summary": "questionable",
-    "updatedAt": "2026-11-24T12:39Z"
+    "summary": "Thompson (hamstring) did not participate in Wednesday's practice.",
+    "updatedAt": "2026-11-26T02:24Z"
+   },
+   {
+    "name": "David Njoku",
+    "team": "",
+    "pos": "TE",
+    "status": "Questionable",
+    "summary": "Njoku (shoulder) did not practice Wednesday.",
+    "updatedAt": "2026-11-25T23:45Z"
    },
    {
     "name": "Keaton Mitchell",
     "team": "",
     "pos": "RB",
     "status": "Questionable",
-    "summary": "Mitchell (back) has re-entered Sunday's game against the Jets, Noah Furtado of The Athletic reports.",
-    "updatedAt": "2026-11-22T21:54Z"
+    "summary": "Mitchell (knee) did not practice Wednesday.",
+    "updatedAt": "2026-11-25T23:44Z"
    },
    {
-    "name": "Terrance Ferguson",
+    "name": "Tyler Higbee",
     "team": "",
     "pos": "TE",
-    "status": "Injured Reserve",
-    "summary": "Rams head coach Sean McVay said Monday that Ferguson (hamstring) won't be activated from injured reserve this season and will require surgery to address the ankle injury he aggravated in Week 3, Stu Jackson of the team's official site reports.",
-    "updatedAt": "2026-11-23T19:35Z"
+    "status": "Questionable",
+    "summary": "Higbee exited Wednesday's game against the Packers with a chest injury and will not return, Adam Grosbard of The Orange County Register reports.",
+    "updatedAt": "2026-11-26T03:47Z"
    },
    {
-    "name": "Davante Adams",
+    "name": "Davis Allen",
     "team": "",
-    "pos": "WR",
-    "status": "Injured Reserve",
-    "summary": "Adams (hamstring) has an \"outside chance\" to return from injured reserve for the Rams' Week 13 matchup with the Chiefs but is more likely to be activated around mid-December, Ian Rapoport of NFL Network reports.",
-    "updatedAt": "2026-11-22T14:32Z"
+    "pos": "TE",
+    "status": "Questionable",
+    "summary": "Allen (ankle) has been ruled out for the remainder of Wednesday night's game against the Packers.",
+    "updatedAt": "2026-11-26T03:24Z"
    },
    {
-    "name": "Puka Nacua",
+    "name": "Ty Simpson",
     "team": "",
-    "pos": "WR",
-    "status": "Injured Reserve",
-    "summary": "Nacua (knee/toe) is expected to be sidelined 4-to-5 months after undergoing surgery Tuesday to repair his right MCL, which means he won't be on track to return at any point during the playoffs, Adam Schefter of ESPN reports.",
-    "updatedAt": "2026-11-22T01:25Z"
+    "pos": "QB",
+    "status": "Out",
+    "summary": "Simpson (coach's decision) is inactive but will serve as the Rams' emergency third quarterback against the Packers on Wednesday, Adam Grosbard of The Orange County Register reports.",
+    "updatedAt": "2026-11-26T00:04Z"
    },
    {
     "name": "Jared Wayne",
     "team": "",
     "pos": "WR",
     "status": "Questionable",
-    "summary": "questionable",
-    "updatedAt": "2026-11-24T12:39Z"
+    "summary": "Wayne (quadriceps) didn't practice Wednesday, David Furones of the South Florida Sun Sentinel reports.",
+    "updatedAt": "2026-11-26T01:21Z"
    },
    {
     "name": "Malik Willis",
@@ -332,36 +396,44 @@
     "updatedAt": "2026-11-23T17:19Z"
    },
    {
-    "name": "Jordan Addison",
-    "team": "",
-    "pos": "WR",
-    "status": "Doubtful",
-    "summary": "Head coach Kevin O'Connell said Addison will be listed as a non-participant on Wednesday's injury report, Ben Goessling of the Minnesota Star Tribune reports.",
-    "updatedAt": "2026-11-25T19:37Z"
-   },
-   {
     "name": "Kyler Murray",
     "team": "",
     "pos": "QB",
     "status": "Questionable",
-    "summary": "questionable",
-    "updatedAt": "2026-11-24T12:39Z"
+    "summary": "Murray (hamstring) was listed as limited on Thursday's injury report.",
+    "updatedAt": "2026-11-26T19:47Z"
+   },
+   {
+    "name": "Jordan Addison",
+    "team": "",
+    "pos": "WR",
+    "status": "Doubtful",
+    "summary": "Addison (thumb) was listed as a non-participant on Thursday's injury report.",
+    "updatedAt": "2026-11-26T19:36Z"
+   },
+   {
+    "name": "Myles Price",
+    "team": "",
+    "pos": "WR",
+    "status": "Questionable",
+    "summary": "Price was a limited participant in Wednesday's practice due to a knee injury.",
+    "updatedAt": "2026-11-25T23:05Z"
    },
    {
     "name": "A.J. Brown",
     "team": "",
     "pos": "WR",
     "status": "Doubtful",
-    "summary": "Brown (hamstring) didn't take part in practice Wednesday, Evan Lazar of the Patriots' official site reports.",
-    "updatedAt": "2026-11-25T19:47Z"
+    "summary": "Brown (hamstring) was listed as a non-participant on Thursday's practice estimate.",
+    "updatedAt": "2026-11-26T20:52Z"
    },
    {
     "name": "Romeo Doubs",
     "team": "",
     "pos": "WR",
     "status": "Injured Reserve",
-    "summary": "The Patriots designated Doubs (shoulder) for return from injured reserve Wednesday, Evan Lazar of the Patriots' official site reports.",
-    "updatedAt": "2026-11-25T19:41Z"
+    "summary": "Doubs (shoulder) was limited in Wednesday's practice.",
+    "updatedAt": "2026-11-25T23:47Z"
    },
    {
     "name": "Drake Maye",
@@ -376,8 +448,8 @@
     "team": "",
     "pos": "TE",
     "status": "Questionable",
-    "summary": "Saints head coach Kellen Moore said Monday that Johnson is still undergoing further medical evaluation after injuring his hamstring during Sunday's 21-13 loss to the Bears, Ross Jackson of WWL-TV reports.",
-    "updatedAt": "2026-11-23T20:13Z"
+    "summary": "Coach Kellen Moore said Thursday that Johnson (hamstring/wrist) is considered day-to-day ahead of Sunday's game against the Bengals, Katherine Terrell of ESPN reports.",
+    "updatedAt": "2026-11-26T20:05Z"
    },
    {
     "name": "Isaiah Likely",
@@ -388,20 +460,28 @@
     "updatedAt": "2026-11-25T21:14Z"
    },
    {
-    "name": "Isaiah Williams",
-    "team": "",
-    "pos": "WR",
-    "status": "Questionable",
-    "summary": "Williams (ribs) was listed as a limited participant on Wednesday's estimated practice report.",
-    "updatedAt": "2026-11-25T21:09Z"
-   },
-   {
     "name": "Omar Cooper Jr.",
     "team": "",
     "pos": "WR",
     "status": "Questionable",
-    "summary": "Jets head coach Aaron Glenn said that Cooper (ankle/hip) won't practice Wednesday and is considered day-to-day.",
-    "updatedAt": "2026-11-25T17:05Z"
+    "summary": "Cooper (ankle/groin) was listed as a  non-participant in practice Thursday.",
+    "updatedAt": "2026-11-26T20:43Z"
+   },
+   {
+    "name": "Cole Payton",
+    "team": "",
+    "pos": "QB",
+    "status": "Out",
+    "summary": "Payton (coach's decision) is inactive for Thursday's game at Dallas but is available as the Eagles' emergency third quarterback.",
+    "updatedAt": "2026-11-26T20:20Z"
+   },
+   {
+    "name": "Grant Calcaterra",
+    "team": "",
+    "pos": "TE",
+    "status": "Out",
+    "summary": "inactive",
+    "updatedAt": "2026-11-26T20:14Z"
    },
    {
     "name": "Dontayvion Wicks",
@@ -412,20 +492,20 @@
     "updatedAt": "2026-11-21T21:09Z"
    },
    {
-    "name": "Michael Pittman Jr.",
-    "team": "",
-    "pos": "WR",
-    "status": "Injured Reserve",
-    "summary": "Pittman (foot) was listed as a full participant in Wednesday's practice,Alan Saunders of SteelersNow.com reports.",
-    "updatedAt": "2026-11-25T20:59Z"
-   },
-   {
     "name": "Ben Skowronek",
     "team": "",
     "pos": "WR",
+    "status": "Injured Reserve",
+    "summary": "ir",
+    "updatedAt": "2026-11-26T19:20Z"
+   },
+   {
+    "name": "Jordan Watkins",
+    "team": "",
+    "pos": "WR",
     "status": "Questionable",
-    "summary": "Skowronek (calf) did not practice Tuesday.",
-    "updatedAt": "2026-11-24T22:47Z"
+    "summary": "Watkins (groin) did not participate in Wednesday's practice.",
+    "updatedAt": "2026-11-26T02:57Z"
    },
    {
     "name": "De'Zhaun Stribling",
@@ -452,12 +532,36 @@
     "updatedAt": "2026-11-25T19:57Z"
    },
    {
-    "name": "Sam Darnold",
+    "name": "Nick Kallerup",
+    "team": "",
+    "pos": "TE",
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-11-26T00:28Z"
+   },
+   {
+    "name": "Drew Lock",
     "team": "",
     "pos": "QB",
     "status": "Questionable",
-    "summary": "Head coach Mike Macdonald reiterated that Darnold (quadriceps/rib) will start Sunday against the 49ers if the quarterback fares well during Wednesday's practice,  Brady Henderson of ESPN.com reports.",
-    "updatedAt": "2026-11-25T20:40Z"
+    "summary": "questionable",
+    "updatedAt": "2026-11-26T00:28Z"
+   },
+   {
+    "name": "Jalen Milroe",
+    "team": "",
+    "pos": "QB",
+    "status": "Questionable",
+    "summary": "questionable",
+    "updatedAt": "2026-11-26T00:26Z"
+   },
+   {
+    "name": "Jaxon Smith-Njigba",
+    "team": "",
+    "pos": "WR",
+    "status": "Questionable",
+    "summary": "Smith-Njigba was limited at Wednesday's practice due to an ankle injury, John Boyle of the Seahawks' official site reports.",
+    "updatedAt": "2026-11-25T23:36Z"
    },
    {
     "name": "George Holani",
@@ -476,12 +580,12 @@
     "updatedAt": "2026-11-25T15:55Z"
    },
    {
-    "name": "Stefon Diggs",
+    "name": "Treylon Burks",
     "team": "",
     "pos": "WR",
     "status": "Questionable",
-    "summary": "Diggs was absent from Wednesday's practice and was excused, Ben Standig of The Team 980 reports.",
-    "updatedAt": "2026-11-25T20:25Z"
+    "summary": "Burks (foot) was listed as limited on Thursday's injury report.",
+    "updatedAt": "2026-11-26T20:35Z"
    }
   ]
  }
